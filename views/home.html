@@ -13,9 +13,26 @@
     	text-align: center;
     }
 
-    h1 {text-align: center;
+    .centerContainer {
+    	  border: 2px solid white;
+		  margin: 20px;
+		  padding: 20px;
     }
 
+    h1 {text-align: center;
+    }
+	@font-face {
+	  font-family: headerFont;
+	  src: url(sansation_light.woff);
+	}
+
+	.optionsContainer{
+		border: 5px solid white;
+		margin: 20px;
+		margin-left: 40%;
+		padding: 20px;
+		text-align: left;
+	}
 
    </style>
 
@@ -23,10 +40,18 @@
 
 <body>
 
-<h1> 
-	<font face = "WildWest" size = "20">Castilla Foods</font>
-</h1>
+<div class="centerContainer">
+	<h1 style="margin-top: 0px; margin-bottom: 0px; line-height: 1.1; font-weight: 700; text-align: center; color: rgb(17, 17, 17); font-size: 74px; letter-spacing: -0.025em;">
+		<font face= "headerFont"> SioPau </font> 
+	</h1>
+	<h2 style="margin-top: 10px; text-align: center; font-weight: normal; font-size: 20px; color: rgba(0, 0, 0, 0.6); line-height: 1.5;">A management system for organizing your business needs</h2>
+</div>
 
+<div class="optionsContainer">
+	<h3> Orders </h3>
+	<h3> Inventory </h3>
+	<h3> Customer Contacts </h3>
+</div>
 </body>
 
 
