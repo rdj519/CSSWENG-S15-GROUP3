@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Customer List</title>
 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script src="/js/validator.min.js" type="text/javascript"></script>
+    <script src="/js/checkout.js" type="text/javascript"></script>
+
+    <style>
+
+		.sticky {
+			position: -webkit-sticky;
+			position: sticky;
+			top: 80px;
+		}
+
+		.margin {
+			margin-top: 25px;
+			margin-left: 25px;
+			margin-right: 25px;
+		}
+
+		.sidenav {
+			height: 100%;
+			width: 220px;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			background-color: #111;
+			overflow-x: hidden;
+			padding-top: 20px;
+			padding-left: 10px;
+			padding-right: 10px;
+			background-color:#f2f4f4;
+			bottom: 0;
+		}	
+
+		.main {
+			margin-left: 220px;
+		}
+
+    </style>
+</head>
+<body>
+
+	<div class="margin">
+		<div class="row">
+			<div class="col-2">
+				<div class="sidenav sticky">
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><h3><b>SioPau</b></h3></a>
+						<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
+						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Inventory</a>
+						<a class="nav-link active" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Customer List</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-10 card border-0 main">
+				<div class="card-body">
+					<div class="tab-content" id="v-pills-tabContent">
+						<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+							<h1><b>Customer List</b></h1>
+							This page contains the contact information of previous customers.
+							<br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
