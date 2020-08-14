@@ -39,6 +39,10 @@
 			bottom: 0;
 		}	
 
+		.sideBarOptions {
+      		color: black;
+    	}
+
 		.main {
 			margin-left: 220px;
 		}
@@ -52,10 +56,10 @@
 			<div class="col-2">
 				<div class="sidenav sticky">
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><h3><b>SioPau</b></h3></a>
-						<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
-						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Inventory</a>
-						<a class="nav-link active" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Customer List</a>
+						<a class="nav-link sideBarOptions" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><h3><b>SioPau</b></h3></a>
+						<a class="nav-link sideBarOptions" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
+						<a class="nav-link sideBarOptions" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Inventory</a>
+						<a class="nav-link active sideBarOptions" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Customer List</a>
 					</div>
 				</div>
 			</div>
@@ -66,9 +70,65 @@
 							<h1><b>Customer List</b></h1>
 							This page contains the contact information of previous customers.
 							<br>
+							<br>
+
+							<!-- for search and add contact button -->
+							<div class="row">
+								<div class="col-8">
+								</div>
+								<div class="col-4">
+									<div class="row">
+										<!-- search bar-->
+										<div class="col-7">
+											<div class="input-group">
+												<input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
+												<div class="input-group-append">
+													<button class="btn btn-light btn-outline-secondary" type="button" id="button-addon2">Go</button>
+												</div>
+											</div>
+										</div>
+
+										<!-- add contact -->
+										<div class="col-5">
+											<button class="btn btn-light float-right btn-outline-secondary" type="submit" style="margin-bottom: 5px;">Add Contact</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- table of customers-->
+							<div class="card">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th scope="col">Customer #</th>
+											<th scope="col">Name</th>
+											<th scope="col">Contact Number</th>
+											<th scope="col">Location</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th scope="row">0001</th>
+											<td>name1</td>
+											<td>0912356789</td>
+											<td>NCR</td>
+										</tr>
+										<tr>
+											<th scope="row">0002</th>
+											<td>name2</td>
+											<td>09987654321</td>
+											<td>Outside NCR</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
