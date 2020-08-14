@@ -2,7 +2,7 @@
 <head>
 	<title> Home Page</title>
 
-	<link rel = "stylesheet" type = "text/css" href = "/css/bootstrap.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous">
     	/* CODE */
   	</script>
@@ -13,6 +13,18 @@
     	text-align: center;
     }
 
+    .headPictureContainer{
+    	height: 50%;
+    }
+
+    .pictureContainer{
+    	float: left;
+    }
+
+    .smallImage{
+    	height: 20%;
+		width: 25%;
+    }
     .centerContainer {
     	  border: 2px solid white;
 		  margin: 20px;
@@ -21,6 +33,7 @@
 
     h1 {text-align: center;
     }
+
 	@font-face {
 	  font-family: headerFont;
 	  src: url(sansation_light.woff);
@@ -29,9 +42,31 @@
 	.optionsContainer{
 		border: 5px solid white;
 		margin: 20px;
-		margin-left: 40%;
+		margin-left: 25%;
+		margin-right: 25%;
 		padding: 20px;
-		text-align: left;
+		
+		display: inline;
+		float: left;
+	}
+
+	/* Three image containers (use 25% for four, and 50% for two, etc) */
+	.column {
+	  float: left;
+	  width: 33.33%;
+	  padding: 20px;
+	}
+
+	/* Clear floats after image containers */
+	.row::after{
+	  content: "";
+	  clear: both;
+	  display: table;
+	}
+
+	.option{
+		float:left;
+		padding: 5px;
 	}
 
    </style>
@@ -40,6 +75,10 @@
 
 <body>
 
+<!-- header image -->	
+<img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;ixid=eyJhcHBfaWQiOjYzOTIxfQ&amp;w=3600" style="display: block; object-fit: cover; border-radius: 0px; width: 100%; height: 30vh; opacity: 1; object-position: center 50%;">
+
+<!-- header text -->
 <div class="centerContainer">
 	<h1 style="margin-top: 0px; margin-bottom: 0px; line-height: 1.1; font-weight: 700; text-align: center; color: rgb(17, 17, 17); font-size: 74px; letter-spacing: -0.025em;">
 		<font face= "headerFont"> SioPau </font> 
@@ -47,10 +86,83 @@
 	<h2 style="margin-top: 10px; text-align: center; font-weight: normal; font-size: 20px; color: rgba(0, 0, 0, 0.6); line-height: 1.5;">A management system for organizing your business needs</h2>
 </div>
 
+<!-- options container -->
 <div class="optionsContainer">
-	<h3> Orders </h3>
-	<h3> Inventory </h3>
-	<h3> Customer Contacts </h3>
+	<!-- images for options -->
+	<div class="row">
+	  <div class="column">
+	    <img src="https://cdn.discordapp.com/attachments/375169170180014081/743749345651720252/chorizo-mozarella-gnocchi-bake-cropped.png" alt="Orders" style="width:100%">
+	  </div>
+	  <div class="column">
+	    <img src="https://cdn.discordapp.com/attachments/375169170180014081/743749345651720252/chorizo-mozarella-gnocchi-bake-cropped.png" alt="Inventory" style="width:100%">
+	  </div>
+	  <div class="column">
+	    <img src="https://cdn.discordapp.com/attachments/375169170180014081/743749345651720252/chorizo-mozarella-gnocchi-bake-cropped.png" alt="Contacts" style="width:100%">
+	  </div>
+	</div>
+	
+	<!-- options -->
+	<div class="row">
+		<div class="column">
+			<h4> Stock Inventory </h4>
+			<div class = "row">
+				<div class="option">
+					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
+				</div>
+				<div class="option">
+					<h6> Manage Inventory</h6>
+				</div>
+			</div>
+			<div class = "row">
+				<div class="option">
+					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
+				</div>
+				<div class="option">
+					<h6> Business Transactions</h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="column"> 
+			<h4> Orders </h4>
+			<div class = "row">
+				<div class="option">
+					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
+				</div>
+				<div class="option">
+					<h6> Manage Orders</h6>
+				</div>
+			</div>
+			<div class = "row">
+				<div class="option">
+					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
+				</div>
+				<div class="option">
+					<h6> Add New Order</h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="column"> 
+			<h4> Contacts </h4>
+			<div class = "row">
+				<div class="option">
+					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
+				</div>
+				<div class="option">
+					<h6> Manage Contacts</h6>
+				</div>
+			</div>
+			<div class = "row">
+				<div class="option">
+					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
+				</div>
+				<div class="option">
+					<h6> Add New Contact</h6>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 
