@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stock Inventory</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../public/css/inventory.css">
+    </head>
+    <body>
+        <div class="margin">
+            <div class="row">
+                <div class="col-2">
+                    <div class="sidenav sticky">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link sideBarOptions" id="v-pills-home-tab" data-toggle="pill" href="home.html" role="tab" aria-controls="v-pills-home" aria-selected="true"><h3><b>SioPau</b></h3></a>
+                            <a class="nav-link sideBarOptions" id="v-pills-profile-tab" data-toggle="pill" href="orders.html" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
+                            <a class="nav-link active sideBarOptions" id="v-pills-messages-tab" data-toggle="pill" href="inventory.html" role="tab" aria-controls="v-pills-messages" aria-selected="false">Stock Inventory</a>
+                            <a class="nav-link sideBarOptions" id="v-pills-settings-tab" data-toggle="pill" href="contacts.html" role="tab" aria-controls="v-pills-settings" aria-selected="false">Contacts</a>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-10 card border-0 main">
+                <div class="col-10 card border-0 main">
+                    <div class="card-body">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <h1><b>Stock inventory</b></h1>
+                                This page contains the available products in the inventory.
+                                <br>
+                                <br>
+    
+                                <div class="col-4">
+									<div class="row">                     
+										<!-- search bar-->
+										<div class="col-7">
+											<div class="input-group">
+												<input type="text" class="form-control" placeholder="Order Number" aria-label="Recipient's username" aria-describedby="button-addon2">
+												<div class="input-group-append">
+													<button class="btn btn-light btn-outline-secondary" type="button" id="button-addon2">Go</button>
+												</div>
+											</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                        
+                                <!-- table of inventory -->
+                                <div class="card">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Name </th>
+                                                <th scope="col">Amount per Pack</th>
+                                                <th scope="col">Stock Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+                                                <th scope="col">Pork Siomai</th>
+                                                <td>60</td>
+                                                <td>14</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+                                                <th scope="col">Lumpiang Shanghai</th>
+                                                <td>60</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+                                                <th scope="col">Gyoza</th>
+                                                <td>60</td>
+                                                <td>26</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+                                                <th scope="col">Sharksfin Dumplings</th>
+                                                <td>60</td>
+                                                <td>45</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+                                                <th scope="col">Beef Siomai</th>
+                                                <td>60</td>
+                                                <td>4</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+                                                <th scope="col">Siopao (Asado)</th>
+                                                <td>48</td>
+                                                <td>3</td>
+                                            </tr>  
+                                            <tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+                                                <th scope="col">Siopao (Bola-bola)</th>
+                                                <td>48</td>
+                                                <td>15</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+                                                <th scope="col">Hoisin Sauce</th>
+                                                <td>5</td>
+                                                <td>22</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+                                                <th scope="col">Chili Sauce</th>
+                                                <td>5</td>
+                                                <td>13</td>
+                                            </tr>
+                                        </tbody>
+            </div>
+    </body>
+</html>

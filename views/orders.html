@@ -5,60 +5,14 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <style>
+	<!-- CSS -->
+	<link rel="stylesheet" href="../public/css/orders.css">
 
-		.sticky {
-			position: -webkit-sticky;
-			position: sticky;
-			top: 80px;
-		}
+	<!-- JS-->
 
-		.margin {
-			margin-top: 25px;
-			margin-left: 25px;
-			margin-right: 25px;
-		}
+	<!-- Fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
-		.sidenav {
-			height: 100%;
-			width: 220px;
-			position: fixed;
-			z-index: 1;
-			top: 0;
-			left: 0;
-			background-color: #111;
-			overflow-x: hidden;
-			padding-top: 20px;
-			padding-left: 10px;
-			padding-right: 10px;
-			background-color:#f2f4f4;
-			bottom: 0;
-		}	
-
-		.sideBarOptions {
-      		color: black;
-    	}
-
-		.main {
-			margin-left: 220px;
-		}
-
-		label {
-		    /* Other styling... */
-		    text-align: right;
-		    clear: both;
-		    float:left;
-		    margin-right:15px;
-		}
-
-		.info {
-			text-align: right;
-		    clear: right;
-		    float:right;
-		    margin-right:15px;
-		}
-
-    </style>
 </head>
 <body>
 
@@ -68,9 +22,9 @@
 				<div class="sidenav sticky">
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 						<a class="nav-link sideBarOptions" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><h3><b>SioPau</b></h3></a>
-						<a class="nav-link active sideBarOptions" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
-						<a class="nav-link sideBarOptions" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Stock Inventory</a>
-						<a class="nav-link sideBarOptions" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Contacts</a>
+						<a class="nav-link active sideBarOptions" id="v-pills-profile-tab" data-toggle="pill" href="orders.html" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
+						<a class="nav-link sideBarOptions" id="v-pills-messages-tab" data-toggle="pill" href="inventory.html" role="tab" aria-controls="v-pills-messages" aria-selected="false">Stock Inventory</a>
+						<a class="nav-link sideBarOptions" id="v-pills-settings-tab" data-toggle="pill" href="contacts.html" role="tab" aria-controls="v-pills-settings" aria-selected="false">Contacts</a>
 					</div>
 				</div>
 			</div>
@@ -155,6 +109,39 @@
 											<td>Aug 17, 2020</td>
 											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#orderTwoModal" /> </td>
 										</tr>
+										<tr data-toggle="modal" data-id="2" data-target="#orderThreeModal">
+											<th scope="row">0003</th>
+											<td>Rey Delima</td>
+											<td>09123456789</td>
+											<td>5th Street Forbes Park, Manila</td>
+											<td>Delivered</td>
+											<td>GrabExpress</td>
+											<td>Aug 13, 2020</td>
+											<td>Aug 23, 2020</td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#orderTwoModal" /> </td>
+										</tr>
+										<tr data-toggle="modal" data-id="2" data-target="#orderFourModal">
+											<th scope="row">0004</th>
+											<td>Juan Dela Cruz</td>
+											<td>09987456321</td>
+											<td>18, G.Greenwood St. Paul, Pasig City</td>
+											<td>Confirmed</td>
+											<td>Castilla</td>
+											<td>Aug 14, 2020</td>
+											<td>Aug 18, 2020</td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#orderTwoModal" /> </td>
+										</tr>
+										<tr data-toggle="modal" data-id="2" data-target="#orderFiveModal">
+											<th scope="row">0005</th>
+											<td>Luigi Valera</td>
+											<td>09696969691</td>
+											<td>3rd Street Bangbang Avenue, Tondo</td>
+											<td>Cancelled</td>
+											<td>GrabExpress</td>
+											<td>Aug 10, 2020</td>
+											<td>Aug 19, 2020</td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#orderTwoModal" /> </td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -228,6 +215,7 @@
 							      	<p class="info" style="font-weight:bold;">750</p> 
 							      </div>
 							      <div class="modal-footer">
+									<button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 							        <button type="button" class="btn btn-primary">Save changes</button>
 							      </div>
@@ -298,7 +286,7 @@
 												<td>750</td>
 											</tr>
 											<tr>
-												<th scope="row">CHili Sauce</th>
+												<th scope="row">Chili Sauce</th>
 												<td>3</td>
 												<td>200</td>
 											</tr>
@@ -313,13 +301,272 @@
 
 							      </div>
 							      <div class="modal-footer">
+									<button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 							        <button type="button" class="btn btn-primary">Save changes</button>
 							      </div>
 							    </div>
 							  </div>
 							</div>
-
+							<div class="modal fade" id="orderThreeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								  <div class="modal-content">
+									<div class="modal-header">
+									  <h5 class="modal-title" id="exampleModalLabel">Order No. 3</h5>
+									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									  </button>
+									</div>
+									<div class="modal-body">
+  
+										<label style="color:#A39E9C"> Contact Number </label>
+										<p class="info">09123456789</p> 
+										<label style="color:#A39E9C"> Address </label>
+										<p class="info">5th Street Forbes Park, Manila</p> 
+										<label style="color:#A39E9C"> Courier </label>
+										<p class="info">GrabExpress</p> 
+										<label style="color:#A39E9C"> Customer Name</label>
+										<p class="info">Rey Delima</p> 
+										<label style="color:#A39E9C"> Date Placed</label>
+										<p class="info">Aug 13, 2020</p> 
+										<label style="color:#A39E9C"> Delivery Date</label>
+										<p class="info">Aug 23, 2020</p> 							  
+										<label style="color:#A39E9C"> Payment Method</label>
+										<p class="info">CoD</p> 	
+										<label style="color:#A39E9C"> Status</label>
+										<div class="info">
+										  <div class="dropdown">
+											<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											  Delivered
+											</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											  <a class="dropdown-item" href="#">Confirmed</a>
+											  <a class="dropdown-item" href="#">Paid</a>
+											  <a class="dropdown-item" href="#">Cancelled</a>
+											</div>
+										  </div>
+										</div>									      	
+										<!-- table for ordered products -->
+									  <table class="table table-hover">
+										  <thead>
+											  <tr>
+												  <th scope="col">Product</th>
+												  <th scope="col">Quantity</th>
+												  <th scope="col">Price</th>
+											  </tr>
+										  </thead>
+										  <tbody>
+											  <tr>
+												  <th scope="row">Siopao (Asado)</th>
+												  <td>4</td>
+												  <td>450</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Siomai & Dumplings</th>
+												  <td>2</td>
+												  <td>600</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Lumpia Shanghai</th>
+												  <td>5</td>
+												  <td>750</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Chili Sauce</th>
+												  <td>3</td>
+												  <td>200</td>
+											  </tr>
+										  </tbody>
+									  </table>
+									  <label style="color:#A39E9C"> Overall Price</label>
+										<p class="info">2000</p> 			
+										<label style="color:#A39E9C"> Delivery Fee</label>
+										<p class="info">250</p> 
+										<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+										<p class="info" style="font-weight:bold;">2250</p> 							      
+  
+									</div>
+									<div class="modal-footer">
+									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
+									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									  <button type="button" class="btn btn-primary">Save changes</button>
+									</div>
+								  </div>
+								</div>
+							</div>
+							
+							<div class="modal fade" id="orderFourModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								  <div class="modal-content">
+									<div class="modal-header">
+									  <h5 class="modal-title" id="exampleModalLabel">Order No. 4</h5>
+									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									  </button>
+									</div>
+									<div class="modal-body">
+  
+										<label style="color:#A39E9C"> Contact Number </label>
+										<p class="info">09987456321</p> 
+										<label style="color:#A39E9C"> Address </label>
+										<p class="info">18, G.Greenwood St. Paul, Pasig City</p> 
+										<label style="color:#A39E9C"> Courier </label>
+										<p class="info">Castilla</p> 
+										<label style="color:#A39E9C"> Customer Name</label>
+										<p class="info">Juan Dela Cruz</p> 
+										<label style="color:#A39E9C"> Date Placed</label>
+										<p class="info">Aug 14, 2020</p> 
+										<label style="color:#A39E9C"> Delivery Date</label>
+										<p class="info">Aug 18, 2020</p> 							  
+										<label style="color:#A39E9C"> Payment Method</label>
+										<p class="info">CoD</p> 	
+										<label style="color:#A39E9C"> Status</label>
+										<div class="info">
+										  <div class="dropdown">
+											<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											  Confirmed
+											</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											  <a class="dropdown-item" href="#">Delivered</a>
+											  <a class="dropdown-item" href="#">Paid</a>
+											  <a class="dropdown-item" href="#">Cancelled</a>
+											</div>
+										  </div>
+										</div>									      	
+										<!-- table for ordered products -->
+									  <table class="table table-hover">
+										  <thead>
+											  <tr>
+												  <th scope="col">Product</th>
+												  <th scope="col">Quantity</th>
+												  <th scope="col">Price</th>
+											  </tr>
+										  </thead>
+										  <tbody>
+											  <tr>
+												  <th scope="row">Siopao (Asado)</th>
+												  <td>4</td>
+												  <td>450</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Siomai & Dumplings</th>
+												  <td>2</td>
+												  <td>600</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Lumpia Shanghai</th>
+												  <td>5</td>
+												  <td>750</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Chili Sauce</th>
+												  <td>3</td>
+												  <td>200</td>
+											  </tr>
+										  </tbody>
+									  </table>
+									  <label style="color:#A39E9C"> Overall Price</label>
+										<p class="info">2000</p> 			
+										<label style="color:#A39E9C"> Delivery Fee</label>
+										<p class="info">250</p> 
+										<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+										<p class="info" style="font-weight:bold;">2250</p> 							      
+  
+									</div>
+									<div class="modal-footer">
+									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
+									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									  <button type="button" class="btn btn-primary">Save changes</button>
+									</div>
+								  </div>
+								</div>
+							</div>
+							<div class="modal fade" id="orderFiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								  <div class="modal-content">
+									<div class="modal-header">
+									  <h5 class="modal-title" id="exampleModalLabel">Order No. 5</h5>
+									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									  </button>
+									</div>
+									<div class="modal-body">
+  
+										<label style="color:#A39E9C"> Contact Number </label>
+										<p class="info">09696969691</p> 
+										<label style="color:#A39E9C"> Address </label>
+										<p class="info">3rd Street Bangbang Avenue, Tondo</p> 
+										<label style="color:#A39E9C"> Courier </label>
+										<p class="info">GrabExpress</p> 
+										<label style="color:#A39E9C"> Customer Name</label>
+										<p class="info">Luigi Valera</p> 
+										<label style="color:#A39E9C"> Date Placed</label>
+										<p class="info">Aug 10, 2020</p> 
+										<label style="color:#A39E9C"> Delivery Date</label>
+										<p class="info">Aug 19, 2020</p> 							  
+										<label style="color:#A39E9C"> Payment Method</label>
+										<p class="info">GCash</p> 	
+										<label style="color:#A39E9C"> Status</label>
+										<div class="info">
+										  <div class="dropdown">
+											<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											  Cancelled
+											</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											  <a class="dropdown-item" href="#">Delivered</a>
+											  <a class="dropdown-item" href="#">Paid</a>
+											  <a class="dropdown-item" href="#">Confirmed</a>
+											</div>
+										  </div>
+										</div>									      	
+										<!-- table for ordered products -->
+									  <table class="table table-hover">
+										  <thead>
+											  <tr>
+												  <th scope="col">Product</th>
+												  <th scope="col">Quantity</th>
+												  <th scope="col">Price</th>
+											  </tr>
+										  </thead>
+										  <tbody>
+											  <tr>
+												  <th scope="row">Siopao (Asado)</th>
+												  <td>4</td>
+												  <td>450</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Siomai & Dumplings</th>
+												  <td>2</td>
+												  <td>600</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Lumpia Shanghai</th>
+												  <td>5</td>
+												  <td>750</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Chili Sauce</th>
+												  <td>3</td>
+												  <td>200</td>
+											  </tr>
+										  </tbody>
+									  </table>
+									  <label style="color:#A39E9C"> Overall Price</label>
+										<p class="info">2000</p> 			
+										<label style="color:#A39E9C"> Delivery Fee</label>
+										<p class="info">250</p> 
+										<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+										<p class="info" style="font-weight:bold;">2250</p> 							      
+  
+									</div>
+									<div class="modal-footer">
+									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
+									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									  <button type="button" class="btn btn-primary">Save changes</button>
+									</div>
+								  </div>
+								</div>
+							</div>
 							<!-- Modal For Adding Order -->
 							<div id="addOrder" class="modal fade" role="dialog">
 							  <div class="modal-dialog" role="document">

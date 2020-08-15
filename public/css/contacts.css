@@ -1,0 +1,35 @@
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
+}
+
+.margin {
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.sidenav {
+    height: 100%;
+    width: 220px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color:#f2f4f4;
+    bottom: 0;
+}	
+
+.sideBarOptions {
+      color: black;
+}
+
+.main {
+    margin-left: 220px;
+}

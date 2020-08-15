@@ -1,0 +1,121 @@
+body {
+    font-family: 'Noto Sans';
+    color: #37352F;
+}
+
+#siopau {
+    text-align: center; 
+    margin-top: 0px; 
+    margin-bottom: 0px; 
+    line-height: 1.1; 
+    font-weight: 700; 
+    text-align: center;  
+    font-size: 74px; 
+    letter-spacing: -0.025em;
+}
+
+#subtitle {
+    margin-top: 10px; 
+    text-align: center; 
+    font-weight: normal; 
+    font-size: 20px; 
+    color: rgba(0, 0, 0, 0.6); 
+    line-height: 1.5;
+}
+
+.center {
+    text-align: center;
+}
+
+.headPictureContainer{
+    height: 50%;
+}
+
+.pictureContainer{
+    float: left;
+}
+
+.smallImage{
+    height: 20%;
+    width: 25%;
+}
+.centerContainer {
+      border: 2px solid white;
+      margin: 20px;
+      padding: 20px;
+}
+
+h1 {text-align: center;
+}
+
+@font-face {
+  font-family: headerFont;
+  src: url(sansation_light.woff);
+}
+
+.optionsContainer{
+    border: 5px solid white;
+    margin: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding: 20px;
+    
+    display: inline;
+    float: left;
+}
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 20px;
+}
+
+/* Clear floats after image containers */
+.row::after{
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.option{
+    float:left;
+    padding: 5px;
+}
+
+.optionTab {
+    color: #37352F;
+}
+
+.optionTab:hover {
+    color: #37352F;
+    text-decoration: none;
+}
+
+
+.col>.option {
+    width: 100%;
+}
+
+.col>.option:hover {
+    background-color: #EBECED;
+}
+
+.moduleTitle {
+    font-weight:bold;
+    background-color: #f2f3f3;
+    padding: 20px;
+    font-size: 24px;
+}
+
+#reports {
+    /* background-color: red; */
+    height: 200px;
+}
+
+.optionImage {
+    /* object-fit: cover; */
+    /* padding: 15px; */
+    /* height: 207px; */
+    /* margin-bottom: 30px; */
+}
