@@ -55,7 +55,7 @@
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 						<a class="nav-link sideBarOptions" id="v-pills-home-tab" data-toggle="pill" href="home.html" role="tab" aria-controls="v-pills-home" aria-selected="true"><h3><b>SioPau</b></h3></a>
 						<a class="nav-link sideBarOptions" id="v-pills-profile-tab" data-toggle="pill" href="orders.html" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
-						<a class="nav-link sideBarOptions" id="v-pills-messages-tab" data-toggle="pill" href="inventory.htmla-controls="v-pills-messages" aria-selected="false">Stock Inventory</a>
+						<a class="nav-link sideBarOptions" id="v-pills-messages-tab" data-toggle="pill" href="inventory.html" aria-controls="v-pills-messages" aria-selected="false">Stock Inventory</a>
 						<a class="nav-link active sideBarOptions" id="v-pills-settings-tab" data-toggle="pill" href="contacts.html" role="tab" aria-controls="v-pills-settings" aria-selected="false">Contacts</a>
 					</div>
 				</div>
@@ -113,6 +113,7 @@
 											<th scope="col">Name</th>
 											<th scope="col">Contact Number</th>
 											<th scope="col">Location</th>
+											<th scope="col"> </th>
 										</tr>
 									</thead>
 									<tbody>
@@ -121,30 +122,40 @@
 											<td>Gerrard Castilla</td>
 											<td>09292684572</td>
 											<td>17, G.Cleveland St. Parkwood Pasig City</td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
+
 										</tr>
 										<tr>
 											<th scope="row">0002</th>
 											<td>Bryce Ramirez</td>
 											<td>09987654321</td>
 											<td>3rd Avenue Baranggay Lito</td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
+
 										</tr>
 										<tr>
 											<th scope="row">0003</th>
 											<td>Rey Delima</td>
 											<td>09123456789</td>
 											<td>5th Street Forbes Park, Manila</td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
+
 										</tr>
 										<tr>
 											<th scope="row">0004</th>
 											<td>Juan Dela Cruz</td>
 											<td>09112223333</td>
 											<td>18, G.Greenwood St. Paul, Pasig City</td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
+
 										</tr>
 										<tr>
 											<th scope="row">0005</th>
 											<td>Luigi Valera</td>
 											<td>09696969691</td>
 											<td>3rd Street Bangbang Avenue, Tondo</td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
+
 										</tr>
 									</tbody>
 								</table>
@@ -181,18 +192,49 @@
 										</div>
 										
 										<div class="modal-footer">
-									  		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									  		<button type="button" class="btn btn-primary">Create Contact</button>
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Create Contact</button>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-  
+
+							<!-- edit contact -->
+							<div class="modal fade" id="editContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Customer No. ?</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="form-group">
+													<label for="customerName">Customer Name</label>
+													<input type="text" class="form-control" id="customerName" value="Gerrard Castilla">
+													<br>
+													<label for="contactNum">Contact Number</label>
+													<input type="number" class="form-control" id="contactNum" value="09292684572">
+													<br>
+													<label for="location">Location</label>
+													<input type="text" class="form-control" id="location" value="17, G.Cleveland St. Parkwood Pasig City">
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
 
 						</div>
 					</div>
 				</div>
+			</div>
 
 			</div>
 		</div>
