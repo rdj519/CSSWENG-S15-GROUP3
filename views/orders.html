@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Manage Orders</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+
+		.sticky {
+			position: -webkit-sticky;
+			position: sticky;
+			top: 80px;
+		}
+
+		.margin {
+			margin-top: 25px;
+			margin-left: 25px;
+			margin-right: 25px;
+		}
+
+		.sidenav {
+			height: 100%;
+			width: 220px;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			background-color: #111;
+			overflow-x: hidden;
+			padding-top: 20px;
+			padding-left: 10px;
+			padding-right: 10px;
+			background-color:#f2f4f4;
+			bottom: 0;
+		}	
+
+		.sideBarOptions {
+      		color: black;
+    	}
+
+		.main {
+			margin-left: 220px;
+		}
+
+		label {
+		    /* Other styling... */
+		    text-align: right;
+		    clear: both;
+		    float:left;
+		    margin-right:15px;
+		}
+
+		.info {
+			text-align: right;
+		    clear: right;
+		    float:right;
+		    margin-right:15px;
+		}
+
+    </style>
+</head>
+<body>
+
+	<div class="margin">
+		<div class="row">
+			<div class="col-2">
+				<div class="sidenav sticky">
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link sideBarOptions" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><h3><b>SioPau</b></h3></a>
+						<a class="nav-link active sideBarOptions" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
+						<a class="nav-link sideBarOptions" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Stock Inventory</a>
+						<a class="nav-link sideBarOptions" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Contacts</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-10 card border-0 main">
+				<div class="card-body">
+					<div class="tab-content" id="v-pills-tabContent">
+						<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+							<h1><b>Manage Orders</b></h1>
+							This page contains the orders and their informations.
+							<br>
+							<br>
+
+							<!-- for search and add order button -->
+							<div class="row">
+								<div class="col-8">
+										<div class="dropdown">
+										  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    Sort by
+										  </button>
+										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a class="dropdown-item" href="#">Order No.</a>
+										    <a class="dropdown-item" href="#">Status</a>
+										    <a class="dropdown-item" href="#">Delivery Date</a>
+										  </div>
+										</div>
+								</div>
+								<div class="col-4">
+									<div class="row">
+										<!-- search bar-->
+										<div class="col-7">
+											<div class="input-group">
+												<input type="text" class="form-control" placeholder="Order Number" aria-label="Recipient's username" aria-describedby="button-addon2">
+												<div class="input-group-append">
+													<button class="btn btn-light btn-outline-secondary" type="button" id="button-addon2">Go</button>
+												</div>
+											</div>
+										</div>
+
+										<!-- add order -->
+										<div class="col-5">
+											<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addOrder" type="submit" style="margin-bottom: 5px;">Add Order</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- table of customers-->
+							<div class="card">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th scope="col">Order #</th>
+											<th scope="col">Name</th>
+											<th scope="col">Contact Number</th>
+											<th scope="col">Address</th>
+											<th scope="col">Status</th>
+											<th scope="col">Courier</th>
+											<th scope="col">Date Placed</th>
+											<th scope="col">Delivery Date</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+											<th scope="row">0001</th>
+											<td>Gerrard Castilla</td>
+											<td>09292684572</td>
+											<td>17, G.Cleveland St. Parkwood Pasig City</td>
+											<td>Confirmed</td>
+											<td>Castilla</td>
+											<td>Aug 15, 2020</td>
+											<td>Aug 20, 2020</td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#orderOneModal" /> </td>
+										</tr>
+										<tr data-toggle="modal" data-id="2" data-target="#orderTwoModal">
+											<th scope="row">0002</th>
+											<td>Bryce Ramirez</td>
+											<td>09987654321</td>
+											<td>3rd Avenue Baranggay Lito</td>
+											<td>Paid</td>
+											<td>GrabExpress</td>
+											<td>Aug 14, 2020</td>
+											<td>Aug 17, 2020</td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#orderTwoModal" /> </td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<!-- Modal For Orders-->
+							<div class="modal fade" id="orderOneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">Order No. 1</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+
+							      	<label style="color:#A39E9C"> Contact Number </label>
+							      	<p class="info">09292684572</p> 
+							      	<label style="color:#A39E9C"> Address </label>
+							      	<p class="info">17, G.Cleveland St. Parkwood Pasig City</p> 
+							      	<label style="color:#A39E9C"> Courier </label>
+							      	<p class="info">Castilla</p> 
+							      	<label style="color:#A39E9C"> Customer Name</label>
+							      	<p class="info">Gerard Castilla</p> 
+							      	<label style="color:#A39E9C"> Date Placed</label>
+							      	<p class="info">Aug 15, 2020</p> 
+							      	<label style="color:#A39E9C"> Delivery Date</label>
+							      	<p class="info">Aug 20, 2020</p> 							  
+							      	<label style="color:#A39E9C"> Payment Method</label>
+							      	<p class="info">CoD</p> 	
+							      	<label style="color:#A39E9C"> Status</label>
+							      	<div class="info">
+										<div class="dropdown">
+										  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    Confirmed
+										  </button>
+										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a class="dropdown-item" href="#">Paid</a>
+										    <a class="dropdown-item" href="#">Delivered</a>
+										    <a class="dropdown-item" href="#">Cancelled</a>
+										  </div>
+										</div>
+							      	</div>									      	
+							      	<!-- table for ordered products -->
+								    <table class="table table-hover">
+										<thead>
+											<tr>
+												<th scope="col">Product</th>
+												<th scope="col">Quantity</th>
+												<th scope="col">Price</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">Pork Siomai</th>
+												<td>8</td>
+												<td>530</td>
+											</tr>
+											<tr>
+												<th scope="row">Gyoza</th>
+												<td>3</td>
+												<td>130</td>
+											</tr>
+										</tbody>
+									</table>
+									<label style="color:#A39E9C"> Overall Price</label>
+							      	<p class="info">630</p> 			
+							      	<label style="color:#A39E9C"> Delivery Fee</label>
+							      	<p class="info">120</p> 
+							      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+							      	<p class="info" style="font-weight:bold;">750</p> 
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							        <button type="button" class="btn btn-primary">Save changes</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							<div class="modal fade" id="orderTwoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">Order No. 2</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+
+							      	<label style="color:#A39E9C"> Contact Number </label>
+							      	<p class="info">09987654321</p> 
+							      	<label style="color:#A39E9C"> Address </label>
+							      	<p class="info">3rd Avenue Baranggay Lito</p> 
+							      	<label style="color:#A39E9C"> Courier </label>
+							      	<p class="info">GrabExpress</p> 
+							      	<label style="color:#A39E9C"> Customer Name</label>
+							      	<p class="info">Bryce Ramirez</p> 
+							      	<label style="color:#A39E9C"> Date Placed</label>
+							      	<p class="info">Aug 14, 2020</p> 
+							      	<label style="color:#A39E9C"> Delivery Date</label>
+							      	<p class="info">Aug 17, 2020</p> 							  
+							      	<label style="color:#A39E9C"> Payment Method</label>
+							      	<p class="info">GCash</p> 	
+							      	<label style="color:#A39E9C"> Status</label>
+							      	<div class="info">
+										<div class="dropdown">
+										  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    Paid
+										  </button>
+										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a class="dropdown-item" href="#">Confirmed</a>
+										    <a class="dropdown-item" href="#">Delivered</a>
+										    <a class="dropdown-item" href="#">Cancelled</a>
+										  </div>
+										</div>
+							      	</div>									      	
+							      	<!-- table for ordered products -->
+								    <table class="table table-hover">
+										<thead>
+											<tr>
+												<th scope="col">Product</th>
+												<th scope="col">Quantity</th>
+												<th scope="col">Price</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">Siopao (Asado)</th>
+												<td>4</td>
+												<td>450</td>
+											</tr>
+											<tr>
+												<th scope="row">Siomai & Dumplings</th>
+												<td>2</td>
+												<td>600</td>
+											</tr>
+											<tr>
+												<th scope="row">Lumpia Shanghai</th>
+												<td>5</td>
+												<td>750</td>
+											</tr>
+											<tr>
+												<th scope="row">CHili Sauce</th>
+												<td>3</td>
+												<td>200</td>
+											</tr>
+										</tbody>
+									</table>
+									<label style="color:#A39E9C"> Overall Price</label>
+							      	<p class="info">2000</p> 			
+							      	<label style="color:#A39E9C"> Delivery Fee</label>
+							      	<p class="info">250</p> 
+							      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+							      	<p class="info" style="font-weight:bold;">2250</p> 							      
+
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							        <button type="button" class="btn btn-primary">Save changes</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+
+							<!-- Modal For Adding Order -->
+							<div id="addOrder" class="modal fade" role="dialog">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+	
+							        <div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							        </div>
+
+							        <div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
+							          <input type="number" id="defaultForm-pass" class="form-control validate">
+							        </div>
+
+
+							        <div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Address</label>
+							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							        </div>
+
+							      	<div class="md-form mb-4">
+							      		<label data-error="wrong" data-success="right" for="defaultForm-pass">Customer Order</label>
+									    <table class="table table-hover">
+											<thead>
+												<tr>
+													<th scope="col">Product</th>
+													<th scope="col">Quantity</th>
+													<th scope="col">Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th scope="row">Siomai & Dumplings Pack</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Pork Siomai</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Lumpia Shanghai</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Gyoza</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Sharksfin Dumplings</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Beef Siomai</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Chicken Siomai</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Siopao Mini</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Siopao (Asado)</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Siopao (Bola-Bola)</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Holsin Sauce</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Chili Sauce</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+											</tbody>
+										</table>
+										<label data-error="wrong" data-success="right" for="defaultForm-pass">Total Amount</label>
+										<input type="number" id="defaultForm-pass" class="form-control validate">
+							      	</div>
+
+							      	<div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Payment Method</label>
+							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							        </div>
+
+							        <div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Courier</label>
+							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							        </div>
+
+							        <div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Delivery Date</label>
+							          <input type="date" id="defaultForm-pass" class="form-control validate">
+							        </div>
+
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							        <button type="button" class="btn btn-primary">Add Order</button>
+							      </div>
+							    </div>
+							  </div>
+							  </div>
+							</div>
+							
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
