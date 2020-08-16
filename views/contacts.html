@@ -71,7 +71,7 @@
 
 							<!-- for search and add contact button -->
 							<div class="row">
-								<div class="col-8">
+								<div class="col-1">
 									<!-- Sort button -->
 									<div class="dropdown">
 										<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,7 +80,18 @@
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 										  <a class="dropdown-item" href="#">Customer No.</a>
 										  <a class="dropdown-item" href="#">Name</a>
-										  <a class="dropdown-item" href="#">Location</a>
+										  <a class="dropdown-item" href="#">City/Municipality</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-7">
+									<!-- Filter button -->
+									<div class="dropdown">
+										<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Filter by
+										</button>
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<a class="dropdown-item" href="#">City/Municipality</a>
 										</div>
 									</div>
 								</div>
@@ -89,7 +100,7 @@
 										<!-- search bar-->
 										<div class="col-7">
 											<div class="input-group">
-												<input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
+												<input type="text" class="form-control" placeholder="Search Name" aria-label="Recipient's username" aria-describedby="button-addon2">
 												<div class="input-group-append">
 													<button class="btn btn-light btn-outline-secondary" type="button" id="button-addon2">Go</button>
 												</div>
@@ -112,48 +123,59 @@
 											<th scope="col">Customer #</th>
 											<th scope="col">Name</th>
 											<th scope="col">Contact Number</th>
-											<th scope="col">Location</th>
+											<th scope="col">Home Address</th>
+											<th scope="col">City/Municipality</th>
+											<th scope="col">Remarks</th>
 											<th scope="col"> </th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
+										<tr data-toggle="modal" data-id="2" data-target="#firstCustomer">
 											<th scope="row">0001</th>
 											<td>Gerrard Castilla</td>
 											<td>09292684572</td>
-											<td>17, G.Cleveland St. Parkwood Pasig City</td>
+											<td>17, G.Cleveland St. Parkwood</td>
+											<td>Pasig City</td>
+											<td></td>
 											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
-
 										</tr>
-										<tr>
+										<tr data-toggle="modal" data-id="2" data-target="#secondCustomer">
 											<th scope="row">0002</th>
 											<td>Bryce Ramirez</td>
 											<td>09987654321</td>
 											<td>3rd Avenue Baranggay Lito</td>
+											<td>Quezon City</td>
+											<td></td>
 											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
 
 										</tr>
-										<tr>
+										<tr data-toggle="modal" data-id="2" data-target="#thirdCustomer">
 											<th scope="row">0003</th>
 											<td>Rey Delima</td>
 											<td>09123456789</td>
-											<td>5th Street Forbes Park, Manila</td>
+											<td>5th Street Forbes Park</td>
+											<td>Manila</td>
+											<td>Deliver items during weekdays only</td>
 											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
 
 										</tr>
-										<tr>
+										<tr data-toggle="modal" data-id="2" data-target="#fourthCustomer">
 											<th scope="row">0004</th>
 											<td>Juan Dela Cruz</td>
-											<td>09112223333</td>
-											<td>18, G.Greenwood St. Paul, Pasig City</td>
+											<td>09987456321</td>
+											<td>18, G.Greenwood St. Paul</td>
+											<td>Pasig City</td>
+											<td></td>
 											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
 
 										</tr>
-										<tr>
+										<tr data-toggle="modal" data-id="2" data-target="#fifthCustomer">
 											<th scope="row">0005</th>
 											<td>Luigi Valera</td>
 											<td>09696969691</td>
-											<td>3rd Street Bangbang Avenue, Tondo</td>
+											<td>3rd Street Bangbang Avenue</td>
+											<td>Muntinlupa</td>
+											<td>GCash - 09696969691</td>
 											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
 
 										</tr>
@@ -173,22 +195,31 @@
 										</div>
 										
 										<div class="modal-body">
-	  
-									  		<div class="md-form mb-4">
-										 		<label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+
+											<div class="md-form mb-4">
+												<label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
 												<input type="text" id="defaultForm-pass" class="form-control validate">
-									  		</div>
+											</div>
   
 											<div class="md-form mb-4">
-										 		<label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
+												<label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
 												<input type="number" id="defaultForm-pass" class="form-control validate">
 									  		</div>
-  
-  
-									  		<div class="md-form mb-4">
-										 		<label data-error="wrong" data-success="right" for="defaultForm-pass">Address</label>
+
+  											<div class="md-form mb-4">
+												<label data-error="wrong" data-success="right" for="defaultForm-pass">Home Address</label>
 												<input type="text" id="defaultForm-pass" class="form-control validate">
-									  		</div>
+											</div>
+
+											<div class="md-form mb-4">
+												<label data-error="wrong" data-success="right" for="defaultForm-pass">City/Municipality</label>
+												<input type="text" id="defaultForm-pass" class="form-control validate">
+											</div>
+
+											<div class="md-form mb-4">
+												<label data-error="wrong" data-success="right" for="defaultForm-pass">Remarks</label>
+												<input type="text" id="defaultForm-pass" class="form-control validate">
+											</div>
 										</div>
 										
 										<div class="modal-footer">
@@ -199,12 +230,14 @@
 								</div>
 							</div>
 
-							<!-- edit contact -->
-							<div class="modal fade" id="editContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<!-- edit contact modal -->
+
+							<!-- Customer 0001 -->
+							<div class="modal fade" id="firstCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Customer No. ?</h5>
+											<h5 class="modal-title" id="exampleModalLabel">Customer No. 0001</h5>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
@@ -212,24 +245,185 @@
 										<div class="modal-body">
 											<form>
 												<div class="form-group">
-													<label for="customerName">Customer Name</label>
-													<input type="text" class="form-control" id="customerName" value="Gerrard Castilla">
+													<label for="customerName"><b>Customer Name</b></label>
+													<p class="info" id="Customer Name">Gerrard Castilla</p> 
 													<br>
-													<label for="contactNum">Contact Number</label>
+													<label for="contactNum"><b>Contact Number</b></label>
 													<input type="number" class="form-control" id="contactNum" value="09292684572">
 													<br>
-													<label for="location">Location</label>
-													<input type="text" class="form-control" id="location" value="17, G.Cleveland St. Parkwood Pasig City">
+													<label for="location"><b>Home Address</b></label>
+													<input type="text" class="form-control" id="location" value="17, G.Cleveland St. Parkwood">
+													<br>
+													<label for="city"><b>City/Municipality</b></label>
+													<input type="text" class="form-control" id="city" value="Pasig City">
+													<br>
+													<label for="remarks"><b>Remarks</b></label>
+													<input type="text" class="form-control" id="city" value="">
 												</div>
 											</form>
 										</div>
 										<div class="modal-footer">
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Delete Contact</button>					
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="button" class="btn btn-primary">Save changes</button>
 										</div>
 									</div>
 								</div>
 							</div>
+							<!-- Customer 0002 -->
+							<div class="modal fade" id="secondCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Customer No. 0002</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="form-group">
+													<label for="customerName"><b>Customer Name</b></label>
+													<p class="info" id="Customer Name">Bryce Ramirez</p> 
+													<br>
+													<label for="contactNum"><b>Contact Number</b></label>
+													<input type="number" class="form-control" id="contactNum" value="09987654321">
+													<br>
+													<label for="location"><b>Home Address</b></label>
+													<input type="text" class="form-control" id="location" value="3rd Avenue Baranggay Lito">
+													<br>
+													<label for="city"><b>City/Municipality</b></label>
+													<input type="text" class="form-control" id="city" value="Quezon City">
+													<br>
+													<label for="remarks"><b>Remarks</b></label>
+													<input type="text" class="form-control" id="city" value="">
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Delete Contact</button>					
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Customer 0003 -->
+							<div class="modal fade" id="thirdCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Customer No. 0003</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="form-group">
+													<label for="customerName"><b>Customer Name</b></label>
+													<p class="info" id="Customer Name">Rey Delima</p> 
+													<br>
+													<label for="contactNum"><b>Contact Number</b></label>
+													<input type="number" class="form-control" id="contactNum" value="09123456789">
+													<br>
+													<label for="location"><b>Home Address</b></label>
+													<input type="text" class="form-control" id="location" value="5th Street Fores Park">
+													<br>
+													<label for="city"><b>City/Municipality</b></label>
+													<input type="text" class="form-control" id="city" value="Manila">
+													<br>
+													<label for="remarks"><b>Remarks</b></label>
+													<input type="text" class="form-control" id="city" value="Deliver items during weekdays only">
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Delete Contact</button>					
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Customer 0004 -->
+							<div class="modal fade" id="fourthCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Customer No. 0004</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="form-group">
+													<label for="customerName"><b>Customer Name</b></label>
+													<p class="info" id="Customer Name">Juan Dela Cruz</p> 
+													<br>
+													<label for="contactNum"><b>Contact Number</b></label>
+													<input type="number" class="form-control" id="contactNum" value="09987456321">
+													<br>
+													<label for="location"><b>Home Address</b></label>
+													<input type="text" class="form-control" id="location" value="18, G.Greenwood St. Paul">
+													<br>
+													<label for="city"><b>City/Municipality</b></label>
+													<input type="text" class="form-control" id="city" value="Pasig City">
+													<br>
+													<label for="remarks"><b>Remarks</b></label>
+													<input type="text" class="form-control" id="city" value="">
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Delete Contact</button>					
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Customer 0005 -->
+							<div class="modal fade" id="fifthCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Customer No. 0005</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="form-group">
+													<label for="customerName"><b>Customer Name</b></label>
+													<p class="info" id="Customer Name">Luigi vValera</p> 
+													<br>
+													<label for="contactNum"><b>Contact Number</b></label>
+													<input type="number" class="form-control" id="contactNum" value="09696969691">
+													<br>
+													<label for="location"><b>Home Address</b></label>
+													<input type="text" class="form-control" id="location" value="3rd Street Bangbang Avenue">
+													<br>
+													<label for="city"><b>City/Municipality</b></label>
+													<input type="text" class="form-control" id="city" value="Muntinlupa">
+													<br>
+													<label for="remarks"><b>Remarks</b></label>
+													<input type="text" class="form-control" id="city" value="GCash - 09696969691">
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Delete Contact</button>					
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
 
 						</div>
 					</div>
