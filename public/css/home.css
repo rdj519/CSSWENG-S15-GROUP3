@@ -14,6 +14,22 @@ body {
     letter-spacing: -0.025em;
 }
 
+
+.info {
+    text-align: right;
+    clear: right;
+    float:right;
+    margin-right:15px;
+}
+
+label {
+    /* Other styling... */
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+}
+
 #subtitle {
     margin-top: 10px; 
     text-align: center; 
