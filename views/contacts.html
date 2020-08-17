@@ -137,7 +137,7 @@
 											<td>17, G.Cleveland St. Parkwood</td>
 											<td>Pasig City</td>
 											<td></td>
-											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#firstCustomer" /> </td>
 										</tr>
 										<tr data-toggle="modal" data-id="2" data-target="#secondCustomer">
 											<th scope="row">0002</th>
@@ -146,7 +146,7 @@
 											<td>3rd Avenue Baranggay Lito</td>
 											<td>Quezon City</td>
 											<td></td>
-											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#secondCustomer" /> </td>
 
 										</tr>
 										<tr data-toggle="modal" data-id="2" data-target="#thirdCustomer">
@@ -156,7 +156,7 @@
 											<td>5th Street Forbes Park</td>
 											<td>Manila</td>
 											<td>Deliver items during weekdays only</td>
-											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#thirdCustomer" /> </td>
 
 										</tr>
 										<tr data-toggle="modal" data-id="2" data-target="#fourthCustomer">
@@ -166,7 +166,7 @@
 											<td>18, G.Greenwood St. Paul</td>
 											<td>Pasig City</td>
 											<td></td>
-											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#fourthCustomer" /> </td>
 
 										</tr>
 										<tr data-toggle="modal" data-id="2" data-target="#fifthCustomer">
@@ -176,7 +176,7 @@
 											<td>3rd Street Bangbang Avenue</td>
 											<td>Muntinlupa</td>
 											<td>GCash - 09696969691</td>
-											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editContact" /> </td>
+											<td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#fifthCustomer" /> </td>
 
 										</tr>
 									</tbody>
@@ -230,6 +230,26 @@
 								</div>
 							</div>
 
+							<!-- Delete Contact Modal-->
+							<div class="modal fade" id="deleteContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title">Delete Contact</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							        <p>Are you sure you want to delete this contact?</p>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-danger">Yes</button>
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
 							<!-- edit contact modal -->
 
 							<!-- Customer 0001 -->
@@ -263,7 +283,7 @@
 											</form>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-danger" data-dismiss="modal">Delete Contact</button>					
+											<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteContact">Delete Contact</button>		
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="button" class="btn btn-primary">Save changes</button>
 										</div>
@@ -301,7 +321,7 @@
 											</form>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-danger" data-dismiss="modal">Delete Contact</button>					
+											<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteContact">Delete Contact</button>		
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="button" class="btn btn-primary">Save changes</button>
 										</div>
@@ -339,7 +359,7 @@
 											</form>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-danger" data-dismiss="modal">Delete Contact</button>					
+											<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteContact">Delete Contact</button>		
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="button" class="btn btn-primary">Save changes</button>
 										</div>
@@ -377,7 +397,7 @@
 											</form>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-danger" data-dismiss="modal">Delete Contact</button>					
+											<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteContact">Delete Contact</button>		
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="button" class="btn btn-primary">Save changes</button>
 										</div>
@@ -415,7 +435,7 @@
 											</form>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-danger" data-dismiss="modal">Delete Contact</button>					
+											<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteContact">Delete Contact</button>		
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											<button type="button" class="btn btn-primary">Save changes</button>
 										</div>
