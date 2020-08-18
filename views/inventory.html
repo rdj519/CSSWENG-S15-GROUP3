@@ -44,9 +44,7 @@
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#">Name</a>
                                                 <a class="dropdown-item" href="#">Price (Asc.)</a>
-                                                <a class="dropdown-item" href="#">Price (Desc.)</a>
-                                                <a class="dropdown-item" href="#">Stock Quantity (Asc.)</a>
-                                                <a class="dropdown-item" href="#">Stock Quantity (Desc.)</a>		
+                                                <a class="dropdown-item" href="#">Stock Quantity (Asc.)</a>	
                                             </div>
                                             </div>
                                     </div>
@@ -90,7 +88,7 @@
 
                                             <!-- add stock -->
                                             <div class="col-5">
-                                                <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" type="submit" id="addProduct" data-target="#newStock" style="">Add Product</button>
+                                                <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" type="submit" id="addProduct" data-target="#newStock">Add Product</button>
                                             </div>
                                         </div>
                                     </div>
@@ -129,6 +127,11 @@
                                                     <input type="text" id="defaultForm-pass" class="form-control validate">
                                                 </div>
 
+                                                <div class="md-form mb-4">
+                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Low Stock Quantity</label>
+                                                    <input type="text" id="defaultForm-pass" class="form-control validate">
+                                                </div>
+
                                             </div>
                                             
                                             <div class="modal-footer">
@@ -138,8 +141,29 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Delete Product Modal -->
+                                <div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Delete Product</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p>Are you sure you want to delete this product?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger">Yes</button>
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                         
-                                <!-- table of inventory -->
+                                <!-- Table of Inventory -->
                                 <div class="card">
                                     <table class="table table-hover">
                                         <thead>
@@ -148,6 +172,7 @@
                                                 <th scope="col">Amount per Pack</th>
                                                 <th scope="col">Stock Quantity</th>
                                                 <th scope="col">Price per Pack</th>
+                                                <th scope="col">Low Stock Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -156,6 +181,7 @@
                                                 <td>60</td>
                                                 <td>14</td>
                                                 <td>P200</td>
+                                                <td>10</td>
                                                 <td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editStock" /> </td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockTwoModal">
@@ -163,6 +189,7 @@
                                                 <td>60</td>
                                                 <td>12</td>
                                                 <td>P205</td>
+                                                <td>10</td>
                                                 <td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editStock" /> </td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockThreeModal">
@@ -170,6 +197,7 @@
                                                 <td>60</td>
                                                 <td>26</td>
                                                 <td>P200</td>
+                                                <td>10</td>
                                                 <td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editStock" /> </td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockFourModal">
@@ -177,6 +205,7 @@
                                                 <td>60</td>
                                                 <td>45</td>
                                                 <td>P200</td>
+                                                <td>10</td>
                                                 <td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editStock" /> </td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockFiveModal">
@@ -184,6 +213,7 @@
                                                 <td>60</td>
                                                 <td>4</td>
                                                 <td>P220</td>
+                                                <td>10</td>
                                                 <td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editStock" /> </td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockSixModal">
@@ -191,6 +221,7 @@
                                                 <td>48</td>
                                                 <td>3</td>
                                                 <td>P240</td>
+                                                <td>6</td>
                                                 <td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editStock" /> </td>
                                             </tr>  
                                             <tr data-toggle="modal" data-id="2" data-target="#stockSevenModal">
@@ -198,6 +229,7 @@
                                                 <td>48</td>
                                                 <td>15</td>
                                                 <td>P240</td>
+                                                <td>6</td>
                                                 <td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editStock" /> </td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockEightModal">
@@ -205,6 +237,7 @@
                                                 <td>5</td>
                                                 <td>22</td>
                                                 <td>P60</td>
+                                                <td>10</td>
                                                 <td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editStock" /> </td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockNineModal">
@@ -212,6 +245,7 @@
                                                 <td>5</td>
                                                 <td>13</td>
                                                 <td>P60</td>
+                                                <td>10</td>
                                                 <td><input type="image" src="https://cdn.discordapp.com/attachments/375169170180014081/744086202034028596/27845-200.png" height="20" width="20" data-toggle="modal" data-id="1" data-target="#editStock" /> </td>
                                             </tr>
                                         </tbody>
@@ -232,7 +266,7 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName"><b>Product Name</b></label>
-                                                        <p class="info" id="Product Name">Pork Siomai</p> 
+                                                        <input type="text" class="form-control" id="productName" value="Pork Siomai">
                                                         <br>
                                                         <label for="amountPerPack"><b>Amount per Pack</b></label>
                                                         <input type="number" class="form-control" id="amountPerPack" value="60">
@@ -242,11 +276,13 @@
                                                         <br>
                                                         <label for="pricePerPack"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack" value="200">
+                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack" value="10">
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>						
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -268,7 +304,7 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName"><b>Product Name</b></label>
-                                                        <p class="info" id="Product Name">Lumpiang Siomai</p> 
+                                                        <input type="text" class="form-control" id="productName" value="Lumpiang Shanghai">
                                                         <br>
                                                         <label for="amountPerPack"><b>Amount per Pack</b></label>
                                                         <input type="number" class="form-control" id="amountPerPack" value="60">
@@ -278,11 +314,13 @@
                                                         <br>
                                                         <label for="pricePerPack"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack" value="205">
+                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack" value="10">
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -304,7 +342,7 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName"><b>Product Name</b></label>
-                                                        <p class="info" id="Product Name">Gyoza</p> 
+                                                        <input type="text" class="form-control" id="productName" value="Gyoza">
                                                         <br>
                                                         <label for="amountPerPack"><b>Amount per Pack</b></label>
                                                         <input type="number" class="form-control" id="amountPerPack" value="60">
@@ -314,11 +352,13 @@
                                                         <br>
                                                         <label for="pricePerPack"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack" value="200">
+                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack" value="10">
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -340,7 +380,7 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName"><b>Product Name</b></label>
-                                                        <p class="info" id="Product Name">Sharksfin Dumplings</p> 
+                                                        <input type="text" class="form-control" id="productName" value="Sharksfin Dumplings">
                                                         <br>
                                                         <label for="amountPerPack"><b>Amount per Pack</b></label>
                                                         <input type="number" class="form-control" id="amountPerPack" value="60">
@@ -350,11 +390,13 @@
                                                         <br>
                                                         <label for="pricePerPack"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack" value="200">
+                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack" value="10">
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -376,7 +418,7 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName"><b>Product Name</b></label>
-                                                        <p class="info" id="Product Name">Beef Siomai</p> 
+                                                        <input type="text" class="form-control" id="productName" value="Beef Siomai">
                                                         <br>
                                                         <label for="amountPerPack"><b>Amount per Pack</b></label>
                                                         <input type="number" class="form-control" id="amountPerPack" value="60">
@@ -386,11 +428,13 @@
                                                         <br>
                                                         <label for="pricePerPack"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack" value="220">
+                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack" value="10">
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>				
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -412,7 +456,7 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName"><b>Product Name</b></label>
-                                                        <p class="info" id="Product Name">Siopao (Asado)</p> 
+                                                        <input type="text" class="form-control" id="productName" value="Siopao (Asado)">
                                                         <br>
                                                         <label for="amountPerPack"><b>Amount per Pack</b></label>
                                                         <input type="number" class="form-control" id="amountPerPack" value="48">
@@ -422,11 +466,13 @@
                                                         <br>
                                                         <label for="pricePerPack"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack" value="240">
+                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack" value="6">
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -448,7 +494,7 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName"><b>Product Name</b></label>
-                                                        <p class="info" id="Product Name">Siopao (Bola-bola)</p> 
+                                                        <input type="text" class="form-control" id="productName" value="Siopao (Bola-bola)">
                                                         <br>
                                                         <label for="amountPerPack"><b>Amount per Pack</b></label>
                                                         <input type="number" class="form-control" id="amountPerPack" value="48">
@@ -458,11 +504,13 @@
                                                         <br>
                                                         <label for="pricePerPack"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack" value="240">
+                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack" value="6">
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -484,7 +532,7 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName"><b>Product Name</b></label>
-                                                        <p class="info" id="Product Name">Hoisin Sauce</p> 
+                                                        <input type="text" class="form-control" id="productName" value="Hoisin Sauce">
                                                         <br>
                                                         <label for="amountPerPack"><b>Amount per Pack</b></label>
                                                         <input type="number" class="form-control" id="amountPerPack" value="5">
@@ -494,11 +542,13 @@
                                                         <br>
                                                         <label for="pricePerPack"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack" value="60">
+                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack" value="10">
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -520,7 +570,7 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName"><b>Product Name</b></label>
-                                                        <p class="info" id="Product Name">Chili Sauce</p> 
+                                                        <input type="text" class="form-control" id="productName" value="Chili Sauce">
                                                         <br>
                                                         <label for="amountPerPack"><b>Amount per Pack</b></label>
                                                         <input type="number" class="form-control" id="amountPerPack" value="5">
@@ -530,11 +580,13 @@
                                                         <br>
                                                         <label for="pricePerPack"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack" value="60">
+                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack" value="10">
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
