@@ -6,43 +6,11 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-    <style>
+    	<!-- CSS -->
+	<link rel="stylesheet" href="../public/css/orders.css">
 
-		.sticky {
-			position: -webkit-sticky;
-			position: sticky;
-			top: 80px;
-		}
-
-		.margin {
-			margin-top: 25px;
-			margin-left: 25px;
-			margin-right: 25px;
-		}
-
-		.sidenav {
-			height: 100%;
-			width: 220px;
-			position: fixed;
-			z-index: 1;
-			top: 0;
-			left: 0;
-			background-color: #111;
-			overflow-x: hidden;
-			padding-top: 20px;
-			padding-left: 10px;
-			padding-right: 10px;
-			background-color:#f2f4f4;
-			bottom: 0;
-		}	
-
-		.sideBarOptions {
-      		color: black;
-    	}
-
-		.main {
-			margin-left: 220px;
-		}
+	<!-- Fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     </style>
 </head>
@@ -87,12 +55,20 @@
 								<div class="col-7">
 									<!-- Filter button -->
 									<div class="dropdown">
-										<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											Filter by
 										</button>
-										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											<a class="dropdown-item" href="#">City/Municipality</a>
-										</div>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<li class="dropdown-submenu">
+												<a class="dropdown-item dropdown-toggle" href="#">City/Municipality</a>
+												<ul class="dropdown-menu">
+													<li><a class="dropdown-item" href="#">Manila</a></li>
+													<li><a class="dropdown-item" href="#">Muntinlupa</a></li>
+													<li><a class="dropdown-item" href="#">Pasig City</a></li>
+													<li><a class="dropdown-item" href="#">Quezon City</a></li>
+												</ul>
+											</li>
+										</ul>
 									</div>
 								</div>
 								<div class="col-4">
@@ -453,6 +429,25 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+
+		$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+			if (!$(this).next().hasClass('show')) {
+				$(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+			}
+			var $subMenu = $(this).next('.dropdown-menu');
+			$subMenu.toggleClass('show');
+
+
+			$(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+				$('.dropdown-submenu .show').removeClass('show');
+			});
+
+			return false;
+		});
+
+	</script>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

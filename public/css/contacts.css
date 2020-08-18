@@ -1,3 +1,8 @@
+body {
+    font-family: 'Noto Sans';
+    color: #37352F;
+}
+
 .sticky {
     position: -webkit-sticky;
     position: sticky;
@@ -32,4 +37,16 @@
 
 .main {
     margin-left: 220px;
+}
+
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+    margin-right: .1rem;
 }
