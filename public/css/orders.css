@@ -29,7 +29,7 @@ body {
     padding-right: 10px;
     background-color:#f2f4f4;
     bottom: 0;
-}	
+}   
 
 .sideBarOptions {
       color: black;
@@ -52,6 +52,7 @@ label {
     clear: right;
     float:right;
     margin-right:15px;
+    margin-bottom:5px;
 }
 
 
