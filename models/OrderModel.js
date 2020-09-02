@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 
+//defines the schema for collection 'items'... should have its own js file?
 var ItemSchema = new mongoose.schema({
     name: {
         type: String,
@@ -26,6 +27,11 @@ var ItemSchema = new mongoose.schema({
 
 // defines the schema for collection `orders`
 var OrderSchema = new mongoose.Schema({
+    orderNumber: {
+        type: Number,
+        required: true
+
+    },
     name: {
         type: String,
         minlength: 3,
@@ -66,6 +72,10 @@ var OrderSchema = new mongoose.Schema({
     },
     customerOrder: {
         type: [ItemSchema],
+        required: true
+    },
+    status: {
+        type: String,
         required: true
     }
 
