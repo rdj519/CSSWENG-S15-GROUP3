@@ -2,74 +2,15 @@
 <head>
 	<title> Home Page</title>
 
+	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous">
-    	/* CODE */
-  	</script>
-  	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"> 
-  	</script>
-  <style>
-    .center {
-    	text-align: center;
-    }
 
-    .headPictureContainer{
-    	height: 50%;
-    }
+	<!-- CSS -->
+	<link rel="stylesheet" href="../public/css/home.css">
 
-    .pictureContainer{
-    	float: left;
-    }
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
-    .smallImage{
-    	height: 20%;
-		width: 25%;
-    }
-    .centerContainer {
-    	  border: 2px solid white;
-		  margin: 20px;
-		  padding: 20px;
-    }
-
-    h1 {text-align: center;
-    }
-
-	@font-face {
-	  font-family: headerFont;
-	  src: url(sansation_light.woff);
-	}
-
-	.optionsContainer{
-		border: 5px solid white;
-		margin: 20px;
-		margin-left: 25%;
-		margin-right: 25%;
-		padding: 20px;
-		
-		display: inline;
-		float: left;
-	}
-
-	/* Three image containers (use 25% for four, and 50% for two, etc) */
-	.column {
-	  float: left;
-	  width: 33.33%;
-	  padding: 20px;
-	}
-
-	/* Clear floats after image containers */
-	.row::after{
-	  content: "";
-	  clear: both;
-	  display: table;
-	}
-
-	.option{
-		float:left;
-		padding: 5px;
-	}
-
-   </style>
 
 </head>
 
@@ -80,93 +21,378 @@
 
 <!-- header text -->
 <div class="centerContainer">
-	<h1 style="margin-top: 0px; margin-bottom: 0px; line-height: 1.1; font-weight: 700; text-align: center; color: rgb(17, 17, 17); font-size: 74px; letter-spacing: -0.025em;">
+	<h1 id="siopau">
 		<font face= "headerFont"> SioPau </font> 
 	</h1>
-	<h2 style="margin-top: 10px; text-align: center; font-weight: normal; font-size: 20px; color: rgba(0, 0, 0, 0.6); line-height: 1.5;">A management system for organizing your business needs</h2>
+	<h2  id="subtitle">Castilla Frozen Foods Management System</h2>
 </div>
+
 
 <!-- options container -->
 <div class="optionsContainer">
 	<!-- images for options -->
 	<div class="row">
-	  <div class="column">
-	    <img src="https://cdn.discordapp.com/attachments/375169170180014081/743749345651720252/chorizo-mozarella-gnocchi-bake-cropped.png" alt="Orders" style="width:100%">
+	  <div class="column optionImage">
+		<img src="https://cdn.discordapp.com/attachments/375169170180014081/743749345651720252/chorizo-mozarella-gnocchi-bake-cropped.png" alt="Orders" style="width:100%">
 	  </div>
-	  <div class="column">
-	    <img src="https://cdn.discordapp.com/attachments/375169170180014081/743749345651720252/chorizo-mozarella-gnocchi-bake-cropped.png" alt="Inventory" style="width:100%">
+	  <div class="column optionImage">
+		<img src="https://cdn.discordapp.com/attachments/375169170180014081/743749345651720252/chorizo-mozarella-gnocchi-bake-cropped.png" alt="Inventory" style="width:100%">
 	  </div>
-	  <div class="column">
-	    <img src="https://cdn.discordapp.com/attachments/375169170180014081/743749345651720252/chorizo-mozarella-gnocchi-bake-cropped.png" alt="Contacts" style="width:100%">
+	  <div class="column optionImage">
+		<img src="https://cdn.discordapp.com/attachments/375169170180014081/743749345651720252/chorizo-mozarella-gnocchi-bake-cropped.png" alt="Contacts" style="width:100%">
 	  </div>
 	</div>
 	
 	<!-- options -->
 	<div class="row">
-		<div class="column">
-			<h4> Stock Inventory </h4>
+		<div class="col module">
+
+			<h4 class="moduleTitle"> Inventory </h4>
 			<div class = "row">
-				<div class="option">
-					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
-				</div>
-				<div class="option">
-					<h6> Manage Inventory</h6>
+				<div class="col">
+					<div class="option">
+						<a href="inventory.html" class="optionTab">Manage Inventory</a>
+					</div>
 				</div>
 			</div>
 			<div class = "row">
-				<div class="option">
-					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
-				</div>
-				<div class="option">
-					<h6> Business Transactions</h6>
+				<div class="col">
+					<div class="option">
+						<!-- <a href="#" class="optionTab">Business Transactions</a> -->
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="column"> 
-			<h4> Orders </h4>
+		<div class="col module"> 
+			<h4 class="moduleTitle"> Orders </h4>
 			<div class = "row">
-				<div class="option">
-					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
-				</div>
-				<div class="option">
-					<h6> Manage Orders</h6>
+				<div class="col">
+					<div class="option">
+						<a href="orders.html" class="optionTab">Manager Orders</a>
+					</div>
 				</div>
 			</div>
 			<div class = "row">
-				<div class="option">
-					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
-				</div>
-				<div class="option">
-					<h6> Add New Order</h6>
+				<div class="col">
+					<div class="option">
+						<a href="none" class="optionTab" data-toggle="modal" data-target="#addOrder">Add New Order</a>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="column"> 
-			<h4> Contacts </h4>
+		<div class="col module"> 
+			<h4 class="moduleTitle"> Contacts </h4>
 			<div class = "row">
-				<div class="option">
-					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
-				</div>
-				<div class="option">
-					<h6> Manage Contacts</h6>
+				<div class="col">
+					<div class="option">
+						<a href="contacts.html" class="optionTab">Manage Contacts</a>
+					</div>
 				</div>
 			</div>
 			<div class = "row">
-				<div class="option">
-					<img src="https://cdn.discordapp.com/attachments/375169170180014081/743761118069260438/document.png" alt="arrow" height="15" width="15">
-				</div>
-				<div class="option">
-					<h6> Add New Contact</h6>
+				<div class="col">
+					<div class="option">
+						<a href="none" class="optionTab" data-toggle="modal" data-target="#newContact">Add New Contact</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+<!-- reports -->	
+<div class="container" id="reports">
+	<div class="jumbotron bg-white">
+		<label><h3>Reports</h3></label>
+		
+
+		
+		<div class="dropdown" style="float:right;">
+			<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Search by
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" href="#">Day</a>
+				<a class="dropdown-item" href="#">Week</a>
+				<a class="dropdown-item" href="#">Month</a>
+			</div>
+		</div>		
+		<label style="color:#A39E9C"> <b>Amount Earned</b> </label>
+		<p class="info"><b>4530</b></p> 
+		<label style="color:#A39E9C"> <b> Completed Orders</b></label>
+		<p class="info"><b>10</b></p> 
+
+	</div>
 </div>
+	
+<!-- ongoing orders -->
+<div class="container" id="onGoingOrders">
+	<div class="jumbotron bg-white">
+		<label><h4>Ongoing Orders</h4></label>
+		<div class="dropdown" style="float:right;">
+			<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Sort by
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" href="#">Order No.</a>
+				<a class="dropdown-item" href="#">Status</a>
+				<a class="dropdown-item" href="#">Delivery Date</a>
+			</div>
+		</div>	
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Order No.</th>
+					<th scope="col">Contact Number</th>
+					<th scope="col">Address</th>
+					<th scope="col">Status</th>
+					<th scope="col">Delivery Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">0001</th>
+					<td>09292684572</td>
+					<td>17, G.Cleveland St. Parkwood</td>
+					<td>Confirmed</td>
+					<td>2020-08-20</td>
+				</tr>
+				<tr>
+					<th scope="row">0002</th>
+					<td>09987654321</td>
+					<td>3rd Avenue Baranggay Lito</td>
+					<td>Paid</td>
+					<td>2020-08-17</td>
+				</tr>
+				<tr>
+					<th scope="row">0004</th>
+					<td>09987456321</td>
+					<td>18, G.Greenwood St. Paul</td>
+					<td>Confirmed</td>
+					<td>2020-08-18</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- Low Stock Products -->
+<div class="container" id="onGoingOrders">
+	<div class="jumbotron bg-white">
+		<label><h4>Low Stock Products</h4></label>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Product</th>
+					<th scope="col">Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">Pork Siomai</th>
+					<td>3</td>
+				</tr>
+				<tr>
+					<th scope="row">Siopao (Asado)</th>
+					<td>4</td>
+				</tr>
+				<tr>
+					<th scope="row">Siopao (Bola-Bola) </th>
+					<td> 2 </td>
+				</tr>
+				<tr>
+					<th scope="row">Gyoza</th>
+					<td>0</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<!-- Modal For Adding Order -->
+							<div id="addOrder" class="modal fade" role="dialog">
+							  <div class="modal-dialog" role="document">
+								<div class="modal-content">
+								  <div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									  <span aria-hidden="true">&times;</span>
+									</button>
+								  </div>
+								  <div class="modal-body">
+	
+									<div class="md-form mb-4">
+									  <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+									  <input type="text" id="defaultForm-pass" class="form-control validate">
+									</div>
+
+									<div class="md-form mb-4">
+									  <label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
+									  <input type="number" id="defaultForm-pass" class="form-control validate">
+									</div>
+
+
+									<div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass"><b>Address</b></label>
+							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Home Address</label>
+							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							          <label data-error="wrong" data-success="right" for="defaultForm-pass">City/Municipality</label>
+							          <input type="text" id="defaultForm-pass" class="form-control validate">
+									</div>
+
+									<div class="md-form mb-4">
+										<label data-error="wrong" data-success="right" for="defaultForm-pass">Customer Order</label>
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th scope="col">Product</th>
+													<th scope="col">Quantity</th>
+													<th scope="col">Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th scope="row">Siomai & Dumplings Pack</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Pork Siomai</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Lumpia Shanghai</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Gyoza</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Sharksfin Dumplings</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Beef Siomai</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Chicken Siomai</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Siopao Mini</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Siopao (Asado)</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Siopao (Bola-Bola)</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Holsin Sauce</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+												<tr>
+													<th scope="row">Chili Sauce</th>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+												</tr>
+											</tbody>
+										</table>
+										<label data-error="wrong" data-success="right" for="defaultForm-pass">Total Amount</label>
+										<input type="number" id="defaultForm-pass" class="form-control validate">
+									</div>
+
+									<div class="md-form mb-4">
+									  <label data-error="wrong" data-success="right" for="defaultForm-pass">Payment Method</label>
+									  <input type="text" id="defaultForm-pass" class="form-control validate">
+									</div>
+
+									<div class="md-form mb-4">
+									  <label data-error="wrong" data-success="right" for="defaultForm-pass">Courier</label>
+									  <input type="text" id="defaultForm-pass" class="form-control validate">
+									</div>
+
+									<div class="md-form mb-4">
+									  <label data-error="wrong" data-success="right" for="defaultForm-pass">Delivery Date</label>
+									  <input type="date" id="defaultForm-pass" class="form-control validate">
+									</div>
+
+								  </div>
+								  <div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Add Order</button>
+								  </div>
+								</div>
+							  </div>
+							  </div>
+							</div>
+
+<!-- Modal For New Contact -->
+							<div id="newContact" class="modal fade" role="dialog">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+									  		<h5 class="modal-title" id="exampleModalLabel">New Contact</h5>
+									  		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+									  		</button>
+										</div>
+										
+										<div class="modal-body">
+
+											<div class="md-form mb-4">
+												<label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+												<input type="text" id="defaultForm-pass" class="form-control validate">
+											</div>
+  
+											<div class="md-form mb-4">
+												<label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
+												<input type="number" id="defaultForm-pass" class="form-control validate">
+									  		</div>
+
+  											<div class="md-form mb-4">
+												<label data-error="wrong" data-success="right" for="defaultForm-pass">Home Address</label>
+												<input type="text" id="defaultForm-pass" class="form-control validate">
+											</div>
+
+											<div class="md-form mb-4">
+												<label data-error="wrong" data-success="right" for="defaultForm-pass">City/Municipality</label>
+												<input type="text" id="defaultForm-pass" class="form-control validate">
+											</div>
+
+											<div class="md-form mb-4">
+												<label data-error="wrong" data-success="right" for="defaultForm-pass">Remarks</label>
+												<input type="text" id="defaultForm-pass" class="form-control validate">
+											</div>
+										</div>
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Create Contact</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+<!-- JS-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
-
-
-
-
-</html>
