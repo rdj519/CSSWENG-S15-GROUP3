@@ -58,15 +58,21 @@ const controller = {
     },
 
     getInventory: function(req,res){
-        res.render('inventory');
+        res.render('inventory', {
+            title:  'Stock Inventory',
+        });
     },
 
     getOrders: function(req,res){
-        res.render('orders');
+        res.render('orders', {
+            title:  'Manage Orders',
+        });
     },    
 
     getContacts: function(req,res){
-        res.render('contacts');
+        res.render('contacts', {
+            title:  'Customer List',
+        });
     },
 
 }

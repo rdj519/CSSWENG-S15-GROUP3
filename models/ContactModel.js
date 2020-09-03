@@ -25,7 +25,7 @@ var ContactSchema = new mongoose.schema({
     },
     // remarks
     remarks: {
-        type: String
+        type: String,
         required: false
     }
 });
