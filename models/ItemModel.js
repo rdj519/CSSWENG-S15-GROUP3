@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 
 //defines the schema for collection 'items'
-var ItemSchema = new mongoose.schema({
+var ItemSchema = new mongoose.Schema({
     // name of item
     name: {
         type: String,

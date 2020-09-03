@@ -1,44 +1,44 @@
+//index.js
 const express = require('express');
 const hbs = require('hbs');
-const routes = require('./routes/routes.js');
-const db = require('./models/db.js');
-const mongoose = require('mongoose');
 const session = require('express-session');
+const port = process.env.PORT || 8000;
+
+const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
-const nodemailer = require("nodemailer");
-const multer = require('multer');
 
-const app = express();
-const port = process.env.PORT || 3000;
+const app = express()
 
+const db = require('./models/db.js');
+const routes = require('./routes/routes.js');
 
 app.set('view engine', 'hbs');
-app.use(express.static(__dirname + '/views'));
-app.use(express.static(__dirname + '/uploads'));
 hbs.registerPartials(__dirname + '/views/partials');
 
-app.use(express.urlencoded({extended:true}));
-
+mongoose.set('useCreateIndex', true);
+app.use(express.urlencoded({
+    extended: true
+}));
 app.use(express.static('public'));
 
+var helmet = require('helmet');
+app.use(helmet());
+
 app.use(session({
-    'secret': 'ccapdev-session', //to be changed
-    'resave': false,
-    'saveUninitialized': false,
-    store: new MongoStore({mongooseConnection: mongoose.connection})
+    'secret': 'a',
+    'resave': true,
+    'saveUninitialized': true,
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection
+    })
 }));
+
+app.listen(port, function() {
+    console.log('Listening at port ' + port);
+});
+
+
 
 app.use('/', routes);
 
-app.use(function(req,res) {
-    res.render('error')
-});
-
 db.connect();
-
-
-
-
-app.listen(port, function() {
-    console.log('App listening at port ' + port);
-});

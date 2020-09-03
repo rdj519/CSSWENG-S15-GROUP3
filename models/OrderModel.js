@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 /* Item Schema */
-const Item = require('./models/ItemModel.js');
+const Item = require('./ItemModel.js');
 
 
 /* defines the schema for collection `orders` */
