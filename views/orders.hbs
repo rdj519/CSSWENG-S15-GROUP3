@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="/css/orders.css">
+	<link rel="stylesheet" href="../public/css/orders.css">
 
 	<!-- Fonts-->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -20,13 +20,10 @@
 			<div class="col-2">
 					<div class="sidenav sticky">
                         <div class="nav flex-column nav-pills" aria-orientation="vertical">
-                            <a class="nav-link sideBarOptions" href="/home"><h3><b>SioPau</b></h3></a>
-                            <a class="nav-link active sideBarOptions" href="/orders">Orders</a>
-                            <a class="nav-link sideBarOptions" href="/inventory">Stock Inventory</a>
-                            <a class="nav-link sideBarOptions" href="/contacts">Contacts</a>
-                            <hr>
-                            <a class="nav-link sideBarOptions" href="/settings">Settings</a>
-                            <a class="nav-link sideBarOptions" href="/user/logout">Log Out</a>
+                            <a class="nav-link sideBarOptions" href="home.html"><h3><b>SioPau</b></h3></a>
+                            <a class="nav-link active sideBarOptions" href="orders.html">Orders</a>
+                            <a class="nav-link sideBarOptions" href="inventory.html">Stock Inventory</a>
+                            <a class="nav-link sideBarOptions" href="contacts.html">Contacts</a>
                         </div>
                     </div>
 			</div>
@@ -35,7 +32,7 @@
 					<div class="tab-content" id="v-pills-tabContent">
 						<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 							<h1><b>Manage Orders</b></h1>
-							This page contains the orders and their informations.
+							<p id="p1">This page contains the orders and their informations. </p>
 							<br>
 							<br>
 
@@ -151,58 +148,21 @@
 											<th scope="col">Delivery Date</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
-											<th scope="row">0001</th>
-											<td>Gerrard Castilla</td>
-											<td>09292684572</td>
-											<td>17, G.Cleveland St. Parkwood</td>
-											<td>Confirmed</td>
-											<td>Castilla</td>
-											<td>2020-08-15</td>
-											<td>2020-08-20</td>
+									<tbody id="tbody">
+
+										<!-- {{#each contents}}
+										<tr data-toggle="modal" data-id="{{orderNumber}}" data-target="#{{orderNumber}}">
+											<th scope="row">{{orderNumber}}</th>
+											<td>{{name}}</td>
+											<td>{{contactNumber}}</td>
+											<td>{{homeAddress}}</td>
+											<td>{{status}}</td>
+											<td>{{courier}}</td>
+											<td>{{placedDate}}</td>
+											<td>{{deliveryDate}}</td>
 										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#orderTwoModal">
-											<th scope="row">0002</th>
-											<td>Bryce Ramirez</td>
-											<td>09987654321</td>
-											<td>3rd Avenue Baranggay Lito</td>
-											<td>Paid</td>
-											<td>GrabExpress</td>
-											<td>2020-08-14</td>
-											<td>2020-08-17</td>
-										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#orderThreeModal">
-											<th scope="row">0003</th>
-											<td>Rey Delima</td>
-											<td>09123456789</td>
-											<td>5th Street Forbes Park</td>
-											<td>Completed</td>
-											<td>GrabExpress</td>
-											<td>2020-08-13</td>
-											<td>2020-08-23</td>
-										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#orderFourModal">
-											<th scope="row">0004</th>
-											<td>Juan Dela Cruz</td>
-											<td>09987456321</td>
-											<td>18, G.Greenwood St. Paul</td>
-											<td>Confirmed</td>
-											<td>Castilla</td>
-											<td>2020-08-14</td>
-											<td>2020-08-18</td>
-										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#orderFiveModal">
-											<th scope="row">0005</th>
-											<td>Luigi Valera</td>
-											<td>099691914201</td>
-											<td>3rd Street Bangbang Avenue</td>
-											<td>Cancelled</td>
-											<td>GrabExpress</td>
-											<td>2020-08-10</td>
-											<td>2020-08-19</td>
-										</tr>
-									</tbody>
+										{{/each}} -->
+									</tbody> 
 								</table>
 							</div>
 
@@ -226,7 +186,7 @@
 							        <button type="button" class="btn btn-danger">Yes</button>
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 							      </div>
-							    </div>
+							    </div>	
 							  </div>
 							</div>
 
@@ -665,7 +625,7 @@
 									<div class="modal-body">
 
 										<label style="color:#A39E9C"> Contact Number </label>
-								      	<p class="info" contentEditable="true">099691914201</p> 
+								      	<p class="info" contentEditable="true">09696969691</p> 
 								      	<label style="color:#A39E9C"> Home Address </label>
 								      	<p class="info" contentEditable="true">3rd Street Bangbang Avenue</p> 
 								      	<label style="color:#A39E9C"> City/Municipality </label>
@@ -777,21 +737,21 @@
 	
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
-							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							          <input type="text" id="name" class="form-control validate">
 							        </div>
 
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
-							          <input type="number" id="defaultForm-pass" class="form-control validate">
+							          <input type="number" id="contact" class="form-control validate">
 							        </div>
 
 
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass"><b>Address</b></label>
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Home Address</label>
-							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							          <input type="text" id="homeAddress" class="form-control validate">
 							          <label data-error="wrong" data-success="right" for="defaultForm-pass">City/Municipality</label>
-							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							          <input type="text" id="city" class="form-control validate">
 							        </div>
 
 							      	<div class="md-form mb-4">
@@ -874,10 +834,10 @@
 							      	<div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Payment Method</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<button class="btn btn-light dropdown-toggle" type="button" id="paymentMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											  Method
 											</button>
-											<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<div class="dropdown-menu" aria-labelledby="paymentMethod">
 											    <a class="dropdown-item" href="#">Cash On Delivery</a>
 											    <a class="dropdown-item" href="#">GCash</a>
 											</div>
@@ -887,10 +847,10 @@
 							        <div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Courier</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<button class="btn btn-light dropdown-toggle" type="button" id="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											  Courier Type
 											</button>
-											<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<div class="dropdown-menu" aria-labelledby="courier" id="courier">
 											    <a class="dropdown-item" href="#">Castilla</a>
 											    <a class="dropdown-item" href="#">GrabExpress</a>
 											</div>
@@ -898,13 +858,13 @@
 
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Delivery Date</label>
-							          <input type="date" id="defaultForm-pass" class="form-control validate">
+							          <input type="date" id="deliveryDate" class="form-control validate">
 							        </div>
 
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        <button type="button" class="btn btn-primary">Add Order</button>
+							        <button type="button" class="btn btn-primary" onclick="addOrder()" data-dismiss="modal">Add Order</button>
 							      </div>
 							    </div>
 							  </div>
@@ -920,6 +880,66 @@
 		</div>
 	</div>
 
+<script>
+	
+	var orderNumber = 0;
+	function addOrder(){
+			//var addOrder = document.getElementById("addOrder");
+
+			//if... everything passes. (if-statement)
+
+			orderNumber += 1;
+
+			var element = document.getElementById("tbody");
+			var primaryTag = document.createElement("tr");
+			primaryTag.setAttribute("data-toggle", "modal");
+			primaryTag.setAttribute("data-target", orderNumber.toString());
+			primaryTag.setAttribute("data-id", orderNumber.toString());
+			var th = document.createElement("th");
+			th.setAttribute("scope","row");
+			th.innerHTML = orderNumber.toString();
+			var td1 = document.createElement("td");
+			td1.innerHTML = document.getElementById("name").value;
+			var td2 = document.createElement("td");
+			td2.innerHTML = document.getElementById("contact").value;
+			var td3 = document.createElement("td");
+			td3.innerHTML = document.getElementById("homeAddress").value;
+			var td4 = document.createElement("td");
+			td4.innerHTML = "GCash"; //document.getElementById("paymentMethod").value;
+			var td5 = document.createElement("td");
+			td5.innerHTML = "Castilla"; // document.getElementById("courier").value;
+			/* placed date */
+			var td6 = document.createElement("td");
+			
+			var today = new Date();
+			var dd = String(today.getDate()).padStart(2, '0');
+			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+			var yyyy = today.getFullYear();
+			today = yyyy + '-' + mm + '-' + dd;
+			
+			td6.innerHTML = today;
+			/* delivery date */
+			var td7 = document.createElement("td");
+			td7.innerHTML = document.getElementById("deliveryDate").value;
+
+			primaryTag.appendChild(th);
+			primaryTag.appendChild(td1);
+			primaryTag.appendChild(td2);
+			primaryTag.appendChild(td3);
+			primaryTag.appendChild(td4);
+			primaryTag.appendChild(td5);
+			primaryTag.appendChild(td6);
+			primaryTag.appendChild(td7);
+
+			element.appendChild(primaryTag);
+
+
+			/* modal */
+
+	}
+
+
+</script>
 <script>
 
 	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
@@ -937,7 +957,15 @@
 		return false;
 	});
 
+	$(".dropdown-menu a").click(function(){
+  		$(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+  		$(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+	});
+
+
+
 </script>
+
 
 <!-- JS-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -945,3 +973,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
