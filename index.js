@@ -33,10 +33,10 @@ mongoose.set('useCreateIndex', true);
 app.use(express.urlencoded({
     extended: true
 }));
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
-var helmet = require('helmet');
-app.use(helmet());
+//var helmet = require('helmet');
+//app.use(helmet());
 
 app.use(session({
     secret: 'a',
