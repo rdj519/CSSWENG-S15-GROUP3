@@ -12,13 +12,14 @@
     	<!-- Fonts-->
 	    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">   
     </head>
+
     <body>
         <div class="margin">
             <div class="row">
                 <div class="col-2">
                     <div class="sidenav sticky">
                         <div class="nav flex-column nav-pills" aria-orientation="vertical">
-                            <a class="nav-link sideBarOptions" href="home.html"><h3><b>SioPau</b></h3></a>
+                            <a class="nav-link sideBarOptions" href="/home"><h3><b>SioPau</b></h3></a>
                             <a class="nav-link sideBarOptions" href="/orders">Orders</a>
                             <a class="nav-link active sideBarOptions" href="/inventory">Stock Inventory</a>
                             <a class="nav-link sideBarOptions" href="/contacts">Contacts</a>
@@ -91,81 +92,11 @@
 
                                             <!-- add stock -->
                                             <div class="col-5">
-                                                <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" type="submit" id="addProduct" data-target="#newStock">Add Product</button>
-                                            </div>
+											    <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addProduct" type="submit" style="margin-bottom: 5px;">Add Product</button>
+									    	</div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Modal For New Stock -->
-                                <div id="newStock" class="modal fade" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">New Stock Product</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            
-                                            <div class="modal-body">
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
-                                                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                                                </div>
-    
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Amount per Pack</label>
-                                                    <input type="number" id="defaultForm-pass" class="form-control validate">
-                                                </div>
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Stock Quantity</label>
-                                                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                                                </div>
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Price per Pack</label>
-                                                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                                                </div>
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Low Stock Quantity</label>
-                                                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                                                </div>
-
-                                            </div>
-                                            
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Create Stock Product</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Delete Product Modal -->
-                                <div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title">Delete Product</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <p>Are you sure you want to delete this product?</p>
-                                          <input type="text" id="defaultForm-pass" class="form-control validate">
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-danger">Yes</button>
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
                                         
                                 <!-- Table of Inventory -->
                                 <div class="card">
@@ -179,7 +110,9 @@
                                                 <th scope="col">Low Stock Quantity</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="tbody">
+                                        
+
                                             <tr data-toggle="modal" data-id="2" data-target="#stockOneModal">
                                                 <th scope="col">Pork Siomai</th>
                                                 <td>60</td>
@@ -247,7 +180,8 @@
                                     </table>
                                 </div>
 
-                                <!-- Pork Siomai -->
+                                <!-- Modal for Products -->
+                                <!-- Pork siomai -->
                                 <div class="modal fade" id="stockOneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -589,6 +523,77 @@
                                     </div>
                                 </div>
                                 <!-- end -->
+
+                                <!-- Delete Product Modal -->
+                                <div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Delete Product</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p>Are you sure you want to delete this product?</p>
+                                          <input type="text" id="defaultForm-pass" class="form-control validate">
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger">Yes</button>
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal For New Stock -->
+                                <div id="addProduct" class="modal fade" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">New Stock Product</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            
+                                            <div class="modal-body">
+    
+                                                <div class="md-form mb-4">
+							     	                <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+							                        <input type="text" id="name" class="form-control validate">
+							                    </div>    
+
+                                                <div class="md-form mb-4">
+                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Amount per Pack</label>
+                                                    <input type="number" id="amountPerPack" class="form-control validate">
+                                                </div>
+
+                                                <div class="md-form mb-4">
+                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Stock Quantity</label>
+                                                    <input type="number" id="stockQuantity" class="form-control validate">
+                                                </div>
+
+                                                <div class="md-form mb-4">
+                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Price per Pack</label>
+                                                    <input type="number" id="pricePerPack" class="form-control validate">
+                                                </div>
+
+                                                <div class="md-form mb-4">
+                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Low Stock Quantity</label>
+                                                    <input type="number" id="lowStockQuantity" class="form-control validate">
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" id="addProductButton" data-dismiss="modal">Add Product</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -611,6 +616,38 @@
 
                 return false;
             });
+
+            $(".dropdown-menu a").click(function(){
+                $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+                $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+            });
+
+
+            $("#addProductButton").click(function(){
+                var element = $("#tbody");
+                var primaryTag = $("<tr></tr>");
+                var th = $("<th></th>");
+                th.text($("#name").val());
+                var td1 = $("<td></td>");
+                td1.text($("#amountPerPack").val());
+                var td2 = $("<td></td>");
+                td2.text($("#stockQuantity").val());
+                var td3 = $("<td></td>");
+                td3.text($("#pricePerPack").val()); 
+                var td4 = $("<td></td>");
+                td4.text($("#lowStockQuantity").val()); 
+                
+                primaryTag.append(th);
+                primaryTag.append(td1);
+                primaryTag.append(td2);
+                primaryTag.append(td3);
+                primaryTag.append(td4);
+
+                element.append(primaryTag);
+
+                /* modal */
+
+	        });
 
         </script>
 
