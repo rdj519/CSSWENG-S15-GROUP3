@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="/css/orders.css">
+	<link rel="stylesheet" href="../public/css/orders.css">
 
 	<!-- Fonts-->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -20,13 +20,10 @@
 			<div class="col-2">
 					<div class="sidenav sticky">
                         <div class="nav flex-column nav-pills" aria-orientation="vertical">
-                            <a class="nav-link sideBarOptions" href="/home"><h3><b>SioPau</b></h3></a>
-                            <a class="nav-link active sideBarOptions" href="/orders">Orders</a>
-                            <a class="nav-link sideBarOptions" href="/inventory">Stock Inventory</a>
-                            <a class="nav-link sideBarOptions" href="/contacts">Contacts</a>
-                            <hr>
-                            <a class="nav-link sideBarOptions" href="/settings">Settings</a>
-                            <a class="nav-link sideBarOptions" href="/user/logout">Log Out</a>
+                            <a class="nav-link sideBarOptions" href="home.html"><h3><b>SioPau</b></h3></a>
+                            <a class="nav-link active sideBarOptions" href="orders.html">Orders</a>
+                            <a class="nav-link sideBarOptions" href="inventory.html">Stock Inventory</a>
+                            <a class="nav-link sideBarOptions" href="contacts.html">Contacts</a>
                         </div>
                     </div>
 			</div>
@@ -35,7 +32,7 @@
 					<div class="tab-content" id="v-pills-tabContent">
 						<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 							<h1><b>Manage Orders</b></h1>
-							This page contains the orders and their informations.
+							<p id="p1">This page contains the orders and their informations. </p>
 							<br>
 							<br>
 
@@ -151,58 +148,21 @@
 											<th scope="col">Delivery Date</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
-											<th scope="row">0001</th>
-											<td>Gerrard Castilla</td>
-											<td>09292684572</td>
-											<td>17, G.Cleveland St. Parkwood</td>
-											<td>Confirmed</td>
-											<td>Castilla</td>
-											<td>2020-08-15</td>
-											<td>2020-08-20</td>
+									<tbody id="tbody">
+
+										<!-- {{#each contents}}
+										<tr data-toggle="modal" data-id="{{orderNumber}}" data-target="#{{orderNumber}}">
+											<th scope="row">{{orderNumber}}</th>
+											<td>{{name}}</td>
+											<td>{{contactNumber}}</td>
+											<td>{{homeAddress}}</td>
+											<td>{{status}}</td>
+											<td>{{courier}}</td>
+											<td>{{placedDate}}</td>
+											<td>{{deliveryDate}}</td>
 										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#orderTwoModal">
-											<th scope="row">0002</th>
-											<td>Bryce Ramirez</td>
-											<td>09987654321</td>
-											<td>3rd Avenue Baranggay Lito</td>
-											<td>Paid</td>
-											<td>GrabExpress</td>
-											<td>2020-08-14</td>
-											<td>2020-08-17</td>
-										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#orderThreeModal">
-											<th scope="row">0003</th>
-											<td>Rey Delima</td>
-											<td>09123456789</td>
-											<td>5th Street Forbes Park</td>
-											<td>Completed</td>
-											<td>GrabExpress</td>
-											<td>2020-08-13</td>
-											<td>2020-08-23</td>
-										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#orderFourModal">
-											<th scope="row">0004</th>
-											<td>Juan Dela Cruz</td>
-											<td>09987456321</td>
-											<td>18, G.Greenwood St. Paul</td>
-											<td>Confirmed</td>
-											<td>Castilla</td>
-											<td>2020-08-14</td>
-											<td>2020-08-18</td>
-										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#orderFiveModal">
-											<th scope="row">0005</th>
-											<td>Luigi Valera</td>
-											<td>099691914201</td>
-											<td>3rd Street Bangbang Avenue</td>
-											<td>Cancelled</td>
-											<td>GrabExpress</td>
-											<td>2020-08-10</td>
-											<td>2020-08-19</td>
-										</tr>
-									</tbody>
+										{{/each}} -->
+									</tbody> 
 								</table>
 							</div>
 
@@ -226,7 +186,7 @@
 							        <button type="button" class="btn btn-danger">Yes</button>
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 							      </div>
-							    </div>
+							    </div>	
 							  </div>
 							</div>
 
@@ -328,439 +288,6 @@
 							    </div>
 							  </div>
 							</div>
-							<div class="modal fade" id="orderTwoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLabel">Order No. 2</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">
-
-							      	<label style="color:#A39E9C"> Contact Number </label>
-							      	<p class="info" contentEditable="true">09987654321</p> 
-							      	<label style="color:#A39E9C"> Home Address </label>
-							      	<p class="info" contentEditable="true">3rd Avenue Baranggay Lito</p> 
-							      	<label style="color:#A39E9C"> City/Municipality </label>
-							      	<p class="info" contentEditable="true">Quezon City</p> 
-							      	<label style="color:#A39E9C"> Courier </label>
-							      	<div class="info">
-										<div class="dropdown">
-										  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										   	GrabExpress
-										  </button>
-										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										    <a class="dropdown-item" href="#">Castilla</a>
-										  </div>
-										</div>
-							      	</div>	
-							      	<label style="color:#A39E9C"> Customer Name</label>
-							      	<p class="info">Bryce Ramirez</p> 
-							      	<label style="color:#A39E9C"> Date Placed</label>
-							      	<input class= "info" type="date" id="start" name="trip-start" value="2020-08-14" readonly>		
-							      	<label style="color:#A39E9C"> Delivery Date</label>
-							      	<input class= "info" type="date" id="start" name="trip-start" value="2020-08-17">							  
-							      	<label style="color:#A39E9C"> Payment Method</label>
-							      	<div class="info">
-										<div class="dropdown">
-										  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    GCash
-										  </button>
-										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										    <a class="dropdown-item" href="#">CoD</a>
-										  </div>
-										</div>
-							      	</div>	
-							      	<label style="color:#A39E9C"> Status</label>
-							      	<div class="info">
-										<div class="dropdown">
-										  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    Paid
-										  </button>
-										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										    <a class="dropdown-item" href="#">Confirmed</a>
-										    <a class="dropdown-item" href="#">Delivering</a>
-										    <a class="dropdown-item" href="#">Completed</a>
-										    <a class="dropdown-item" href="#">Cancelled</a>
-										  </div>
-										</div>
-							      	</div>									      	
-							      	<!-- table for ordered products -->
-								    <table class="table table-hover">
-										<thead>
-											<tr>
-												<th scope="col">Product</th>
-												<th scope="col">Quantity</th>
-												<th scope="col">Price</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<th scope="row">Siopao (Asado)</th>
-												<td>4</td>
-												<td>450</td>
-											</tr>
-											<tr>
-												<th scope="row">Siomai & Dumplings</th>
-												<td>2</td>
-												<td>600</td>
-											</tr>
-											<tr>
-												<th scope="row">Lumpia Shanghai</th>
-												<td>5</td>
-												<td>750</td>
-											</tr>
-											<tr>
-												<th scope="row">Chili Sauce</th>
-												<td>3</td>
-												<td>200</td>
-											</tr>
-										</tbody>
-									</table>
-									<label style="color:#A39E9C"> Overall Price</label>
-							      	<p class="info">2000</p> 			
-							      	<label style="color:#A39E9C"> Delivery Fee</label>
-							      	<p class="info">250</p> 
-							      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
-							      	<p class="info" style="font-weight:bold;">2250</p> 							      
-
-							      </div>
-							      <div class="modal-footer">
-									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
-									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
-									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									  <button type="button" class="btn btn-primary">Save changes</button>
-							      </div>
-							    </div>
-							  </div>
-							</div>
-							<div class="modal fade" id="orderThreeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-								  <div class="modal-content">
-									<div class="modal-header">
-									  <h5 class="modal-title" id="exampleModalLabel">Order No. 3</h5>
-									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									  </button>
-									</div>
-									<div class="modal-body">
-  
-										<label style="color:#A39E9C"> Contact Number </label>
-								      	<p class="info" contentEditable="true">09123456789</p> 
-								      	<label style="color:#A39E9C"> Home Address </label>
-								      	<p class="info" contentEditable="true">5th Street Forbes Park</p> 
-								      	<label style="color:#A39E9C"> City/Municipality </label>
-								      	<p class="info" contentEditable="true">Manila</p> 
-								      	<label style="color:#A39E9C"> Courier </label>
-								      	<div class="info">
-											<div class="dropdown">
-											  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    GrabExpress
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">Castilla</a>
-											  </div>
-											</div>
-								      	</div>	
-								      	<label style="color:#A39E9C"> Customer Name</label>
-								      	<p class="info">Rey Delima</p> 
-								      	<label style="color:#A39E9C"> Date Placed</label>
-								      	<input class= "info" type="date" id="start" name="trip-start" value="2020-08-13" readonly>		
-								      	<label style="color:#A39E9C"> Delivery Date</label>
-								      	<input class= "info" type="date" id="start" name="trip-start" value="2020-08-23">							  
-								      	<label style="color:#A39E9C"> Payment Method</label>
-								      	<div class="info">
-											<div class="dropdown">
-											  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    CoD
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">GCash</a>
-											  </div>
-											</div>
-								      	</div>	
-								      	<label style="color:#A39E9C"> Status</label>
-								      	<div class="info">
-											<div class="dropdown">
-											  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    Completed
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">Paid</a>
-											    <a class="dropdown-item" href="#">Delivering</a>
-											    <a class="dropdown-item" href="#">Confirmed</a>
-											    <a class="dropdown-item" href="#">Cancelled</a>
-											  </div>
-											</div>
-								      	</div>									      	
-										<!-- table for ordered products -->
-									  <table class="table table-hover">
-										  <thead>
-											  <tr>
-												  <th scope="col">Product</th>
-												  <th scope="col">Quantity</th>
-												  <th scope="col">Price</th>
-											  </tr>
-										  </thead>
-										  <tbody>
-											  <tr>
-												  <th scope="row">Siopao (Asado)</th>
-												  <td>4</td>
-												  <td>450</td>
-											  </tr>
-											  <tr>
-												  <th scope="row">Siomai & Dumplings</th>
-												  <td>2</td>
-												  <td>600</td>
-											  </tr>
-											  <tr>
-												  <th scope="row">Lumpia Shanghai</th>
-												  <td>5</td>
-												  <td>750</td>
-											  </tr>
-											  <tr>
-												  <th scope="row">Chili Sauce</th>
-												  <td>3</td>
-												  <td>200</td>
-											  </tr>
-										  </tbody>
-									  </table>
-									  <label style="color:#A39E9C"> Overall Price</label>
-										<p class="info">2000</p> 			
-										<label style="color:#A39E9C"> Delivery Fee</label>
-										<p class="info">250</p> 
-										<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
-										<p class="info" style="font-weight:bold;">2250</p> 							      
-  
-									</div>
-									<div class="modal-footer">
-									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
-									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
-									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									  <button type="button" class="btn btn-primary">Save changes</button>
-									</div>
-								  </div>
-								</div>
-							</div>
-							
-							<div class="modal fade" id="orderFourModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-								  <div class="modal-content">
-									<div class="modal-header">
-									  <h5 class="modal-title" id="exampleModalLabel">Order No. 4</h5>
-									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									  </button>
-									</div>
-									<div class="modal-body">
-  
-										<label style="color:#A39E9C"> Contact Number </label>
-								      	<p class="info" contentEditable="true">09987654321</p> 
-								      	<label style="color:#A39E9C"> Home Address </label>
-								      	<p class="info" contentEditable="true">18, G.Greenwood St. Paul</p> 
-								      	<label style="color:#A39E9C"> City/Municipality </label>
-								      	<p class="info" contentEditable="true">Pasig City</p> 
-								      	<label style="color:#A39E9C"> Courier </label>
-								      	<div class="info">
-											<div class="dropdown">
-											  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    Castilla
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">GrabExpress</a>
-											  </div>
-											</div>
-								      	</div>	
-								      	<label style="color:#A39E9C"> Customer Name</label>
-								      	<p class="info">Juan Dela Cruz</p> 
-								      	<label style="color:#A39E9C"> Date Placed</label>
-								      	<input class= "info" type="date" id="start" name="trip-start" value="2020-08-14" readonly>		
-								      	<label style="color:#A39E9C"> Delivery Date</label>
-								      	<input class= "info" type="date" id="start" name="trip-start" value="2020-08-18">							  
-								      	<label style="color:#A39E9C"> Payment Method</label>
-								      	<div class="info">
-											<div class="dropdown">
-											  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    CoD
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">GCash</a>
-											  </div>
-											</div>
-								      	</div>	
-								      	<label style="color:#A39E9C"> Status</label>
-								      	<div class="info">
-											<div class="dropdown">
-											  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    Confirmed
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">Paid</a>
-											    <a class="dropdown-item" href="#">Delivering</a>
-											    <a class="dropdown-item" href="#">Completed</a>
-											    <a class="dropdown-item" href="#">Cancelled</a>
-											  </div>
-											</div>
-								      	</div>												      	
-										<!-- table for ordered products -->
-									  <table class="table table-hover">
-										  <thead>
-											  <tr>
-												  <th scope="col">Product</th>
-												  <th scope="col">Quantity</th>
-												  <th scope="col">Price</th>
-											  </tr>
-										  </thead>
-										  <tbody>
-											  <tr>
-												  <th scope="row">Siopao (Asado)</th>
-												  <td>4</td>
-												  <td>450</td>
-											  </tr>
-											  <tr>
-												  <th scope="row">Siomai & Dumplings</th>
-												  <td>2</td>
-												  <td>600</td>
-											  </tr>
-											  <tr>
-												  <th scope="row">Lumpia Shanghai</th>
-												  <td>5</td>
-												  <td>750</td>
-											  </tr>
-											  <tr>
-												  <th scope="row">Chili Sauce</th>
-												  <td>3</td>
-												  <td>200</td>
-											  </tr>
-										  </tbody>
-									  </table>
-									  <label style="color:#A39E9C"> Overall Price</label>
-										<p class="info">2000</p> 			
-										<label style="color:#A39E9C"> Delivery Fee</label>
-										<p class="info">250</p> 
-										<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
-										<p class="info" style="font-weight:bold;">2250</p> 							      
-  
-									</div>
-									<div class="modal-footer">
-									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
-									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
-									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									  <button type="button" class="btn btn-primary">Save changes</button>
-									</div>
-								  </div>
-								</div>
-							</div>
-							<div class="modal fade" id="orderFiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-								  <div class="modal-content">
-									<div class="modal-header">
-									  <h5 class="modal-title" id="exampleModalLabel">Order No. 5</h5>
-									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									  </button>
-									</div>
-									<div class="modal-body">
-
-										<label style="color:#A39E9C"> Contact Number </label>
-								      	<p class="info" contentEditable="true">099691914201</p> 
-								      	<label style="color:#A39E9C"> Home Address </label>
-								      	<p class="info" contentEditable="true">3rd Street Bangbang Avenue</p> 
-								      	<label style="color:#A39E9C"> City/Municipality </label>
-								      	<p class="info" contentEditable="true">Muntinlupa</p> 
-								      	<label style="color:#A39E9C"> Courier </label>
-								      	<div class="info">
-											<div class="dropdown">
-											  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    GrabExpress
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">GCash</a>
-											  </div>
-											</div>
-								      	</div>	
-								      	<label style="color:#A39E9C"> Customer Name</label>
-								      	<p class="info">Luigi Valera</p> 
-								      	<label style="color:#A39E9C"> Date Placed</label>
-								      	<input class= "info" type="date" id="start" name="trip-start" value="2020-08-10" readonly>		
-								      	<label style="color:#A39E9C"> Delivery Date</label>
-								      	<input class= "info" type="date" id="start" name="trip-start" value="2020-08-19">							  
-								      	<label style="color:#A39E9C"> Payment Method</label>
-								      	<div class="info">
-											<div class="dropdown">
-											  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    GCash
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">CoD</a>
-											  </div>
-											</div>
-								      	</div>	
-								      	<label style="color:#A39E9C"> Status</label>
-								      	<div class="info">
-											<div class="dropdown">
-											  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    Cancelled
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">Paid</a>
-											    <a class="dropdown-item" href="#">Delivering</a>
-											    <a class="dropdown-item" href="#">Completed</a>
-											    <a class="dropdown-item" href="#">Confirmed</a>
-											  </div>
-											</div>
-								      	</div>												      										      	
-										<!-- table for ordered products -->
-									  <table class="table table-hover">
-										  <thead>
-											  <tr>
-												  <th scope="col">Product</th>
-												  <th scope="col">Quantity</th>
-												  <th scope="col">Price</th>
-											  </tr>
-										  </thead>
-										  <tbody>
-											  <tr>
-												  <th scope="row">Siopao (Asado)</th>
-												  <td>4</td>
-												  <td>450</td>
-											  </tr>
-											  <tr>
-												  <th scope="row">Siomai & Dumplings</th>
-												  <td>2</td>
-												  <td>600</td>
-											  </tr>
-											  <tr>
-												  <th scope="row">Lumpia Shanghai</th>
-												  <td>5</td>
-												  <td>750</td>
-											  </tr>
-											  <tr>
-												  <th scope="row">Chili Sauce</th>
-												  <td>3</td>
-												  <td>200</td>
-											  </tr>
-										  </tbody>
-									  </table>
-									  <label style="color:#A39E9C"> Overall Price</label>
-										<p class="info">2000</p> 			
-										<label style="color:#A39E9C"> Delivery Fee</label>
-										<p class="info">250</p> 
-										<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
-										<p class="info" style="font-weight:bold;">2250</p> 							      
-  
-									</div>
-									<div class="modal-footer">
-									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
-									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
-									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									  <button type="button" class="btn btn-primary">Save changes</button>
-									</div>
-								  </div>
-								</div>
-							</div>
 
 
 							<!-- Modal For Adding Order -->
@@ -777,21 +304,21 @@
 	
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
-							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							          <input type="text" id="name" class="form-control validate">
 							        </div>
 
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
-							          <input type="number" id="defaultForm-pass" class="form-control validate">
+							          <input type="number" id="contact" class="form-control validate">
 							        </div>
 
 
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass"><b>Address</b></label>
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Home Address</label>
-							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							          <input type="text" id="homeAddress" class="form-control validate">
 							          <label data-error="wrong" data-success="right" for="defaultForm-pass">City/Municipality</label>
-							          <input type="text" id="defaultForm-pass" class="form-control validate">
+							          <input type="text" id="city" class="form-control validate">
 							        </div>
 
 							      	<div class="md-form mb-4">
@@ -874,12 +401,12 @@
 							      	<div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Payment Method</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<button class="btn btn-light dropdown-toggle" type="button" id="method" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											  Method
 											</button>
-											<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">Cash On Delivery</a>
+											<div class="dropdown-menu" aria-labelledby="courierType">
 											    <a class="dropdown-item" href="#">GCash</a>
+											    <a class="dropdown-item" href="#">Cash On Delivery</a>
 											</div>
 										</div>
 							        </div>
@@ -887,27 +414,27 @@
 							        <div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Courier</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<button class="btn btn-light dropdown-toggle" type="button" id="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											  Courier Type
 											</button>
-											<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<div class="dropdown-menu" aria-labelledby="courierType">
 											    <a class="dropdown-item" href="#">Castilla</a>
-											    <a class="dropdown-item" href="#">GrabExpress</a>
+											    <a class="dropdown-item" href="#">GrabExpress </a>
 											</div>
 							        	</div>
+							        </div>
 
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Delivery Date</label>
-							          <input type="date" id="defaultForm-pass" class="form-control validate">
+							          <input type="date" id="deliveryDate" class="form-control validate">
 							        </div>
 
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        <button type="button" class="btn btn-primary">Add Order</button>
+							        <button type="button" class="btn btn-primary" onclick="addOrder()" id="addOrderButton" data-dismiss="modal">Add Order</button>
 							      </div>
 							    </div>
-							  </div>
 							  </div>
 							</div>
 							
@@ -920,7 +447,9 @@
 		</div>
 	</div>
 
+
 <script>
+
 
 	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
 		if (!$(this).next().hasClass('show')) {
@@ -937,7 +466,68 @@
 		return false;
 	});
 
+	$(".dropdown-menu a").click(function(){
+  		$(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+  		$(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+	});
+
+	/* order number */
+	var orderNumber = 0;
+
+	$("#addOrderButton").click(function(){
+			orderNumber += 1;
+			var element = $("#tbody");
+			var primaryTag = $("<tr></tr>");
+			primaryTag.attr("data-toggle", "modal");
+			primaryTag.attr("data-target", orderNumber.toString());
+			primaryTag.attr("data-id", orderNumber.toString());
+			var th = $("<th></th>");
+			th.attr("scope","row");
+			th.text(orderNumber.toString());
+			var td1 = $("<td></td>");
+			td1.text($("#name").val());
+			var td2 = $("<td></td>");
+			td2.text($("#contact").val());
+			var td3 = $("<td></td>");
+			td3.text($("#homeAddress").val());
+			var td4 = $("<td></td>");
+			td4.text($("#method").text()); 
+			var td5 = $("<td></td>");
+			td5.text($("#courier").text()); 
+			
+			/* placed date */
+			var td6 = $("<td></td>");
+
+			var today = new Date();
+			var dd = String(today.getDate()).padStart(2, '0');
+			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+			var yyyy = today.getFullYear();
+			today = yyyy + '-' + mm + '-' + dd;
+
+			td6.text(today);
+			/* delivery date */
+			var td7 = $("<td></td>");
+			td7.text($("#deliveryDate").val());
+
+			primaryTag.append(th);
+			primaryTag.append(td1);
+			primaryTag.append(td2);
+			primaryTag.append(td3);
+			primaryTag.append(td4);
+			primaryTag.append(td5);
+			primaryTag.append(td6);
+			primaryTag.append(td7);
+
+			element.append(primaryTag);
+
+			/* modal */
+			
+
+	});
+
+
 </script>
+
 
 <!-- JS-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -945,3 +535,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
