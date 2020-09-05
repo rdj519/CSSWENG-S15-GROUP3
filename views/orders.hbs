@@ -334,68 +334,68 @@
 											<tbody>
 												<tr>
 													<th scope="row">Siomai & Dumplings Pack</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="siomaiDumplingInput" class="form-control validate"></td>
+													<td><p id="siomaiDumpling" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Pork Siomai</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="porkSiomaiInput" class="form-control validate"></td>
+													<td><p id="porkSiomai" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Lumpia Shanghai</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="lumpiaShanghaiInput" class="form-control validate"></td>
+													<td><p id="lumpiaShanghai" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Gyoza</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="gyozaInput" class="form-control validate"></td>
+													<td><p id="gyoza" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Sharksfin Dumplings</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="sharksfinInput" class="form-control validate"></td>
+													<td><p id="sharksfin" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Beef Siomai</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="beefSiomaiInput" class="form-control validate"></td>
+													<td><p id="beefSiomai" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Chicken Siomai</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="chickenSiomaiInput" class="form-control validate"></td>
+													<td><p id="chickenSiomai" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Siopao Mini</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="siopaoMiniInput" class="form-control validate"></td>
+													<td><p id="siopaoMini" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Siopao (Asado)</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="siopaoAsadoInput" class="form-control validate"></td>
+													<td><p id="siopaoAsado" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Siopao (Bola-Bola)</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="siopaoBolaBolaInput" class="form-control validate"></td>
+													<td><p id="siopaoBolaBola" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Holsin Sauce</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="holsinSauceInput" class="form-control validate"></td>
+													<td><p id="holsinSauce" class="form-control validate"></p></td>
 												</tr>
 												<tr>
 													<th scope="row">Chili Sauce</th>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
-													<td><input type="number" id="defaultForm-pass" class="form-control validate"></td>
+													<td><input type="number" id="chiliSauceInput" class="form-control validate"></td>
+													<td><p id="chiliSauce" class="form-control validate"></p></td>
 												</tr>
 											</tbody>
 										</table>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">Total Amount</label>
-										<input type="number" id="defaultForm-pass" class="form-control validate">
+										<input type="number" id="totalAmount" class="form-control validate" readonly>
 							      	</div>
 
 							      	<div class="md-form mb-4">
@@ -449,31 +449,23 @@
 
 
 <script>
-
-
 	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
 		if (!$(this).next().hasClass('show')) {
 			$(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
 		}
 		var $subMenu = $(this).next('.dropdown-menu');
 		$subMenu.toggleClass('show');
-
-
 		$(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
 			$('.dropdown-submenu .show').removeClass('show');
 		});
-
 		return false;
 	});
-
 	$(".dropdown-menu a").click(function(){
   		$(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
   		$(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 	});
-
 	/* order number */
 	var orderNumber = 0;
-
 	$("#addOrderButton").click(function(){
 			orderNumber += 1;
 			var element = $("#tbody");
@@ -497,18 +489,15 @@
 			
 			/* placed date */
 			var td6 = $("<td></td>");
-
 			var today = new Date();
 			var dd = String(today.getDate()).padStart(2, '0');
 			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 			var yyyy = today.getFullYear();
 			today = yyyy + '-' + mm + '-' + dd;
-
 			td6.text(today);
 			/* delivery date */
 			var td7 = $("<td></td>");
 			td7.text($("#deliveryDate").val());
-
 			primaryTag.append(th);
 			primaryTag.append(td1);
 			primaryTag.append(td2);
@@ -517,14 +506,113 @@
 			primaryTag.append(td5);
 			primaryTag.append(td6);
 			primaryTag.append(td7);
-
 			element.append(primaryTag);
-
 			/* modal */
 			
-
+	});
+	$(document).ready(function(){
+		$("#totalAmount").val(0);
 	});
 
+	$(function(){
+	  $('#siomaiDumplingInput').on('input', function() {
+	  		var element = $("#siomaiDumpling");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 180
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#porkSiomaiInput').on('input', function() {
+	  		var element = $("#porkSiomai");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 200
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#lumpiaShanghaiInput').on('input', function() {
+	  		var element = $("#lumpiaShanghai");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 205
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#gyozaInput').on('input', function() {
+	  		var element = $("#gyoza");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 200
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#beefSiomaiInput').on('input', function() {
+	  		var element = $("#beefSiomai");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 220
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#chickenSiomaiInput').on('input', function() {
+	  		var element = $("#chickenSiomai");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 210
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#siopaoMiniInput').on('input', function() {
+	  		var element = $("#siopaoMini");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 140
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#siopaoAsadoInput').on('input', function() {
+	  		var element = $("#siopaoAsado");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 240
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#siopaoBolaBolaInput').on('input', function() {
+	  		var element = $("#siopaoBolaBola");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 240
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#holsinSauceInput').on('input', function() {
+	  		var element = $("#holsinSauce");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 60
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#chiliSauceInput').on('input', function() {
+	  		var element = $("#chiliSauce");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 60
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+	  $('#sharksfinInput').on('input', function() {
+	  		var element = $("#sharksfin");
+	  		var totalElement = $("#totalAmount");
+	  		var due = $(this).val() * 80
+	  		element.text(due);
+	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
+	  		totalElement.text(parseFloat(totalElement.val()));
+	  });
+
+	});
 
 </script>
 
@@ -535,5 +623,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
-
 

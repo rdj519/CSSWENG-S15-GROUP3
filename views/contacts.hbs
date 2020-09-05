@@ -2,17 +2,16 @@
 <html>
 <head>
 	<title>Customer List</title>
-
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-    	<!-- CSS -->
-	<link rel="stylesheet" href="/css/orders.css">
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/contacts.css">
 
 	<!-- Fonts-->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
-    </style>
+    
 </head>
 <body>
 
@@ -92,7 +91,7 @@
 
 										<!-- add contact -->
 										<div class="col-5">
-											<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" type="submit" data-target="#newContact" style="margin-bottom: 5px;">Add Contact</button>
+											<button id="addBtn" class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" type="submit" data-target="#newContact" style="margin-bottom: 5px;">Add Contact</button>
 										</div>
 									</div>
 								</div>
@@ -111,47 +110,17 @@
 											<th scope="col">Remarks</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr data-toggle="modal" data-id="2" data-target="#firstCustomer">
-											<th scope="row">0001</th>
-											<td>Gerrard Castilla</td>
-											<td>09292684572</td>
-											<td>17, G.Cleveland St. Parkwood</td>
-											<td>Pasig City</td>
-											<td></td>
+									<tbody id="tbody">
+										<!-- {{#each customers}}
+										<tr data-toggle="modal" data-id="{{cusNumber}}" data-target="#{{cusNumber}}">
+											<th scope="row">{{cusNumber}}</th>
+											<td>{{name}}</td>
+											<td>{{contact}}</td>
+											<td>{{home}}</td>
+											<td>{{city}}</td>
+											<td>{{remark}}</td>
 										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#secondCustomer">
-											<th scope="row">0002</th>
-											<td>Bryce Ramirez</td>
-											<td>09987654321</td>
-											<td>3rd Avenue Baranggay Lito</td>
-											<td>Quezon City</td>
-											<td></td>
-										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#thirdCustomer">
-											<th scope="row">0003</th>
-											<td>Rey Delima</td>
-											<td>09123456789</td>
-											<td>5th Street Forbes Park</td>
-											<td>Manila</td>
-											<td>Deliver items during weekdays only</td>
-										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#fourthCustomer">
-											<th scope="row">0004</th>
-											<td>Juan Dela Cruz</td>
-											<td>09987456321</td>
-											<td>18, G.Greenwood St. Paul</td>
-											<td>Pasig City</td>
-											<td></td>
-										</tr>
-										<tr data-toggle="modal" data-id="2" data-target="#fifthCustomer">
-											<th scope="row">0005</th>
-											<td>Luigi Valera</td>
-											<td>09696969691</td>
-											<td>3rd Street Bangbang Avenue</td>
-											<td>Muntinlupa</td>
-											<td>GCash - 09696969691</td>
-										</tr>
+										{{/each}} -->
 									</tbody>
 								</table>
 							</div>
@@ -167,38 +136,38 @@
 									  		</button>
 										</div>
 										
-										<div class="modal-body">
+											<div class="modal-body">
 
-											<div class="md-form mb-4">
-												<label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
-												<input type="text" id="defaultForm-pass" class="form-control validate">
-											</div>
-  
-											<div class="md-form mb-4">
-												<label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
-												<input type="number" id="defaultForm-pass" class="form-control validate">
-									  		</div>
+												<div class="md-form mb-4">
+													<label data-error="wrong" data-success="right" for="name">Name</label>
+													<input type="text" id="name" class="form-control validate">
+												</div>
+	  
+												<div class="md-form mb-4">
+													<label data-error="wrong" data-success="right" for="contact">Contact Number</label>
+													<input type="number" id="contact" class="form-control validate">
+										  		</div>
 
-  											<div class="md-form mb-4">
-												<label data-error="wrong" data-success="right" for="defaultForm-pass">Home Address</label>
-												<input type="text" id="defaultForm-pass" class="form-control validate">
+	  											<div class="md-form mb-4">
+													<label data-error="wrong" data-success="right" for="home">Home Address</label>
+													<input type="text" id="home" class="form-control validate">
+												</div>
+
+												<div class="md-form mb-4">
+													<label data-error="wrong" data-success="right" for="city">City/Municipality</label>
+													<input type="text" id="city" class="form-control validate">
+												</div>
+
+												<div class="md-form mb-4">
+													<label data-error="wrong" data-success="right" for="remark">Remarks</label>
+													<input type="text" id="remark" class="form-control validate">
+												</div>
 											</div>
 
-											<div class="md-form mb-4">
-												<label data-error="wrong" data-success="right" for="defaultForm-pass">City/Municipality</label>
-												<input type="text" id="defaultForm-pass" class="form-control validate">
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												<button type="button" id="submitInfo" class="btn btn-primary">Create Contact</button>
 											</div>
-
-											<div class="md-form mb-4">
-												<label data-error="wrong" data-success="right" for="defaultForm-pass">Remarks</label>
-												<input type="text" id="defaultForm-pass" class="form-control validate">
-											</div>
-										</div>
-										
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Create Contact</button>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -226,197 +195,6 @@
 							</div>
 							<!-- edit contact modal -->
 
-							<!-- Customer 0001 -->
-							<div class="modal fade" id="firstCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Customer No. 0001</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<form>
-												<div class="form-group">
-													<label for="customerName"><b>Customer Name</b></label>
-													<p class="info" id="Customer Name">Gerrard Castilla</p> 
-													<br>
-													<label for="contactNum"><b>Contact Number</b></label>
-													<input type="number" class="form-control" id="contactNum" value="09292684572">
-													<br>
-													<label for="location"><b>Home Address</b></label>
-													<input type="text" class="form-control" id="location" value="17, G.Cleveland St. Parkwood">
-													<br>
-													<label for="city"><b>City/Municipality</b></label>
-													<input type="text" class="form-control" id="city" value="Pasig City">
-													<br>
-													<label for="remarks"><b>Remarks</b></label>
-													<input type="text" class="form-control" id="city" value="">
-												</div>
-											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteContact">Delete Contact</button>		
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Customer 0002 -->
-							<div class="modal fade" id="secondCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Customer No. 0002</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<form>
-												<div class="form-group">
-													<label for="customerName"><b>Customer Name</b></label>
-													<p class="info" id="Customer Name">Bryce Ramirez</p> 
-													<br>
-													<label for="contactNum"><b>Contact Number</b></label>
-													<input type="number" class="form-control" id="contactNum" value="09987654321">
-													<br>
-													<label for="location"><b>Home Address</b></label>
-													<input type="text" class="form-control" id="location" value="3rd Avenue Baranggay Lito">
-													<br>
-													<label for="city"><b>City/Municipality</b></label>
-													<input type="text" class="form-control" id="city" value="Quezon City">
-													<br>
-													<label for="remarks"><b>Remarks</b></label>
-													<input type="text" class="form-control" id="city" value="">
-												</div>
-											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteContact">Delete Contact</button>		
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Customer 0003 -->
-							<div class="modal fade" id="thirdCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Customer No. 0003</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<form>
-												<div class="form-group">
-													<label for="customerName"><b>Customer Name</b></label>
-													<p class="info" id="Customer Name">Rey Delima</p> 
-													<br>
-													<label for="contactNum"><b>Contact Number</b></label>
-													<input type="number" class="form-control" id="contactNum" value="09123456789">
-													<br>
-													<label for="location"><b>Home Address</b></label>
-													<input type="text" class="form-control" id="location" value="5th Street Fores Park">
-													<br>
-													<label for="city"><b>City/Municipality</b></label>
-													<input type="text" class="form-control" id="city" value="Manila">
-													<br>
-													<label for="remarks"><b>Remarks</b></label>
-													<input type="text" class="form-control" id="city" value="Deliver items during weekdays only">
-												</div>
-											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteContact">Delete Contact</button>		
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Customer 0004 -->
-							<div class="modal fade" id="fourthCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Customer No. 0004</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<form>
-												<div class="form-group">
-													<label for="customerName"><b>Customer Name</b></label>
-													<p class="info" id="Customer Name">Juan Dela Cruz</p> 
-													<br>
-													<label for="contactNum"><b>Contact Number</b></label>
-													<input type="number" class="form-control" id="contactNum" value="09987456321">
-													<br>
-													<label for="location"><b>Home Address</b></label>
-													<input type="text" class="form-control" id="location" value="18, G.Greenwood St. Paul">
-													<br>
-													<label for="city"><b>City/Municipality</b></label>
-													<input type="text" class="form-control" id="city" value="Pasig City">
-													<br>
-													<label for="remarks"><b>Remarks</b></label>
-													<input type="text" class="form-control" id="city" value="">
-												</div>
-											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteContact">Delete Contact</button>		
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Customer 0005 -->
-							<div class="modal fade" id="fifthCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Customer No. 0005</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<form>
-												<div class="form-group">
-													<label for="customerName"><b>Customer Name</b></label>
-													<p class="info" id="Customer Name">Luigi vValera</p> 
-													<br>
-													<label for="contactNum"><b>Contact Number</b></label>
-													<input type="number" class="form-control" id="contactNum" value="09696969691">
-													<br>
-													<label for="location"><b>Home Address</b></label>
-													<input type="text" class="form-control" id="location" value="3rd Street Bangbang Avenue">
-													<br>
-													<label for="city"><b>City/Municipality</b></label>
-													<input type="text" class="form-control" id="city" value="Muntinlupa">
-													<br>
-													<label for="remarks"><b>Remarks</b></label>
-													<input type="text" class="form-control" id="city" value="GCash - 09696969691">
-												</div>
-											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteContact">Delete Contact</button>		
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
-										</div>
-									</div>
-								</div>
-							</div>
-
 
 
 						</div>
@@ -428,7 +206,8 @@
 		</div>
 	</div>
 
-	<script>
+
+    <script>
 
 		$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
 			if (!$(this).next().hasClass('show')) {
@@ -445,11 +224,127 @@
 			return false;
 		});
 
+		
+		$(".dropdown-menu a").click(function(){
+  			$(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+  			$(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+		});
+
+
+	/* order number */
+	
+	var orderNumber = 0;
+	$("#submitInfo").click(function(){
+			orderNumber += 1;
+			var element = $("#tbody");
+			var primaryTag = $("<tr></tr>");
+			primaryTag.attr("data-toggle", "modal");
+			primaryTag.attr("data-target", orderNumber.toString());
+			primaryTag.attr("data-id", orderNumber.toString());
+			var th = $("<th></th>");
+			th.attr("scope","row");
+			th.text(orderNumber.toString());
+
+			var td1 = $("<td></td>");
+			td1.text($("#name").val());
+			var td2 = $("<td></td>");
+			td2.text($("#contact").val());
+			var td3 = $("<td></td>");
+			td3.text($("#home").val());
+			var td4 = $("<td></td>");
+			td4.text($("#city").text()); 
+			var td5 = $("<td></td>");
+			td5.text($("#remark").text()); 
+		
+			primaryTag.append(th);
+			primaryTag.append(td1);
+			primaryTag.append(td2);
+			primaryTag.append(td3);
+			primaryTag.append(td4);
+			primaryTag.append(td5);
+			element.append(primaryTag);
+	});
+/*
+		var cusNumber = 0;
+		$("#submitInfo").click(function() {
+			var valid = 0;
+			var element = $("#tbody");
+			var primaryTag = $("<tr></tr>");
+			primaryTag.attr("data-toggle", "modal");
+
+			var th = $("<th></th>");
+			th.attr("scope","row");
+
+			var td1 = $("<td></td>");
+			td1.text($("#name").val());
+			if (!($("#name").val()).trim()) {//check if tring is empty or whitespace
+				$("#name").css("border-color", "red");	
+      		}
+      		else {
+      			$("#name").css("border-color", "lightgray");
+      			valid += 1;
+      		}
+
+			var td2 = $("<td></td>");
+			td2.text($("#contact").val());
+			if (!($("#contact").val()).trim()) {				//check if tring is empty or whitespace
+				$("#contact").css("border-color", "red");
+      		}
+      		else {
+      			$("#contact").css("border-color", "lightgray");
+      			valid += 1;
+      		}
+
+			var td3 = $("<td></td>");
+			td3.text($("#home").val());
+			if (!($("#home").val()).trim()) {				//check if tring is empty or whitespace
+				$("#home").css("border-color", "red");
+      		}
+      		else {
+      			$("#home").css("border-color", "lightgray");
+      			valid += 1;
+      		}
+
+			var td4 = $("<td></td>");
+			td4.text($("#city").text()); 
+			if (!($("#city").val()).trim()) {				//check if tring is empty or whitespace
+				$("#city").css("border-color", "red");
+      		}
+      		else {
+      			$("#city").css("border-color", "lightgray");
+      			valid += 1;
+      		}
+
+			var td5 = $("<td></td>");
+			td5.text($("#remark").text()); 
+
+		//	if (valid == 4) {
+        		cusNumber += 1;
+        		primaryTag.attr("data-target", cusNumber.toString());
+        		primaryTag.attr("data-id", cusNumber.toString());
+        		th.text(orderNumber.toString());
+        
+				primaryTag.append(th);
+				primaryTag.append(td1);
+				primaryTag.append(td2);
+				primaryTag.append(td3);
+				primaryTag.append(td4);
+				primaryTag.append(td5);
+
+        		element.append(primaryTag);
+        		$('#newContact').modal('hide');
+
+    	}
+    */		
+   
+		
+
+
 	</script>
 
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+	<!-- JS-->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
