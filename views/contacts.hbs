@@ -244,6 +244,7 @@
 			var th = $("<th></th>");
 			th.attr("scope","row");
 			th.text(orderNumber.toString());
+			valid = true;
 
 			var td1 = $("<td></td>");
 			td1.text($("#name").val());
@@ -263,6 +264,7 @@
 			primaryTag.append(td4);
 			primaryTag.append(td5);
 			element.append(primaryTag);
+		
 	});
 /*
 		var cusNumber = 0;
