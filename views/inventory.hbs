@@ -12,13 +12,14 @@
     	<!-- Fonts-->
 	    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">   
     </head>
+
     <body>
         <div class="margin">
             <div class="row">
                 <div class="col-2">
                     <div class="sidenav sticky">
                         <div class="nav flex-column nav-pills" aria-orientation="vertical">
-                            <a class="nav-link sideBarOptions" href="home.html"><h3><b>SioPau</b></h3></a>
+                            <a class="nav-link sideBarOptions" href="/home"><h3><b>SioPau</b></h3></a>
                             <a class="nav-link sideBarOptions" href="/orders">Orders</a>
                             <a class="nav-link active sideBarOptions" href="/inventory">Stock Inventory</a>
                             <a class="nav-link sideBarOptions" href="/contacts">Contacts</a>
@@ -32,7 +33,7 @@
                     <div class="card-body">
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                <h1><b>Stock inventory</b></h1>
+                                <h1><b>{{this.title}}</b></h1>
                                 This page contains the available products in the inventory.
                                 <br>
                                 <br>
@@ -91,59 +92,476 @@
 
                                             <!-- add stock -->
                                             <div class="col-5">
-                                                <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" type="submit" id="addProduct" data-target="#newStock">Add Product</button>
-                                            </div>
+											    <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addProduct" type="submit" style="margin-bottom: 5px;">Add Product</button>
+									    	</div>
                                         </div>
                                     </div>
                                 </div>
+                                        
+                                <!-- Table of Inventory -->
+                                <div class="card">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Product #</th>
+                                                <th scope="col">Name </th>
+                                                <th scope="col">Amount per Pack</th>
+                                                <th scope="col">Stock Quantity</th>
+                                                <th scope="col">Price per Pack</th>
+                                                <th scope="col">Low Stock Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                        
 
-                                <!-- Modal For New Stock -->
-                                <div id="newStock" class="modal fade" role="dialog">
+                                            <tr data-toggle="modal" data-id="2" data-target="#stockOneModal">
+                                                <th scope="col" id="pnum1"> 1 </th>
+                                                <td id="name1">Pork Siomai</td>
+                                                <td id="amt1">60</td>
+                                                <td id="stock1">14</td>
+                                                <td id="price1">P200</td>
+                                                <td id="low1">10</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#stockTwoModal">
+                                                <th scope="col" id="pnum2"> 2 </th>
+                                                <td id="name2">Lumpiang Shanghai</td>
+                                                <td id="amt2">60</td>
+                                                <td id="stock2">12</td>
+                                                <td id="price2">P205</td>
+                                                <td id="low2">10</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#stockThreeModal">
+                                                <th scope="col" id="pnum3"> 3 </th>
+                                                <td id="name3">Gyoza</td>
+                                                <td id="amt3">60</td>
+                                                <td id="stock3">26</td>
+                                                <td id="price3">P200</td>
+                                                <td id="low3">10</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#stockFourModal">
+                                                <th scope="col" id="pnum4"> 4 </th>
+                                                <td id="name4">Sharksfin Dumplings</td>
+                                                <td id="amt4">60</td>
+                                                <td id="stock4">45</td>
+                                                <td id="price4">P200</td>
+                                                <td id="low4">10</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#stockFiveModal">
+                                                <th scope="col" id="pnum5"> 5 </th>
+                                                <td id="name5">Beef Siomai</td>
+                                                <td id="amt5">60</td>
+                                                <td id="stock5">4</td>
+                                                <td id="price5">P220</td>
+                                                <td id="low5">10</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#stockSixModal">
+                                                <th scope="col" id="pnum6"> 6 </th>
+                                                <td id="name6">Siopao (Asado)</td>
+                                                <td id="amt6">48</td>
+                                                <td id="stock6">3</td>
+                                                <td id="price6">P240</td>
+                                                <td id="low6">6</td>
+                                            </tr>  
+                                            <tr data-toggle="modal" data-id="2" data-target="#stockSevenModal">
+                                                <th scope="col" id="pnum7"> 7 </th>
+                                                <td id="name7">Siopao (Bola-bola)</td>
+                                                <td id="amt7">48</td>
+                                                <td id="stock7">15</td>
+                                                <td id="price7">P240</td>
+                                                <td id="low7">6</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#stockEightModal">
+                                                <th scope="col" id="pnum8"> 8 </th>
+                                                <td id="name8">Hoisin Sauce</td>
+                                                <td id="amt8">5</td>
+                                                <td id="stock8">22</td>
+                                                <td id="price8">P60</td>
+                                                <td id="low8">10</td>
+                                            </tr>
+                                            <tr data-toggle="modal" data-id="2" data-target="#stockNineModal">
+                                                <th scope="col" id="pnum6"> 9 </th>
+                                                <td id="name9">Chili Sauce</td>
+                                                <td id="amt9">5</td>
+                                                <td id="stock9">13</td>
+                                                <td id="price9">P60</td>
+                                                <td id="low9">10</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Modal for Products -->
+
+
+
+
+
+
+
+
+
+
+
+                                <!--1 Pork siomai -->
+                                <div class="modal fade" id="stockOneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">New Stock Product</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Pork Siomai</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            
                                             <div class="modal-body">
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
-                                                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                                                </div>
-    
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Amount per Pack</label>
-                                                    <input type="number" id="defaultForm-pass" class="form-control validate">
-                                                </div>
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Stock Quantity</label>
-                                                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                                                </div>
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Price per Pack</label>
-                                                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                                                </div>
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Low Stock Quantity</label>
-                                                    <input type="text" id="defaultForm-pass" class="form-control validate">
-                                                </div>
-
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="productName1"><b>Product Name</b></label>
+                                                        <input type="text" class="form-control" id="productName1" value="Pork Siomai">
+                                                        <br>
+                                                        <label for="amountPerPack1"><b>Amount per Pack</b></label>
+                                                        <input type="number" class="form-control" id="amountPerPack1" value="60">
+                                                        <br>
+                                                        <label for="stockQuantity1"><b>Stock Quantity</b></label>
+                                                        <input type="number" class="form-control" id="stockQuantity1" value="14">
+                                                        <br>
+                                                        <label for="pricePerPack1"><b>Price per Pack</b></label>
+                                                        <input type="number" class="form-control" id="pricePerPack1" value="200">
+                                                        <label for="lowStack1"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack1" value="10">
+                                                        <br>
+                                                        <p id="errorUpdate1" style="color: red"><br></p>
+                                                    </div>
+                                                </form>
                                             </div>
-                                            
                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>						
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Create Stock Product</button>
+                                                <button type="button" id="change1" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <!--2 Lumpiang Siomai -->
+                                <div class="modal fade" id="stockTwoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Lumpiang Shanghai</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="productName2"><b>Product Name</b></label>
+                                                        <input type="text" class="form-control" id="productName2" value="Lumpiang Shanghai">
+                                                        <br>
+                                                        <label for="amountPerPack2"><b>Amount per Pack</b></label>
+                                                        <input type="number" class="form-control" id="amountPerPack2" value="60">
+                                                        <br>
+                                                        <label for="stockQuantity2"><b>Stock Quantity</b></label>
+                                                        <input type="number" class="form-control" id="stockQuantity2" value="12">
+                                                        <br>
+                                                        <label for="pricePerPack2"><b>Price per Pack</b></label>
+                                                        <input type="number" class="form-control" id="pricePerPack2" value="205">
+                                                        <label for="lowStack2"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack2" value="10">
+                                                        <br>
+                                                        <p id="errorUpdate2" style="color: red"><br></p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" id="change2" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--3 Gyoza -->
+                                <div class="modal fade" id="stockThreeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Gyoza</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="productName3"><b>Product Name</b></label>
+                                                        <input type="text" class="form-control" id="productName3" value="Gyoza">
+                                                        <br>
+                                                        <label for="amountPerPack3"><b>Amount per Pack</b></label>
+                                                        <input type="number" class="form-control" id="amountPerPack3" value="60">
+                                                        <br>
+                                                        <label for="stockQuantity3"><b>Stock Quantity</b></label>
+                                                        <input type="number" class="form-control" id="stockQuantity3" value="26">
+                                                        <br>
+                                                        <label for="pricePerPack3"><b>Price per Pack</b></label>
+                                                        <input type="number" class="form-control" id="pricePerPack3" value="200">
+                                                        <label for="lowStack3"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack3" value="10">
+                                                        <br>
+                                                        <p id="errorUpdate3" style="color: red"><br></p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" id="change3" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 4 Sharksfin Dumplings -->
+                                <div class="modal fade" id="stockFourModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Sharksfin Dumplings</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="productName4"><b>Product Name</b></label>
+                                                        <input type="text" class="form-control" id="productName4" value="Sharksfin Dumplings">
+                                                        <br>
+                                                        <label for="amountPerPack4"><b>Amount per Pack</b></label>
+                                                        <input type="number" class="form-control" id="amountPerPack4" value="60">
+                                                        <br>
+                                                        <label for="stockQuantity4"><b>Stock Quantity</b></label>
+                                                        <input type="number" class="form-control" id="stockQuantity4" value="45">
+                                                        <br>
+                                                        <label for="pricePerPack4"><b>Price per Pack</b></label>
+                                                        <input type="number" class="form-control" id="pricePerPack4" value="200">
+                                                        <label for="lowStack4"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack4" value="10">
+                                                        <br>
+                                                        <p id="errorUpdate4" style="color: red"><br></p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" id="change4" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5 Beef Siomai -->
+                                <div class="modal fade" id="stockFiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Beef Siomai</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="productName5"><b>Product Name</b></label>
+                                                        <input type="text" class="form-control" id="productName5" value="Beef Siomai">
+                                                        <br>
+                                                        <label for="amountPerPack5"><b>Amount per Pack</b></label>
+                                                        <input type="number" class="form-control" id="amountPerPack5" value="60">
+                                                        <br>
+                                                        <label for="stockQuantity5"><b>Stock Quantity</b></label>
+                                                        <input type="number" class="form-control" id="stockQuantity5" value="4">
+                                                        <br>
+                                                        <label for="pricePerPack5"><b>Price per Pack</b></label>
+                                                        <input type="number" class="form-control" id="pricePerPack5" value="220">
+                                                        <label for="lowStack5"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack5" value="10">
+                                                        <br>
+                                                        <p id="errorUpdate5" style="color: red"><br></p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>				
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" id="change5" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 6 Siopao (Asado) -->
+                                <div class="modal fade" id="stockSixModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Siopao (Asado)</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="productName6"><b>Product Name</b></label>
+                                                        <input type="text" class="form-control" id="productName6" value="Siopao (Asado)">
+                                                        <br>
+                                                        <label for="amountPerPack6"><b>Amount per Pack</b></label>
+                                                        <input type="number" class="form-control" id="amountPerPack6" value="48">
+                                                        <br>
+                                                        <label for="stockQuantity6"><b>Stock Quantity</b></label>
+                                                        <input type="number" class="form-control" id="stockQuantity6" value="3">
+                                                        <br>
+                                                        <label for="pricePerPack6"><b>Price per Pack</b></label>
+                                                        <input type="number" class="form-control" id="pricePerPack6" value="240">
+                                                        <label for="lowStack6"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack6" value="6">
+                                                        <br>
+                                                        <p id="errorUpdate6" style="color: red"><br></p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" id="change6" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 7 Siopao (Bola-bola) -->
+                                <div class="modal fade" id="stockSevenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Siopao (Bola-bola)</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="productName7"><b>Product Name</b></label>
+                                                        <input type="text" class="form-control" id="productName7" value="Siopao (Bola-bola)">
+                                                        <br>
+                                                        <label for="amountPerPack7"><b>Amount per Pack</b></label>
+                                                        <input type="number" class="form-control" id="amountPerPack7" value="48">
+                                                        <br>
+                                                        <label for="stockQuantity7"><b>Stock Quantity</b></label>
+                                                        <input type="number" class="form-control" id="stockQuantity7" value="15">
+                                                        <br>
+                                                        <label for="pricePerPack7"><b>Price per Pack</b></label>
+                                                        <input type="number" class="form-control" id="pricePerPack7" value="240">
+                                                        <label for="lowStack7"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack7" value="6">
+                                                        <br>
+                                                        <p id="errorUpdate7" style="color: red"><br></p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" id="change7" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 8 Hoisin Sauce -->
+                                <div class="modal fade" id="stockEightModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Hoisin Sauce</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="productName8"><b>Product Name</b></label>
+                                                        <input type="text" class="form-control" id="productName8" value="Hoisin Sauce">
+                                                        <br>
+                                                        <label for="amountPerPack8"><b>Amount per Pack</b></label>
+                                                        <input type="number" class="form-control" id="amountPerPack8" value="5">
+                                                        <br>
+                                                        <label for="stockQuantity8"><b>Stock Quantity</b></label>
+                                                        <input type="number" class="form-control" id="stockQuantity8" value="22">
+                                                        <br>
+                                                        <label for="pricePerPack8"><b>Price per Pack</b></label>
+                                                        <input type="number" class="form-control" id="pricePerPack8" value="60">
+                                                        <label for="lowStack8"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack8" value="10">
+                                                        <br>
+                                                        <p id="errorUpdate8" style="color: red"><br></p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" id="change8" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 9 Chili Sauce -->
+                                <div class="modal fade" id="stockNineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Chili Sauce</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="productName9"><b>Product Name</b></label>
+                                                        <input type="text" class="form-control" id="productName9" value="Chili Sauce">
+                                                        <br>
+                                                        <label for="amountPerPack9"><b>Amount per Pack</b></label>
+                                                        <input type="number" class="form-control" id="amountPerPack9" value="5">
+                                                        <br>
+                                                        <label for="stockQuantity9"><b>Stock Quantity</b></label>
+                                                        <input type="number" class="form-control" id="stockQuantity9" value="13">
+                                                        <br>
+                                                        <label for="pricePerPack9"><b>Price per Pack</b></label>
+                                                        <input type="number" class="form-control" id="pricePerPack9" value="60">
+                                                        <label for="lowStack9"><b>Low Stack Quantity</b></label>
+                                                        <input type="number" class="form-control" id="lowStack9" value="10">
+                                                        <br>
+                                                        <p id="errorUpdate9" style="color: red"><br></p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" id="change9" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end -->
 
                                 <!-- Delete Product Modal -->
                                 <div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -165,430 +583,57 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
-                                        
-                                <!-- Table of Inventory -->
-                                <div class="card">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Name </th>
-                                                <th scope="col">Amount per Pack</th>
-                                                <th scope="col">Stock Quantity</th>
-                                                <th scope="col">Price per Pack</th>
-                                                <th scope="col">Low Stock Quantity</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockOneModal">
-                                                <th scope="col">Pork Siomai</th>
-                                                <td>60</td>
-                                                <td>14</td>
-                                                <td>P200</td>
-                                                <td>10</td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockTwoModal">
-                                                <th scope="col">Lumpiang Shanghai</th>
-                                                <td>60</td>
-                                                <td>12</td>
-                                                <td>P205</td>
-                                                <td>10</td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockThreeModal">
-                                                <th scope="col">Gyoza</th>
-                                                <td>60</td>
-                                                <td>26</td>
-                                                <td>P200</td>
-                                                <td>10</td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockFourModal">
-                                                <th scope="col">Sharksfin Dumplings</th>
-                                                <td>60</td>
-                                                <td>45</td>
-                                                <td>P200</td>
-                                                <td>10</td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockFiveModal">
-                                                <th scope="col">Beef Siomai</th>
-                                                <td>60</td>
-                                                <td>4</td>
-                                                <td>P220</td>
-                                                <td>10</td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockSixModal">
-                                                <th scope="col">Siopao (Asado)</th>
-                                                <td>48</td>
-                                                <td>3</td>
-                                                <td>P240</td>
-                                                <td>6</td>
-                                            </tr>  
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockSevenModal">
-                                                <th scope="col">Siopao (Bola-bola)</th>
-                                                <td>48</td>
-                                                <td>15</td>
-                                                <td>P240</td>
-                                                <td>6</td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockEightModal">
-                                                <th scope="col">Hoisin Sauce</th>
-                                                <td>5</td>
-                                                <td>22</td>
-                                                <td>P60</td>
-                                                <td>10</td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockNineModal">
-                                                <th scope="col">Chili Sauce</th>
-                                                <td>5</td>
-                                                <td>13</td>
-                                                <td>P60</td>
-                                                <td>10</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
 
-                                <!-- Pork Siomai -->
-                                <div class="modal fade" id="stockOneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <!-- Modal For New Stock -->
+                                <div id="addProduct" class="modal fade" role="dialog">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Pork Siomai</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">New Stock Product</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
+                                            
                                             <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName" value="Pork Siomai">
-                                                        <br>
-                                                        <label for="amountPerPack"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack" value="60">
-                                                        <br>
-                                                        <label for="stockQuantity"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity" value="14">
-                                                        <br>
-                                                        <label for="pricePerPack"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack" value="200">
-                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack" value="10">
-                                                    </div>
-                                                </form>
+    
+                                                <div class="md-form mb-4">
+							     	                <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+							                        <input type="text" id="name" class="form-control validate">
+							                    </div>    
+
+                                                <div class="md-form mb-4">
+                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Amount per Pack</label>
+                                                    <input type="number" id="amountPerPack" class="form-control validate">
+                                                </div>
+
+                                                <div class="md-form mb-4">
+                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Stock Quantity</label>
+                                                    <input type="number" id="stockQuantity" class="form-control validate">
+                                                </div>
+
+                                                <div class="md-form mb-4">
+                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Price per Pack</label>
+                                                    <input type="number" id="pricePerPack" class="form-control validate">
+                                                </div>
+
+                                                <div class="md-form mb-4">
+                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Low Stock Quantity</label>
+                                                    <input type="number" id="lowStockQuantity" class="form-control validate">
+                                                </div>
+
                                             </div>
+                                            
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>						
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                <button type="button" class="btn btn-primary" id="addProductButton" data-dismiss="modal">Add Product</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Lumpiang Siomai -->
-                                <div class="modal fade" id="stockTwoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Lumpiang Shanghai</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName" value="Lumpiang Shanghai">
-                                                        <br>
-                                                        <label for="amountPerPack"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack" value="60">
-                                                        <br>
-                                                        <label for="stockQuantity"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity" value="12">
-                                                        <br>
-                                                        <label for="pricePerPack"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack" value="205">
-                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack" value="10">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <!-- Gyoza -->
-                                <div class="modal fade" id="stockThreeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Gyoza</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName" value="Gyoza">
-                                                        <br>
-                                                        <label for="amountPerPack"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack" value="60">
-                                                        <br>
-                                                        <label for="stockQuantity"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity" value="26">
-                                                        <br>
-                                                        <label for="pricePerPack"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack" value="200">
-                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack" value="10">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Sharksfin Dumplings -->
-                                <div class="modal fade" id="stockFourModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Sharksfin Dumplings</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName" value="Sharksfin Dumplings">
-                                                        <br>
-                                                        <label for="amountPerPack"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack" value="60">
-                                                        <br>
-                                                        <label for="stockQuantity"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity" value="45">
-                                                        <br>
-                                                        <label for="pricePerPack"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack" value="200">
-                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack" value="10">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Beef Siomai -->
-                                <div class="modal fade" id="stockFiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Beef Siomai</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName" value="Beef Siomai">
-                                                        <br>
-                                                        <label for="amountPerPack"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack" value="60">
-                                                        <br>
-                                                        <label for="stockQuantity"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity" value="4">
-                                                        <br>
-                                                        <label for="pricePerPack"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack" value="220">
-                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack" value="10">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>				
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Siopao (Asado) -->
-                                <div class="modal fade" id="stockSixModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Siopao (Asado)</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName" value="Siopao (Asado)">
-                                                        <br>
-                                                        <label for="amountPerPack"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack" value="48">
-                                                        <br>
-                                                        <label for="stockQuantity"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity" value="3">
-                                                        <br>
-                                                        <label for="pricePerPack"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack" value="240">
-                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack" value="6">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Siopao (Bola-bola) -->
-                                <div class="modal fade" id="stockSevenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Siopao (Bola-bola)</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName" value="Siopao (Bola-bola)">
-                                                        <br>
-                                                        <label for="amountPerPack"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack" value="48">
-                                                        <br>
-                                                        <label for="stockQuantity"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity" value="15">
-                                                        <br>
-                                                        <label for="pricePerPack"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack" value="240">
-                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack" value="6">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Hoisin Sauce -->
-                                <div class="modal fade" id="stockEightModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Hoisin Sauce</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName" value="Hoisin Sauce">
-                                                        <br>
-                                                        <label for="amountPerPack"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack" value="5">
-                                                        <br>
-                                                        <label for="stockQuantity"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity" value="22">
-                                                        <br>
-                                                        <label for="pricePerPack"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack" value="60">
-                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack" value="10">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Chili Sauce -->
-                                <div class="modal fade" id="stockNineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Chili Sauce</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName" value="Chili Sauce">
-                                                        <br>
-                                                        <label for="amountPerPack"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack" value="5">
-                                                        <br>
-                                                        <label for="stockQuantity"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity" value="13">
-                                                        <br>
-                                                        <label for="pricePerPack"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack" value="60">
-                                                        <label for="pricePerPack"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack" value="10">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end -->
                             </div>
                         </div>
                     </div>
@@ -597,6 +642,7 @@
 
         <script>
 
+            //NESTED DROPDOWN
             $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
                 if (!$(this).next().hasClass('show')) {
                     $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
@@ -612,6 +658,331 @@
                 return false;
             });
 
+            $(".dropdown-menu a").click(function(){
+                $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+                $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+            });
+
+            //ADD PRODUCT
+            var productNumber = 9;
+            $("#addProductButton").click(function(){
+
+                productNumber += 1;
+                var element = $("#tbody");
+                var primaryTag = $("<tr></tr>");
+                primaryTag.attr("data-toggle", "modal");
+                primaryTag.attr("data-target", productNumber.toString());
+                primaryTag.attr("data-id", productNumber.toString());
+                var th = $("<th></th>");
+                th.attr("scope","row");
+                th.text(productNumber.toString());
+
+                
+                var td1 = $("<td></td>");
+                td1.text($("#name").val());
+                var td2 = $("<td></td>");
+                td2.text($("#amountPerPack").val());
+                var td3 = $("<td></td>");
+                td3.text($("#stockQuantity").val());
+                var td4 = $("<td></td>");
+                td4.text("P" + $("#pricePerPack").val()); 
+                var td5 = $("<td></td>");
+                td5.text($("#lowStockQuantity").val()); 
+        
+                primaryTag.append(th);
+                primaryTag.append(td1);
+                primaryTag.append(td2);
+                primaryTag.append(td3);
+                primaryTag.append(td4);
+                primaryTag.append(td5);
+
+                element.append(primaryTag);
+
+                //empty input fields in add modal
+                $("input[id=name]").val("");
+                $("input[id=amountPerPack]").val("");
+                $("input[id=stockQuantity]").val("");
+                $("input[id=pricePerPack]").val("");
+                $("input[id=lowStockQuantity]").val("");
+
+	        });
+
+
+            /*
+                MODALS
+            */
+
+            //product 1
+            $("#change1").click(function() {
+                var name = $("#productName1").val();
+                var amt = $("#amountPerPack1").val();
+                var stock = $("#stockQuantity1").val();
+                var price = $("#pricePerPack1").val();
+                var low = $("#lowStack1").val();
+                    
+                    
+                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
+                    $("#name1").text(name);
+                    $("#productName1").val(name);
+                    $("#amt1").text(amt);
+                    $("#amountPerPack1").val(amt);
+                    $("#stock1").text(stock);
+                    $("#stockQuantity1").val(stock);
+                    $("#price1").text(price);
+                    $("#pricePerPack1").val(price);
+                    $("#low1").text(low);
+                    $("#lowStack1").val(low);
+
+                    $("#stockOneModal").modal("hide");
+                    $("#errorUpdate1").text(" ");
+
+                }
+                else {
+                    $("#errorUpdate1").text("Changes are not saved. Fill in all fields.");
+                    $("#stockOneModal").modal({"backdrop": "static"});
+                }
+            });
+            
+
+            //product 2
+            $("#change2").click(function() {
+                var name = $("#productName2").val();
+                var amt = $("#amountPerPack2").val();
+                var stock = $("#stockQuantity2").val();
+                var price = $("#pricePerPack2").val();
+                var low = $("#lowStack2").val();
+
+                //check if input is empty or whitespace
+                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
+                    $("#name2").text(name);
+                    $("#productName2").val(name);
+                    $("#amt2").text(amt);
+                    $("#amountPerPack2").val(amt);
+                    $("#stock2").text(stock);
+                    $("#stockQuantity2").val(stock);
+                    $("#price2").text(price);
+                    $("#pricePerPack2").val(price);
+                    $("#low2").text(low);
+                    $("#lowStack2").val(low);
+
+                    $("#stockTwoModal").modal("hide");
+                    $("#errorUpdate1").text(" ");
+                }
+                else {
+                    $("#errorUpdate2").text("Changes are not saved. Fill in all fields.");
+                    $("#stockTwoModal").modal({"backdrop": "static"});
+                }
+            }); 
+
+            //product 3
+            $("#change3").click(function() {
+                var name = $("#productName3").val();
+                var amt = $("#amountPerPack3").val();
+                var stock = $("#stockQuantity3").val();
+                var price = $("#pricePerPack3").val();
+                var low = $("#lowStack3").val();
+
+                //check if input is empty or whitespace
+                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
+                    $("#name3").text(name);
+                    $("#productName3").val(name);
+                    $("#amt3").text(amt);
+                    $("#amountPerPack3").val(amt);
+                    $("#stock3").text(stock);
+                    $("#stockQuantity3").val(stock);
+                    $("#price3").text(price);
+                    $("#pricePerPack3").val(price);
+                    $("#low3").text(low);
+                    $("#lowStack3").val(low);
+
+                    $("#stockThreeModal").modal("hide");
+                    $("#errorUpdate1").text(" ");
+                }
+                else {
+                    $("#errorUpdate3").text("Changes are not saved. Fill in all fields.");
+                    $("#stockThreeModal").modal({"backdrop": "static"});
+                }
+            });
+        
+            //product 4
+            $("#change4").click(function() {
+                var name = $("#productName4").val();
+                var amt = $("#amountPerPack4").val();
+                var stock = $("#stockQuantity4").val();
+                var price = $("#pricePerPack4").val();
+                var low = $("#lowStack4").val();
+
+                //check if input is empty or whitespace
+                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
+                    $("#name4").text(name);
+                    $("#productName4").val(name);
+                    $("#amt4").text(amt);
+                    $("#amountPerPack4").val(amt);
+                    $("#stock4").text(stock);
+                    $("#stockQuantity4").val(stock);
+                    $("#price4").text(price);
+                    $("#pricePerPack4").val(price);
+                    $("#low4").text(low);
+                    $("#lowStack4").val(low);
+
+                    $("#stockFourModal").modal("hide");
+                    $("#errorUpdate4").text(" ");
+                }
+                else {
+                    $("#errorUpdate4").text("Changes are not saved. Fill in all fields.");
+                    $("#stockFourModal").modal({"backdrop": "static"});
+                }
+            });
+
+            //product 5
+            $("#change5").click(function() {
+                var name = $("#productName5").val();
+                var amt = $("#amountPerPack5").val();
+                var stock = $("#stockQuantity5").val();
+                var price = $("#pricePerPack5").val();
+                var low = $("#lowStack5").val();
+
+                //check if input is empty or whitespace
+                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
+                    $("#name5").text(name);
+                    $("#productName5").val(name);
+                    $("#amt5").text(amt);
+                    $("#amountPerPack5").val(amt);
+                    $("#stock5").text(stock);
+                    $("#stockQuantity5").val(stock);
+                    $("#price5").text(price);
+                    $("#pricePerPack5").val(price);
+                    $("#low5").text(low);
+                    $("#lowStack5").val(low);
+
+                    $("#stockFiveModal").modal("hide");
+                    $("#errorUpdate5").text(" ");
+                }
+                else {
+                    $("#errorUpdate5").text("Changes are not saved. Fill in all fields.");
+                    $("#stockFiveModal").modal({"backdrop": "static"});
+                }
+            });
+
+            //product 6
+            $("#change6").click(function() {
+                var name = $("#productName6").val();
+                var amt = $("#amountPerPack6").val();
+                var stock = $("#stockQuantity6").val();
+                var price = $("#pricePerPack6").val();
+                var low = $("#lowStack6").val();
+
+                //check if input is empty or whitespace
+                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
+                    $("#name6").text(name);
+                    $("#productName6").val(name);
+                    $("#amt6").text(amt);
+                    $("#amountPerPack6").val(amt);
+                    $("#stock6").text(stock);
+                    $("#stockQuantity6").val(stock);
+                    $("#price6").text(price);
+                    $("#pricePerPack6").val(price);
+                    $("#low6").text(low);
+                    $("#lowStack6").val(low);
+
+                    $("#stockSixModal").modal("hide");
+                    $("#errorUpdate6").text(" ");
+                }
+                else {
+                    $("#errorUpdate6").text("Changes are not saved. Fill in all fields.");
+                    $("#stockSixModal").modal({"backdrop": "static"});
+                }
+            });
+
+            //product 7
+            $("#change7").click(function() {
+                var name = $("#productName7").val();
+                var amt = $("#amountPerPack7").val();
+                var stock = $("#stockQuantity7").val();
+                var price = $("#pricePerPack7").val();
+                var low = $("#lowStack7").val();
+
+                //check if input is empty or whitespace
+                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
+                    $("#name7").text(name);
+                    $("#productName7").val(name);
+                    $("#amt7").text(amt);
+                    $("#amountPerPack7").val(amt);
+                    $("#stock7").text(stock);
+                    $("#stockQuantity7").val(stock);
+                    $("#price7").text(price);
+                    $("#pricePerPack7").val(price);
+                    $("#low7").text(low);
+                    $("#lowStack7").val(low);
+
+                    $("#stockSevenModal").modal("hide");
+                    $("#errorUpdate7").text(" ");
+                }
+                else {
+                    $("#errorUpdate7").text("Changes are not saved. Fill in all fields.");
+                    $("#stockSevenModal").modal({"backdrop": "static"});
+                }
+            });
+
+            //product 8
+            $("#change8").click(function() {
+                var name = $("#productName8").val();
+                var amt = $("#amountPerPack8").val();
+                var stock = $("#stockQuantity8").val();
+                var price = $("#pricePerPack8").val();
+                var low = $("#lowStack8").val();
+
+                //check if input is empty or whitespace
+                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
+                    $("#name8").text(name);
+                    $("#productName8").val(name);
+                    $("#amt8").text(amt);
+                    $("#amountPerPack8").val(amt);
+                    $("#stock8").text(stock);
+                    $("#stockQuantity8").val(stock);
+                    $("#price8").text(price);
+                    $("#pricePerPack8").val(price);
+                    $("#low8").text(low);
+                    $("#lowStack8").val(low);
+
+                    $("#stockEightModal").modal("hide");
+                    $("#errorUpdate8").text(" ");
+                }
+                else {
+                    $("#errorUpdate8").text("Changes are not saved. Fill in all fields.");
+                    $("#stockEightModal").modal({"backdrop": "static"});
+                }
+            });
+
+            //product 9
+            $("#change9").click(function() {
+                var name = $("#productName9").val();
+                var amt = $("#amountPerPack9").val();
+                var stock = $("#stockQuantity9").val();
+                var price = $("#pricePerPack9").val();
+                var low = $("#lowStack9").val();
+
+                //check if input is empty or whitespace
+                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
+                    $("#name9").text(name);
+                    $("#productName9").val(name);
+                    $("#amt9").text(amt);
+                    $("#amountPerPack9").val(amt);
+                    $("#stock9").text(stock);
+                    $("#stockQuantity9").val(stock);
+                    $("#price9").text(price);
+                    $("#pricePerPack9").val(price);
+                    $("#low9").text(low);
+                    $("#lowStack9").val(low);
+
+                    $("#stockNineModal").modal("hide");
+                    $("#errorUpdate9").text(" ");
+                }
+                else {
+                    $("#errorUpdate9").text("Changes are not saved. Fill in all fields.");
+                    $("#stockNineModal").modal({"backdrop": "static"});
+                }
+            });
         </script>
 
         <!-- JS-->
