@@ -1,6 +1,7 @@
 //routes.js
 const router = require('express').Router();
-const controller = require('../controllers/controller.js')
+const controller = require('../controllers/controller.js');
+const inventoryController = require('../controllers/InventoryController.js');
 const { isPrivate, isPublic } = require('../middlewares/checkAuth');
 
 const db = require('../models/db.js');
@@ -11,6 +12,12 @@ router.get('/settings', isPrivate, controller.getSettings);
 router.get('/inventory', isPrivate, controller.getInventory);
 router.get('/orders', isPrivate, controller.getOrders);
 router.get('/contacts', isPrivate, controller.getContacts);
+
+
+/*
+router.post('/editChili', isPrivate, inventoryController.updateProduct);
+router.post('/addProd', isPrivate, inventoryController.addProduct);
+*/
 /*
 router.get("*", function(req, res) {
     res.render("error")

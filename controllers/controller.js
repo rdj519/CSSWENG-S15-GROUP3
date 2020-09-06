@@ -1,7 +1,7 @@
 //controller.js
 const db = require('../models/db.js');
 const User = require('../models/UserModel.js');
-
+const Item = require('../models/ItemModel.js');
 
 const controller = {
 
@@ -58,9 +58,28 @@ const controller = {
     },
 
     getInventory: function(req,res){
-        res.render('inventory', {
-            title:  'Stock Inventory',
-        });
+        try {
+            var userID = req.session.userID;
+            var query = {
+                _id: userID
+            };
+
+            if (userID) {
+                db.findMany(Item, {userID: userID}, null, function(result) {
+                    result.userID = userID;
+                    result.title = 'Stock Inventory';
+
+                    console.log('Loading STOCK INVENTORY for user ' + result.userID);
+                    res.render('inventory', result);
+                });
+            } else
+            res.render("error", {
+                details: "ERROR: Please Log In or Register an Account"
+            });
+        } catch (error) {
+            console.log('There was an error in getting INVENTORY: ', error);
+        }
+      
     },
 
     getOrders: function(req,res){
