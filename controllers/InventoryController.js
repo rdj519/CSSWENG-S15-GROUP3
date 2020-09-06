@@ -43,4 +43,4 @@ const inventoryController = {
 
 }
 
-module.exports = updateInfoController;
+module.exports = inventoryController;
