@@ -1,10 +1,9 @@
 //routes.js
 const router = require('express').Router();
-const controller = require('../controllers/controller.js');
-const inventoryController = require('../controllers/InventoryController.js');
+// const controller = require('../controllers/controller.js');
+// const inventoryController = require('../controllers/InventoryController.js');
 const express = require('express');
 const { isPrivate, isPublic } = require('../middlewares/checkAuth');
-const router = require('express').Router();
 const app = express();
 
 // Controllers
