@@ -26,12 +26,6 @@
 		<font face= "headerFont"> SioPau </font> 
 	</h1>
 	<h2  id="subtitle">{{this.name}}</h2>
-	<div id="subtitle">
-		<div class="col module">
-			<a class="btn btn-light float-center btn-outline-secondary" href="/settings">Settings</a>
-			<a class="btn btn-light float-center btn-outline-secondary" href="/user/logout">Log Out</a>
-		</div>
-	</div>
 </div>
 
 
@@ -65,7 +59,7 @@
 			<div class = "row">
 				<div class="col">
 					<div class="option">
-						<a href="none" class="optionTab" data-toggle="modal" data-target="#addProduct">Add New Product</a>
+						<a href="#" class="optionTab">Business Transactions</a>
 					</div>
 				</div>
 			</div>
@@ -218,55 +212,7 @@
 </div>
 
 
-						<!-- Modal For Adding Product -->
-							<div id="addProduct" class="modal fade" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">New Stock Product</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            
-                                            <div class="modal-body">
-    
-                                                <div class="md-form mb-4">
-							     	                <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
-							                        <input type="text" id="name" class="form-control validate">
-							                    </div>    
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Amount per Pack</label>
-                                                    <input type="number" id="amountPerPack" class="form-control validate">
-                                                </div>
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Stock Quantity</label>
-                                                    <input type="number" id="stockQuantity" class="form-control validate">
-                                                </div>
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Price per Pack</label>
-                                                    <input type="number" id="pricePerPack" class="form-control validate">
-                                                </div>
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Low Stock Quantity</label>
-                                                    <input type="number" id="lowStockQuantity" class="form-control validate">
-                                                </div>
-
-                                            </div>
-                                            
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" id="addProductButton" data-dismiss="modal">Add Product</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-						<!-- Modal For Adding Order -->
+<!-- Modal For Adding Order -->
 							<div id="addOrder" class="modal fade" role="dialog">
 							  <div class="modal-dialog" role="document">
 								<div class="modal-content">
@@ -399,7 +345,7 @@
 							  </div>
 							</div>
 
-						<!-- Modal For New Contact -->
+<!-- Modal For New Contact -->
 							<div id="newContact" class="modal fade" role="dialog">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">

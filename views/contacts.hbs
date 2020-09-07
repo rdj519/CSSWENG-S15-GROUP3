@@ -233,17 +233,18 @@
 
 	/* order number */
 	
-	var customerNumber = 0;
+	var orderNumber = 0;
 	$("#submitInfo").click(function(){
-			customerNumber += 1;
+			orderNumber += 1;
 			var element = $("#tbody");
 			var primaryTag = $("<tr></tr>");
 			primaryTag.attr("data-toggle", "modal");
-			primaryTag.attr("data-target", customerNumber.toString());
-			primaryTag.attr("data-id", customerNumber.toString());
+			primaryTag.attr("data-target", orderNumber.toString());
+			primaryTag.attr("data-id", orderNumber.toString());
 			var th = $("<th></th>");
 			th.attr("scope","row");
-			th.text(customerNumber.toString());
+			th.text(orderNumber.toString());
+			valid = true;
 
 			var td1 = $("<td></td>");
 			td1.text($("#name").val());
@@ -252,9 +253,9 @@
 			var td3 = $("<td></td>");
 			td3.text($("#home").val());
 			var td4 = $("<td></td>");
-			td4.text($("#city").val()); 
+			td4.text($("#city").text()); 
 			var td5 = $("<td></td>");
-			td5.text($("#remark").val()); 
+			td5.text($("#remark").text()); 
 		
 			primaryTag.append(th);
 			primaryTag.append(td1);
@@ -263,6 +264,7 @@
 			primaryTag.append(td4);
 			primaryTag.append(td5);
 			element.append(primaryTag);
+		
 	});
 /*
 		var cusNumber = 0;
