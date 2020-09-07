@@ -13,19 +13,19 @@ var OrderSchema = new mongoose.Schema({
 
     },
     // name of customer
-    name: {
+    customerName: {
         type: String,
         minlength: 3,
         required: true
     },
     // contact number of customer
-    contactNumber: {
+    customerNumber: {
         type: Number,
-        minlength: 3,
+        minlength: 11,
         required: true
     },
     // home address of customer
-    homeAddress: {
+    customerAddress: {
         type: String,
         required: true
     },
@@ -34,19 +34,27 @@ var OrderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // total amount to be paid by the customer
-    totalAmount: {
+    // total amount of the products
+    productTotal: {
         type: Number,
         required: true
     },
+
     // payment method 
     paymentMethod: {
         type: String,
+        enum: ["cod", "gcash", "paymaya"],
         required: true
     },
     // courier for the delivery
     courier: {
         type: String,
+        enum: ["castilla", "lalamove", "mrspeedy", "grabexpress"],
+        required: true
+    },
+    //  delivery fee
+    deliveryFee: {
+        type: Number,
         required: true
     },
     // date placed
@@ -68,13 +76,11 @@ var OrderSchema = new mongoose.Schema({
     // order status
     status: {
         type: String,
+        enum: ["confirmed", "paid", "delivering", "completed", "cancelled"], 
         required: true
     }
 
 });
 
-// exports a mongoose.model object based on `OrderSchema` (defined above)
-// when another script exports from this file
-// This model executes CRUD operations
-// to collection `orders` -> plural of the argument `Order`
+
 module.exports = mongoose.model('Order', OrderSchema);

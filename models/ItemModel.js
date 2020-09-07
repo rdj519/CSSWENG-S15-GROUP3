@@ -9,7 +9,7 @@ var ItemSchema = new mongoose.Schema({
         required: true
     },
     // amount per pack
-    amount: {
+    amountPerPack: {
         type: Number,
         required: true
     },
@@ -31,8 +31,4 @@ var ItemSchema = new mongoose.Schema({
 });
 
 
-// exports a mongoose.model object based on `ItemSchema` (defined above)
-// when another script exports from this file
-// This model executes CRUD operations
-// to collection `item` -> plural of the argument `Item`
 module.exports = mongoose.model('Item', ItemSchema);

@@ -31,8 +31,4 @@ var ContactSchema = new mongoose.schema({
 });
 
 
-// exports a mongoose.model object based on `ContactSchema` (defined above)
-// when another script exports from this file
-// This model executes CRUD operations
-// to collection `contacts` -> plural of the argument `Contact`
 module.exports = mongoose.model('Contact', ContactSchema);
