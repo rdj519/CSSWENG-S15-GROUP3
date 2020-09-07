@@ -233,18 +233,17 @@
 
 	/* order number */
 	
-	var orderNumber = 0;
+	var cNum = 0;
 	$("#submitInfo").click(function(){
-			orderNumber += 1;
+			cNum += 1;
 			var element = $("#tbody");
 			var primaryTag = $("<tr></tr>");
 			primaryTag.attr("data-toggle", "modal");
-			primaryTag.attr("data-target", orderNumber.toString());
-			primaryTag.attr("data-id", orderNumber.toString());
+			primaryTag.attr("data-target", cNum.toString());
+			primaryTag.attr("data-id", cNum.toString());
 			var th = $("<th></th>");
 			th.attr("scope","row");
-			th.text(orderNumber.toString());
-			valid = true;
+			th.text(cNum.toString());
 
 			var td1 = $("<td></td>");
 			td1.text($("#name").val());
@@ -253,9 +252,9 @@
 			var td3 = $("<td></td>");
 			td3.text($("#home").val());
 			var td4 = $("<td></td>");
-			td4.text($("#city").text()); 
+			td4.text($("#city").val()); 
 			var td5 = $("<td></td>");
-			td5.text($("#remark").text()); 
+			td5.text($("#remark").val()); 
 		
 			primaryTag.append(th);
 			primaryTag.append(td1);
@@ -264,6 +263,13 @@
 			primaryTag.append(td4);
 			primaryTag.append(td5);
 			element.append(primaryTag);
+
+			$("#name").val("");
+			$("#contact").val("");
+			$("#home").val("");
+			$("#city").val("");
+			$("#remark").val("");
+			$("#newContact").modal("hide");
 		
 	});
 /*
