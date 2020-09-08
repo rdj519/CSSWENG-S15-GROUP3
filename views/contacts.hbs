@@ -145,7 +145,8 @@
 	  
 												<div class="md-form mb-4">
 													<label data-error="wrong" data-success="right" for="contact">Contact Number</label>
-													<input type="number" id="contact" class="form-control validate">
+													<input type="number" id="contact" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
 										  		</div>
 
 	  											<div class="md-form mb-4">
@@ -235,6 +236,22 @@
 	
 	var cNum = 0;
 	$("#submitInfo").click(function(){
+			if($.trim($('#name').val()) == ''){
+                alert('Name can not be left blank');
+            }
+            else if($.trim($('#contact').val()) == ''){
+                alert('Contact cannot be left blank');
+            }
+            else if($.trim($('#home').val()) == ''){
+                alert('Home cannot be left blank');
+            }
+            else if($.trim($('#city').val()) == ''){
+                alert('City cannot be left blank');
+            }
+            else if($.trim($('#remark').val()) == ''){
+                alert('Remark cannot be left blank');
+            }
+            else {
 			cNum += 1;
 			var element = $("#tbody");
 			var primaryTag = $("<tr></tr>");
@@ -270,7 +287,7 @@
 			$("#city").val("");
 			$("#remark").val("");
 			$("#newContact").modal("hide");
-			
+			}
 		
 	});
 /*

@@ -605,29 +605,33 @@
 
                                                 <div class="md-form mb-4">
                                                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Amount per Pack</label>
-                                                    <input type="number" id="amountPerPack" class="form-control validate">
+                                                    <input type="number" id="amountPerPack" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                                                 </div>
 
                                                 <div class="md-form mb-4">
                                                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Stock Quantity</label>
-                                                    <input type="number" id="stockQuantity" class="form-control validate">
+                                                    <input type="number" id="stockQuantity" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                                                 </div>
 
                                                 <div class="md-form mb-4">
                                                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Price per Pack</label>
-                                                    <input type="number" id="pricePerPack" class="form-control validate">
+                                                    <input type="number" id="pricePerPack" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                                                 </div>
 
                                                 <div class="md-form mb-4">
                                                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Low Stock Quantity</label>
-                                                    <input type="number" id="lowStockQuantity" class="form-control validate">
+                                                    <input type="number" id="lowStockQuantity" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                                                 </div>
 
                                             </div>
                                             
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" id="addProductButton" data-dismiss="modal">Add Product</button>
+                                                <button type="button" class="btn btn-primary" id="addProductButton">Add Product</button>
                                             </div>
                                         </div>
                                     </div>
@@ -667,44 +671,62 @@
             var productNumber = 9;
             $("#addProductButton").click(function(){
 
-                productNumber += 1;
-                var element = $("#tbody");
-                var primaryTag = $("<tr></tr>");
-                primaryTag.attr("data-toggle", "modal");
-                primaryTag.attr("data-target", productNumber.toString());
-                primaryTag.attr("data-id", productNumber.toString());
-                var th = $("<th></th>");
-                th.attr("scope","row");
-                th.text(productNumber.toString());
+                // Will try to while loop this instead so the add product modal would close every wrong attempt
+                if($.trim($('#name').val()) == ''){
+                    alert('Name can not be left blank');
+                }
+                else if($.trim($('#amountPerPack').val()) == ''){
+                    alert('Amount Per Pack cannot be left blank');
+                }
+                else if($.trim($('#stockQuantity').val()) == ''){
+                    alert('Stock Quantity cannot be left blank');
+                }
+                else if($.trim($('#pricePerPack').val()) == ''){
+                    alert('Price Per Pack cannot be left blank');
+                }
+                else if($.trim($('#lowStockQuantity').val()) == ''){
+                    alert('Low Stock Quantity cannot be left blank');
+                }
+                else {
+                    productNumber += 1;
+                    var element = $("#tbody");
+                    var primaryTag = $("<tr></tr>");
+                    primaryTag.attr("data-toggle", "modal");
+                    primaryTag.attr("data-target", productNumber.toString());
+                    primaryTag.attr("data-id", productNumber.toString());
+                    var th = $("<th></th>");
+                    th.attr("scope","row");
+                    th.text(productNumber.toString());
 
-                
-                var td1 = $("<td></td>");
-                td1.text($("#name").val());
-                var td2 = $("<td></td>");
-                td2.text($("#amountPerPack").val());
-                var td3 = $("<td></td>");
-                td3.text($("#stockQuantity").val());
-                var td4 = $("<td></td>");
-                td4.text("P" + $("#pricePerPack").val()); 
-                var td5 = $("<td></td>");
-                td5.text($("#lowStockQuantity").val()); 
-        
-                primaryTag.append(th);
-                primaryTag.append(td1);
-                primaryTag.append(td2);
-                primaryTag.append(td3);
-                primaryTag.append(td4);
-                primaryTag.append(td5);
+                    
+                    var td1 = $("<td></td>");
+                    td1.text($("#name").val());
+                    var td2 = $("<td></td>");
+                    td2.text($("#amountPerPack").val());
+                    var td3 = $("<td></td>");
+                    td3.text($("#stockQuantity").val());
+                    var td4 = $("<td></td>");
+                    td4.text("P" + $("#pricePerPack").val()); 
+                    var td5 = $("<td></td>");
+                    td5.text($("#lowStockQuantity").val()); 
+            
+                    primaryTag.append(th);
+                    primaryTag.append(td1);
+                    primaryTag.append(td2);
+                    primaryTag.append(td3);
+                    primaryTag.append(td4);
+                    primaryTag.append(td5);
 
-                element.append(primaryTag);
+                    element.append(primaryTag);
 
-                //empty input fields in add modal
-                $("input[id=name]").val("");
-                $("input[id=amountPerPack]").val("");
-                $("input[id=stockQuantity]").val("");
-                $("input[id=pricePerPack]").val("");
-                $("input[id=lowStockQuantity]").val("");
-
+                    //empty input fields in add modal
+                    $("input[id=name]").val("");
+                    $("input[id=amountPerPack]").val("");
+                    $("input[id=stockQuantity]").val("");
+                    $("input[id=pricePerPack]").val("");
+                    $("input[id=lowStockQuantity]").val("");
+                    $("#addProduct").modal("hide");
+                }
 	        });
 
 
@@ -983,6 +1005,12 @@
                     $("#stockNineModal").modal({"backdrop": "static"});
                 }
             });
+
+        /*    $(document).ready(function() {
+                $("#deletebutton1").click(function(){ 
+                    $("#r2").remove(); 
+                    });
+            }); */
         </script>
 
         <!-- JS-->
