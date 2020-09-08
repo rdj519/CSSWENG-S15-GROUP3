@@ -165,6 +165,56 @@
 											<td>{{deliveryDate}}</td>
 										</tr>
 										{{/each}} -->
+										<tr data-toggle="modal" data-id="2" data-target="#orderOneModal">
+											<th scope="row">0001</th>
+											<td id="rowName1">Gerrard Castilla</td>
+											<td id="rowContact1">09292684572</td>
+											<td id="rowHomeAddress1">17, G.Cleveland St. Parkwood</td>
+											<td id="rowStatus1">Confirmed</td>
+											<td id="rowCourier1">Castilla</td>
+											<td id="rowPlacedDate1">2020-08-15</td>
+											<td id="rowDeliveryDate1">2020-08-20</td>
+										</tr>
+										<tr data-toggle="modal" data-id="2" data-target="#orderTwoModal">
+											<th scope="row">0002</th>
+											<td id="rowName2">Bryce Ramirez</td>
+											<td id="rowContact2">09987654321</td>
+											<td id="rowHomeAddress2">3rd Avenue Baranggay Lito</td>
+											<td id="rowStatus2">Paid</td>
+											<td id="rowCourier2">GrabExpress</td>
+											<td id="rowPlacedDate2">2020-08-14</td>
+											<td id="rowDeliveryDate2">2020-08-17</td>
+										</tr>
+										<tr data-toggle="modal" data-id="2" data-target="#orderThreeModal">
+											<th scope="row">0003</th>
+											<td id="rowName3">Rey Delima</td>
+											<td id="rowContact3">09123456789</td>
+											<td id="rowHomeAddress3">5th Street Forbes Park</td>
+											<td id="rowStatus3">Completed</td>
+											<td id="rowCourier3">GrabExpress</td>
+											<td id="rowPlacedDate3">2020-08-13</td>
+											<td id="rowDeliveryDate3">2020-08-23</td>
+										</tr>
+										<tr data-toggle="modal" data-id="2" data-target="#orderFourModal">
+											<th scope="row">0004</th>
+											<td id="rowName4">Juan Dela Cruz</td>
+											<td id="rowContact4">09987456321</td>
+											<td id="rowHomeAddress4">18, G.Greenwood St. Paul</td>
+											<td id="rowStatus4">Confirmed</td>
+											<td id="rowCourier4">Castilla</td>
+											<td id="rowPlacedDate4">2020-08-14</td>
+											<td id="rowDeliveryDate4">2020-08-18</td>
+										</tr>
+										<tr data-toggle="modal" data-id="2" data-target="#orderFiveModal">
+											<th scope="row">0005</th>
+											<td id="rowName5">Luigi Valera</td>
+											<td id="rowContact5">09696969691</td>
+											<td id="rowHomeAddress5">3rd Street Bangbang Avenue</td>
+											<td id="rowStatus5">Cancelled</td>
+											<td id="rowCourier5">GrabExpress</td>
+											<td id="rowPlacedDate5">2020-08-10</td>
+											<td id="rowDeliveryDate5">2020-08-19</td>
+										</tr>
 									</tbody> 
 								</table>
 							</div>
@@ -194,6 +244,106 @@
 							</div>
 
 							<!-- Modal For Orders-->
+							<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">Order No. 1</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+
+							      	<label style="color:#A39E9C"> Contact Number </label>
+							      	<input type="text" class="form-control" id="contactNumberModal" value="0">
+							      	<label style="color:#A39E9C"> Home Address </label>
+							      	<input type="text" class="form-control" id="homeAddressModal" value="0">
+							      	<label style="color:#A39E9C"> City/Municipality </label>
+							      	<input type="text" class="form-control" id="cityModal" value="0">
+							      	<label style="color:#A39E9C"> Courier </label>
+							      	<div class="info">
+										<div class="dropdown">
+										  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    Castilla
+										  </button>
+										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a class="dropdown-item" href="#">GrabExpress</a>
+										  </div>
+										</div>
+							      	</div>	
+							      	<label style="color:#A39E9C"> Customer Name</label>
+							      	<input type="text" class="form-control" id="customerNameModal" value="0">
+							      	<label style="color:#A39E9C"> Date Placed</label>
+							      	<input class= "info" type="date" id="placedDateModal" name="trip-start" value="2020-08-15" readonly>		
+							      	<label style="color:#A39E9C"> Delivery Date</label>
+							      	<input class= "info" type="date" id="deliveryDateModal" name="trip-start" value="2020-08-20">							  
+							      	<label style="color:#A39E9C"> Payment Method</label>
+							      	<div class="info">
+										<div class="dropdown">
+										  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    CoD
+										  </button>
+										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a class="dropdown-item" href="#">GCash</a>
+										  </div>
+										</div>
+							      	</div>	
+							      	<label style="color:#A39E9C"> Status</label>
+							      	<div class="info">
+										<div class="dropdown">
+										  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    Confirmed
+										  </button>
+										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a class="dropdown-item" href="#">Paid</a>
+										    <a class="dropdown-item" href="#">Delivering</a>
+										    <a class="dropdown-item" href="#">Completed</a>
+										    <a class="dropdown-item" href="#">Cancelled</a>
+										  </div>
+										</div>
+							      	</div>									      	
+							      	<!-- table for ordered products -->
+								    <table class="table table-hover">
+										<thead>
+											<tr>
+												<th scope="col">Product</th>
+												<th scope="col">Quantity</th>
+												<th scope="col">Price</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">Pork Siomai</th>
+												<td>8</td>
+												<td>530</td>
+											</tr>
+											<tr>
+												<th scope="row">Gyoza</th>
+												<td>3</td>
+												<td>130</td>
+											</tr>
+										</tbody>
+									</table>
+									<label style="color:#A39E9C"> Overall Price</label>
+							      	<input type="text" class="form-control" id="overallPriceModal" value="0">		
+							      	<label style="color:#A39E9C"> Delivery Fee</label>
+							      	<input type="text" class="form-control" id="deliveryFeeModal" value="0">
+							      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+							      	<input type="text" class="form-control" id="totalPriceModal" style="font-weight:bold;"  value="0">
+							      </div>
+							      <div class="modal-footer">
+									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
+									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
+									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									  <button id="saveChangesModal" type="button" class="btn btn-primary">Save changes</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+
+
+							<!-- Modal For Orders-->
 							<div class="modal fade" id="orderOneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							  <div class="modal-dialog" role="document">
 							    <div class="modal-content">
@@ -206,15 +356,15 @@
 							      <div class="modal-body">
 
 							      	<label style="color:#A39E9C"> Contact Number </label>
-							      	<p class="info" contentEditable="true">09292684572</p> 
+							      	<input type="text" class="form-control" id="contactNumberModal1" value="09292684572">
 							      	<label style="color:#A39E9C"> Home Address </label>
-							      	<p class="info" contentEditable="true">17, G.Cleveland St. Parkwood</p> 
+							      	<input type="text" class="form-control" id="homeAddressModal1" value="17, G.Cleveland St. Parkwood">
 							      	<label style="color:#A39E9C"> City/Municipality </label>
-							      	<p class="info" contentEditable="true">Pasig City</p> 
+							      	<input type="text" class="form-control" id="cityModal1" value="Pasig City">
 							      	<label style="color:#A39E9C"> Courier </label>
 							      	<div class="info">
 										<div class="dropdown">
-										  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										    Castilla
 										  </button>
 										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -223,15 +373,15 @@
 										</div>
 							      	</div>	
 							      	<label style="color:#A39E9C"> Customer Name</label>
-							      	<p class="info">Gerard Castilla</p> 
+							      	<input type="text" class="form-control" id="customerNameModal1" value="Gerard Castilla"> 
 							      	<label style="color:#A39E9C"> Date Placed</label>
-							      	<input class= "info" type="date" id="start" name="trip-start" value="2020-08-15" readonly>		
+							      	<input class= "info" type="date" id="placedDateModal1" name="trip-start" value="2020-08-15" readonly>		
 							      	<label style="color:#A39E9C"> Delivery Date</label>
-							      	<input class= "info" type="date" id="start" name="trip-start" value="2020-08-20">							  
+							      	<input class= "info" type="date" id="deliveryDateModal1" name="trip-start" value="2020-08-20">							  
 							      	<label style="color:#A39E9C"> Payment Method</label>
 							      	<div class="info">
 										<div class="dropdown">
-										  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										    CoD
 										  </button>
 										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -242,7 +392,7 @@
 							      	<label style="color:#A39E9C"> Status</label>
 							      	<div class="info">
 										<div class="dropdown">
-										  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										    Confirmed
 										  </button>
 										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -286,10 +436,446 @@
 									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
 									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
 									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									  <button type="button" class="btn btn-primary">Save changes</button>
+									  <button id="change1" type="button" class="btn btn-primary">Save changes</button>
 							      </div>
 							    </div>
 							  </div>
+							</div>
+							<div class="modal fade" id="orderTwoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">Order No. 2</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+
+							      	<label style="color:#A39E9C"> Contact Number </label>
+							      	<p class="info" contentEditable="true">09987654321</p> 
+							      	<input type="text" class="form-control" id="contactNumberModal2" value="0998765432">
+							      	<label style="color:#A39E9C"> Home Address </label>
+							      	<input type="text" class="form-control" id="homeAddressModal2" value="3rd Avenue Baranggay Lito">
+							      	<label style="color:#A39E9C"> City/Municipality </label>
+							      	<input type="text" class="form-control" id="cityModal2" value="Quezon City">
+							      	<label style="color:#A39E9C"> Courier </label>
+							      	<div class="info">
+										<div class="dropdown">
+										  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										   	GrabExpress
+										  </button>
+										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a class="dropdown-item" href="#">Castilla</a>
+										  </div>
+										</div>
+							      	</div>	
+							      	<label style="color:#A39E9C"> Customer Name</label>
+							      	<input type="text" class="form-control" id="customerNameModal2" value="Bryce Ramirez">
+							      	<label style="color:#A39E9C"> Date Placed</label>
+							      	<input class= "info" type="date" id="placedDateModal2" name="trip-start" value="2020-08-14" readonly>		
+							      	<label style="color:#A39E9C"> Delivery Date</label>
+							      	<input class= "info" type="date" id="deliveryDateModal2" name="trip-start" value="2020-08-17">							  
+							      	<label style="color:#A39E9C"> Payment Method</label>
+							      	<div class="info">
+										<div class="dropdown">
+										  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    GCash
+										  </button>
+										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a class="dropdown-item" href="#">CoD</a>
+										  </div>
+										</div>
+							      	</div>	
+							      	<label style="color:#A39E9C"> Status</label>
+							      	<div class="info">
+										<div class="dropdown">
+										  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    Paid
+										  </button>
+										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a class="dropdown-item" href="#">Confirmed</a>
+										    <a class="dropdown-item" href="#">Delivering</a>
+										    <a class="dropdown-item" href="#">Completed</a>
+										    <a class="dropdown-item" href="#">Cancelled</a>
+										  </div>
+										</div>
+							      	</div>									      	
+							      	<!-- table for ordered products -->
+								    <table class="table table-hover">
+										<thead>
+											<tr>
+												<th scope="col">Product</th>
+												<th scope="col">Quantity</th>
+												<th scope="col">Price</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">Siopao (Asado)</th>
+												<td>4</td>
+												<td>450</td>
+											</tr>
+											<tr>
+												<th scope="row">Siomai & Dumplings</th>
+												<td>2</td>
+												<td>600</td>
+											</tr>
+											<tr>
+												<th scope="row">Lumpia Shanghai</th>
+												<td>5</td>
+												<td>750</td>
+											</tr>
+											<tr>
+												<th scope="row">Chili Sauce</th>
+												<td>3</td>
+												<td>200</td>
+											</tr>
+										</tbody>
+									</table>
+									<label style="color:#A39E9C"> Overall Price</label>
+							      	<p class="info">2000</p> 			
+							      	<label style="color:#A39E9C"> Delivery Fee</label>
+							      	<p class="info">250</p> 
+							      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+							      	<p class="info" style="font-weight:bold;">2250</p> 							      
+
+							      </div>
+							      <div class="modal-footer">
+									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
+									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
+									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									  <button id="change2" type="button" class="btn btn-primary">Save changes</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							<div class="modal fade" id="orderThreeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								  <div class="modal-content">
+									<div class="modal-header">
+									  <h5 class="modal-title" id="exampleModalLabel">Order No. 3</h5>
+									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									  </button>
+									</div>
+									<div class="modal-body">
+  
+										<label style="color:#A39E9C"> Contact Number </label>
+								      	<p class="info" contentEditable="true">09123456789</p> 
+								      	<input type="text" class="form-control" id="contactNumberModal3" value="09123456789">
+								      	<label style="color:#A39E9C"> Home Address </label>
+								      	<input type="text" class="form-control" id="homeAddressModal3" value="5th Street Forbes Park">
+								      	<label style="color:#A39E9C"> City/Municipality </label>
+								      	<input type="text" class="form-control" id="cityModal3" value="Manila">
+								      	<label style="color:#A39E9C"> Courier </label>
+								      	<div class="info">
+											<div class="dropdown">
+											  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    GrabExpress
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											    <a class="dropdown-item" href="#">Castilla</a>
+											  </div>
+											</div>
+								      	</div>	
+								      	<label style="color:#A39E9C"> Customer Name</label>
+								      	<input type="text" class="form-control" id="customerNameModal3" value="Rey Delima">
+								      	<label style="color:#A39E9C"> Date Placed</label>
+								      	<input class= "info" type="date" id="placedDateModal3" name="trip-start" value="2020-08-13" readonly>		
+								      	<label style="color:#A39E9C"> Delivery Date</label>
+								      	<input class= "info" type="date" id="deliveryDateModal3" name="trip-start" value="2020-08-23">							  
+								      	<label style="color:#A39E9C"> Payment Method</label>
+								      	<div class="info">
+											<div class="dropdown">
+											  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    CoD
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											    <a class="dropdown-item" href="#">GCash</a>
+											  </div>
+											</div>
+								      	</div>	
+								      	<label style="color:#A39E9C"> Status</label>
+								      	<div class="info">
+											<div class="dropdown">
+											  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    Completed
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											    <a class="dropdown-item" href="#">Paid</a>
+											    <a class="dropdown-item" href="#">Delivering</a>
+											    <a class="dropdown-item" href="#">Confirmed</a>
+											    <a class="dropdown-item" href="#">Cancelled</a>
+											  </div>
+											</div>
+								      	</div>									      	
+										<!-- table for ordered products -->
+									  <table class="table table-hover">
+										  <thead>
+											  <tr>
+												  <th scope="col">Product</th>
+												  <th scope="col">Quantity</th>
+												  <th scope="col">Price</th>
+											  </tr>
+										  </thead>
+										  <tbody>
+											  <tr>
+												  <th scope="row">Siopao (Asado)</th>
+												  <td>4</td>
+												  <td>450</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Siomai & Dumplings</th>
+												  <td>2</td>
+												  <td>600</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Lumpia Shanghai</th>
+												  <td>5</td>
+												  <td>750</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Chili Sauce</th>
+												  <td>3</td>
+												  <td>200</td>
+											  </tr>
+										  </tbody>
+									  </table>
+									  <label style="color:#A39E9C"> Overall Price</label>
+										<p class="info">2000</p> 			
+										<label style="color:#A39E9C"> Delivery Fee</label>
+										<p class="info">250</p> 
+										<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+										<p class="info" style="font-weight:bold;">2250</p> 							      
+  
+									</div>
+									<div class="modal-footer">
+									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
+									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
+									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									  <button id="change3" type="button" class="btn btn-primary">Save changes</button>
+									</div>
+								  </div>
+								</div>
+							</div>
+							
+							<div class="modal fade" id="orderFourModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								  <div class="modal-content">
+									<div class="modal-header">
+									  <h5 class="modal-title" id="exampleModalLabel">Order No. 4</h5>
+									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									  </button>
+									</div>
+									<div class="modal-body">
+  
+										<label style="color:#A39E9C"> Contact Number </label>
+								      	<input type="text" class="form-control" id="contactNumberModal4" value="09987654321">
+								      	<label style="color:#A39E9C"> Home Address </label>
+								      	<input type="text" class="form-control" id="homeAddressModal4" value="18, G.Greenwood St. Paul">
+								      	<label style="color:#A39E9C"> City/Municipality </label>
+								      	<input type="text" class="form-control" id="cityModal4" value="Pasig City">
+								      	<label style="color:#A39E9C"> Courier </label>
+								      	<div class="info">
+											<div class="dropdown">
+											  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    Castilla
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											    <a class="dropdown-item" href="#">GrabExpress</a>
+											  </div>
+											</div>
+								      	</div>	
+								      	<label style="color:#A39E9C"> Customer Name</label>
+								      	<input type="text" class="form-control" id="customerNameModal4" value="Juan Dela Cruz">
+								      	<label style="color:#A39E9C"> Date Placed</label>
+								      	<input class= "info" type="date" id="placedDateModal4" name="trip-start" value="2020-08-14" readonly>		
+								      	<label style="color:#A39E9C"> Delivery Date</label>
+								      	<input class= "info" type="date" id="deliveryDateModal4" name="trip-start" value="2020-08-18">							  
+								      	<label style="color:#A39E9C"> Payment Method</label>
+								      	<div class="info">
+											<div class="dropdown">
+											  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    CoD
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											    <a class="dropdown-item" href="#">GCash</a>
+											  </div>
+											</div>
+								      	</div>	
+								      	<label style="color:#A39E9C"> Status</label>
+								      	<div class="info">
+											<div class="dropdown">
+											  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    Confirmed
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											    <a class="dropdown-item" href="#">Paid</a>
+											    <a class="dropdown-item" href="#">Delivering</a>
+											    <a class="dropdown-item" href="#">Completed</a>
+											    <a class="dropdown-item" href="#">Cancelled</a>
+											  </div>
+											</div>
+								      	</div>												      	
+										<!-- table for ordered products -->
+									  <table class="table table-hover">
+										  <thead>
+											  <tr>
+												  <th scope="col">Product</th>
+												  <th scope="col">Quantity</th>
+												  <th scope="col">Price</th>
+											  </tr>
+										  </thead>
+										  <tbody>
+											  <tr>
+												  <th scope="row">Siopao (Asado)</th>
+												  <td>4</td>
+												  <td>450</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Siomai & Dumplings</th>
+												  <td>2</td>
+												  <td>600</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Lumpia Shanghai</th>
+												  <td>5</td>
+												  <td>750</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Chili Sauce</th>
+												  <td>3</td>
+												  <td>200</td>
+											  </tr>
+										  </tbody>
+									  </table>
+									  <label style="color:#A39E9C"> Overall Price</label>
+										<p class="info">2000</p> 			
+										<label style="color:#A39E9C"> Delivery Fee</label>
+										<p class="info">250</p> 
+										<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+										<p class="info" style="font-weight:bold;">2250</p> 							      
+  
+									</div>
+									<div class="modal-footer">
+									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
+									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
+									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									  <button id="change4" type="button" class="btn btn-primary">Save changes</button>
+									</div>
+								  </div>
+								</div>
+							</div>
+							<div class="modal fade" id="orderFiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								  <div class="modal-content">
+									<div class="modal-header">
+									  <h5 class="modal-title" id="exampleModalLabel">Order No. 5</h5>
+									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									  </button>
+									</div>
+									<div class="modal-body">
+
+										<label style="color:#A39E9C"> Contact Number </label>
+								      	<input type="text" class="form-control" id="contactNumberModal5" value="09696969691">
+								      	<label style="color:#A39E9C"> Home Address </label>
+								      	<p class="info" contentEditable="true">3rd Street Bangbang Avenue</p> 
+								      	<input type="text" class="form-control" id="homeAddressModal5" value="3rd Street Bangbang Avenue">
+								      	<label style="color:#A39E9C"> City/Municipality </label>
+								      	<input type="text" class="form-control" id="cityModal5" value="Muntinlupa"> 
+								      	<label style="color:#A39E9C"> Courier </label>
+								      	<div class="info">
+											<div class="dropdown">
+											  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    GrabExpress
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											    <a class="dropdown-item" href="#">Castilla</a>
+											  </div>
+											</div>
+								      	</div>	
+								      	<label style="color:#A39E9C"> Customer Name</label>
+								      	<input type="text" class="form-control" id="customerNameModal5" value="Luigi Valera">
+								      	<label style="color:#A39E9C"> Date Placed</label>
+								      	<input class= "info" type="date" id="placedDateModal5" name="trip-start" value="2020-08-10" readonly>		
+								      	<label style="color:#A39E9C"> Delivery Date</label>
+								      	<input class= "info" type="date" id="deliveryDateModal5" name="trip-start" value="2020-08-19">							  
+								      	<label style="color:#A39E9C"> Payment Method</label>
+								      	<div class="info">
+											<div class="dropdown">
+											  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    GCash
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											    <a class="dropdown-item" href="#">CoD</a>
+											  </div>
+											</div>
+								      	</div>	
+								      	<label style="color:#A39E9C"> Status</label>
+								      	<div class="info">
+											<div class="dropdown">
+											  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    Cancelled
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											    <a class="dropdown-item" href="#">Paid</a>
+											    <a class="dropdown-item" href="#">Delivering</a>
+											    <a class="dropdown-item" href="#">Completed</a>
+											    <a class="dropdown-item" href="#">Confirmed</a>
+											  </div>
+											</div>
+								      	</div>												      										      	
+										<!-- table for ordered products -->
+									  <table class="table table-hover">
+										  <thead>
+											  <tr>
+												  <th scope="col">Product</th>
+												  <th scope="col">Quantity</th>
+												  <th scope="col">Price</th>
+											  </tr>
+										  </thead>
+										  <tbody>
+											  <tr>
+												  <th scope="row">Siopao (Asado)</th>
+												  <td>4</td>
+												  <td>450</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Siomai & Dumplings</th>
+												  <td>2</td>
+												  <td>600</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Lumpia Shanghai</th>
+												  <td>5</td>
+												  <td>750</td>
+											  </tr>
+											  <tr>
+												  <th scope="row">Chili Sauce</th>
+												  <td>3</td>
+												  <td>200</td>
+											  </tr>
+										  </tbody>
+									  </table>
+									  <label style="color:#A39E9C"> Overall Price</label>
+										<p class="info">2000</p> 			
+										<label style="color:#A39E9C"> Delivery Fee</label>
+										<p class="info">250</p> 
+										<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+										<p class="info" style="font-weight:bold;">2250</p> 							      
+  
+									</div>
+									<div class="modal-footer">
+									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
+									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
+									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									  <button id="change5" type="button" class="btn btn-primary">Save changes</button>
+									</div>
+								  </div>
+								</div>
 							</div>
 
 
@@ -474,8 +1060,8 @@
 			var element = $("#tbody");
 			var primaryTag = $("<tr></tr>");
 			primaryTag.attr("data-toggle", "modal");
-			primaryTag.attr("data-target", orderNumber.toString());
-			primaryTag.attr("data-id", orderNumber.toString());
+			primaryTag.attr("data-target", "#orderModal");
+			primaryTag.attr("data-id", "2");
 			var th = $("<th></th>");
 			th.attr("scope","row");
 			th.text(orderNumber.toString());
@@ -513,8 +1099,186 @@
 			/* modal */
 			
 	});
+
+	$("#change1").click(function() {
+                var name = $("#customerNameModal1").val();
+                var contactNumber = $("#contactNumberModal1").val();
+                var deliveryDate = $("#deliveryDateModal1").val();
+                var homeAddress = $("#homeAddressModal1").val();
+                var city = $("#cityModal1").val();
+                var status = $("#statusModal1").text();
+                var courier = $("#courierModal1").text();
+                var paymentMethod = $("#paymentMethodModal1").text();
+               
+                
+                if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
+                    /* modal values */
+                    $("#customerNameModal1").text(name);
+                    $("#contactNumberModal1").val(contactNumber);
+                    $("#deliveryDateModal1").val(deliveryDate);
+                    $("#homeAddressModal1").text(homeAddress);
+                    $("#cityModal1").text(city);
+                    $("#statusModal1").val(status);
+                    $("#courierModal1").val(courier);
+                    $("#paymentMethodModal1").val(paymentMethod);
+                    /* row values */
+                    $("#rowName1").html(name);
+                    $("#rowContact1").html(contactNumber);
+                    $("#rowDeliveryDate1").html(deliveryDate);
+                    $("#rowHomeAddress1").html(homeAddress);
+                    $("#rowStatus1").html(status);
+                    $("#rowCourier1").html(courier);
+
+
+
+                    $("#orderOneModal").modal("hide");
+
+
+                }
+                else {
+                    /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
+                    $("#orderOneModal").modal({"backdrop": "static"});
+                }
+            });
+	$("#change2").click(function() {
+                var name = $("#customerNameModal2").val();
+                var contactNumber = $("#contactNumberModal2").val();
+                var deliveryDate = $("#deliveryDateModal2").val();
+                var homeAddress = $("#homeAddressModal2").val();
+                var city = $("#cityModal2").val();
+                var status = $("#statusModal2").text();
+                var courier = $("#courierModal2").text();
+                var paymentMethod = $("#paymentMethodModal2").text();
+               
+                    
+                if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
+                    /* modal values */
+                    $("#customerNameModal2").text(name);
+                    $("#contactNumberModal2").val(contactNumber);
+                    $("#deliveryDateModal2").val(deliveryDate);
+                    $("#homeAddressModal2").text(homeAddress);
+                    $("#cityModal2").text(city);
+                    /* row values */
+                    $("#rowName2").html(name);
+                    $("#rowContact2").html(contactNumber);
+                    $("#rowDeliveryDate2").html(deliveryDate);
+                    $("#rowHomeAddress2").html(homeAddress);
+                    $("#rowStatus2").html(status);
+                    $("#rowCourier2").html(courier);
+
+                    $("#orderTwoModal").modal("hide");
+
+
+                }
+                else {
+                    /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
+                    $("#orderTwoModal").modal({"backdrop": "static"});
+                }
+            });
+	$("#change3").click(function() {
+                var name = $("#customerNameModal3").val();
+                var contactNumber = $("#contactNumberModal3").val();
+                var deliveryDate = $("#deliveryDateModal3").val();
+                var homeAddress = $("#homeAddressModal3").val();
+                var city = $("#cityModal3").val();
+               	var status = $("#statusModal3").text();
+                var courier = $("#courierModal3").text();
+                var paymentMethod = $("#paymentMethodModal3").text();
+                    
+                if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
+                    /* modal values */
+                    $("#customerNameModal3").text(name);
+                    $("#contactNumberModal3").val(contactNumber);
+                    $("#deliveryDateModal3").val(deliveryDate);
+                    $("#homeAddressModal3").text(homeAddress);
+                    $("#cityModal3").text(city);
+                    /* row values */
+                    $("#rowName3").html(name);
+                    $("#rowContact3").html(contactNumber);
+                    $("#rowDeliveryDate3").html(deliveryDate);
+                    $("#rowHomeAddress3").html(homeAddress);
+                    $("#rowStatus3").html(status);
+                    $("#rowCourier3").html(courier);
+
+                    $("#orderThreeModal").modal("hide");
+
+
+                }
+                else {
+                    /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
+                    $("#orderThreeModal").modal({"backdrop": "static"});
+                }
+            });
+	$("#change4").click(function() {
+                var name = $("#customerNameModal4").val();
+                var contactNumber = $("#contactNumberModal4").val();
+                var deliveryDate = $("#deliveryDateModal4").val();
+                var homeAddress = $("#homeAddressModal4").val();
+                var city = $("#cityModal4").val();
+               	var status = $("#statusModal4").text();
+                var courier = $("#courierModal4").text();
+                var paymentMethod = $("#paymentMethodModal4").text();
+                    
+                if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
+                    /* modal values */
+                    $("#customerNameModal4").text(name);
+                    $("#contactNumberModal4").val(contactNumber);
+                    $("#deliveryDateModal4").val(deliveryDate);
+                    $("#homeAddressModal4").text(homeAddress);
+                    $("#cityModal4").text(city);
+                    /* row values */
+                    $("#rowName4").html(name);
+                    $("#rowContact4").html(contactNumber);
+                    $("#rowDeliveryDate4").html(deliveryDate);
+                    $("#rowHomeAddress4").html(homeAddress);
+                    $("#rowStatus4").html(status);
+                    $("#rowCourier4").html(courier);
+
+                    $("#orderFourModal").modal("hide");
+
+
+                }
+                else {
+                    /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
+                    $("#orderFourModal").modal({"backdrop": "static"});
+                }
+            });
+	$("#change5").click(function() {
+                var name = $("#customerNameModal5").val();
+                var contactNumber = $("#contactNumberModal5").val();
+                var deliveryDate = $("#deliveryDateModal5").val();
+                var homeAddress = $("#homeAddressModal5").val();
+                var city = $("#cityModal5").val();
+               	var status = $("#statusModal5").text();
+                var courier = $("#courierModal5").text();
+                var paymentMethod = $("#paymentMethodModal5").text();
+                    
+                if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
+                    /* modal values */
+                    $("#customerNameModal5").text(name);
+                    $("#contactNumberModal5").val(contactNumber);
+                    $("#deliveryDateModal5").val(deliveryDate);
+                    $("#homeAddressModal5").text(homeAddress);
+                    $("#cityModal5").text(city);
+                    /* row values */
+                    $("#rowName5").html(name);
+                    $("#rowContact5").html(contactNumber);
+                    $("#rowDeliveryDate5").html(deliveryDate);
+                    $("#rowHomeAddress5").html(homeAddress);
+                    $("#rowStatus5").html(status);
+                    $("#rowCourier5").html(courier);
+
+                    $("#orderFiveModal").modal("hide");
+
+
+                }
+                else {
+                    /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
+                    $("#orderFiveModal").modal({"backdrop": "static"});
+                }
+            });
 	$(document).ready(function(){
-		$("#totalAmount").val(0);
+		$("#totalAmount").val(5);
 	});
 
 	$(function(){
