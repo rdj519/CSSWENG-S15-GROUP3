@@ -30,8 +30,8 @@ const loginController = {
             	})
             }
             else {
-            	console.log('There was an error: ', error);
-
+                console.log('User does not exist');
+                res.render('login_userDNE');
             }
         });
     },
