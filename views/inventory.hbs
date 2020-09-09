@@ -94,6 +94,11 @@
                                             <div class="col-5">
 											    <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addProduct" type="submit" style="margin-bottom: 5px;">Add Product</button>
 									    	</div>
+
+                                            <!-- delete stock -->
+                                            <div class="col-5">
+											    <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#deleteProduct" type="submit" style="margin-bottom: 5px;">Delete Product/s</button>
+									    	</div>
                                         </div>
                                     </div>
                                 </div>
@@ -109,6 +114,7 @@
                                                 <th scope="col">Stock Quantity</th>
                                                 <th scope="col">Price per Pack</th>
                                                 <th scope="col">Low Stock Quantity</th>
+                                                <th scope="col">Select</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbody">
@@ -121,6 +127,7 @@
                                                 <td id="stock1">14</td>
                                                 <td id="price1">P200</td>
                                                 <td id="low1">10</td>
+                                                <td><input type="checkbox" name="record"></td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockTwoModal">
                                                 <th scope="col" id="pnum2"> 2 </th>
@@ -129,6 +136,7 @@
                                                 <td id="stock2">12</td>
                                                 <td id="price2">P205</td>
                                                 <td id="low2">10</td>
+                                                <td><input type="checkbox" name="record"></td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockThreeModal">
                                                 <th scope="col" id="pnum3"> 3 </th>
@@ -137,6 +145,7 @@
                                                 <td id="stock3">26</td>
                                                 <td id="price3">P200</td>
                                                 <td id="low3">10</td>
+                                                <td><input type="checkbox" name="record"></td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockFourModal">
                                                 <th scope="col" id="pnum4"> 4 </th>
@@ -145,6 +154,7 @@
                                                 <td id="stock4">45</td>
                                                 <td id="price4">P200</td>
                                                 <td id="low4">10</td>
+                                                <td><input type="checkbox" name="record"></td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockFiveModal">
                                                 <th scope="col" id="pnum5"> 5 </th>
@@ -153,6 +163,7 @@
                                                 <td id="stock5">4</td>
                                                 <td id="price5">P220</td>
                                                 <td id="low5">10</td>
+                                                <td><input type="checkbox" name="record"></td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockSixModal">
                                                 <th scope="col" id="pnum6"> 6 </th>
@@ -161,6 +172,7 @@
                                                 <td id="stock6">3</td>
                                                 <td id="price6">P240</td>
                                                 <td id="low6">6</td>
+                                                <td><input type="checkbox" name="record"></td>
                                             </tr>  
                                             <tr data-toggle="modal" data-id="2" data-target="#stockSevenModal">
                                                 <th scope="col" id="pnum7"> 7 </th>
@@ -169,6 +181,7 @@
                                                 <td id="stock7">15</td>
                                                 <td id="price7">P240</td>
                                                 <td id="low7">6</td>
+                                                <td><input type="checkbox" name="record"></td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockEightModal">
                                                 <th scope="col" id="pnum8"> 8 </th>
@@ -177,6 +190,7 @@
                                                 <td id="stock8">22</td>
                                                 <td id="price8">P60</td>
                                                 <td id="low8">10</td>
+                                                <td><input type="checkbox" name="record"></td>
                                             </tr>
                                             <tr data-toggle="modal" data-id="2" data-target="#stockNineModal">
                                                 <th scope="col" id="pnum6"> 9 </th>
@@ -185,6 +199,7 @@
                                                 <td id="stock9">13</td>
                                                 <td id="price9">P60</td>
                                                 <td id="low9">10</td>
+                                                <td><input type="checkbox" name="record"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -202,7 +217,7 @@
 
 
 
-                                <!--1 Pork siomai -->
+                                {{!-- <!--1 Pork siomai -->
                                 <div class="modal fade" id="stockOneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -560,7 +575,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- end -->
 
                                 <!-- Delete Product Modal -->
@@ -575,10 +590,10 @@
                                         </div>
                                         <div class="modal-body">
                                           <p>Are you sure you want to delete this product?</p>
-                                          <input type="text" id="defaultForm-pass" class="form-control validate">
+                                          <input type="text" id="confirmation" class="form-control validate" placeholder="CONFIRM">
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="button" class="btn btn-danger">Yes</button>
+                                          <button type="button" class="btn btn-danger" id="deleteProductButton">Yes</button>
                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                         </div>
                                       </div>
@@ -709,6 +724,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                     td4.text("P" + $("#pricePerPack").val()); 
                     var td5 = $("<td></td>");
                     td5.text($("#lowStockQuantity").val()); 
+                    var td6 = "<td><input type='checkbox' name='record'></td>";
             
                     primaryTag.append(th);
                     primaryTag.append(td1);
@@ -716,6 +732,8 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                     primaryTag.append(td3);
                     primaryTag.append(td4);
                     primaryTag.append(td5);
+                    primaryTag.append(td6);
+                    
 
                     element.append(primaryTag);
 
@@ -730,12 +748,30 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
 	        });
 
 
+            // Delete Product
+           $("#deleteProductButton").click(function(){
+                if ($.trim($('#confirmation').val()) != "CONFIRM"){
+                    alert('Delete confirmation failed');
+                }
+                else {
+                    $("table tbody").find('input[name="record"]').each(function(){
+                        if($(this).is(":checked")){
+                            $(this).parents("tr").remove();
+                        }
+                    });
+                }
+                $("#deleteProduct").modal("hide");
+                $('#confirmation').val('');
+            });
+
+
+
             /*
                 MODALS
             */
 
             //product 1
-            $("#change1").click(function() {
+            $("#change1").dblclick(function() {
                 var name = $("#productName1").val();
                 var amt = $("#amountPerPack1").val();
                 var stock = $("#stockQuantity1").val();
@@ -767,7 +803,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
             
 
             //product 2
-            $("#change2").click(function() {
+            $("#change2").dblclick(function() {
                 var name = $("#productName2").val();
                 var amt = $("#amountPerPack2").val();
                 var stock = $("#stockQuantity2").val();
@@ -797,7 +833,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
             }); 
 
             //product 3
-            $("#change3").click(function() {
+            $("#change3").dblclick(function() {
                 var name = $("#productName3").val();
                 var amt = $("#amountPerPack3").val();
                 var stock = $("#stockQuantity3").val();
@@ -827,7 +863,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
             });
         
             //product 4
-            $("#change4").click(function() {
+            $("#change4").dblclick(function() {
                 var name = $("#productName4").val();
                 var amt = $("#amountPerPack4").val();
                 var stock = $("#stockQuantity4").val();
@@ -857,7 +893,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
             });
 
             //product 5
-            $("#change5").click(function() {
+            $("#change5").dblclick(function() {
                 var name = $("#productName5").val();
                 var amt = $("#amountPerPack5").val();
                 var stock = $("#stockQuantity5").val();
@@ -887,7 +923,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
             });
 
             //product 6
-            $("#change6").click(function() {
+            $("#change6").dblclick(function() {
                 var name = $("#productName6").val();
                 var amt = $("#amountPerPack6").val();
                 var stock = $("#stockQuantity6").val();
@@ -917,7 +953,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
             });
 
             //product 7
-            $("#change7").click(function() {
+            $("#change7").dblclick(function() {
                 var name = $("#productName7").val();
                 var amt = $("#amountPerPack7").val();
                 var stock = $("#stockQuantity7").val();
@@ -947,7 +983,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
             });
 
             //product 8
-            $("#change8").click(function() {
+            $("#change8").dblclick(function() {
                 var name = $("#productName8").val();
                 var amt = $("#amountPerPack8").val();
                 var stock = $("#stockQuantity8").val();
@@ -977,7 +1013,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
             });
 
             //product 9
-            $("#change9").click(function() {
+            $("#change9").dblclick(function() {
                 var name = $("#productName9").val();
                 var amt = $("#amountPerPack9").val();
                 var stock = $("#stockQuantity9").val();
