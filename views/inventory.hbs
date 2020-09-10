@@ -52,7 +52,7 @@
                                             </div>
                                             </div>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-6">
                                             <div class="dropdown">
                                                 <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Filter by
@@ -78,10 +78,10 @@
                                                 </ul>
                                             </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-5">
                                         <div class="row">
                                             <!-- search bar-->
-                                            <div class="col-7">
+                                            <div class="col-6">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
                                                     <div class="input-group-append">
@@ -91,12 +91,12 @@
                                             </div>
 
                                             <!-- add stock -->
-                                            <div class="col-5">
+                                            <div class="col-3">
 											    <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addProduct" type="submit" style="margin-bottom: 5px;">Add Product</button>
 									    	</div>
 
                                             <!-- delete stock -->
-                                            <div class="col-5">
+                                            <div class="col-3">
 											    <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#deleteProduct" type="submit" style="margin-bottom: 5px;">Delete Product/s</button>
 									    	</div>
                                         </div>
@@ -217,7 +217,7 @@
 
 
 
-                                {{!-- <!--1 Pork siomai -->
+                               <!--1 Pork siomai -->
                                 <div class="modal fade" id="stockOneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -231,25 +231,26 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName1"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName1" value="Pork Siomai">
+                                                        <label id="productName1">Pork Siomai</label>
                                                         <br>
                                                         <label for="amountPerPack1"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack1" value="60">
+                                                        <label id="amountPerPack1">60</label>
                                                         <br>
                                                         <label for="stockQuantity1"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity1" value="14">
+                                                        <input type="number" class="form-control" id="stockQuantity1"  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="14">
                                                         <br>
                                                         <label for="pricePerPack1"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack1" value="200">
+                                                        <br>
                                                         <label for="lowStack1"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack1" value="10">
+                                                        <input type="number" class="form-control" id="lowStack1"  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
                                                         <br>
                                                         <p id="errorUpdate1" style="color: red"><br></p>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>						
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                      
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" id="change1" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -271,25 +272,26 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName2"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName2" value="Lumpiang Shanghai">
+                                                        <label id="productName2">Lumpiang Shanghai</label>
                                                         <br>
                                                         <label for="amountPerPack2"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack2" value="60">
+                                                        <label id="amountPerPack2">60</label>
                                                         <br>
                                                         <label for="stockQuantity2"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity2" value="12">
+                                                        <input type="number" class="form-control" id="stockQuantity2" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="12">
                                                         <br>
                                                         <label for="pricePerPack2"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack2" value="205">
+                                                        <br>
                                                         <label for="lowStack2"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack2" value="10">
+                                                        <input type="number" class="form-control" id="lowStack2" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
                                                         <br>
                                                         <p id="errorUpdate2" style="color: red"><br></p>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" id="change2" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -311,25 +313,26 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName3"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName3" value="Gyoza">
+                                                        <label id="productName3">Gyoza</label>
                                                         <br>
                                                         <label for="amountPerPack3"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack3" value="60">
+                                                        <label id="amountPerPack3">60</label>
                                                         <br>
                                                         <label for="stockQuantity3"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity3" value="26">
+                                                        <input type="number" class="form-control" id="stockQuantity3" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="26">
                                                         <br>
                                                         <label for="pricePerPack3"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack3" value="200">
+                                                        <br>
                                                         <label for="lowStack3"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack3" value="10">
+                                                        <input type="number" class="form-control" id="lowStack3" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
                                                         <br>
                                                         <p id="errorUpdate3" style="color: red"><br></p>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" id="change3" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -351,25 +354,26 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName4"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName4" value="Sharksfin Dumplings">
+                                                        <label id="productName4">Sharksfin Dumplings</label>
                                                         <br>
                                                         <label for="amountPerPack4"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack4" value="60">
+                                                        <label id="amountPerPack4">60</label>
                                                         <br>
                                                         <label for="stockQuantity4"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity4" value="45">
+                                                        <input type="number" class="form-control" id="stockQuantity4" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="45">
                                                         <br>
                                                         <label for="pricePerPack4"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack4" value="200">
+                                                        <br>
                                                         <label for="lowStack4"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack4" value="10">
+                                                        <input type="number" class="form-control" id="lowStack4" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
                                                         <br>
                                                         <p id="errorUpdate4" style="color: red"><br></p>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" id="change4" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -391,25 +395,26 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName5"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName5" value="Beef Siomai">
+                                                        <label id="productName5">Beef Siomai</label>
                                                         <br>
                                                         <label for="amountPerPack5"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack5" value="60">
+                                                        <label id="amountPerPack5">60</label>
                                                         <br>
                                                         <label for="stockQuantity5"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity5" value="4">
+                                                        <input type="number" class="form-control" id="stockQuantity5" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="4">
                                                         <br>
                                                         <label for="pricePerPack5"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack5" value="220">
+                                                        <br>
                                                         <label for="lowStack5"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack5" value="10">
+                                                        <input type="number" class="form-control" id="lowStack5" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
                                                         <br>
                                                         <p id="errorUpdate5" style="color: red"><br></p>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>				
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>              
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" id="change5" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -431,18 +436,19 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName6"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName6" value="Siopao (Asado)">
+                                                        <label id="productName6">Siopao (Asado)</label>
                                                         <br>
                                                         <label for="amountPerPack6"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack6" value="48">
+                                                        <label id="amountPerPack6">48</label>
                                                         <br>
                                                         <label for="stockQuantity6"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity6" value="3">
+                                                        <input type="number" class="form-control" id="stockQuantity6" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="3">
                                                         <br>
                                                         <label for="pricePerPack6"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack6" value="240">
+                                                        <br>
                                                         <label for="lowStack6"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack6" value="6">
+                                                        <input type="number" class="form-control" id="lowStack6" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="6">
                                                         <br>
                                                         <p id="errorUpdate6" style="color: red"><br></p>
                                                     </div>
@@ -471,25 +477,26 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName7"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName7" value="Siopao (Bola-bola)">
+                                                        <label id="productName7">Siopao (Bola-bola)</label>
                                                         <br>
                                                         <label for="amountPerPack7"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack7" value="48">
+                                                        <label id="amountPerPack7">48</label>
                                                         <br>
                                                         <label for="stockQuantity7"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity7" value="15">
+                                                        <input type="number" class="form-control" id="stockQuantity7" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="15">
                                                         <br>
                                                         <label for="pricePerPack7"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack7" value="240">
+                                                        <br>
                                                         <label for="lowStack7"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack7" value="6">
+                                                        <input type="number" class="form-control" id="lowStack7" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="6">
                                                         <br>
                                                         <p id="errorUpdate7" style="color: red"><br></p>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" id="change7" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -511,25 +518,26 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName8"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName8" value="Hoisin Sauce">
+                                                        <label id="productName8">Hoisin Sauce</label>
                                                         <br>
                                                         <label for="amountPerPack8"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack8" value="5">
+                                                        <label id="amountPerPack8">5</label>
                                                         <br>
                                                         <label for="stockQuantity8"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity8" value="22">
+                                                        <input type="number" class="form-control" id="stockQuantity8" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="22">
                                                         <br>
                                                         <label for="pricePerPack8"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack8" value="60">
+                                                        <br>
                                                         <label for="lowStack8"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack8" value="10">
+                                                        <input type="number" class="form-control" id="lowStack8" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
                                                         <br>
                                                         <p id="errorUpdate8" style="color: red"><br></p>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" id="change8" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -551,31 +559,32 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="productName9"><b>Product Name</b></label>
-                                                        <input type="text" class="form-control" id="productName9" value="Chili Sauce">
+                                                        <label id="productName9">Chili Sauce</label>
                                                         <br>
                                                         <label for="amountPerPack9"><b>Amount per Pack</b></label>
-                                                        <input type="number" class="form-control" id="amountPerPack9" value="5">
+                                                        <label id="amountPerPack9">5</label>
                                                         <br>
                                                         <label for="stockQuantity9"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity9" value="13">
+                                                        <input type="number" class="form-control" id="stockQuantity9" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="13">
                                                         <br>
                                                         <label for="pricePerPack9"><b>Price per Pack</b></label>
                                                         <input type="number" class="form-control" id="pricePerPack9" value="60">
+                                                        <br>
                                                         <label for="lowStack9"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack9" value="10">
+                                                        <input type="number" class="form-control" id="lowStack9" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
                                                         <br>
                                                         <p id="errorUpdate9" style="color: red"><br></p>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>					
+                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="button" id="change9" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                                 <!-- end -->
 
                                 <!-- Delete Product Modal -->
@@ -771,114 +780,114 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
             */
 
             //product 1
-            $("#change1").dblclick(function() {
-                var name = $("#productName1").val();
-                var amt = $("#amountPerPack1").val();
+            $("#change1").click(function() {
                 var stock = $("#stockQuantity1").val();
                 var price = $("#pricePerPack1").val();
                 var low = $("#lowStack1").val();
-                    
-                    
-                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
-                    $("#name1").text(name);
-                    $("#productName1").val(name);
-                    $("#amt1").text(amt);
-                    $("#amountPerPack1").val(amt);
+
+                //check if empty or contains E or e
+                //price decimals are allowed
+                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
+                    $("#errorUpdate1").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
+                    $("#stockOneModal").modal({"backdrop": "static"});
+                }
+                //check if <=0
+                else if(price.trim()<=0) { 
+                    $("#errorUpdate1").text("Changes are not saved. Negative values are not allowed.");
+                    $("#stockOneModal").modal({"backdrop": "static"});
+                }
+                else {
                     $("#stock1").text(stock);
                     $("#stockQuantity1").val(stock);
-                    $("#price1").text(price);
+                    $("#price1").text("P" + price);
                     $("#pricePerPack1").val(price);
                     $("#low1").text(low);
                     $("#lowStack1").val(low);
 
                     $("#stockOneModal").modal("hide");
                     $("#errorUpdate1").text(" ");
-
                 }
-                else {
-                    $("#errorUpdate1").text("Changes are not saved. Fill in all fields.");
-                    $("#stockOneModal").modal({"backdrop": "static"});
-                }
-            });
-            
+            }); 
 
             //product 2
-            $("#change2").dblclick(function() {
-                var name = $("#productName2").val();
-                var amt = $("#amountPerPack2").val();
+            $("#change2").click(function() {
                 var stock = $("#stockQuantity2").val();
                 var price = $("#pricePerPack2").val();
                 var low = $("#lowStack2").val();
 
-                //check if input is empty or whitespace
-                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
-                    $("#name2").text(name);
-                    $("#productName2").val(name);
-                    $("#amt2").text(amt);
-                    $("#amountPerPack2").val(amt);
+                //check if empty or contains E or e
+                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
+                    $("#errorUpdate2").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
+                    $("#stockTwoModal").modal({"backdrop": "static"});
+                }
+                //check if <=0
+                else if(price.trim()<=0) { 
+                    $("#errorUpdate2").text("Changes are not saved. Negative values are not allowed.");
+                    $("#stockTwoModal").modal({"backdrop": "static"});
+                }
+                else {
                     $("#stock2").text(stock);
                     $("#stockQuantity2").val(stock);
-                    $("#price2").text(price);
+                    $("#price2").text("P" + price);
                     $("#pricePerPack2").val(price);
                     $("#low2").text(low);
                     $("#lowStack2").val(low);
 
                     $("#stockTwoModal").modal("hide");
-                    $("#errorUpdate1").text(" ");
-                }
-                else {
-                    $("#errorUpdate2").text("Changes are not saved. Fill in all fields.");
-                    $("#stockTwoModal").modal({"backdrop": "static"});
+                    $("#errorUpdate2").text(" ");
                 }
             }); 
 
             //product 3
-            $("#change3").dblclick(function() {
-                var name = $("#productName3").val();
-                var amt = $("#amountPerPack3").val();
+            $("#change3").click(function() {
                 var stock = $("#stockQuantity3").val();
                 var price = $("#pricePerPack3").val();
                 var low = $("#lowStack3").val();
 
-                //check if input is empty or whitespace
-                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
-                    $("#name3").text(name);
-                    $("#productName3").val(name);
-                    $("#amt3").text(amt);
-                    $("#amountPerPack3").val(amt);
+                //check if empty or contains E or e
+                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
+                    $("#errorUpdate3").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
+                    $("#stockThreeModal").modal({"backdrop": "static"});
+                }
+                //check if <=0
+                else if(price.trim()<=0) { 
+                    $("#errorUpdate3").text("Changes are not saved. Negative values are not allowed.");
+                    $("#stockThreeModal").modal({"backdrop": "static"});
+                }
+                else {
                     $("#stock3").text(stock);
                     $("#stockQuantity3").val(stock);
-                    $("#price3").text(price);
+                    $("#price3").text("P" + price);
                     $("#pricePerPack3").val(price);
                     $("#low3").text(low);
                     $("#lowStack3").val(low);
 
                     $("#stockThreeModal").modal("hide");
-                    $("#errorUpdate1").text(" ");
+                    $("#errorUpdate3").text(" ");
                 }
-                else {
-                    $("#errorUpdate3").text("Changes are not saved. Fill in all fields.");
-                    $("#stockThreeModal").modal({"backdrop": "static"});
-                }
-            });
+            }); 
         
             //product 4
-            $("#change4").dblclick(function() {
-                var name = $("#productName4").val();
-                var amt = $("#amountPerPack4").val();
+            $("#change4").click(function() {
                 var stock = $("#stockQuantity4").val();
                 var price = $("#pricePerPack4").val();
                 var low = $("#lowStack4").val();
 
-                //check if input is empty or whitespace
-                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
-                    $("#name4").text(name);
-                    $("#productName4").val(name);
-                    $("#amt4").text(amt);
-                    $("#amountPerPack4").val(amt);
+                //check if empty or contains E or e
+                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
+                    $("#errorUpdate4").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
+                    $("#stockFourModal").modal({"backdrop": "static"});
+                }
+                //check if <=0
+                else if(price.trim()<=0) { 
+                    $("#errorUpdate4").text("Changes are not saved. Negative values are not allowed.");
+                    $("#stockFourModal").modal({"backdrop": "static"});
+                }
+                else {
+                    
                     $("#stock4").text(stock);
                     $("#stockQuantity4").val(stock);
-                    $("#price4").text(price);
+                    $("#price4").text("P" + price);
                     $("#pricePerPack4").val(price);
                     $("#low4").text(low);
                     $("#lowStack4").val(low);
@@ -886,29 +895,28 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                     $("#stockFourModal").modal("hide");
                     $("#errorUpdate4").text(" ");
                 }
-                else {
-                    $("#errorUpdate4").text("Changes are not saved. Fill in all fields.");
-                    $("#stockFourModal").modal({"backdrop": "static"});
-                }
-            });
+            }); 
 
             //product 5
-            $("#change5").dblclick(function() {
-                var name = $("#productName5").val();
-                var amt = $("#amountPerPack5").val();
+            $("#change5").click(function() {
                 var stock = $("#stockQuantity5").val();
                 var price = $("#pricePerPack5").val();
                 var low = $("#lowStack5").val();
 
-                //check if input is empty or whitespace
-                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
-                    $("#name5").text(name);
-                    $("#productName5").val(name);
-                    $("#amt5").text(amt);
-                    $("#amountPerPack5").val(amt);
+                //check if empty or contains E or e
+                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
+                    $("#errorUpdate5").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
+                    $("#stockFiveModal").modal({"backdrop": "static"});
+                }
+                //check if <=0
+                else if(price.trim()<=0) { 
+                    $("#errorUpdate5").text("Changes are not saved. Negative values are not allowed.");
+                    $("#stockFiveModal").modal({"backdrop": "static"});
+                }                
+                else {    
                     $("#stock5").text(stock);
                     $("#stockQuantity5").val(stock);
-                    $("#price5").text(price);
+                    $("#price5").text("P" + price);
                     $("#pricePerPack5").val(price);
                     $("#low5").text(low);
                     $("#lowStack5").val(low);
@@ -916,29 +924,29 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                     $("#stockFiveModal").modal("hide");
                     $("#errorUpdate5").text(" ");
                 }
-                else {
-                    $("#errorUpdate5").text("Changes are not saved. Fill in all fields.");
-                    $("#stockFiveModal").modal({"backdrop": "static"});
-                }
-            });
+            }); 
 
             //product 6
-            $("#change6").dblclick(function() {
-                var name = $("#productName6").val();
-                var amt = $("#amountPerPack6").val();
+            $("#change6").click(function() {
                 var stock = $("#stockQuantity6").val();
                 var price = $("#pricePerPack6").val();
                 var low = $("#lowStack6").val();
 
-                //check if input is empty or whitespace
-                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
-                    $("#name6").text(name);
-                    $("#productName6").val(name);
-                    $("#amt6").text(amt);
-                    $("#amountPerPack6").val(amt);
+                //check if empty or contains E or e
+                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
+                    $("#errorUpdate6").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
+                    $("#stockSixModal").modal({"backdrop": "static"});
+                }
+                //check if <=0
+                else if(price.trim()<=0) { 
+                    $("#errorUpdate6").text("Changes are not saved. Negative values are not allowed.");
+                    $("#stockSixModal").modal({"backdrop": "static"});
+                }
+                else {
+                    
                     $("#stock6").text(stock);
                     $("#stockQuantity6").val(stock);
-                    $("#price6").text(price);
+                    $("#price6").text("P" + price);
                     $("#pricePerPack6").val(price);
                     $("#low6").text(low);
                     $("#lowStack6").val(low);
@@ -946,29 +954,29 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                     $("#stockSixModal").modal("hide");
                     $("#errorUpdate6").text(" ");
                 }
-                else {
-                    $("#errorUpdate6").text("Changes are not saved. Fill in all fields.");
-                    $("#stockSixModal").modal({"backdrop": "static"});
-                }
-            });
+            }); 
 
             //product 7
-            $("#change7").dblclick(function() {
-                var name = $("#productName7").val();
-                var amt = $("#amountPerPack7").val();
+            $("#change7").click(function() {
                 var stock = $("#stockQuantity7").val();
                 var price = $("#pricePerPack7").val();
                 var low = $("#lowStack7").val();
 
-                //check if input is empty or whitespace
-                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
-                    $("#name7").text(name);
-                    $("#productName7").val(name);
-                    $("#amt7").text(amt);
-                    $("#amountPerPack7").val(amt);
+                //check if empty or contains E or e
+                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
+                    $("#errorUpdate7").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
+                    $("#stockSevenModal").modal({"backdrop": "static"});
+                }
+                //check if <=0
+                else if(price.trim()<=0) { 
+                    $("#errorUpdate7").text("Changes are not saved. Negative values are not allowed.");
+                    $("#stockSevenModal").modal({"backdrop": "static"});
+                }
+                else {
+                    
                     $("#stock7").text(stock);
                     $("#stockQuantity7").val(stock);
-                    $("#price7").text(price);
+                    $("#price7").text("P" + price);
                     $("#pricePerPack7").val(price);
                     $("#low7").text(low);
                     $("#lowStack7").val(low);
@@ -976,29 +984,29 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                     $("#stockSevenModal").modal("hide");
                     $("#errorUpdate7").text(" ");
                 }
-                else {
-                    $("#errorUpdate7").text("Changes are not saved. Fill in all fields.");
-                    $("#stockSevenModal").modal({"backdrop": "static"});
-                }
-            });
+            }); 
 
             //product 8
-            $("#change8").dblclick(function() {
-                var name = $("#productName8").val();
-                var amt = $("#amountPerPack8").val();
+            $("#change8").click(function() {
                 var stock = $("#stockQuantity8").val();
                 var price = $("#pricePerPack8").val();
                 var low = $("#lowStack8").val();
 
-                //check if input is empty or whitespace
-                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
-                    $("#name8").text(name);
-                    $("#productName8").val(name);
-                    $("#amt8").text(amt);
-                    $("#amountPerPack8").val(amt);
+                //check if empty or contains E or e
+                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
+                    $("#errorUpdate8").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
+                    $("#stockEightModal").modal({"backdrop": "static"});
+                }
+                //check if <=0
+                else if(price.trim()<=0) { 
+                    $("#errorUpdate8").text("Changes are not saved. Negative values are not allowed.");
+                    $("#stockEightModal").modal({"backdrop": "static"});
+                }
+                else {
+                    
                     $("#stock8").text(stock);
                     $("#stockQuantity8").val(stock);
-                    $("#price8").text(price);
+                    $("#price8").text("P" + price);
                     $("#pricePerPack8").val(price);
                     $("#low8").text(low);
                     $("#lowStack8").val(low);
@@ -1006,29 +1014,29 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                     $("#stockEightModal").modal("hide");
                     $("#errorUpdate8").text(" ");
                 }
-                else {
-                    $("#errorUpdate8").text("Changes are not saved. Fill in all fields.");
-                    $("#stockEightModal").modal({"backdrop": "static"});
-                }
             });
 
             //product 9
-            $("#change9").dblclick(function() {
-                var name = $("#productName9").val();
-                var amt = $("#amountPerPack9").val();
+            $("#change9").click(function() {
                 var stock = $("#stockQuantity9").val();
                 var price = $("#pricePerPack9").val();
                 var low = $("#lowStack9").val();
 
-                //check if input is empty or whitespace
-                if(name.trim() && amt.trim() && stock.trim() && price.trim() && low.trim()) { 
-                    $("#name9").text(name);
-                    $("#productName9").val(name);
-                    $("#amt9").text(amt);
-                    $("#amountPerPack9").val(amt);
+                //check if empty or contains E or e
+                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
+                    $("#errorUpdate9").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
+                    $("#stockNineModal").modal({"backdrop": "static"});
+                }
+                //check if <=0
+                else if(price.trim()<=0) { 
+                    $("#errorUpdate9").text("Changes are not saved. Negative values are not allowed.");
+                    $("#stockNineModal").modal({"backdrop": "static"});
+                }
+                else {
+                    
                     $("#stock9").text(stock);
                     $("#stockQuantity9").val(stock);
-                    $("#price9").text(price);
+                    $("#price9").text("P" + price);
                     $("#pricePerPack9").val(price);
                     $("#low9").text(low);
                     $("#lowStack9").val(low);
@@ -1036,17 +1044,9 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
                     $("#stockNineModal").modal("hide");
                     $("#errorUpdate9").text(" ");
                 }
-                else {
-                    $("#errorUpdate9").text("Changes are not saved. Fill in all fields.");
-                    $("#stockNineModal").modal({"backdrop": "static"});
-                }
             });
+        </script>
 
-        /*    $(document).ready(function() {
-                $("#deletebutton1").click(function(){ 
-                    $("#r2").remove(); 
-                    });
-            }); */
         </script>
 
         <!-- JS-->
