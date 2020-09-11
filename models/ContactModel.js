@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 
 /* defines the schema for collection 'contacts' */
-var ContactSchema = new mongoose.schema({
+var ContactSchema = new mongoose.Schema({
     // name of customer
     name: {
         type: String,
