@@ -47,6 +47,27 @@ const ordersController = {
         }, mySort);
     },
 
+	getOrdersByOrderNumber: function (req, res) {
+
+        var query = {};
+        var projection = {};
+        var mySort = {orderNumber: 1}
+
+
+        db.findMany(Order, query, projection, function(result) {
+
+            if(result != null) {
+
+                res.render('search', {contents: result});
+            }
+
+            else {
+
+                res.render('error');
+            }
+        }, mySort);
+    },
+    
     getOrdersByPaymentMethod: function (req, res) {
 
         var query = {};
@@ -145,7 +166,7 @@ const ordersController = {
             }
 
             else {
-            	
+
                 res.render('error');
             }
         }, mySort);
