@@ -1,8 +1,23 @@
 var mongoose = require('mongoose');
 
 /* Item Schema */
-const Item = require('./ItemModel.js');
+//const Item = require('./ItemModel.js');
 
+/* Local Item Schema */
+var orderedItem = new mongoose.Schema({
+    itemId: {
+        type: Number,
+        required: true
+    },
+    itemName: {
+        type: String,
+        required: true
+    },
+    itemQuantity: {
+        type: Number,
+        required: true
+    }
+});
 
 /* defines the schema for collection `orders` */
 var OrderSchema = new mongoose.Schema({
@@ -19,13 +34,13 @@ var OrderSchema = new mongoose.Schema({
         required: true
     },
     // contact number of customer
-    customerNumber: {
+    contactNumber: {
         type: Number,
         minlength: 11,
         required: true
     },
     // home address of customer
-    customerAddress: {
+    homeAddress: {
         type: String,
         required: true
     },
@@ -70,9 +85,9 @@ var OrderSchema = new mongoose.Schema({
     // customer order, list of items
     // to be changed, because the quantity of items also has to be considered
     customerOrder: {
-        type: [Item],
+        type: [orderedItem],
         required: true
-    },
+    }, 
     // order status
     status: {
         type: String,
