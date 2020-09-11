@@ -24,6 +24,8 @@ router.get('/inventory', isPrivate, stockInventoryController.getInventory);
 
 // Orders
 router.get('/orders', isPrivate, ordersController.getOrders);
+router.get('/orders/status:status', isPrivate, ordersController.getOrdersByStatus); // to be edited
+
 
 // Customer Contact List
 router.get('/contacts', isPrivate, contactsController.getContacts);
