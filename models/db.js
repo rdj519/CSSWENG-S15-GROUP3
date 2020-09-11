@@ -1,7 +1,7 @@
 //db.js
 const mongoose = require('mongoose');
 
-const url = 'mongodb://localhost:27017/sample';
+const url = 'mongodb+srv://siopauadmin:admin@siopau.mcpuj.azure.mongodb.net/SioPau?retryWrites=true&w=majority';
 const User = require('./UserModel.js');
 
 const options = {

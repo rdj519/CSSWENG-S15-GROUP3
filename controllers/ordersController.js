@@ -9,7 +9,7 @@ const ordersController = {
 
         var query = {};
         var projection = {};
-        var mySort = {}
+        var mySort = {};
 
 
         db.findMany(Order, query, projection, function(result) {
