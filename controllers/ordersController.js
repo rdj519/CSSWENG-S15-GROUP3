@@ -3,6 +3,8 @@ const stockInventoryController = require("./stockInventoryController")
 const db = require('../models/db.js');
 const Order = require('../models/OrderModel.js');
 
+const { validationResult } = require('express-validator');
+
 const ordersController = {
 
     getOrders: function (req, res) {
@@ -26,6 +28,38 @@ const ordersController = {
         }, mySort);
     },
 
+    addOrder: function(req, res) {
+        var customerName = req.body.customerName;
+        var contactNumber= req.body.contactNumber;
+        var homeAddress = req.body.homeAddress;
+        var city = req.body.city;
+        var productTotal = req.body.productTotal;
+        var paymentMethod = req.body.paymentMethod;
+        var courier = req.body.courier;
+        var status = req.body.status;
+        var deliveryDate = req.body.deliveryDate;
+        var placedDate = req.body.placedDate;
+    
+        var order = {
+            customerName: customerName,
+            contactNumber: contactNumber,
+            homeAddress: homeAddress,
+            city: city,
+            productTotal: productTotal,
+            paymentMethod: paymentMethod,
+            courier: courier,
+            status: status,
+            deliveryDate: deliveryDate,
+            placedDate: placedDate
+        };
+
+        alert("hi");
+        db.insertOne(Order, order, function(flag){
+            res.send("success");
+        });
+        
+    },
+
     getOrdersByStatus: function (req, res) {
 
         var query = {};
@@ -47,11 +81,11 @@ const ordersController = {
         }, mySort);
     },
 
-	getOrdersByOrderNumber: function (req, res) {
+    getOrdersByCustomerName: function (req, res) {
 
         var query = {};
         var projection = {};
-        var mySort = {orderNumber: 1}
+        var mySort = {customerName: 1}
 
 
         db.findMany(Order, query, projection, function(result) {
