@@ -11,10 +11,11 @@ $(document).ready(function() {
         var courier = $("#courier").html();
         var status = $("#status").html();
         var deliveryDate = $("#deliveryDate").val();
+        var deliveryFee = $("#deliveryFee").val();
         var placedDate = new Date(); //current date 
 
 
-        $.post('/addOrder',{customerName: customerName, contactNumber: contactNumber, homeAddress: homeAddress, city: city, productTotal: productTotal, paymentMethod: paymentMethod, courier: courier, status: status, deliveryDate: deliveryDate, placedDate: placedDate }, function(data, status) {
+        $.post('/addOrder',{customerName: customerName, contactNumber: contactNumber, homeAddress: homeAddress, city: city, productTotal: productTotal, paymentMethod: paymentMethod, courier: courier, status: status, deliveryDate: deliveryDate, deliveryFee: deliveryFee, placedDate: placedDate }, function(data, status) {
             /* resets value after */
             $("#customerName").val("");
             $("#contactNumber").val("");
