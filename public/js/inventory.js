@@ -10,6 +10,12 @@ $(document).ready(function() {
         var price = $("#pricePerPack").val();
         var lowstockQuantity = $("#lowStockQuantity").val();
 
+        console.log(name);
+        console.log(amountPerPack);
+        console.log(quantity);
+        console.log(price);
+        console.log(lowstockQuantity);
+
 
         // Adding New Product
         $.post('/addProduct',{name: name, amountPerPack: amountPerPack, quantity: quantity, price: price, lowstockQuantity: lowstockQuantity}, function(data, status) {
@@ -18,13 +24,7 @@ $(document).ready(function() {
             $("#stockQuantity").val("");
             $("#pricePerPack").val("");
             $("#lowStockQuantity").val("");       
-            
             $("#addProduct").modal("hide");
-            
-            $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, status) {
-                console.log(data.name);
-            })
-
             $("body").load('/inventory');
         });
     });

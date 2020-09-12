@@ -20,7 +20,7 @@ const stockInventoryController = {
         var price = req.body.price;
         var quantity = req.body.quantity;
         var lowStockQuantity = req.body.lowStockQuantity;
-
+        
         var product = {
             name: name,
             amountPerPack: amountPerPack,
