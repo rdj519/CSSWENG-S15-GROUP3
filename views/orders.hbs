@@ -12,6 +12,9 @@
 	<!-- Fonts-->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
+	<!-- JS -->
+	<script src="/js/orders.js"></script>
+
 	<!-- PDF -->
 	<meta charset="utf-8" />
     <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
@@ -132,7 +135,6 @@
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th scope="col">Order No.</th>
 											<th scope="col">Name</th>
 											<th scope="col">Contact Number</th>
 											<th scope="col">Address</th>
@@ -144,9 +146,8 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr data-toggle="modal" data-id="2" data-target="#order{{orderNumber}}">
-											<th scope="row">{{orderNumber}}</th>
-											<td>{{customerName}}</td>
+										<tr data-toggle="modal" data-id="2" data-target="#order{{_id}}">
+											<th scope="row">{{customerName}}</th>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
 											<td>{{status}}</td>
@@ -156,11 +157,11 @@
 										</tr>
 
 										<!-- Order Modal -->
-										<div class="modal fade" id="order{{orderNumber}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal fade" id="order{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 										  <div class="modal-dialog" role="document">
 										    <div class="modal-content">
 										      <div class="modal-header">
-										        <h5 class="modal-title" id="titleModal" value="{{orderNumber}}">Order No. {{orderNumber}}</h5>
+										        <h5 class="modal-title" id="titleModal">{{customerName}}</h5>
 										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										          <span aria-hidden="true">&times;</span>
 										        </button>
@@ -187,8 +188,6 @@
 													  </div>
 													</div>
 										      	</div>	
-										      	<label style="color:#A39E9C"> Customer Name</label>
-										      	<input type="text" class="form-control" id="customerNameModal" value="{{customerName}}">
 										      	<label style="color:#A39E9C"> Date Placed</label>
 										      	<input class= "info" type="date" id="placedDateModal" name="trip-start" value="{{placedDate}}" readonly>		
 										      	<label style="color:#A39E9C"> Delivery Date</label>
@@ -253,7 +252,7 @@
 										      	<label style="color:#A39E9C"> Delivery Fee</label>
 										      	<input type="text" class="form-control" id="deliveryFeeModal" value="{{deliveryFee}}">
 										      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
-										      	<input type="text" class="form-control" id="totalPriceModal" style="font-weight:bold;"  value="0">
+										      	<input type="text" class="form-control" id="totalPriceModal" style="font-weight:bold;"  value="5">
 										      </div>
 										      <div class="modal-footer">
 												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
@@ -310,21 +309,21 @@
 	
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
-							          <input type="text" id="name" class="form-control validate">
+							          <input type="text" id="customerName" name="customerName" class="form-control validate">
 							        </div>
 
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
-							          <input type="number" id="contact" class="form-control validate">
+							          <input type="number" id="contactNumber" name="contactNumber" class="form-control validate">
 							        </div>
 
 
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass"><b>Address</b></label>
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Home Address</label>
-							          <input type="text" id="homeAddress" class="form-control validate">
+							          <input type="text" id="homeAddress" name="homeAddress" class="form-control validate">
 							          <label data-error="wrong" data-success="right" for="defaultForm-pass">City/Municipality</label>
-							          <input type="text" id="city" class="form-control validate">
+							          <input type="text" id="city" name="city" class="form-control validate">
 							        </div>
 
 							      	<div class="md-form mb-4">
@@ -401,18 +400,19 @@
 											</tbody>
 										</table>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">Total Amount</label>
-										<input type="number" id="totalAmount" class="form-control validate" readonly>
+										<input type="number" id="productTotal" name="productTotal" class="form-control validate">
 							      	</div>
 
 							      	<div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Payment Method</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button" id="method" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<button class="btn btn-light dropdown-toggle" type="button"  id="paymentMethod" name="paymentMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											  Method
 											</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">GCash</a>
-											    <a class="dropdown-item" href="#">Cash On Delivery</a>
+											    <a class="dropdown-item" href="#">gcash</a>
+											    <a class="dropdown-item" href="#">cod</a>
+											    <a class="dropdown-item" href="#">paymaya </a>
 											</div>
 										</div>
 							        </div>
@@ -420,25 +420,41 @@
 							        <div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Courier</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button" id="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<button class="btn btn-light dropdown-toggle" type="button" id="courier" name="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											  Courier Type
 											</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">Castilla</a>
-											    <a class="dropdown-item" href="#">GrabExpress </a>
+											    <a class="dropdown-item" href="#">lalamove</a>
+											    <a class="dropdown-item" href="#">castilla</a>
+											    <a class="dropdown-item" href="#">mrspeedy</a>
+											    <a class="dropdown-item" href="#">grabexpress</a>
 											</div>
 							        	</div>
 							        </div>
-
+							        <div class="md-form mb-4">
+							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Status</label>
+							          	<div class="dropdown" style="float:left; clear:both;">
+											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											  Courier Type
+											</button>
+											<div class="dropdown-menu" aria-labelledby="courierType">
+											    <a class="dropdown-item" href="#">confirmed</a>
+											    <a class="dropdown-item" href="#">paid </a>
+											    <a class="dropdown-item" href="#">delivering</a>
+											    <a class="dropdown-item" href="#">completed </a>
+											    <a class="dropdown-item" href="#">cancelled</a>
+											</div>
+							        	</div>
+							        </div>
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Delivery Date</label>
-							          <input type="date" id="deliveryDate" class="form-control validate">
+							          <input type="date" id="deliveryDate" name="deliveryDate" class="form-control validate">
 							        </div>
 
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        <button type="button" class="btn btn-primary" id="addOrderButton" data-dismiss="modal">Add Order</button>
+							        <button type="button" class="btn btn-primary" id="submitOrder" data-dismiss="modal">Add Order</button>
 							      </div>
 							    </div>
 							  </div>
@@ -456,106 +472,24 @@
 
 <script>
 
-	/* print pdf */
-	const { PDFDocument, StandardFonts, rgb } = PDFLib
-    async function createPdf() {
-      // Create a new PDFDocument
-      const pdfDoc = await PDFDocument.create()
-
-      // Embed the Helvetica
-      const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica)
-      const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold)      
-
-      // Add a blank page to the document
-      const page = pdfDoc.addPage()
-
-      // Get the width and height of the page
-      const { width, height } = page.getSize()
-
-      // Draw a string of text toward the top of the page
-      const fontSize = 20
-      var title = 'Receipt';
-      page.drawText( title + '\n', {
-        x: 50,
-        y: height - 4 * fontSize,
-        size: fontSize,
-        font: helveticaBold,
-        color: rgb(0, 0, 0),
-      });
-
-      const fontSizeBody = 14
-      var name =  ($("#customerNameModal").val()).toString();
-      var number = ($("#contactNumberModal").val()).toString();
-      var address = ($("#homeAddressModal").val()).toString() + ", " + ($("#cityModal").val()).toString();
-      var placed =  ($("#placedDateModal").val());
-      var deliverydate = ($("#deliveryDateModal").val());
-
-      var courier = ($("#courierModal").val()).toString();
-      var status = ($("#statusModal").val()).toString();
-      page.drawText("\n\nName:                       " + name + 
-                    "\nContact Number:      " + number +
-                    "\nAddress:                   " + address + 
-                    "\nDate Placed:             " + placed +
-                    "\nDelivery Date:           " + deliverydate + 
-                    "\nCourier:                     " + courier + 
-                    "\n\n\n INSERT TABLE OF ITEMS HERE \n\n\n" + 
-                    "\nStatus: 					   " + status +
-                    "\n"
-
-                    ,
-
-      {
-        x: 50,
-        y: height - 6 * fontSizeBody,
-        size: fontSizeBody,
-        font: helvetica,
-        color: rgb(0, 0, 0),
-      });
-
-      const fontSizeFees = 14
-      var overall =  ($("#overallPriceModal").val()).toString();
-      var dfee = ($("#deliveryFeeModal").val()).toString();
-      var total = ($("#totalPriceModal").val()).toString();
-
-      page.drawText( "\n\nOverall Payment:                      " + overall + 
-      				 "\nDelivery Fee: 							" + dfee +
-      				 "\nTotal Price: 							   " + total
-
-      	, {
-        x: 50,
-        y: height - 20 * fontSize,
-        size: fontSizeFees,
-        font: helveticaBold,
-        color: rgb(0, 0, 0),
-      });
-
-      // Serialize the PDFDocument to bytes (a Uint8Array)
-      const pdfBytes = await pdfDoc.save()
-
-      // Trigger the browser to download the PDF document
-      download(pdfBytes, name  + ".pdf", "application/pdf");
-    };
-
-	/* nested dropdown */
-	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
-		if (!$(this).next().hasClass('show')) {
-			$(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
-		}
-		var $subMenu = $(this).next('.dropdown-menu');
-		$subMenu.toggleClass('show');
-		$(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-			$('.dropdown-submenu .show').removeClass('show');
-		});
-		return false;
-	});
-	$(".dropdown-menu a").click(function(){
-  		$(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-  		$(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-	});
-	/* order number */
-	var orderNumber = 0;
+	   /* nested dropdown */
+    $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+        if (!$(this).next().hasClass('show')) {
+            $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+        }
+        var $subMenu = $(this).next('.dropdown-menu');
+        $subMenu.toggleClass('show');
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+            $('.dropdown-submenu .show').removeClass('show');
+        });
+        return false;
+    });
+    $(".dropdown-menu a").click(function(){
+        $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+    });
+	/* order number 
 	$("#addOrderButton").click(function(){
-			orderNumber += 1;
 			var element = $("#tbody");
 			var primaryTag = $("<tr></tr>");
 			primaryTag.attr("data-toggle", "modal");
@@ -563,7 +497,6 @@
 			primaryTag.attr("data-id", "2");
 			var th = $("<th></th>");
 			th.attr("scope","row");
-			th.text(orderNumber.toString());
 			var td1 = $("<td></td>");
 			td1.text($("#name").val());
 			var td2 = $("<td></td>");
@@ -575,7 +508,7 @@
 			var td5 = $("<td></td>");
 			td5.text($("#courier").text()); 
 			
-			/* placed date */
+
 			var td6 = $("<td></td>");
 			var today = new Date();
 			var dd = String(today.getDate()).padStart(2, '0');
@@ -583,7 +516,8 @@
 			var yyyy = today.getFullYear();
 			today = yyyy + '-' + mm + '-' + dd;
 			td6.text(today);
-			/* delivery date */
+
+
 			var td7 = $("<td></td>");
 			td7.text($("#deliveryDate").val());
 			primaryTag.append(th);
@@ -595,10 +529,9 @@
 			primaryTag.append(td6);
 			primaryTag.append(td7);
 			element.append(primaryTag);
-			/* modal */
 			
-	});
-
+	}); 
+	*/
 	$("#change1").click(function() {
                 var name = $("#customerNameModal1").val();
                 var contactNumber = $("#contactNumberModal1").val();
@@ -627,12 +560,7 @@
                     $("#rowHomeAddress1").html(homeAddress);
                     $("#rowStatus1").html(status);
                     $("#rowCourier1").html(courier);
-
-
-
                     $("#orderOneModal").modal("hide");
-
-
                 }
                 else {
                     /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
@@ -664,10 +592,7 @@
                     $("#rowHomeAddress2").html(homeAddress);
                     $("#rowStatus2").html(status);
                     $("#rowCourier2").html(courier);
-
                     $("#orderTwoModal").modal("hide");
-
-
                 }
                 else {
                     /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
@@ -698,10 +623,7 @@
                     $("#rowHomeAddress3").html(homeAddress);
                     $("#rowStatus3").html(status);
                     $("#rowCourier3").html(courier);
-
                     $("#orderThreeModal").modal("hide");
-
-
                 }
                 else {
                     /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
@@ -732,10 +654,7 @@
                     $("#rowHomeAddress4").html(homeAddress);
                     $("#rowStatus4").html(status);
                     $("#rowCourier4").html(courier);
-
                     $("#orderFourModal").modal("hide");
-
-
                 }
                 else {
                     /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
@@ -766,20 +685,13 @@
                     $("#rowHomeAddress5").html(homeAddress);
                     $("#rowStatus5").html(status);
                     $("#rowCourier5").html(courier);
-
                     $("#orderFiveModal").modal("hide");
-
-
                 }
                 else {
                     /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
                     $("#orderFiveModal").modal({"backdrop": "static"});
                 }
             });
-	$(document).ready(function(){
-		$("#totalAmount").val(5);
-	});
-
 	$(function(){
 	  $('#siomaiDumplingInput').on('input', function() {
 	  		var element = $("#siomaiDumpling");
@@ -877,9 +789,7 @@
 	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
 	  		totalElement.text(parseFloat(totalElement.val()));
 	  });
-
 	});
-
 </script>
 
 
@@ -889,4 +799,3 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
-
