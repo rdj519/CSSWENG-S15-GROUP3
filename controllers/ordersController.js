@@ -40,6 +40,7 @@ const ordersController = {
         var deliveryDate = req.body.deliveryDate;
         var deliveryFee = req.body.deliveryFee;
         var placedDate = req.body.placedDate;
+        var customerOder = req.body.customerOrder;
     
         
         var order = {
@@ -53,7 +54,8 @@ const ordersController = {
             status: status,
             deliveryDate: deliveryDate,
             deliveryFee: deliveryFee,
-            placedDate: placedDate
+            placedDate: placedDate,
+            customerOrder: customerOder
         };
 
         console.log(order);

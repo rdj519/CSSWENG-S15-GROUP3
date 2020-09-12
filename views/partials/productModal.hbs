@@ -19,19 +19,20 @@
                         <label id="amountPerPack-{{itemID}}" name="amountPerPack-{{itemID}}"value="{{amountPerPack}}">{{amountPerPack}}</label>
                         <br>
                         <label for="stockQuantity-{{itemID}}"><b>Stock Quantity</b></label>
-                        <input type="number" class="form-control" id="stockQuantity-{{itemID}}" name="stockQuantity-{{itemID}}" min="0"
+                        <input type="number" class="form-control validate" id="stockQuantity-{{itemID}}" name="stockQuantity-{{itemID}}" min="0"
                             onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
                             value="{{quantity}}">
                         <br>
                         <label for="pricePerPack-{{itemID}}"><b>Price per Pack</b></label>
-                        <input type="number" class="form-control" id="pricePerPack-{{itemID}}" name="pricePerPack-{{itemID}}" value="{{price}}">
+                        <input type="number" class="form-control validate" id="pricePerPack-{{itemID}}" name="pricePerPack-{{itemID}}" value="{{price}}">
+                        
                         <br>
                         <label for="lowStock-{{itemID}}"><b>Low Stack Quantity</b></label>
-                        <input type="number" class="form-control" id="lowStock-{{itemID}}" name="lowStock-{{itemID}}" min="0"
+                        <input type="number" class="form-control validate" id="lowStock-{{itemID}}" name="lowStock-{{itemID}}" min="0"
                             onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
-                            value="{{lowStockQuantity}}">
+                            value="{{lowStockQuantity}}">                         
                         <br>
-                        <p id="errorUpdate-{{itemID}}" style="color: red"><br></p>
+                        <p id="errorUpdate-{{itemID}}" class="error"><br></p>
                     </div>
                 </form>
             </div>

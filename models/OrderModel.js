@@ -78,11 +78,16 @@ var OrderSchema = new mongoose.Schema({
     },
     // customer order, list of items
     // to be changed, because the quantity of items also has to be considered
-    /*
+
     customerOrder: {
-        type: [orderedItem],
+        type: [{
+            id: String,
+            name: String,
+            amountPerPack: Number,
+            quantity: Number,
+        }],
         required: true
-    }, */
+    }, 
     // order status
     status: {
         type: String,
