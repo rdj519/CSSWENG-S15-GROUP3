@@ -26,6 +26,7 @@ router.get('/findProduct', isPrivate, stockInventoryController.findProduct);
 
 // Orders
 router.get('/orders', isPrivate, ordersController.getOrders);
+router.post('/addOrder', isPrivate, ordersController.addOrder);
 router.get('/orders/status:status', isPrivate, ordersController.getOrdersByStatus); // to be edited
 
 
