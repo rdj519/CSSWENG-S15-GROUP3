@@ -39,6 +39,7 @@ const ordersController = {
         var status = req.body.status;
         var deliveryDate = req.body.deliveryDate;
         var placedDate = req.body.placedDate;
+        var deliveryFee = req.body.deliveryFee;
     
         var order = {
             customerName: customerName,
@@ -50,12 +51,10 @@ const ordersController = {
             courier: courier,
             status: status,
             deliveryDate: deliveryDate,
+            deliveryFee: deliveryFee,
             placedDate: placedDate
         };
-
-        alert("hi");
         db.insertOne(Order, order, function(flag){
-            res.send("success");
         });
         
     },
