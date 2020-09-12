@@ -153,7 +153,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr data-toggle="modal" data-id="{{orderNumber}}" data-target="#{{orderNumber}}">
+										<tr data-toggle="modal" data-id="2" data-target="#order{{orderNumber}}">
 											<th scope="row">{{orderNumber}}</th>
 											<td>{{customerName}}</td>
 											<td>{{contactNumber}}</td>
@@ -163,13 +163,123 @@
 											<td>{{placedDate}}</td>
 											<td>{{deliveryDate}}</td>
 										</tr>
+
+										<!-- Order Modal -->
+										<div class="modal fade" id="order{{orderNumber}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog" role="document">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModalLabel">Order No. {{orderNumber}}</h5>
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										          <span aria-hidden="true">&times;</span>
+										        </button>
+										      </div>
+										      <div class="modal-body">
+
+										      	<label style="color:#A39E9C"> Contact Number </label>
+										      	<input type="text" class="form-control" id="contactNumberModal" value="{{contactNumber}}">
+										      	<label style="color:#A39E9C"> Home Address </label>
+										      	<input type="text" class="form-control" id="homeAddressModal" value="{{homeAddress}}">
+										      	<label style="color:#A39E9C"> City/Municipality </label>
+										      	<input type="text" class="form-control" id="cityModal" value="{{city}}">
+										      	<label style="color:#A39E9C"> Courier </label>
+										      	<div class="info">
+													<div class="dropdown">
+													  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													    {{courier}}
+													  </button>
+													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													    <a class="dropdown-item" href="#">GrabExpress</a>
+													    <a class="dropdown-item" href="#">Castilla</a>
+													    <a class="dropdown-item" href="#">LalaMove</a>
+													    <a class="dropdown-item" href="#">MrSpeedy</a>
+													  </div>
+													</div>
+										      	</div>	
+										      	<label style="color:#A39E9C"> Customer Name</label>
+										      	<input type="text" class="form-control" id="customerNameModal" value="{{customerName}}">
+										      	<label style="color:#A39E9C"> Date Placed</label>
+										      	<input class= "info" type="date" id="placedDateModal" name="trip-start" value="{{placedDate}}" readonly>		
+										      	<label style="color:#A39E9C"> Delivery Date</label>
+										      	<input class= "info" type="date" id="deliveryDateModal" name="trip-start" value="{{deliveryDate}}">							  
+										      	<label style="color:#A39E9C"> Payment Method</label>
+										      	<div class="info">
+													<div class="dropdown">
+													  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													    {{paymentMethod}}
+													  </button>
+													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													    <a class="dropdown-item" href="#">GCash</a>
+													    <a class="dropdown-item" href="#">CoD</a>
+													    <a class="dropdown-item" href="#">PayMaya</a>
+													  </div>
+													</div>
+										      	</div>	
+										      	<label style="color:#A39E9C"> Status</label>
+										      	<div class="info">
+													<div class="dropdown">
+													  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													    {{status}}
+													  </button>
+													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													  	<a class="dropdown-item" href="#">Confirmed</a>
+													    <a class="dropdown-item" href="#">Paid</a>
+													    <a class="dropdown-item" href="#">Delivering</a>
+													    <a class="dropdown-item" href="#">Completed</a>
+													    <a class="dropdown-item" href="#">Cancelled</a>
+													  </div>
+													</div>
+										      	</div>									  
+
+										      	<!-- table for ordered products -->
+										      	<div class="info">
+										      		<!--
+													    <table class="table table-hover">
+															<thead>
+																<tr>
+																	<th scope="col">Product</th>
+																	<th scope="col">Quantity</th>
+																	<th scope="col">Price</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<th scope="row">Pork Siomai</th>
+																	<td>8</td>
+																	<td>530</td>
+																</tr>
+																<tr>
+																	<th scope="row">Gyoza</th>
+																	<td>3</td>
+																	<td>130</td>
+																</tr>
+															</tbody>
+													</table>
+												-->
+												</div>
+												<label style="color:#A39E9C"> Overall Price</label>
+										      	<input type="text" class="form-control" id="overallPriceModal" value="{{productTotal}}">		
+										      	<label style="color:#A39E9C"> Delivery Fee</label>
+										      	<input type="text" class="form-control" id="deliveryFeeModal" value="{{deliveryFee}}">
+										      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+										      	<input type="text" class="form-control" id="totalPriceModal" style="font-weight:bold;"  value="0">
+										      </div>
+										      <div class="modal-footer">
+												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
+												  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
+												  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												  <button id="saveChangesModal" type="button" class="btn btn-primary">Save changes</button>
+										      </div>
+										    </div>
+										  </div>
+										</div>
+                                                <!-- end -->
 										{{/each}} 
 									</tbody> 
 								</table>
 							</div>
 
 							
-
 							<!-- Modal For Deleting Order -->
 							<div class="modal fade" id="deleteOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							  <div class="modal-dialog" role="document">
@@ -192,106 +302,7 @@
 							  </div>
 							</div>
 
-							<!-- Modal For Orders-->
-							<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLabel">Order No. 1</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">
-
-							      	<label style="color:#A39E9C"> Contact Number </label>
-							      	<input type="text" class="form-control" id="contactNumberModal" value="0">
-							      	<label style="color:#A39E9C"> Home Address </label>
-							      	<input type="text" class="form-control" id="homeAddressModal" value="0">
-							      	<label style="color:#A39E9C"> City/Municipality </label>
-							      	<input type="text" class="form-control" id="cityModal" value="0">
-							      	<label style="color:#A39E9C"> Courier </label>
-							      	<div class="info">
-										<div class="dropdown">
-										  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    Castilla
-										  </button>
-										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										    <a class="dropdown-item" href="#">GrabExpress</a>
-										  </div>
-										</div>
-							      	</div>	
-							      	<label style="color:#A39E9C"> Customer Name</label>
-							      	<input type="text" class="form-control" id="customerNameModal" value="0">
-							      	<label style="color:#A39E9C"> Date Placed</label>
-							      	<input class= "info" type="date" id="placedDateModal" name="trip-start" value="2020-08-15" readonly>		
-							      	<label style="color:#A39E9C"> Delivery Date</label>
-							      	<input class= "info" type="date" id="deliveryDateModal" name="trip-start" value="2020-08-20">							  
-							      	<label style="color:#A39E9C"> Payment Method</label>
-							      	<div class="info">
-										<div class="dropdown">
-										  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    CoD
-										  </button>
-										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										    <a class="dropdown-item" href="#">GCash</a>
-										  </div>
-										</div>
-							      	</div>	
-							      	<label style="color:#A39E9C"> Status</label>
-							      	<div class="info">
-										<div class="dropdown">
-										  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    Confirmed
-										  </button>
-										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										    <a class="dropdown-item" href="#">Paid</a>
-										    <a class="dropdown-item" href="#">Delivering</a>
-										    <a class="dropdown-item" href="#">Completed</a>
-										    <a class="dropdown-item" href="#">Cancelled</a>
-										  </div>
-										</div>
-							      	</div>									      	
-							      	<!-- table for ordered products -->
-								    <table class="table table-hover">
-										<thead>
-											<tr>
-												<th scope="col">Product</th>
-												<th scope="col">Quantity</th>
-												<th scope="col">Price</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<th scope="row">Pork Siomai</th>
-												<td>8</td>
-												<td>530</td>
-											</tr>
-											<tr>
-												<th scope="row">Gyoza</th>
-												<td>3</td>
-												<td>130</td>
-											</tr>
-										</tbody>
-									</table>
-									<label style="color:#A39E9C"> Overall Price</label>
-							      	<input type="text" class="form-control" id="overallPriceModal" value="0">		
-							      	<label style="color:#A39E9C"> Delivery Fee</label>
-							      	<input type="text" class="form-control" id="deliveryFeeModal" value="0">
-							      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
-							      	<input type="text" class="form-control" id="totalPriceModal" style="font-weight:bold;"  value="0">
-							      </div>
-							      <div class="modal-footer">
-									  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
-									  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;">Print</button>
-									  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									  <button id="saveChangesModal" type="button" class="btn btn-primary">Save changes</button>
-							      </div>
-							    </div>
-							  </div>
-							</div>
-
-
+							
 
 
 							<!-- Modal For Adding Order -->
