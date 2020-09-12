@@ -123,10 +123,18 @@
                                         </thead>
                                         <tbody id="tbody">
                                             {{#each products}}
-                                        
+                                                {{!-- <tr data-toggle="modal" data-id="2" data-target="#{{itemID}}">
+                                                    <th scope="col" id="pnum1"> {{itemID}}</th>
+                                                    <td id="">{{name}}</td>
+                                                    <td id="">{{amountPerPack}}</td>
+                                                    <td id="">{{quantity}}</td>
+                                                    <td id="">{{price}}</td>
+                                                    <td id="">{{lowStockQuantity}}</td>
+                                                    <td><input type="checkbox" name="record"></td>
+                                                </tr> --}}
                                                 {{> productRow pitemID=_id pname=name pamountPerPack=amountPerPack pquantity=quantity pprice=price plowStockQuantity=lowStockQuantity}}
                                                 {{> productModal itemID=_id name=name amountPerPack=amountPerPack quantity=quantity price=price lowStockQuantity=lowStockQuantity}}
-                                                
+                                                <!-- Modal for Products -->
                                                
 
                                                 {{!-- <div class="modal fade" id="delete{{itemID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
