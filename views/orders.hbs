@@ -61,33 +61,36 @@
 										  </div>
 										</div>
 								</div>
-								<div class="col-7">
+								<div class="col-2">
 									
 									<!-- Filter button -->
 									<div class="dropdown">
-										<button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											Filter by
-										</button>
+										<button class="btn btn-primary dropdown-toggle" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
 										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											<li class="dropdown-submenu">
+												<li><a class="dropdown-item" href="#">all</a></li>
 												<a class="dropdown-item dropdown-toggle" href="#">Status</a>
 												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#">Confirmed</a></li>
-													<li><a class="dropdown-item" href="#">Paid</a></li>
-													<li><a class="dropdown-item" href="#">Delivering</a></li>
-													<li><a class="dropdown-item" href="#">Completed</a></li>
-													<li><a class="dropdown-item" href="#">Cancelled</a></li>
+													<li><a class="dropdown-item" href="#">confirmed</a></li>
+													<li><a class="dropdown-item" href="#">paid</a></li>
+													<li><a class="dropdown-item" href="#">delivering</a></li>
+													<li><a class="dropdown-item" href="#">completed</a></li>
+													<li><a class="dropdown-item" href="#">cancelled</a></li>
 												</ul>
 												<a class="dropdown-item dropdown-toggle" href="#">Payment Method</a>
 												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#">Cash On Delivery</a></li>
-													<li><a class="dropdown-item" href="#">GCash</a></li>
+													<li><a class="dropdown-item" href="#">cod</a></li>
+													<li><a class="dropdown-item" href="#">gcash</a></li>
+													<li><a class="dropdown-item" href="#">paymaya</a></li>
 												</ul>
 												<a class="dropdown-item dropdown-toggle" href="#">Courier</a>
 												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#">Castilla</a></li>
-													<li><a class="dropdown-item" href="#">GrabExpress</a></li>
+													<li><a class="dropdown-item" href="#">castilla</a></li>
+													<li><a class="dropdown-item" href="#">grabexpress</a></li>
+													<li><a class="dropdown-item" href="#">mrspeedy</a></li>
+													<li><a class="dropdown-item" href="#">lalamove</a></li>
 												</ul>
+												<!--
 												<a class="dropdown-item dropdown-toggle" href="#">City/Municipality</a>
 												<ul class="dropdown-menu">
 													<a class="dropdown-item" href="#">
@@ -106,9 +109,13 @@
 												<ul class="dropdown-menu">
 													<li><a class="dropdown-item" href="#"><input type="date" id="defaultForm-pass" class="form-control validate"></a></li>
 												</ul>
+												-->
 											</li>
 										</ul>
 									</div>
+								</div>
+								<div class="col-5">
+										<button class="btn btn-light btn-outline-secondary" type="button" id="filterActivate">Go</button>
 								</div>
 								<div class="col-4">
 									<div class="row">
@@ -146,7 +153,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr data-toggle="modal" data-id="2" data-target="#order{{_id}}">
+										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}">
 											<th scope="row">{{customerName}}</th>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
@@ -256,7 +263,7 @@
 										      </div>
 										      <div class="modal-footer">
 												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
-												  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;" onclick="createPdf($(this).parent().parent().parent().parent().attr('id'))">Print</button>
+												  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;" onclick="createPdf()">Print</button>
 												  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 												  <button id="saveChangesModal" type="button" class="btn btn-primary">Save changes</button>
 										      </div>
@@ -473,6 +480,115 @@
 
 
 <script>
+
+$("#filterActivate").click(function() {
+	/* status */
+    if($("#filterButton").html() == "confirmed"){
+        $(".confirmed").show();
+        $(".paid").hide();
+        $(".delivering").hide();
+        $(".completed").hide();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "paid"){
+        $(".confirmed").hide();
+        $(".paid").show();
+        $(".delivering").hide();
+        $(".completed").hide();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "delivering"){
+        $(".confirmed").hide();
+        $(".paid").hide();
+        $(".delivering").show();
+        $(".completed").hide();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "completed"){
+        $(".confirmed").hide();
+        $(".paid").hide();
+        $(".delivering").hide();
+        $(".completed").show();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "cancelled"){
+        $(".confirmed").hide();
+        $(".paid").hide();
+        $(".delivering").hide();
+        $(".completed").hide();
+        $(".cancelled").show();
+        $("#filterButton").html("Filter By");
+    }
+    /* courier */
+    else if($("#filterButton").html() == "castilla"){
+        $(".castilla").show();
+        $(".lalamove").hide();
+        $(".mrspeedy").hide();
+        $(".grabexpress").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "lalamove"){
+        $(".castilla").hide();
+        $(".lalamove").show();
+        $(".mrspeedy").hide();
+        $(".grabexpress").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "mrspeedy"){
+        $(".castilla").hide();
+        $(".lalamove").hide();
+        $(".mrspeedy").show();
+        $(".grabexpress").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "grabexpress"){
+        $(".castilla").hide();
+        $(".lalamove").hide();
+        $(".mrspeedy").hide();
+        $(".grabexpress").show();
+        $("#filterButton").html("Filter By");
+    }
+    /* payment method*/
+   	else if($("#filterButton").html() == "cod"){
+        $(".cod").show();
+        $(".gcash").hide();
+        $(".paymaya").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "gcash"){
+        $(".cod").hide();
+        $(".gcash").show();
+        $(".paymaya").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "paymaya"){
+        $(".cod").hide();
+        $(".gcash").hide();
+        $(".paymaya").show();
+        $("#filterButton").html("Filter By");
+    }
+    /* all */
+    else if($("#filterButton").html() == "all"){
+		$(".confirmed").show();
+        $(".paid").show();
+        $(".delivering").show();
+        $(".completed").show();
+        $(".cancelled").show();
+    	$(".castilla").show();
+        $(".lalamove").show();
+        $(".mrspeedy").show();
+        $(".grabexpress").show();
+        $(".cod").show();
+        $(".gcash").show();
+        $(".paymaya").show();
+        $("#filterButton").html("Filter By");
+    }
+    //== all
+});
 /* print pdf */
     const { PDFDocument, StandardFonts, rgb } = PDFLib
     async function createPdf(data) {
@@ -602,7 +718,6 @@
 			element.append(primaryTag);
 			
 	}); 
-	*/
 	$("#change1").click(function() {
                 var name = $("#customerNameModal1").val();
                 var contactNumber = $("#contactNumberModal1").val();
@@ -615,7 +730,7 @@
                
                 
                 if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
-                    /* modal values */
+
                     $("#customerNameModal1").text(name);
                     $("#contactNumberModal1").val(contactNumber);
                     $("#deliveryDateModal1").val(deliveryDate);
@@ -624,7 +739,7 @@
                     $("#statusModal1").val(status);
                     $("#courierModal1").val(courier);
                     $("#paymentMethodModal1").val(paymentMethod);
-                    /* row values */
+
                     $("#rowName1").html(name);
                     $("#rowContact1").html(contactNumber);
                     $("#rowDeliveryDate1").html(deliveryDate);
@@ -634,135 +749,10 @@
                     $("#orderOneModal").modal("hide");
                 }
                 else {
-                    /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
                     $("#orderOneModal").modal({"backdrop": "static"});
                 }
             });
-	$("#change2").click(function() {
-                var name = $("#customerNameModal2").val();
-                var contactNumber = $("#contactNumberModal2").val();
-                var deliveryDate = $("#deliveryDateModal2").val();
-                var homeAddress = $("#homeAddressModal2").val();
-                var city = $("#cityModal2").val();
-                var status = $("#statusModal2").text();
-                var courier = $("#courierModal2").text();
-                var paymentMethod = $("#paymentMethodModal2").text();
-               
-                    
-                if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
-                    /* modal values */
-                    $("#customerNameModal2").text(name);
-                    $("#contactNumberModal2").val(contactNumber);
-                    $("#deliveryDateModal2").val(deliveryDate);
-                    $("#homeAddressModal2").text(homeAddress);
-                    $("#cityModal2").text(city);
-                    /* row values */
-                    $("#rowName2").html(name);
-                    $("#rowContact2").html(contactNumber);
-                    $("#rowDeliveryDate2").html(deliveryDate);
-                    $("#rowHomeAddress2").html(homeAddress);
-                    $("#rowStatus2").html(status);
-                    $("#rowCourier2").html(courier);
-                    $("#orderTwoModal").modal("hide");
-                }
-                else {
-                    /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
-                    $("#orderTwoModal").modal({"backdrop": "static"});
-                }
-            });
-	$("#change3").click(function() {
-                var name = $("#customerNameModal3").val();
-                var contactNumber = $("#contactNumberModal3").val();
-                var deliveryDate = $("#deliveryDateModal3").val();
-                var homeAddress = $("#homeAddressModal3").val();
-                var city = $("#cityModal3").val();
-               	var status = $("#statusModal3").text();
-                var courier = $("#courierModal3").text();
-                var paymentMethod = $("#paymentMethodModal3").text();
-                    
-                if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
-                    /* modal values */
-                    $("#customerNameModal3").text(name);
-                    $("#contactNumberModal3").val(contactNumber);
-                    $("#deliveryDateModal3").val(deliveryDate);
-                    $("#homeAddressModal3").text(homeAddress);
-                    $("#cityModal3").text(city);
-                    /* row values */
-                    $("#rowName3").html(name);
-                    $("#rowContact3").html(contactNumber);
-                    $("#rowDeliveryDate3").html(deliveryDate);
-                    $("#rowHomeAddress3").html(homeAddress);
-                    $("#rowStatus3").html(status);
-                    $("#rowCourier3").html(courier);
-                    $("#orderThreeModal").modal("hide");
-                }
-                else {
-                    /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
-                    $("#orderThreeModal").modal({"backdrop": "static"});
-                }
-            });
-	$("#change4").click(function() {
-                var name = $("#customerNameModal4").val();
-                var contactNumber = $("#contactNumberModal4").val();
-                var deliveryDate = $("#deliveryDateModal4").val();
-                var homeAddress = $("#homeAddressModal4").val();
-                var city = $("#cityModal4").val();
-               	var status = $("#statusModal4").text();
-                var courier = $("#courierModal4").text();
-                var paymentMethod = $("#paymentMethodModal4").text();
-                    
-                if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
-                    /* modal values */
-                    $("#customerNameModal4").text(name);
-                    $("#contactNumberModal4").val(contactNumber);
-                    $("#deliveryDateModal4").val(deliveryDate);
-                    $("#homeAddressModal4").text(homeAddress);
-                    $("#cityModal4").text(city);
-                    /* row values */
-                    $("#rowName4").html(name);
-                    $("#rowContact4").html(contactNumber);
-                    $("#rowDeliveryDate4").html(deliveryDate);
-                    $("#rowHomeAddress4").html(homeAddress);
-                    $("#rowStatus4").html(status);
-                    $("#rowCourier4").html(courier);
-                    $("#orderFourModal").modal("hide");
-                }
-                else {
-                    /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
-                    $("#orderFourModal").modal({"backdrop": "static"});
-                }
-            });
-	$("#change5").click(function() {
-                var name = $("#customerNameModal5").val();
-                var contactNumber = $("#contactNumberModal5").val();
-                var deliveryDate = $("#deliveryDateModal5").val();
-                var homeAddress = $("#homeAddressModal5").val();
-                var city = $("#cityModal5").val();
-               	var status = $("#statusModal5").text();
-                var courier = $("#courierModal5").text();
-                var paymentMethod = $("#paymentMethodModal5").text();
-                    
-                if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
-                    /* modal values */
-                    $("#customerNameModal5").text(name);
-                    $("#contactNumberModal5").val(contactNumber);
-                    $("#deliveryDateModal5").val(deliveryDate);
-                    $("#homeAddressModal5").text(homeAddress);
-                    $("#cityModal5").text(city);
-                    /* row values */
-                    $("#rowName5").html(name);
-                    $("#rowContact5").html(contactNumber);
-                    $("#rowDeliveryDate5").html(deliveryDate);
-                    $("#rowHomeAddress5").html(homeAddress);
-                    $("#rowStatus5").html(status);
-                    $("#rowCourier5").html(courier);
-                    $("#orderFiveModal").modal("hide");
-                }
-                else {
-                    /* $("#errorUpdate1").text("Changes are not saved. Fill in all fields."); */
-                    $("#orderFiveModal").modal({"backdrop": "static"});
-                }
-            });
+	
 	$(function(){
 	  $('#siomaiDumplingInput').on('input', function() {
 	  		var element = $("#siomaiDumpling");
@@ -780,87 +770,8 @@
 	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
 	  		totalElement.text(parseFloat(totalElement.val()));
 	  });
-	  $('#lumpiaShanghaiInput').on('input', function() {
-	  		var element = $("#lumpiaShanghai");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 205
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	  $('#gyozaInput').on('input', function() {
-	  		var element = $("#gyoza");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 200
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	  $('#beefSiomaiInput').on('input', function() {
-	  		var element = $("#beefSiomai");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 220
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	  $('#chickenSiomaiInput').on('input', function() {
-	  		var element = $("#chickenSiomai");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 210
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	  $('#siopaoMiniInput').on('input', function() {
-	  		var element = $("#siopaoMini");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 140
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	  $('#siopaoAsadoInput').on('input', function() {
-	  		var element = $("#siopaoAsado");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 240
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	  $('#siopaoBolaBolaInput').on('input', function() {
-	  		var element = $("#siopaoBolaBola");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 240
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	  $('#holsinSauceInput').on('input', function() {
-	  		var element = $("#holsinSauce");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 60
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	  $('#chiliSauceInput').on('input', function() {
-	  		var element = $("#chiliSauce");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 60
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	  $('#sharksfinInput').on('input', function() {
-	  		var element = $("#sharksfin");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 80
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	});
+	}); 
+		*/
 </script>
 
 
