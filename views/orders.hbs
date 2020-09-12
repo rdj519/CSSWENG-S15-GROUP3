@@ -256,7 +256,7 @@
 										      </div>
 										      <div class="modal-footer">
 												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
-												  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;" onclick="createPdf()">Print</button>
+												  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;" onclick="createPdf($(this).parent().parent().parent().parent().attr('id'))">Print</button>
 												  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 												  <button id="saveChangesModal" type="button" class="btn btn-primary">Save changes</button>
 										      </div>
@@ -473,7 +473,7 @@
 <script>
 /* print pdf */
     const { PDFDocument, StandardFonts, rgb } = PDFLib
-    async function createPdf() {
+    async function createPdf(data) {
       // Create a new PDFDocument
       const pdfDoc = await PDFDocument.create()
       // Embed the Helvetica
@@ -493,14 +493,15 @@
         font: helveticaBold,
         color: rgb(0, 0, 0),
       });
-      const fontSizeBody = 14
-      var name =  ($("#customerNameModal").val()).toString();
-      var number = ($("#contactNumberModal").val()).toString();
-      var address = ($("#homeAddressModal").val()).toString() + ", " + ($("#cityModal").val()).toString();
-      var placed =  ($("#placedDateModal").val());
-      var deliverydate = ($("#deliveryDateModal").val());
-      var courier = ($("#courierModal").val()).toString();
-      var status = ($("#statusModal").val()).toString();
+      const fontSizeBody = 14;
+	  var modalId = ("#" + data);
+	  var name =  ($((modalId +" #titleModal")).text()).toString();
+      var number = ($((modalId + " #contactNumberModal")).val()).toString();
+      var address = ($((modalId +" #homeAddressModal")).val()).toString() + ", " + ($((modalId +" #cityModal")).val()).toString();
+      var placed =  ($((modalId +" #placedDateModal")).val());
+      var deliverydate = ($((modalId +" #deliveryDateModal")).val());
+      var courier = ($((modalId +" #courierModal")).val()).toString();
+      var status = ($((modalId +" #statusModal")).val()).toString();
       page.drawText("\n\nName:                       " + name + 
                     "\nContact Number:      " + number +
                     "\nAddress:                   " + address + 
