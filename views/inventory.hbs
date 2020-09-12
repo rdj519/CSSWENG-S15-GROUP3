@@ -118,9 +118,8 @@
                                             </tr>
                                         </thead>
                                         <tbody id="tbody">
-                                            
                                             {{#each products}}
-                                                <tr data-toggle="modal" data-id="2" data-target="#stockOneModal">
+                                                <tr data-toggle="modal" data-id="2" data-target="#{{itemID}}">
                                                     <th scope="col" id="pnum1"> {{itemID}}</th>
                                                     <td id="name1">{{name}}</td>
                                                     <td id="amt1">{{amountPerPack}}</td>
@@ -129,464 +128,53 @@
                                                     <td id="low1">{{lowStockQuantity}}</td>
                                                     <td><input type="checkbox" name="record"></td>
                                                 </tr>
+                                            
+                                                <!-- Modal for Products -->
+                                                <div class="modal fade" id="{{itemID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Pork Siomai</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form>
+                                                                    <div class="form-group">
+                                                                        <label for="productName1"><b>Product Name</b></label>
+                                                                        <label id="productName1">{{name}}</label>
+                                                                        <br>
+                                                                        <label for="amountPerPack1"><b>{{ammountPerPack}}</b></label>
+                                                                        <label id="amountPerPack1">60</label>
+                                                                        <br>
+                                                                        <label for="stockQuantity1"><b>Stock Quantity</b></label>
+                                                                        <input type="number" class="form-control" id="stockQuantity1"  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{quantity}}">
+                                                                        <br>
+                                                                        <label for="pricePerPack1"><b>Price per Pack</b></label>
+                                                                        <input type="number" class="form-control" id="pricePerPack1" value="{{price}}">
+                                                                        <br>
+                                                                        <label for="lowStack1"><b>Low Stack Quantity</b></label>
+                                                                        <input type="number" class="form-control" id="lowStack1"  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{lowStockQuantity}}">
+                                                                        <br>
+                                                                        <p id="errorUpdate1" style="color: red"><br></p>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                      
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="button" id="change1" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end -->
                                             {{/each}}
-                                            {{!-- <tr data-toggle="modal" data-id="2" data-target="#stockTwoModal">
-                                                <th scope="col" id="pnum2"> 2 </th>
-                                                <td id="name2">Lumpiang Shanghai</td>
-                                                <td id="amt2">60</td>
-                                                <td id="stock2">12</td>
-                                                <td id="price2">P205</td>
-                                                <td id="low2">10</td>
-                                                <td><input type="checkbox" name="record"></td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockThreeModal">
-                                                <th scope="col" id="pnum3"> 3 </th>
-                                                <td id="name3">Gyoza</td>
-                                                <td id="amt3">60</td>
-                                                <td id="stock3">26</td>
-                                                <td id="price3">P200</td>
-                                                <td id="low3">10</td>
-                                                <td><input type="checkbox" name="record"></td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockFourModal">
-                                                <th scope="col" id="pnum4"> 4 </th>
-                                                <td id="name4">Sharksfin Dumplings</td>
-                                                <td id="amt4">60</td>
-                                                <td id="stock4">45</td>
-                                                <td id="price4">P200</td>
-                                                <td id="low4">10</td>
-                                                <td><input type="checkbox" name="record"></td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockFiveModal">
-                                                <th scope="col" id="pnum5"> 5 </th>
-                                                <td id="name5">Beef Siomai</td>
-                                                <td id="amt5">60</td>
-                                                <td id="stock5">4</td>
-                                                <td id="price5">P220</td>
-                                                <td id="low5">10</td>
-                                                <td><input type="checkbox" name="record"></td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockSixModal">
-                                                <th scope="col" id="pnum6"> 6 </th>
-                                                <td id="name6">Siopao (Asado)</td>
-                                                <td id="amt6">48</td>
-                                                <td id="stock6">3</td>
-                                                <td id="price6">P240</td>
-                                                <td id="low6">6</td>
-                                                <td><input type="checkbox" name="record"></td>
-                                            </tr>  
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockSevenModal">
-                                                <th scope="col" id="pnum7"> 7 </th>
-                                                <td id="name7">Siopao (Bola-bola)</td>
-                                                <td id="amt7">48</td>
-                                                <td id="stock7">15</td>
-                                                <td id="price7">P240</td>
-                                                <td id="low7">6</td>
-                                                <td><input type="checkbox" name="record"></td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockEightModal">
-                                                <th scope="col" id="pnum8"> 8 </th>
-                                                <td id="name8">Hoisin Sauce</td>
-                                                <td id="amt8">5</td>
-                                                <td id="stock8">22</td>
-                                                <td id="price8">P60</td>
-                                                <td id="low8">10</td>
-                                                <td><input type="checkbox" name="record"></td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockNineModal">
-                                                <th scope="col" id="pnum6"> 9 </th>
-                                                <td id="name9">Chili Sauce</td>
-                                                <td id="amt9">5</td>
-                                                <td id="stock9">13</td>
-                                                <td id="price9">P60</td>
-                                                <td id="low9">10</td>
-                                                <td><input type="checkbox" name="record"></td>
-                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
 
-                                <!-- Modal for Products -->
-
-
-
-
-
-
-
-
-
-
-
-                               <!--1 Pork siomai -->
-                                <div class="modal fade" id="stockOneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Pork Siomai</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName1"><b>Product Name</b></label>
-                                                        <label id="productName1">Pork Siomai</label>
-                                                        <br>
-                                                        <label for="amountPerPack1"><b>Amount per Pack</b></label>
-                                                        <label id="amountPerPack1">60</label>
-                                                        <br>
-                                                        <label for="stockQuantity1"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity1"  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="14">
-                                                        <br>
-                                                        <label for="pricePerPack1"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack1" value="200">
-                                                        <br>
-                                                        <label for="lowStack1"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack1"  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
-                                                        <br>
-                                                        <p id="errorUpdate1" style="color: red"><br></p>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                      
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" id="change1" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--2 Lumpiang Siomai -->
-                                <div class="modal fade" id="stockTwoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Lumpiang Shanghai</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName2"><b>Product Name</b></label>
-                                                        <label id="productName2">Lumpiang Shanghai</label>
-                                                        <br>
-                                                        <label for="amountPerPack2"><b>Amount per Pack</b></label>
-                                                        <label id="amountPerPack2">60</label>
-                                                        <br>
-                                                        <label for="stockQuantity2"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity2" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="12">
-                                                        <br>
-                                                        <label for="pricePerPack2"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack2" value="205">
-                                                        <br>
-                                                        <label for="lowStack2"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack2" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
-                                                        <br>
-                                                        <p id="errorUpdate2" style="color: red"><br></p>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" id="change2" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--3 Gyoza -->
-                                <div class="modal fade" id="stockThreeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Gyoza</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName3"><b>Product Name</b></label>
-                                                        <label id="productName3">Gyoza</label>
-                                                        <br>
-                                                        <label for="amountPerPack3"><b>Amount per Pack</b></label>
-                                                        <label id="amountPerPack3">60</label>
-                                                        <br>
-                                                        <label for="stockQuantity3"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity3" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="26">
-                                                        <br>
-                                                        <label for="pricePerPack3"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack3" value="200">
-                                                        <br>
-                                                        <label for="lowStack3"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack3" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
-                                                        <br>
-                                                        <p id="errorUpdate3" style="color: red"><br></p>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" id="change3" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 4 Sharksfin Dumplings -->
-                                <div class="modal fade" id="stockFourModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Sharksfin Dumplings</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName4"><b>Product Name</b></label>
-                                                        <label id="productName4">Sharksfin Dumplings</label>
-                                                        <br>
-                                                        <label for="amountPerPack4"><b>Amount per Pack</b></label>
-                                                        <label id="amountPerPack4">60</label>
-                                                        <br>
-                                                        <label for="stockQuantity4"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity4" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="45">
-                                                        <br>
-                                                        <label for="pricePerPack4"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack4" value="200">
-                                                        <br>
-                                                        <label for="lowStack4"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack4" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
-                                                        <br>
-                                                        <p id="errorUpdate4" style="color: red"><br></p>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" id="change4" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 5 Beef Siomai -->
-                                <div class="modal fade" id="stockFiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Beef Siomai</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName5"><b>Product Name</b></label>
-                                                        <label id="productName5">Beef Siomai</label>
-                                                        <br>
-                                                        <label for="amountPerPack5"><b>Amount per Pack</b></label>
-                                                        <label id="amountPerPack5">60</label>
-                                                        <br>
-                                                        <label for="stockQuantity5"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity5" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="4">
-                                                        <br>
-                                                        <label for="pricePerPack5"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack5" value="220">
-                                                        <br>
-                                                        <label for="lowStack5"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack5" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
-                                                        <br>
-                                                        <p id="errorUpdate5" style="color: red"><br></p>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>              
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" id="change5" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 6 Siopao (Asado) -->
-                                <div class="modal fade" id="stockSixModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Siopao (Asado)</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName6"><b>Product Name</b></label>
-                                                        <label id="productName6">Siopao (Asado)</label>
-                                                        <br>
-                                                        <label for="amountPerPack6"><b>Amount per Pack</b></label>
-                                                        <label id="amountPerPack6">48</label>
-                                                        <br>
-                                                        <label for="stockQuantity6"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity6" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="3">
-                                                        <br>
-                                                        <label for="pricePerPack6"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack6" value="240">
-                                                        <br>
-                                                        <label for="lowStack6"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack6" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="6">
-                                                        <br>
-                                                        <p id="errorUpdate6" style="color: red"><br></p>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" id="change6" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 7 Siopao (Bola-bola) -->
-                                <div class="modal fade" id="stockSevenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Siopao (Bola-bola)</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName7"><b>Product Name</b></label>
-                                                        <label id="productName7">Siopao (Bola-bola)</label>
-                                                        <br>
-                                                        <label for="amountPerPack7"><b>Amount per Pack</b></label>
-                                                        <label id="amountPerPack7">48</label>
-                                                        <br>
-                                                        <label for="stockQuantity7"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity7" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="15">
-                                                        <br>
-                                                        <label for="pricePerPack7"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack7" value="240">
-                                                        <br>
-                                                        <label for="lowStack7"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack7" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="6">
-                                                        <br>
-                                                        <p id="errorUpdate7" style="color: red"><br></p>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" id="change7" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 8 Hoisin Sauce -->
-                                <div class="modal fade" id="stockEightModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Hoisin Sauce</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName8"><b>Product Name</b></label>
-                                                        <label id="productName8">Hoisin Sauce</label>
-                                                        <br>
-                                                        <label for="amountPerPack8"><b>Amount per Pack</b></label>
-                                                        <label id="amountPerPack8">5</label>
-                                                        <br>
-                                                        <label for="stockQuantity8"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity8" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="22">
-                                                        <br>
-                                                        <label for="pricePerPack8"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack8" value="60">
-                                                        <br>
-                                                        <label for="lowStack8"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack8" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
-                                                        <br>
-                                                        <p id="errorUpdate8" style="color: red"><br></p>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" id="change8" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 9 Chili Sauce -->
-                                <div class="modal fade" id="stockNineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Chili Sauce</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="productName9"><b>Product Name</b></label>
-                                                        <label id="productName9">Chili Sauce</label>
-                                                        <br>
-                                                        <label for="amountPerPack9"><b>Amount per Pack</b></label>
-                                                        <label id="amountPerPack9">5</label>
-                                                        <br>
-                                                        <label for="stockQuantity9"><b>Stock Quantity</b></label>
-                                                        <input type="number" class="form-control" id="stockQuantity9" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="13">
-                                                        <br>
-                                                        <label for="pricePerPack9"><b>Price per Pack</b></label>
-                                                        <input type="number" class="form-control" id="pricePerPack9" value="60">
-                                                        <br>
-                                                        <label for="lowStack9"><b>Low Stack Quantity</b></label>
-                                                        <input type="number" class="form-control" id="lowStack9" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="10">
-                                                        <br>
-                                                        <p id="errorUpdate9" style="color: red"><br></p>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct">Delete Product</button>                  
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" id="change9" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end -->
 
                                 <!-- Delete Product Modal -->
                                 <div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

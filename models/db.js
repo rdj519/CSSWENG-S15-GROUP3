@@ -1,7 +1,7 @@
 //db.js
 const mongoose = require('mongoose');
 
-const url = 'mongodb+srv://siopauadmin:admin@siopau.mcpuj.azure.mongodb.net/SioPau?retryWrites=true&w=majority';
+const url = 'mongodb://siopauadmin:admin@siopau-shard-00-00.mcpuj.azure.mongodb.net:27017,siopau-shard-00-01.mcpuj.azure.mongodb.net:27017,siopau-shard-00-02.mcpuj.azure.mongodb.net:27017/SioPau?ssl=true&replicaSet=atlas-kbuv8e-shard-0&authSource=admin&retryWrites=true&w=majority';
 const User = require('./UserModel.js');
 
 const options = {

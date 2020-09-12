@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 //defines the schema for collection 'items'
 var ItemSchema = new mongoose.Schema({
     itemID: {
-        type: Number,
+        type: String,
         ref: 'User',
         required: true
     },
