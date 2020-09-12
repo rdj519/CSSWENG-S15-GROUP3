@@ -1,10 +1,17 @@
 const db = require('../models/db.js');
+const Product = require('../models/ItemModel.js');
 
 const stockInventoryController = {
-    getInventory: function(req,res){
-        res.render('inventory', {
-            title:  'Stock Inventory',
+    getProducts: function(req, res) {
+        var query = {};
+        var projection = {};
+
+        db.findMany(Product, query, projection, function(results) {
+            res.render('inventory', {
+                products: results
+            });
         });
+
     }
 }
 

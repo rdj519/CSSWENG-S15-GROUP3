@@ -20,7 +20,7 @@ const accountController = require('../controllers/accountController.js');
 router.get('/home', isPrivate, homeController.getHomePage);
 
 // Stock Inventory
-router.get('/inventory', isPrivate, stockInventoryController.getInventory);
+router.get('/inventory', isPrivate, stockInventoryController.getProducts);
 
 // Orders
 router.get('/orders', isPrivate, ordersController.getOrders);

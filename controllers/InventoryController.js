@@ -2,6 +2,7 @@
 
 const db = require('../models/db.js');
 const User = require('../models/UserModel.js');
+const Product = require('../models/ItemModel.js');
 
 const inventoryController = {
 /*
@@ -9,6 +10,8 @@ const inventoryController = {
 
     }
 */
+    
+
     updateProduct: async function(req, res) {
         try{
         console.log("update product");

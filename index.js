@@ -31,10 +31,9 @@ app.engine( 'hbs', exphbs({
 
 mongoose.set('useCreateIndex', true);
 
+hbs.registerPartials(__dirname + '/views/partials');
 app.use(express.urlencoded({extended: true}));
-
 app.use(express.static(__dirname + '/public'));
-
 app.use(session({
     secret: 'a',
     resave: true,
@@ -43,7 +42,6 @@ app.use(session({
         mongooseConnection: mongoose.connection
     })
 }));
-
 app.use('/', routes);
 app.use('/user', userRouter);
 

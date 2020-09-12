@@ -118,18 +118,19 @@
                                             </tr>
                                         </thead>
                                         <tbody id="tbody">
-                                        
-
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockOneModal">
-                                                <th scope="col" id="pnum1"> 1 </th>
-                                                <td id="name1">Pork Siomai</td>
-                                                <td id="amt1">60</td>
-                                                <td id="stock1">14</td>
-                                                <td id="price1">P200</td>
-                                                <td id="low1">10</td>
-                                                <td><input type="checkbox" name="record"></td>
-                                            </tr>
-                                            <tr data-toggle="modal" data-id="2" data-target="#stockTwoModal">
+                                            
+                                            {{#each products}}
+                                                <tr data-toggle="modal" data-id="2" data-target="#stockOneModal">
+                                                    <th scope="col" id="pnum1"> {{itemID}}</th>
+                                                    <td id="name1">{{name}}</td>
+                                                    <td id="amt1">{{amountPerPack}}</td>
+                                                    <td id="stock1">{{quantity}}</td>
+                                                    <td id="price1">{{price}}</td>
+                                                    <td id="low1">{{lowStockQuantity}}</td>
+                                                    <td><input type="checkbox" name="record"></td>
+                                                </tr>
+                                            {{/each}}
+                                            {{!-- <tr data-toggle="modal" data-id="2" data-target="#stockTwoModal">
                                                 <th scope="col" id="pnum2"> 2 </th>
                                                 <td id="name2">Lumpiang Shanghai</td>
                                                 <td id="amt2">60</td>
@@ -200,7 +201,7 @@
                                                 <td id="price9">P60</td>
                                                 <td id="low9">10</td>
                                                 <td><input type="checkbox" name="record"></td>
-                                            </tr>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
