@@ -18,7 +18,7 @@ const stockInventoryController = {
         var projection = {};
 
         db.findMany(Product, query, projection, function(results) {
-            console.log(results);
+
             res.send(results);
         });
     },

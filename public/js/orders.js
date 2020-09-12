@@ -1,21 +1,37 @@
 $(document).ready(function() {
+    $("#productTotal").val(0);
 
 
-    $("#buttonAddOrder").click(function(){
-        $.get('/getProductsSold', {}, function(data, status) {
-            // console.log(data);
-            for(var i = 0; i < data.length; i++) {
-                $("#productSold").append("<tr>");
-                $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "</th>");
-                $("#productSold").append("<td><input type='number' id=quantity-'" + data[i]._id + "class='form-control validate'></td>");
-                $("#productSold").append("<td><p id='" +  "price-" + data[i]._id + "' class='form-control validate'></p></td>");
-                $("#productSold").append("</tr>");
-                console.log("item added");
-            }
-
-        });
-
+    $.get('/getProductsSold', {}, function(data, status) {
+        for(var i = 0; i < data.length; i++) {
+            $("#productSold").append("<tr>");
+            $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "</th>");
+            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID =' "+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0></td>");
+            $("#productSold").append("<td><p id='" +  "price-" + data[i]._id + "' class='form-control validate productPrice'></p></td>");
+            $("#productSold").append("</tr>");
+        }
     });
+
+
+    $(document).on('change', ".productQuantity", function(){
+        var price = parseFloat($(this).attr('price'));
+        var id = $(this).attr('productID');
+        var qty = parseInt($(this).val());
+        var qtyID = "#price-"+ id.trim();
+    
+        $(qtyID).text(qty * price);
+
+        var sum = 0;
+
+        $('.productPrice').each(function() {
+            // var current = parseFloat($("#productTotal").val());
+            sum += parseFloat($(this).text()) || 0;
+        })
+        $("#productTotal").val(sum);
+        
+    })
+
+
     
 
     $("#submitOrder").click(function() {
@@ -30,9 +46,20 @@ $(document).ready(function() {
         var deliveryDate = $("#deliveryDate").val();
         var deliveryFee = $("#deliveryFee").val();
         var placedDate = new Date(); //current date 
+        var customerOrder = [];
+
+        $('.productQuantity').each(function() {
+            var productOrder = {
+                id: $(this).attr('productID'),
+                name: $(this).attr('productName'),
+
+                quantity: parseInt($(this).val()),
+            }
+            customerOrder.push(productOrder);
+        });
 
 
-        $.post('/addOrder',{customerName: customerName, contactNumber: contactNumber, homeAddress: homeAddress, city: city, productTotal: productTotal, paymentMethod: paymentMethod, courier: courier, status: status, deliveryDate: deliveryDate, deliveryFee: deliveryFee, placedDate: placedDate }, function(data, status) {
+        $.post('/addOrder',{customerName: customerName, contactNumber: contactNumber, homeAddress: homeAddress, city: city, productTotal: productTotal, paymentMethod: paymentMethod, courier: courier, status: status, deliveryDate: deliveryDate, deliveryFee: deliveryFee, placedDate: placedDate, customerOrder:customerOrder }, function(data, status) {
             /* resets value after */
             $("#customerName").val("");
             $("#contactNumber").val("");
