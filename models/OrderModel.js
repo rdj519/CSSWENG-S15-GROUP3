@@ -24,13 +24,13 @@ var OrderSchema = new mongoose.Schema({
     // name of customer
     customerName: {
         type: String,
-        minlength: 3,
+        minlength: 0,
         required: true
     },
     // contact number of customer
     contactNumber: {
         type: Number,
-        minlength: 11,
+        minlength: 0,
         required: true
     },
     // home address of customer
@@ -64,7 +64,7 @@ var OrderSchema = new mongoose.Schema({
     //  delivery fee
     deliveryFee: {
         type: Number,
-        required: true
+        required: false
     },
     // date placed
     placedDate: {

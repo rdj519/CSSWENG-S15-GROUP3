@@ -13,7 +13,6 @@ $(document).ready(function() {
         var deliveryDate = $("#deliveryDate").val();
         var placedDate = new Date(); //current date 
 
-        console.log(customerName);
 
         $.post('/addOrder',{customerName: customerName, contactNumber: contactNumber, homeAddress: homeAddress, city: city, productTotal: productTotal, paymentMethod: paymentMethod, courier: courier, status: status, deliveryDate: deliveryDate, placedDate: placedDate }, function(data, status) {
             /* resets value after */

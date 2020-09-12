@@ -40,6 +40,7 @@ const ordersController = {
         var deliveryDate = req.body.deliveryDate;
         var placedDate = req.body.placedDate;
     
+        
         var order = {
             customerName: customerName,
             contactNumber: contactNumber,
@@ -53,7 +54,8 @@ const ordersController = {
             placedDate: placedDate
         };
 
-        alert("hi");
+        console.log(order);
+        
         db.insertOne(Order, order, function(flag){
             res.send("success");
         });
