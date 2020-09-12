@@ -21,6 +21,7 @@ router.get('/home', isPrivate, homeController.getHomePage);
 
 // Stock Inventory
 router.get('/inventory', isPrivate, stockInventoryController.getProducts);
+router.post('/addProduct', isPrivate, stockInventoryController.addProduct);
 
 // Orders
 router.get('/orders', isPrivate, ordersController.getOrders);
