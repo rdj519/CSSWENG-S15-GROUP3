@@ -21,12 +21,6 @@ var orderedItem = new mongoose.Schema({
 
 /* defines the schema for collection `orders` */
 var OrderSchema = new mongoose.Schema({
-    // order number, identifier
-    orderNumber: {
-        type: Number,
-        required: true
-
-    },
     // name of customer
     customerName: {
         type: String,
