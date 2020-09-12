@@ -61,33 +61,36 @@
 										  </div>
 										</div>
 								</div>
-								<div class="col-7">
+								<div class="col-2">
 									
 									<!-- Filter button -->
 									<div class="dropdown">
-										<button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											Filter by
-										</button>
+										<button class="btn btn-primary dropdown-toggle" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
 										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											<li class="dropdown-submenu">
+												<li><a class="dropdown-item" href="#">all</a></li>
 												<a class="dropdown-item dropdown-toggle" href="#">Status</a>
 												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#">Confirmed</a></li>
-													<li><a class="dropdown-item" href="#">Paid</a></li>
-													<li><a class="dropdown-item" href="#">Delivering</a></li>
-													<li><a class="dropdown-item" href="#">Completed</a></li>
-													<li><a class="dropdown-item" href="#">Cancelled</a></li>
+													<li><a class="dropdown-item" href="#">confirmed</a></li>
+													<li><a class="dropdown-item" href="#">paid</a></li>
+													<li><a class="dropdown-item" href="#">delivering</a></li>
+													<li><a class="dropdown-item" href="#">completed</a></li>
+													<li><a class="dropdown-item" href="#">cancelled</a></li>
 												</ul>
 												<a class="dropdown-item dropdown-toggle" href="#">Payment Method</a>
 												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#">Cash On Delivery</a></li>
-													<li><a class="dropdown-item" href="#">GCash</a></li>
+													<li><a class="dropdown-item" href="#">cod</a></li>
+													<li><a class="dropdown-item" href="#">gcash</a></li>
+													<li><a class="dropdown-item" href="#">paymaya</a></li>
 												</ul>
 												<a class="dropdown-item dropdown-toggle" href="#">Courier</a>
 												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#">Castilla</a></li>
-													<li><a class="dropdown-item" href="#">GrabExpress</a></li>
+													<li><a class="dropdown-item" href="#">castilla</a></li>
+													<li><a class="dropdown-item" href="#">grabexpress</a></li>
+													<li><a class="dropdown-item" href="#">mrspeedy</a></li>
+													<li><a class="dropdown-item" href="#">lalamove</a></li>
 												</ul>
+												<!--
 												<a class="dropdown-item dropdown-toggle" href="#">City/Municipality</a>
 												<ul class="dropdown-menu">
 													<a class="dropdown-item" href="#">
@@ -106,9 +109,13 @@
 												<ul class="dropdown-menu">
 													<li><a class="dropdown-item" href="#"><input type="date" id="defaultForm-pass" class="form-control validate"></a></li>
 												</ul>
+												-->
 											</li>
 										</ul>
 									</div>
+								</div>
+								<div class="col-5">
+										<button class="btn btn-light btn-outline-secondary" type="button" id="filterActivate">Go</button>
 								</div>
 								<div class="col-4">
 									<div class="row">
@@ -146,7 +153,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr data-toggle="modal" data-id="2" data-target="#order{{_id}}">
+										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}">
 											<th scope="row">{{customerName}}</th>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
@@ -256,7 +263,7 @@
 										      </div>
 										      <div class="modal-footer">
 												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
-												  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;" onclick="createPdf($(this).parent().parent().parent().parent().attr('id'))">Print</button>
+												  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;" onclick="createPdf()">Print</button>
 												  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 												  <button id="saveChangesModal" type="button" class="btn btn-primary">Save changes</button>
 										      </div>
@@ -473,9 +480,118 @@
 
 
 <script>
+
+$("#filterActivate").click(function() {
+	/* status */
+    if($("#filterButton").html() == "confirmed"){
+        $(".confirmed").show();
+        $(".paid").hide();
+        $(".delivering").hide();
+        $(".completed").hide();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "paid"){
+        $(".confirmed").hide();
+        $(".paid").show();
+        $(".delivering").hide();
+        $(".completed").hide();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "delivering"){
+        $(".confirmed").hide();
+        $(".paid").hide();
+        $(".delivering").show();
+        $(".completed").hide();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "completed"){
+        $(".confirmed").hide();
+        $(".paid").hide();
+        $(".delivering").hide();
+        $(".completed").show();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "cancelled"){
+        $(".confirmed").hide();
+        $(".paid").hide();
+        $(".delivering").hide();
+        $(".completed").hide();
+        $(".cancelled").show();
+        $("#filterButton").html("Filter By");
+    }
+    /* courier */
+    else if($("#filterButton").html() == "castilla"){
+        $(".castilla").show();
+        $(".lalamove").hide();
+        $(".mrspeedy").hide();
+        $(".grabexpress").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "lalamove"){
+        $(".castilla").hide();
+        $(".lalamove").show();
+        $(".mrspeedy").hide();
+        $(".grabexpress").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "mrspeedy"){
+        $(".castilla").hide();
+        $(".lalamove").hide();
+        $(".mrspeedy").show();
+        $(".grabexpress").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "grabexpress"){
+        $(".castilla").hide();
+        $(".lalamove").hide();
+        $(".mrspeedy").hide();
+        $(".grabexpress").show();
+        $("#filterButton").html("Filter By");
+    }
+    /* payment method*/
+   	else if($("#filterButton").html() == "cod"){
+        $(".cod").show();
+        $(".gcash").hide();
+        $(".paymaya").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "gcash"){
+        $(".cod").hide();
+        $(".gcash").show();
+        $(".paymaya").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "paymaya"){
+        $(".cod").hide();
+        $(".gcash").hide();
+        $(".paymaya").show();
+        $("#filterButton").html("Filter By");
+    }
+    /* all */
+    else if($("#filterButton").html() == "all"){
+		$(".confirmed").show();
+        $(".paid").show();
+        $(".delivering").show();
+        $(".completed").show();
+        $(".cancelled").show();
+    	$(".castilla").show();
+        $(".lalamove").show();
+        $(".mrspeedy").show();
+        $(".grabexpress").show();
+        $(".cod").show();
+        $(".gcash").show();
+        $(".paymaya").show();
+        $("#filterButton").html("Filter By");
+    }
+    //== all
+});
 /* print pdf */
     const { PDFDocument, StandardFonts, rgb } = PDFLib
-    async function createPdf(data) {
+    async function createPdf() {
       // Create a new PDFDocument
       const pdfDoc = await PDFDocument.create()
       // Embed the Helvetica
@@ -495,15 +611,14 @@
         font: helveticaBold,
         color: rgb(0, 0, 0),
       });
-      const fontSizeBody = 14;
-	  var modalId = ("#" + data);
-	  var name =  ($((modalId +" #titleModal")).text()).toString();
-      var number = ($((modalId + " #contactNumberModal")).val()).toString();
-      var address = ($((modalId +" #homeAddressModal")).val()).toString() + ", " + ($((modalId +" #cityModal")).val()).toString();
-      var placed =  ($((modalId +" #placedDateModal")).val());
-      var deliverydate = ($((modalId +" #deliveryDateModal")).val());
-      var courier = ($((modalId +" #courierModal")).val()).toString();
-      var status = ($((modalId +" #statusModal")).val()).toString();
+      const fontSizeBody = 14
+      var name =  ($("#customerNameModal").val()).toString();
+      var number = ($("#contactNumberModal").val()).toString();
+      var address = ($("#homeAddressModal").val()).toString() + ", " + ($("#cityModal").val()).toString();
+      var placed =  ($("#placedDateModal").val());
+      var deliverydate = ($("#deliveryDateModal").val());
+      var courier = ($("#courierModal").val()).toString();
+      var status = ($("#statusModal").val()).toString();
       page.drawText("\n\nName:                       " + name + 
                     "\nContact Number:      " + number +
                     "\nAddress:                   " + address + 
