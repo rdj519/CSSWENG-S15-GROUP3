@@ -18,10 +18,16 @@ $(document).ready(function() {
             $("#lowStockQuantity").val("");       
             
             $("#addProduct").modal("hide");
-
             
-            $("#tbody").append("
-            ");
+            $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, status) {
+                console.log(data.name);
+            })
+
+            $("body").load('/inventory');
+
+            // $("#tbody").append("{{> productRow pitemID=" + data._id  + "pname=" + data.name + "pamountPerPack=" + data.amountPerPack + "pquantity=" + data.quantity + "pprice=" + data.price + "plowStockQuantity=" + data.lowStockQuantity + "}}" );
+            
+            
         });
         
     });

@@ -114,13 +114,11 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Product #</th>
                                                 <th scope="col">Name </th>
                                                 <th scope="col">Amount per Pack</th>
                                                 <th scope="col">Stock Quantity</th>
                                                 <th scope="col">Price per Pack</th>
                                                 <th scope="col">Low Stock Quantity</th>
-                                                <th scope="col">Select</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbody">
@@ -134,8 +132,8 @@
                                                     <td id="">{{lowStockQuantity}}</td>
                                                     <td><input type="checkbox" name="record"></td>
                                                 </tr> --}}
-                                                {{> productRow pitemID=itemID pname=name pamountPerPack=amountPerPack pquantity=quantity pprice=price plowStockQuantity=lowStockQuantity}}
-                                                {{> productModal itemID=itemID name=name amountPerPack=amountPerPack quantity=quantity price=price lowStockQuantity=lowStockQuantity}}
+                                                {{> productRow pitemID=_id pname=name pamountPerPack=amountPerPack pquantity=quantity pprice=price plowStockQuantity=lowStockQuantity}}
+                                                {{> productModal itemID=_id name=name amountPerPack=amountPerPack quantity=quantity price=price lowStockQuantity=lowStockQuantity}}
                                                 <!-- Modal for Products -->
                                                
 

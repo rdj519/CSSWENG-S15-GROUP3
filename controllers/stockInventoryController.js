@@ -20,24 +20,29 @@ const stockInventoryController = {
         var price = req.body.amountPerPack;
         var quantity = req.body.amountPerPack;
         var lowStockQuantity = req.body.amountPerPack;
-    
 
-        db.findMany(Product, null, null, function(result) {
-            var newSum = result.length + 1;
+        var product = {
+            name: name,
+            amountPerPack: amountPerPack,
+            price: price,
+            quantity: quantity,
+            lowStockQuantity: lowStockQuantity
+        };
 
-            var product = {
-                itemID: "p-" + (result.length + 1),
-                name: name,
-                amountPerPack: amountPerPack,
-                price: price,
-                quantity: quantity,
-                lowStockQuantity: lowStockQuantity
-            };
-            db.insertOne(Product, product, function(flag){
-                res.send(newSum);
-            });
-        })
+        db.insertOne(Product, product, function(flag){
+            res.send("success");
+        });
+    },
+
+    findProduct: function(req, res) {
+        var query = {name: req.query.name, amountPerPack: req.query.amountPerPack};
         
+        var projection = {};
+
+        db.findOne(Product, query, projection, function(result) {
+            
+            res.send(result);
+        });
     }
 }
 
