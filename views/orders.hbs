@@ -124,7 +124,7 @@
 
 										<!-- add order -->
 										<div class="col-5">
-											<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addOrder" type="submit" style="margin-bottom: 5px;">Add Order</button>
+											<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addOrder" type="submit" id="buttonAddOrder" style="margin-bottom: 5px;">Add Order</button>
 										</div>
 									</div>
 								</div>
@@ -336,67 +336,12 @@
 													<th scope="col">Price</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
+											<tbody id="productSold">
+												{{!-- <tr>
 													<th scope="row">Siomai & Dumplings Pack</th>
 													<td><input type="number" id="siomaiDumplingInput" class="form-control validate"></td>
 													<td><p id="siomaiDumpling" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Pork Siomai</th>
-													<td><input type="number" id="porkSiomaiInput" class="form-control validate"></td>
-													<td><p id="porkSiomai" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Lumpia Shanghai</th>
-													<td><input type="number" id="lumpiaShanghaiInput" class="form-control validate"></td>
-													<td><p id="lumpiaShanghai" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Gyoza</th>
-													<td><input type="number" id="gyozaInput" class="form-control validate"></td>
-													<td><p id="gyoza" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Sharksfin Dumplings</th>
-													<td><input type="number" id="sharksfinInput" class="form-control validate"></td>
-													<td><p id="sharksfin" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Beef Siomai</th>
-													<td><input type="number" id="beefSiomaiInput" class="form-control validate"></td>
-													<td><p id="beefSiomai" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Chicken Siomai</th>
-													<td><input type="number" id="chickenSiomaiInput" class="form-control validate"></td>
-													<td><p id="chickenSiomai" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Siopao Mini</th>
-													<td><input type="number" id="siopaoMiniInput" class="form-control validate"></td>
-													<td><p id="siopaoMini" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Siopao (Asado)</th>
-													<td><input type="number" id="siopaoAsadoInput" class="form-control validate"></td>
-													<td><p id="siopaoAsado" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Siopao (Bola-Bola)</th>
-													<td><input type="number" id="siopaoBolaBolaInput" class="form-control validate"></td>
-													<td><p id="siopaoBolaBola" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Holsin Sauce</th>
-													<td><input type="number" id="holsinSauceInput" class="form-control validate"></td>
-													<td><p id="holsinSauce" class="form-control validate"></p></td>
-												</tr>
-												<tr>
-													<th scope="row">Chili Sauce</th>
-													<td><input type="number" id="chiliSauceInput" class="form-control validate"></td>
-													<td><p id="chiliSauce" class="form-control validate"></p></td>
-												</tr>
+												</tr> --}}
 											</tbody>
 										</table>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">DeliveryFee</label>

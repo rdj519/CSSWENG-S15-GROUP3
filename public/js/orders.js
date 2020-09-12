@@ -1,4 +1,21 @@
 $(document).ready(function() {
+
+
+    $("#buttonAddOrder").click(function(){
+        $.get('/getProductsSold', {}, function(data, status) {
+            // console.log(data);
+            for(var i = 0; i < data.length; i++) {
+                $("#productSold").append("<tr>");
+                $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "</th>");
+                $("#productSold").append("<td><input type='number' id=quantity-'" + data[i]._id + "class='form-control validate'></td>");
+                $("#productSold").append("<td><p id='" +  "price-" + data[i]._id + "' class='form-control validate'></p></td>");
+                $("#productSold").append("</tr>");
+                console.log("item added");
+            }
+
+        });
+
+    });
     
 
     $("#submitOrder").click(function() {

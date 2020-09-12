@@ -11,7 +11,16 @@ const stockInventoryController = {
                 products: results
             });
         });
+    },
 
+    getProducstSold: function(req, res) {
+        var query = {};
+        var projection = {};
+
+        db.findMany(Product, query, projection, function(results) {
+            console.log(results);
+            res.send(results);
+        });
     },
 
     addProduct: function(req, res) {
@@ -39,7 +48,6 @@ const stockInventoryController = {
         var projection = {};
 
         db.findOne(Product, query, projection, function(result) {
-            // console.log(result);
             res.send(result);
         });
     }

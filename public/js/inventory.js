@@ -127,7 +127,7 @@ $(document).ready(function() {
     function isUniqueProduct() {
         var name = validator.trim($('#name').val());
         var amountPerPack = validator.trim($('#amountPerPack').val());
-        var unique;
+
 
         $.get('/findProduct', {name:name, amountPerPack:amountPerPack}, function(data, result) {
             if(data.name == name && data.amountPerPack == amountPerPack){
