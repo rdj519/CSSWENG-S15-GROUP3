@@ -18,6 +18,10 @@ $(document).ready(function() {
             $("#lowStockQuantity").val("");       
             
             $("#addProduct").modal("hide");
+
+            
+            $("#tbody").append("
+            ");
         });
         
     });

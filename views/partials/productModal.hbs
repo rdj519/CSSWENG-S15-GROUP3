@@ -1,0 +1,45 @@
+<div class="modal fade" id="{{itemID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Pork Siomai</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="productName1"><b>Product Name</b></label>
+                        <label id="productName1">{{name}}</label>
+                        <br>
+                        <label for="amountPerPack1"><b>Amount Per Pack</b></label>
+                        <label id="amountPerPack1">{{amountPerPack}}</label>
+                        <br>
+                        <label for="stockQuantity1"><b>Stock Quantity</b></label>
+                        <input type="number" class="form-control" id="" min="0"
+                            onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+                            value="{{quantity}}">
+                        <br>
+                        <label for="pricePerPack1"><b>Price per Pack</b></label>
+                        <input type="number" class="form-control" id="" value="{{price}}">
+                        <br>
+                        <label for="lowStack1"><b>Low Stack Quantity</b></label>
+                        <input type="number" class="form-control" id="" min="0"
+                            onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+                            value="{{lowStockQuantity}}">
+                        <br>
+                        <p id="errorUpdate1" style="color: red"><br></p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal"
+                    data-id="1" data-target="#delete{{itemID}}">Delete Product</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="change1" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,8 +20,6 @@ const stockInventoryController = {
         var price = req.body.amountPerPack;
         var quantity = req.body.amountPerPack;
         var lowStockQuantity = req.body.amountPerPack;
-
-      
     
 
         db.findMany(Product, null, null, function(result) {

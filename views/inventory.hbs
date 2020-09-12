@@ -125,7 +125,7 @@
                                         </thead>
                                         <tbody id="tbody">
                                             {{#each products}}
-                                                <tr data-toggle="modal" data-id="2" data-target="#{{itemID}}">
+                                                {{!-- <tr data-toggle="modal" data-id="2" data-target="#{{itemID}}">
                                                     <th scope="col" id="pnum1"> {{itemID}}</th>
                                                     <td id="">{{name}}</td>
                                                     <td id="">{{amountPerPack}}</td>
@@ -133,50 +133,13 @@
                                                     <td id="">{{price}}</td>
                                                     <td id="">{{lowStockQuantity}}</td>
                                                     <td><input type="checkbox" name="record"></td>
-                                                </tr>
-                                            
+                                                </tr> --}}
+                                                {{> productRow pitemID=itemID pname=name pamountPerPack=amountPerPack pquantity=quantity pprice=price plowStockQuantity=lowStockQuantity}}
+                                                {{> productModal itemID=itemID name=name amountPerPack=amountPerPack quantity=quantity price=price lowStockQuantity=lowStockQuantity}}
                                                 <!-- Modal for Products -->
-                                                <div class="modal fade" id="{{itemID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Pork Siomai</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form method="POST">
-                                                                    <div class="form-group">
-                                                                        <label for="productName1"><b>Product Name</b></label>
-                                                                        <label id="productName1">{{name}}</label>
-                                                                        <br>
-                                                                        <label for="amountPerPack1"><b>{{ammountPerPack}}</b></label>
-                                                                        <label id="amountPerPack1">60</label>
-                                                                        <br>
-                                                                        <label for="stockQuantity1"><b>Stock Quantity</b></label>
-                                                                        <input type="number" class="form-control" id=""  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{quantity}}">
-                                                                        <br>
-                                                                        <label for="pricePerPack1"><b>Price per Pack</b></label>
-                                                                        <input type="number" class="form-control" id="" value="{{price}}">
-                                                                        <br>
-                                                                        <label for="lowStack1"><b>Low Stack Quantity</b></label>
-                                                                        <input type="number" class="form-control" id=""  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{lowStockQuantity}}">
-                                                                        <br>
-                                                                        <p id="errorUpdate1" style="color: red"><br></p>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#delete{{itemID}}">Delete Product</button>                      
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" id="change1" class="btn btn-primary">Save changes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                               
 
-                                                <div class="modal fade" id="delete{{itemID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                {{!-- <div class="modal fade" id="delete{{itemID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -195,7 +158,7 @@
                                                         </div>
                                                     </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <!-- end -->
                                             {{/each}}
                                         </tbody>
@@ -248,7 +211,7 @@
                                                 </div>
                                                 
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeAddProduct">Close</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                     <button type="button" class="btn btn-primary" id="addProductButton">Add Product</button>
                                                 </div>
 
