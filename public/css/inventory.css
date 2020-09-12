@@ -68,4 +68,10 @@ label {
     margin-left: .1rem;
     margin-right: .1rem;
 }
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+}
 
