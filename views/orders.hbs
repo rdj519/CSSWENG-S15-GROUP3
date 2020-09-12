@@ -131,7 +131,7 @@
 
 										<!-- add order -->
 										<div class="col-5">
-											<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addOrder" type="submit" id="buttonAddOrder" style="margin-bottom: 5px;">Add Order</button>
+											<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addOrder" type="submit" style="margin-bottom: 5px;">Add Order</button>
 										</div>
 									</div>
 								</div>
@@ -163,12 +163,34 @@
 											<td>{{deliveryDate}}</td>
 										</tr>
 
+										<!-- Modal For Deleting Order -->
+										<div class="modal fade" id="delete{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog" role="document">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h5 class="modal-title">Order Deletion for {{customerName}}</h5>
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										          <span aria-hidden="true">&times;</span>
+										        </button>
+										      </div>
+										      <div class="modal-body">
+										        <p>Are you sure you want to delete this order?</p>
+										        <input type="text" id="defaultForm-pass" class="form-control validate">
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-danger" id="deleteButton">Yes</button>
+										        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+										      </div>
+										    </div>	
+										  </div>
+										</div>
+
 										<!-- Order Modal -->
 										<div class="modal fade" id="order{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 										  <div class="modal-dialog" role="document">
 										    <div class="modal-content">
 										      <div class="modal-header">
-										        <h5 class="modal-title" id="titleModal">{{customerName}}</h5>
+										        <h5 class="modal-title" id="titleCustomer">{{customerName}}</h5>
 										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										          <span aria-hidden="true">&times;</span>
 										        </button>
@@ -262,7 +284,7 @@
 										      	<input type="text" class="form-control" id="totalPriceModal" style="font-weight:bold;">
 										      </div>
 										      <div class="modal-footer">
-												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#deleteOrder" style="float:left;">Delete Order</button>
+												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#delete{{_id}}" style="float:left;">Delete Order</button>
 												  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;" onclick="createPdf()">Print</button>
 												  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 												  <button id="saveChangesModal" type="button" class="btn btn-primary">Save changes</button>
@@ -276,31 +298,7 @@
 								</table>
 							</div>
 
-							
-							<!-- Modal For Deleting Order -->
-							<div class="modal fade" id="deleteOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title">Order Deletion</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">
-							        <p>Are you sure you want to delete this order?</p>
-							        <input type="text" id="defaultForm-pass" class="form-control validate">
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-danger">Yes</button>
-							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-							      </div>
-							    </div>	
-							  </div>
-							</div>
-
-							
-
+						
 
 							<!-- Modal For Adding Order -->
 							<div id="addOrder" class="modal fade" role="dialog">
@@ -343,12 +341,14 @@
 													<th scope="col">Price</th>
 												</tr>
 											</thead>
-											<tbody id="productSold">
-												{{!-- <tr>
-													<th scope="row">Siomai & Dumplings Pack</th>
-													<td><input type="number" id="siomaiDumplingInput" class="form-control validate"></td>
-													<td><p id="siomaiDumpling" class="form-control validate"></p></td>
-												</tr> --}}
+											<tbody>
+												{{#each products}}
+												<tr>
+													<th scope="row">{{name}}</th>
+													<td><input type="number" id="input{{_id}}" class="form-control validate"></td>
+													<td><p id="price{{_id}}" class="form-control validate"></p></td>
+												</tr>
+												{{/each}}
 											</tbody>
 										</table>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">DeliveryFee</label>
