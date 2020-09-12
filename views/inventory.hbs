@@ -5,13 +5,18 @@
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <!-- CSS -->
         <link rel="stylesheet" href="/css/inventory.css">
 
     	<!-- Fonts-->
 	    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">   
+
+        {{!-- JavaScript --}}
+        <script src="/js/inventory.js"></script>
     </head>
+
 
     <body>
         <div class="margin">
@@ -121,11 +126,11 @@
                                             {{#each products}}
                                                 <tr data-toggle="modal" data-id="2" data-target="#{{itemID}}">
                                                     <th scope="col" id="pnum1"> {{itemID}}</th>
-                                                    <td id="name1">{{name}}</td>
-                                                    <td id="amt1">{{amountPerPack}}</td>
-                                                    <td id="stock1">{{quantity}}</td>
-                                                    <td id="price1">{{price}}</td>
-                                                    <td id="low1">{{lowStockQuantity}}</td>
+                                                    <td id="">{{name}}</td>
+                                                    <td id="">{{amountPerPack}}</td>
+                                                    <td id="">{{quantity}}</td>
+                                                    <td id="">{{price}}</td>
+                                                    <td id="">{{lowStockQuantity}}</td>
                                                     <td><input type="checkbox" name="record"></td>
                                                 </tr>
                                             
@@ -149,13 +154,13 @@
                                                                         <label id="amountPerPack1">60</label>
                                                                         <br>
                                                                         <label for="stockQuantity1"><b>Stock Quantity</b></label>
-                                                                        <input type="number" class="form-control" id="stockQuantity1"  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{quantity}}">
+                                                                        <input type="number" class="form-control" id=""  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{quantity}}">
                                                                         <br>
                                                                         <label for="pricePerPack1"><b>Price per Pack</b></label>
-                                                                        <input type="number" class="form-control" id="pricePerPack1" value="{{price}}">
+                                                                        <input type="number" class="form-control" id="" value="{{price}}">
                                                                         <br>
                                                                         <label for="lowStack1"><b>Low Stack Quantity</b></label>
-                                                                        <input type="number" class="form-control" id="lowStack1"  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{lowStockQuantity}}">
+                                                                        <input type="number" class="form-control" id=""  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{lowStockQuantity}}">
                                                                         <br>
                                                                         <p id="errorUpdate1" style="color: red"><br></p>
                                                                     </div>
@@ -202,50 +207,51 @@
                                 <div id="addProduct" class="modal fade" role="dialog">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">New Stock Product</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            
-                                            <div class="modal-body">
-    
-                                                <div class="md-form mb-4">
-							     	                <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
-							                        <input type="text" id="name" class="form-control validate">
-							                    </div>    
+                                            <form>
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">New Stock Product</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                
+                                                <div class="modal-body">
+        
+                                                    <div class="md-form mb-4">
+                                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+                                                        <input type="text" id="addName" class="form-control validate">
+                                                    </div>    
 
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Amount per Pack</label>
-                                                    <input type="number" id="amountPerPack" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
-event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
+                                                    <div class="md-form mb-4">
+                                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Amount per Pack</label>
+                                                        <input type="number" id="amountPerPack" class="form-control validate" min="0"/>
+                                                    </div>
+
+                                                    <div class="md-form mb-4">
+                                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Stock Quantity</label>
+                                                        <input type="number" id="stockQuantity" class="form-control validate" min="0"/>
+                                                    </div>
+
+                                                    <div class="md-form mb-4">
+                                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Price per Pack</label>
+                                                        <input type="number" id="pricePerPack" class="form-control validate" min="0"/>
+                                                    </div>
+
+                                                    <div class="md-form mb-4">
+                                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Low Stock Quantity</label>
+                                                        <input type="number" id="lowStockQuantity" class="form-control validate" min="0"/>
+                                                    </div>
+
+                                                </div>
+                                                
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary" id="addProductButton">Add Product</button>
                                                 </div>
 
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Stock Quantity</label>
-                                                    <input type="number" id="stockQuantity" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
-event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
-                                                </div>
 
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Price per Pack</label>
-                                                    <input type="number" id="pricePerPack" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
-event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
-                                                </div>
-
-                                                <div class="md-form mb-4">
-                                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Low Stock Quantity</label>
-                                                    <input type="number" id="lowStockQuantity" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
-event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
-                                                </div>
-
-                                            </div>
-                                            
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" id="addProductButton">Add Product</button>
-                                            </div>
+                                            </form>
+                                        
                                         </div>
                                     </div>
                                 </div>
@@ -281,7 +287,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
             });
 
             //ADD PRODUCT
-            var productNumber = 9;
+            var productNumber = 9; 
             $("#addProductButton").click(function(){
 
                 // Will try to while loop this instead so the add product modal would close every wrong attempt
