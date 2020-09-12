@@ -9,7 +9,9 @@ $(document).ready(function() {
         var quantity = $("#stockQuantity").val();
         var price = $("#pricePerPack").val();
         var lowstockQuantity = $("#lowStockQuantity").val();
-        console.log(name);
+
+
+        // Adding New Product
         $.post('/addProduct',{name: name, amountPerPack: amountPerPack, quantity: quantity, price: price, lowstockQuantity: lowstockQuantity}, function(data, status) {
             $("#name").val("");
             $("#amountPerPack").val("");
@@ -24,11 +26,153 @@ $(document).ready(function() {
             })
 
             $("body").load('/inventory');
-
-            // $("#tbody").append("{{> productRow pitemID=" + data._id  + "pname=" + data.name + "pamountPerPack=" + data.amountPerPack + "pquantity=" + data.quantity + "pprice=" + data.price + "plowStockQuantity=" + data.lowStockQuantity + "}}" );
-            
-            
         });
-        
     });
+
+
+
+
+    // Validation
+    function isFilled() {
+
+        /*
+            gets the value of a specific field in the signup form
+            then removes leading and trailing blank spaces
+        */
+        var name = validator.trim($('#name').val());
+        var amountPerPack = validator.trim($('#amountPerPack').val());
+        var quantity = validator.trim($('#stockQuantity').val());
+        var pricePerPack = validator.trim($('#pricePerPack').val());
+        var lowstockQuantity = validator.trim($('#lowStockQuantity').val());
+
+        /*
+            checks if the trimmed values in fields are not empty
+        */
+        var nameEmpty = validator.isEmpty(name);
+        var amountPerPackEmpty = validator.isEmpty(amountPerPack);
+        var quantityEmpty = validator.isEmpty(quantity);
+        var pricePerPackEmpty = validator.isEmpty(pricePerPack);
+        var lowstockQuantityEmpty = validator.isEmpty(lowstockQuantity);
+        
+
+        return !nameEmpty && !amountPerPackEmpty && !quantityEmpty && !pricePerPackEmpty && !lowstockQuantityEmpty;
+    }
+
+
+    function isValidAmountPerPack(field) {
+        var amountPerPack = validator.trim($('#amountPerPack').val());
+
+
+        if(parseInt(amountPerPack) > 0 && (amountPerPack % 1 === 0)) {
+            if(field.is($("#amountPerPack")))
+                $("#amountPerPackError").text("");
+
+            return true;
+        }
+        else {
+            if(field.is($("#amountPerPack")))
+                $("#amountPerPackError").text("Amount per Pack should be a positive integer and not empty.");
+
+            return false;
+        }
+
+    }
+
+    function isValidStockQuantity(field) {
+        var quantity = validator.trim($('#stockQuantity').val());
+
+        if(parseInt(quantity) > 0 && (quantity % 1 === 0)) {
+            if(field.is($("#stockQuantity")))
+                $("#quantityError").text("");
+            
+            return true;
+        }
+        else {
+            if(field.is($("#stockQuantity")))
+                $("#quantityError").text("Stock Quantity should be a positive integer and not empty.");
+
+            return false;
+        }
+    }
+
+    function isValidPricePerPack(field) {
+        var pricePerPack = validator.trim($('#pricePerPack').val());
+
+        if(parseFloat(pricePerPack) > 0) {
+            if(field.is($("#pricePerPack")))
+                $("#pricePerPackError").text("");
+
+            return true;
+        }
+        else {
+            if(field.is($("#pricePerPack")))
+                $("#pricePerPackError").text("Price per Pack should be a positive number and not empty.");
+            
+            return false;
+        }
+    }
+
+    function isValidLowStockQuantity(field) {
+        var lowstockQuantity = validator.trim($('#lowStockQuantity').val());
+
+        if((parseInt(lowstockQuantity) >= 0) && (lowstockQuantity % 1 === 0)) {
+            if(field.is($("#lowStockQuantity")))
+                $("#lowStockQuantityError").text("");
+
+            return true;
+        }
+        else {
+            if(field.is($("#lowStockQuantity")))
+                $("#lowStockQuantityError").text("Quantity should be 0 or a positive integer and not empty.");
+            
+            return false;
+        }
+    }
+
+    function validateField(field, fieldName, error) {
+
+        var value = validator.trim(field.val());
+        var empty = validator.isEmpty(value);
+
+        if(empty) {
+            field.prop('value', '');
+            error.text(fieldName + " should not be empty.");
+        }
+        else {
+            error.text("");
+        }
+
+        var filled = isFilled();
+        var validAmountPerPack = isValidAmountPerPack(field);
+        var validStockQuantity = isValidStockQuantity(field);
+        var validPricePerPack = isValidPricePerPack(field);
+        var validLowStockQuantity = isValidLowStockQuantity(field);
+        console.log(validAmountPerPack + " " + validStockQuantity + " " +  validPricePerPack + " " + validLowStockQuantity);
+
+        if(filled && validAmountPerPack && validStockQuantity && validPricePerPack && validLowStockQuantity)
+            $('#addProductButton').prop('disabled', false);
+        else 
+            $('#addProductButton').prop('disabled', true);
+    }
+
+    $('#name').keyup(function () {
+        validateField($('#name'), 'Product Name', $('#nameError'));
+    });
+
+    $('#amountPerPack').keyup(function () {
+        validateField($('#amountPerPack'), 'Amount Per Pack', $('#amountPerPackError'));
+    });
+
+    $('#stockQuantity').keyup(function () {
+        validateField($('#stockQuantity'), 'Stock Quantity', $('#quantityError'));
+    });
+
+    $('#pricePerPack').keyup(function () {
+        validateField($('#pricePerPack'), 'Price per Pack', $('#pricePerPackError'));
+    });
+
+    $('#lowStockQuantity').keyup(function () {
+        validateField($('#lowStockQuantity'), 'Product Name', $('#lowStockQuantityError'));
+    });
+
 });

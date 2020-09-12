@@ -5,7 +5,6 @@
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
-        {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
         <!-- CSS -->
@@ -15,7 +14,8 @@
 	    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">   
 
         {{!-- JavaScript --}}
-        <script src="/js/inventory.js"></script>
+        <script src="/js/inventory.js" type="text/javascript"></script>
+        <script src="/js/validator.min.js" type="text/javascript"></script>
     </head>
 
 
@@ -184,26 +184,31 @@
                                                     <div class="md-form mb-4">
                                                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
                                                         <input type="text" id="name" name="name" class="form-control validate">
+                                                        <p class="error" id="nameError"></p>
                                                     </div>    
 
                                                     <div class="md-form mb-4">
                                                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Amount per Pack</label>
                                                         <input type="number" id="amountPerPack" name="amountPerPack" class="form-control validate" min="0"/>
+                                                        <p class="error" id="amountPerPackError"></p>
                                                     </div>
 
                                                     <div class="md-form mb-4">
                                                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Stock Quantity</label>
                                                         <input type="number" id="stockQuantity" name="stockQuantity" class="form-control validate" min="0"/>
+                                                        <p class="error" id="quantityError"></p>
                                                     </div>
 
                                                     <div class="md-form mb-4">
                                                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Price per Pack</label>
                                                         <input type="number" id="pricePerPack" name="pricePerPack" class="form-control validate" min="0"/>
+                                                        <p class="error" id="pricePerPackError"></p>
                                                     </div>
 
                                                     <div class="md-form mb-4">
                                                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Low Stock Quantity</label>
-                                                        <input type="number" id="lowStockQuantity" name="pricePerPack" class="form-control validate" min="0"/>
+                                                        <input type="number" id="lowStockQuantity" name="lowStockQuantity" class="form-control validate" min="0"/>
+                                                        <p class="error" id="lowStockQuantityError"></p>
                                                     </div>
 
                                                 </div>
@@ -269,282 +274,10 @@
                 $("#deleteProduct").modal("hide");
                 $('#confirmation').val('');
             });
-
-
-
-            /*
-                MODALS
-            */
-
-            //product 1
-            $("#change1").click(function() {
-                var stock = $("#stockQuantity1").val();
-                var price = $("#pricePerPack1").val();
-                var low = $("#lowStack1").val();
-
-                //check if empty or contains E or e
-                //price decimals are allowed
-                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
-                    $("#errorUpdate1").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
-                    $("#stockOneModal").modal({"backdrop": "static"});
-                }
-                //check if <=0
-                else if(price.trim()<=0) { 
-                    $("#errorUpdate1").text("Changes are not saved. Negative values are not allowed.");
-                    $("#stockOneModal").modal({"backdrop": "static"});
-                }
-                else {
-                    $("#stock1").text(stock);
-                    $("#stockQuantity1").val(stock);
-                    $("#price1").text("P" + price);
-                    $("#pricePerPack1").val(price);
-                    $("#low1").text(low);
-                    $("#lowStack1").val(low);
-
-                    $("#stockOneModal").modal("hide");
-                    $("#errorUpdate1").text(" ");
-                }
-            }); 
-
-            //product 2
-            $("#change2").click(function() {
-                var stock = $("#stockQuantity2").val();
-                var price = $("#pricePerPack2").val();
-                var low = $("#lowStack2").val();
-
-                //check if empty or contains E or e
-                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
-                    $("#errorUpdate2").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
-                    $("#stockTwoModal").modal({"backdrop": "static"});
-                }
-                //check if <=0
-                else if(price.trim()<=0) { 
-                    $("#errorUpdate2").text("Changes are not saved. Negative values are not allowed.");
-                    $("#stockTwoModal").modal({"backdrop": "static"});
-                }
-                else {
-                    $("#stock2").text(stock);
-                    $("#stockQuantity2").val(stock);
-                    $("#price2").text("P" + price);
-                    $("#pricePerPack2").val(price);
-                    $("#low2").text(low);
-                    $("#lowStack2").val(low);
-
-                    $("#stockTwoModal").modal("hide");
-                    $("#errorUpdate2").text(" ");
-                }
-            }); 
-
-            //product 3
-            $("#change3").click(function() {
-                var stock = $("#stockQuantity3").val();
-                var price = $("#pricePerPack3").val();
-                var low = $("#lowStack3").val();
-
-                //check if empty or contains E or e
-                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
-                    $("#errorUpdate3").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
-                    $("#stockThreeModal").modal({"backdrop": "static"});
-                }
-                //check if <=0
-                else if(price.trim()<=0) { 
-                    $("#errorUpdate3").text("Changes are not saved. Negative values are not allowed.");
-                    $("#stockThreeModal").modal({"backdrop": "static"});
-                }
-                else {
-                    $("#stock3").text(stock);
-                    $("#stockQuantity3").val(stock);
-                    $("#price3").text("P" + price);
-                    $("#pricePerPack3").val(price);
-                    $("#low3").text(low);
-                    $("#lowStack3").val(low);
-
-                    $("#stockThreeModal").modal("hide");
-                    $("#errorUpdate3").text(" ");
-                }
-            }); 
-        
-            //product 4
-            $("#change4").click(function() {
-                var stock = $("#stockQuantity4").val();
-                var price = $("#pricePerPack4").val();
-                var low = $("#lowStack4").val();
-
-                //check if empty or contains E or e
-                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
-                    $("#errorUpdate4").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
-                    $("#stockFourModal").modal({"backdrop": "static"});
-                }
-                //check if <=0
-                else if(price.trim()<=0) { 
-                    $("#errorUpdate4").text("Changes are not saved. Negative values are not allowed.");
-                    $("#stockFourModal").modal({"backdrop": "static"});
-                }
-                else {
-                    
-                    $("#stock4").text(stock);
-                    $("#stockQuantity4").val(stock);
-                    $("#price4").text("P" + price);
-                    $("#pricePerPack4").val(price);
-                    $("#low4").text(low);
-                    $("#lowStack4").val(low);
-
-                    $("#stockFourModal").modal("hide");
-                    $("#errorUpdate4").text(" ");
-                }
-            }); 
-
-            //product 5
-            $("#change5").click(function() {
-                var stock = $("#stockQuantity5").val();
-                var price = $("#pricePerPack5").val();
-                var low = $("#lowStack5").val();
-
-                //check if empty or contains E or e
-                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
-                    $("#errorUpdate5").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
-                    $("#stockFiveModal").modal({"backdrop": "static"});
-                }
-                //check if <=0
-                else if(price.trim()<=0) { 
-                    $("#errorUpdate5").text("Changes are not saved. Negative values are not allowed.");
-                    $("#stockFiveModal").modal({"backdrop": "static"});
-                }                
-                else {    
-                    $("#stock5").text(stock);
-                    $("#stockQuantity5").val(stock);
-                    $("#price5").text("P" + price);
-                    $("#pricePerPack5").val(price);
-                    $("#low5").text(low);
-                    $("#lowStack5").val(low);
-
-                    $("#stockFiveModal").modal("hide");
-                    $("#errorUpdate5").text(" ");
-                }
-            }); 
-
-            //product 6
-            $("#change6").click(function() {
-                var stock = $("#stockQuantity6").val();
-                var price = $("#pricePerPack6").val();
-                var low = $("#lowStack6").val();
-
-                //check if empty or contains E or e
-                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
-                    $("#errorUpdate6").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
-                    $("#stockSixModal").modal({"backdrop": "static"});
-                }
-                //check if <=0
-                else if(price.trim()<=0) { 
-                    $("#errorUpdate6").text("Changes are not saved. Negative values are not allowed.");
-                    $("#stockSixModal").modal({"backdrop": "static"});
-                }
-                else {
-                    
-                    $("#stock6").text(stock);
-                    $("#stockQuantity6").val(stock);
-                    $("#price6").text("P" + price);
-                    $("#pricePerPack6").val(price);
-                    $("#low6").text(low);
-                    $("#lowStack6").val(low);
-
-                    $("#stockSixModal").modal("hide");
-                    $("#errorUpdate6").text(" ");
-                }
-            }); 
-
-            //product 7
-            $("#change7").click(function() {
-                var stock = $("#stockQuantity7").val();
-                var price = $("#pricePerPack7").val();
-                var low = $("#lowStack7").val();
-
-                //check if empty or contains E or e
-                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
-                    $("#errorUpdate7").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
-                    $("#stockSevenModal").modal({"backdrop": "static"});
-                }
-                //check if <=0
-                else if(price.trim()<=0) { 
-                    $("#errorUpdate7").text("Changes are not saved. Negative values are not allowed.");
-                    $("#stockSevenModal").modal({"backdrop": "static"});
-                }
-                else {
-                    
-                    $("#stock7").text(stock);
-                    $("#stockQuantity7").val(stock);
-                    $("#price7").text("P" + price);
-                    $("#pricePerPack7").val(price);
-                    $("#low7").text(low);
-                    $("#lowStack7").val(low);
-
-                    $("#stockSevenModal").modal("hide");
-                    $("#errorUpdate7").text(" ");
-                }
-            }); 
-
-            //product 8
-            $("#change8").click(function() {
-                var stock = $("#stockQuantity8").val();
-                var price = $("#pricePerPack8").val();
-                var low = $("#lowStack8").val();
-
-                //check if empty or contains E or e
-                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
-                    $("#errorUpdate8").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
-                    $("#stockEightModal").modal({"backdrop": "static"});
-                }
-                //check if <=0
-                else if(price.trim()<=0) { 
-                    $("#errorUpdate8").text("Changes are not saved. Negative values are not allowed.");
-                    $("#stockEightModal").modal({"backdrop": "static"});
-                }
-                else {
-                    
-                    $("#stock8").text(stock);
-                    $("#stockQuantity8").val(stock);
-                    $("#price8").text("P" + price);
-                    $("#pricePerPack8").val(price);
-                    $("#low8").text(low);
-                    $("#lowStack8").val(low);
-
-                    $("#stockEightModal").modal("hide");
-                    $("#errorUpdate8").text(" ");
-                }
-            });
-
-            //product 9
-            $("#change9").click(function() {
-                var stock = $("#stockQuantity9").val();
-                var price = $("#pricePerPack9").val();
-                var low = $("#lowStack9").val();
-
-                //check if empty or contains E or e
-                if(!stock.trim() || !low.trim() || !price.trim() || price.toString().includes('e') || price.toString().includes('E')) { 
-                    $("#errorUpdate9").text("Changes are not saved. Make sure to fill in all fields. Characters 'E' and 'e' are not allowed.");
-                    $("#stockNineModal").modal({"backdrop": "static"});
-                }
-                //check if <=0
-                else if(price.trim()<=0) { 
-                    $("#errorUpdate9").text("Changes are not saved. Negative values are not allowed.");
-                    $("#stockNineModal").modal({"backdrop": "static"});
-                }
-                else {
-                    
-                    $("#stock9").text(stock);
-                    $("#stockQuantity9").val(stock);
-                    $("#price9").text("P" + price);
-                    $("#pricePerPack9").val(price);
-                    $("#low9").text(low);
-                    $("#lowStack9").val(low);
-
-                    $("#stockNineModal").modal("hide");
-                    $("#errorUpdate9").text(" ");
-                }
-            });
+     
         </script>
 
-        </script>
+
 
         <!-- JS-->
         
