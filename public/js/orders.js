@@ -2,6 +2,7 @@ $(document).ready(function() {
     
 
     $("#submitOrder").click(function() {
+
         var customerName = $("#customerName").val();
         var contactNumber = $("#contactNumber").val();
         var homeAddress = $("#homeAddress").val();
@@ -11,11 +12,10 @@ $(document).ready(function() {
         var courier = $("#courier").html();
         var status = $("#status").html();
         var deliveryDate = $("#deliveryDate").val();
+        var deliveryFee = $("#deliveryFee").val();
         var placedDate = new Date(); //current date 
 
-        console.log(customerName);
-
-        $.post('/addOrder',{customerName: customerName, contactNumber: contactNumber, homeAddress: homeAddress, city: city, productTotal: productTotal, paymentMethod: paymentMethod, courier: courier, status: status, deliveryDate: deliveryDate, placedDate: placedDate }, function(data, status) {
+        $.post('/addOrder',{customerName: customerName, contactNumber: contactNumber, homeAddress: homeAddress, city: city, productTotal: productTotal, paymentMethod: paymentMethod, courier: courier, status: status, deliveryDate: deliveryDate, deliveryFee: deliveryFee, placedDate: placedDate}, function(data, status) {
             /* resets value after */
             $("#customerName").val("");
             $("#contactNumber").val("");
@@ -29,7 +29,7 @@ $(document).ready(function() {
             $("#status").html("Status"); 
             
             $("#deliveryDate").val("");
-            $("#addOrder").modal("hide");
+            $("#addOrderModal").modal("hide");
 
             
             $("body").load('/orders');
@@ -37,3 +37,4 @@ $(document).ready(function() {
         
     });
 });
+
