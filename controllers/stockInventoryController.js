@@ -50,6 +50,28 @@ const stockInventoryController = {
         db.findOne(Product, query, projection, function(result) {
             res.send(result);
         });
+    },
+
+    updateProduct: function(req, res) {
+        console.log("updateProduct");
+        console.log("req.body.quantity " + req.body.quantity);
+        console.log("req.body.name " + req.body.name);
+
+        var name = req.body.name;
+      
+        var updates = {
+            quantity: req.body.quantity,
+            price: req.body.price,
+            lowStockQuantity: req.body.lowstockQuantity
+        }
+
+        db.findOne(Product, {name:name}, null, function(result) {
+            db.updateOne(Product, {name:name}, updates, function(result1) {
+                console.log(result1);
+                res.send("success");
+
+            });
+        });
     }
 }
 

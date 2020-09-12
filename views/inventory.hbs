@@ -226,6 +226,24 @@
 
         <script>
 
+            //UPDATE PRODUCT
+            function saveChanges(itemID) {
+                var labelName = $('#productName-' + itemID);
+                var pname = labelName.attr('value');
+                var labelAmt = $('#amountPerPack-' + itemID);
+                var amt = labelAmt.attr('value');
+                var stock = $("#stockQuantity-" + itemID).val();
+                var price = $("#pricePerPack-" + itemID).val();
+                var low = $("#lowStock-" + itemID).val();
+
+                $.post('/updateProd',{name: pname, amountPerPack: amt, quantity: stock, price: price, lowstockQuantity: low}, function(data, status) {
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 500);
+                })
+
+            }
+
             //NESTED DROPDOWN
             $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
                 if (!$(this).next().hasClass('show')) {
