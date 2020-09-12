@@ -38,6 +38,7 @@ const ordersController = {
         var courier = req.body.courier;
         var status = req.body.status;
         var deliveryDate = req.body.deliveryDate;
+        var deliveryFee = req.body.deliveryFee;
         var placedDate = req.body.placedDate;
     
         
@@ -51,12 +52,14 @@ const ordersController = {
             courier: courier,
             status: status,
             deliveryDate: deliveryDate,
+            deliveryFee: deliveryFee,
             placedDate: placedDate
         };
 
         console.log(order);
         
         db.insertOne(Order, order, function(flag){
+            
             res.send("success");
         });
         
