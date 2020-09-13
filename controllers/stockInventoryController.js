@@ -13,7 +13,7 @@ const stockInventoryController = {
         });
     },
 
-    getProducstSold: function(req, res) {
+    getProductsSold: function(req, res) {
         var query = {};
         var projection = {};
 
