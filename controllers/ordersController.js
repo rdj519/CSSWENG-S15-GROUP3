@@ -240,7 +240,8 @@ const ordersController = {
             deliveryDate: req.body.deliveryDate,
             courier: req.body.courier,
             paymentMethod: req.body.paymentMethod,
-            status: req.body.status
+            status: req.body.status,
+            deliveryFee : req.body.deliveryFee
         }
 
         db.findOne(Order, {name:name, _id:_id}, null, function(result) {
