@@ -23,7 +23,7 @@ router.get('/home', isPrivate, homeController.getHomePage);
 router.get('/inventory', isPrivate, stockInventoryController.getProducts);
 router.post('/addProduct', isPrivate, stockInventoryController.addProduct);
 router.get('/findProduct', isPrivate, stockInventoryController.findProduct);
-router.get('/getProductsSold', isPrivate, stockInventoryController.getProducstSold);
+router.get('/getProductsSold', isPrivate, stockInventoryController.getProductsSold);
 router.post('/updateProd', isPrivate, stockInventoryController.updateProduct);
 
 // Orders
