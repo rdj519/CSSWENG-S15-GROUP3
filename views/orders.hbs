@@ -154,7 +154,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}">
+										<tr id="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}">
 											<th scope="row">{{customerName}}</th>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
@@ -204,6 +204,9 @@
 										      	<input type="text" class="form-control" id="homeAddressModal-{{_id}}" value="{{homeAddress}}">
 										      	<label style="color:#A39E9C"> City/Municipality </label>
 										      	<input type="text" class="form-control" id="cityModal-{{_id}}" value="{{city}}">
+											
+												
+
 										      	<label style="color:#A39E9C"> Courier </label>
 										      	<div class="info">
 													<div class="dropdown">
@@ -243,34 +246,25 @@
 													    <a class="dropdown-item" href="#">cancelled</a>
 													  </div>
 													</div>
-										      	</div>									  
+										      	</div>			
 
-										      	<!-- table for ordered products -->
-										      	<div class="info">
-										      		<!--
-													    <table class="table table-hover">
-															<thead>
-																<tr>
-																	<th scope="col">Product</th>
-																	<th scope="col">Quantity</th>
-																	<th scope="col">Price</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<th scope="row">Pork Siomai</th>
-																	<td>8</td>
-																	<td>530</td>
-																</tr>
-																<tr>
-																	<th scope="row">Gyoza</th>
-																	<td>3</td>
-																	<td>130</td>
-																</tr>
-															</tbody>
-													</table>
-												-->
-												</div>
+												<div class="info container">
+													<p style="color:#A39E9C" class="d-flex justify-content-start"> Order List </p>
+													{{#each customerOrder}}
+														<div class="row" productID="{{id}}">
+															<div class="col d-flex justify-content-start">
+																<p>{{name}}</p>
+															</div>
+															<div class="col">
+																<input type="text" class="form-control" id="orderproduct-{{id}}" value="{{quantity}}">
+															</div>
+														</div>
+													{{/each}}
+												</div>						  
+		
+										      
+										
+										      	
 												<label style="color:#A39E9C"> Overall Price</label>
 										      	<input type="text" class="form-control" id="overallPriceModal-{{_id}}" value="{{productTotal}}">		
 										      	<label style="color:#A39E9C"> Delivery Fee</label>
@@ -279,6 +273,7 @@
 										      	<input type="text" class="form-control" id="totalPriceModal-{{_id}}" style="font-weight:bold;">
                         						<p id="errorUpdate-{{_id}}" class="error"><br></p>
 										      </div>
+											  
 										      <div class="modal-footer">
 												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#delete{{_id}}" style="float:left;">Delete Order</button>
 												  <button type="button" class="btn btn-info mr-auto" id = {{_id}} data-dismiss="modal" style="float:left;" onclick="createPdf($(this).attr('id'))">Print</button>
@@ -341,14 +336,8 @@
 													<th scope="col">Price</th>
 												</tr>
 											</thead>
-											<tbody>
-												{{#each products}}
-												<tr>
-													<th scope="row">{{name}}</th>
-													<td><input type="number" id="input{{_id}}" class="form-control validate"></td>
-													<td><p id="price{{_id}}" class="form-control validate"></p></td>
-												</tr>
-												{{/each}}
+											<tbody id="productSold">
+												
 											</tbody>
 										</table>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">DeliveryFee</label>
