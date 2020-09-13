@@ -68,7 +68,7 @@ var OrderSchema = new mongoose.Schema({
     },
     // date placed
     placedDate: {
-        type: Date,
+        type: String,
         required: true
     },
     // delivery date
