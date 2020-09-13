@@ -14,7 +14,7 @@
 
 	<!-- JS -->
 	<script src="/js/orders.js"></script>
-    <script src="/js/validator.min.js" type="text/javascript"></script>
+	<script src="/js/validator.min.js" type="text/javascript"></script>
 
 	<!-- PDF -->
 	<meta charset="utf-8" />
@@ -29,7 +29,7 @@
 			<div class="col-2">
 					<div class="sidenav sticky">
                         <div class="nav flex-column nav-pills" aria-orientation="vertical">
-                            <a class="nav-link sideBarOptions" href="/home"><h3><b>SioPau</b></h3></a>
+                            <a class="nav-link sideBarOptions" href="/home"><h3><font face="headerFont"><b>SioPau</b></h3></font></h3></a>
                             <a class="nav-link active sideBarOptions" href="/orders">Orders</a>
                             <a class="nav-link sideBarOptions" href="/inventory">Stock Inventory</a>
                             <a class="nav-link sideBarOptions" href="/contacts">Contacts</a>
@@ -138,7 +138,6 @@
 								</div>
 							</div>
 
-							
 							<!-- table of customers-->
 							<div class="card">
 								<table class="table table-hover">
@@ -157,7 +156,7 @@
 										{{#each contents}}
 										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}">
 											<th scope="row">{{customerName}}</th>
-											<td>0{{contactNumber}}</td>
+											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
 											<td>{{status}}</td>
 											<td>{{courier}}</td>
@@ -208,46 +207,40 @@
 										      	<label style="color:#A39E9C"> Courier </label>
 										      	<div class="info">
 													<div class="dropdown">
-													  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{courier}}">
-													    {{courier}}
-													  </button>
+													  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{courier}}">{{courier}}</button>
 													  <div id="courierOptions" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													    <a class="dropdown-item" href="#" value="GrabExpress">GrabExpress</a>
-													    <a class="dropdown-item" href="#" value="Castilla">Castilla</a>
-													    <a class="dropdown-item" href="#" value="LalaMove">LalaMove</a>
-													    <a class="dropdown-item" href="#" value="MrSpeedy">MrSpeedy</a>
+													    <a class="dropdown-item" href="#" value="grabexpress">grabexpress</a>
+													    <a class="dropdown-item" href="#" value="castilla">castilla</a>
+													    <a class="dropdown-item" href="#" value="lalaMoves">lalaMove</a>
+													    <a class="dropdown-item" href="#" value="mrspeedy">mrspeedy</a>
 													  </div>
 													</div>
 										      	</div>	
 										      	<label style="color:#A39E9C"> Date Placed</label>
-										      	<input class= "info" type="date" id="placedDateModal-{{_id}}" name="trip-start" value="{{placedDate}}" readonly>		
+										      	<input class= "info" type="text" id="placedDateModal" name="trip-start" value="{{placedDate}}" readonly>	
 										      	<label style="color:#A39E9C"> Delivery Date</label>
-										      	<input class= "info" type="date" id="deliveryDateModal-{{_id}}" name="trip-start" value="{{deliveryDate}}">							  
+										      	<input class= "info" type="date" id="deliveryDateModal-{{_id}}" name="trip-start" value="{{deliveryDate}}">						  
 										      	<label style="color:#A39E9C"> Payment Method</label>
 										      	<div class="info">
 													<div class="dropdown">
-													  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{paymentMethod}}">
-													    {{paymentMethod}}
-													  </button>
+													  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{paymentMethod}}">{{paymentMethod}}</button>
 													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													    <a class="dropdown-item" href="#">GCash</a>
-													    <a class="dropdown-item" href="#">CoD</a>
-													    <a class="dropdown-item" href="#">PayMaya</a>
+													    <a class="dropdown-item" href="#">gcash</a>
+													    <a class="dropdown-item" href="#">cod</a>
+													    <a class="dropdown-item" href="#">paymaya</a>
 													  </div>
 													</div>
 										      	</div>	
 										      	<label style="color:#A39E9C"> Status</label>
 										      	<div class="info">
 													<div class="dropdown">
-													  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{status}}">
-													    {{status}}
-													  </button>
+													  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{status}}">{{status}}</button>
 													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													  	<a class="dropdown-item" href="#">Confirmed</a>
-													    <a class="dropdown-item" href="#">Paid</a>
-													    <a class="dropdown-item" href="#">Delivering</a>
-													    <a class="dropdown-item" href="#">Completed</a>
-													    <a class="dropdown-item" href="#">Cancelled</a>
+													  	<a class="dropdown-item" href="#">confirmed</a>
+													    <a class="dropdown-item" href="#">paid</a>
+													    <a class="dropdown-item" href="#">delivering</a>
+													    <a class="dropdown-item" href="#">completed</a>
+													    <a class="dropdown-item" href="#">cancelled</a>
 													  </div>
 													</div>
 										      	</div>									  
@@ -318,11 +311,13 @@
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
 							          <input type="text" id="customerName" name="customerName" class="form-control validate">
+							          <p class="error" id="customerNameError"></p>
 							        </div>
 
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
 							          <input type="number" id="contactNumber" name="contactNumber" class="form-control validate">
+							          <p class="error" id="contactNumberError"></p>
 							        </div>
 
 
@@ -330,8 +325,10 @@
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass"><b>Address</b></label>
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Home Address</label>
 							          <input type="text" id="homeAddress" name="homeAddress" class="form-control validate">
+							          <p class="error" id="homeAddressError"></p>
 							          <label data-error="wrong" data-success="right" for="defaultForm-pass">City/Municipality</label>
 							          <input type="text" id="city" name="city" class="form-control validate">
+							          <p class="error" id="cityError"></p>
 							        </div>
 
 							      	<div class="md-form mb-4">
@@ -356,6 +353,7 @@
 										</table>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">DeliveryFee</label>
 										<input type="number" id="deliveryFee" name="deliveryFee" class="form-control validate">
+										<p class="error" id="deliveryFeeError"></p>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">Total Amount</label>
 										<input type="number" id="productTotal" name="productTotal" class="form-control validate">
 							      	</div>
@@ -363,49 +361,47 @@
 							      	<div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Payment Method</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button"  id="paymentMethod" name="paymentMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											  Method
-											</button>
+											<button class="btn btn-light dropdown-toggle" type="button"  id="paymentMethod" name="paymentMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Method</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">GCash</a>
-											    <a class="dropdown-item" href="#">CoD</a>
-											    <a class="dropdown-item" href="#">PayMaya </a>
+											    <a class="dropdown-item" href="#">gcash</a>
+											    <a class="dropdown-item" href="#">cod</a>
+											    <a class="dropdown-item" href="#">paymaya </a>
 											</div>
 										</div>
+										<p class="error" id="paymentMethodError"></p>
 							        </div>
 
 							        <div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Courier</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button" id="courier" name="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											  Courier Type
-											</button>
+											<button class="btn btn-light dropdown-toggle" type="button" id="courier" name="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courier Type</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">LalaMove</a>
-											    <a class="dropdown-item" href="#">Castilla</a>
-											    <a class="dropdown-item" href="#">MrSpeedy</a>
-											    <a class="dropdown-item" href="#">GrabExpress</a>
+											    <a class="dropdown-item" href="#">lalamove</a>
+											    <a class="dropdown-item" href="#">castilla</a>
+											    <a class="dropdown-item" href="#">mrspeedy</a>
+											    <a class="dropdown-item" href="#">grabexpress</a>
 											</div>
 							        	</div>
+							        	<p class="error" id="courierError"></p>
 							        </div>
 							        <div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Status</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											  Status
-											</button>
+											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">Confirmed</a>
-											    <a class="dropdown-item" href="#">Paid </a>
-											    <a class="dropdown-item" href="#">Delivering</a>
-											    <a class="dropdown-item" href="#">Completed </a>
-											    <a class="dropdown-item" href="#">Cancelled</a>
+											    <a class="dropdown-item" href="#">confirmed</a>
+											    <a class="dropdown-item" href="#">paid </a>
+											    <a class="dropdown-item" href="#">delivering</a>
+											    <a class="dropdown-item" href="#">completed </a>
+											    <a class="dropdown-item" href="#">cancelled</a>
 											</div>
 							        	</div>
+							        	<p class="error" id="statusError"></p>
 							        </div>
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Delivery Date</label>
 							          <input type="date" id="deliveryDate" name="deliveryDate" class="form-control validate">
+							          <p class="error" id="deliveryDateError"></p>
 							        </div>
 
 							      </div>
@@ -435,7 +431,6 @@
         var contactnum = $("#contactNumberModal-" + _id).val();
         var home = $("#homeAddressModal-" + _id).val();
         var city = $("#cityModal-" + _id).val();
-
         //dates
         var placed = $("#placedDateModal-" + _id).val();
         var delivery = $("#deliveryDateModal-" + _id).val();
@@ -443,7 +438,6 @@
         var courier = $("#courierModal-" + _id).html();
         var payment = $("#paymentMethodModal-" + _id).html();
         var status = $("#statusModal-" + _id).html();
-
             $.post('/updateOrder',{_id:_id,customerName: name, contactNumber: contactnum, homeAddress: home, city: city,
             						deliveryDate: delivery, courier: courier, paymentMethod: payment, status: status}, function(data, status) {
                 setTimeout(function() {
@@ -458,20 +452,16 @@
 		        var contactnum = $("#contactNumberModal-" + _id).val();
 		        var home = $("#homeAddressModal-" + _id).val();
 		        var city = $("#cityModal-" + _id).val();
-
 		        //dates
 		        var delivery = $("#deliveryDateModal-" + _id).val();
 		        //dropdowns
 		        var courier = $("#courierModal-" + _id).html();
 		        var payment = $("#paymentMethodModal-" + _id).html();
 		        var status = $("#statusModal-" + _id).html();
-
-
                 if (validator.isEmpty(contactnum)) {
                     $("#contactNumberModal-" + _id).css("border-color", "red");
                     valid = false
                 }
-
                 if (validator.isEmpty(home)) {
                     $("#homeAddressModal-" + _id).css("border-color", "red");
                     valid = false
@@ -481,12 +471,10 @@
                     $("#cityModal-" + _id).css("border-color", "red");
                     valid = false
                 }
-
 				if (validator.isEmpty(delivery)) {
                     $("#deliveryDateModal-" + _id).css("border-color", "red");
                     valid = false
                 }
-
                 if (validator.isEmpty(courier)) {
                     $("#courierModal-" + _id).css("border-color", "red");
                     valid = false
@@ -496,17 +484,13 @@
                     $("#paymentMethodModal-" + _id).css("border-color", "red");
                     valid = false
                 }
-
                 if (validator.isEmpty(status)) {
                     $("#statusModal-" + _id).css("border-color", "red");
                     valid = false
                 }                
-
                 return valid;
             }
-
  
-
  			function checkContactNum(_id) {
  				var valid = true
  				if(!validator.isLength($("#contactNumberModal-" + _id).val(), { min: 11, max: 11})) {
@@ -517,12 +501,10 @@
  			}
             function saveChanges(_id) {
                 
-
 		        var name = $('#name-' + _id).val();
 		        var contactnum = $("#contactNumberModal-" + _id).val();
 		        var home = $("#homeAddressModal-" + _id).val();
 		        var city = $("#cityModal-" + _id).val();
-
 		        //dates
 		        var placed = $("#placedDateModal-" + _id).val();
 		        var delivery = $("#deliveryDateModal-" + _id).val();
@@ -530,7 +512,6 @@
 		        var courier = $("#courierModal-" + _id).html();
 		        var payment = $("#paymentMethodModal-" + _id).html();
 		        var status = $("#statusModal-" + _id).html();
-
 		        if(!isFilledUpdateOrder(_id)) {
                     $("#errorUpdate-" + _id).text("Properly fill out all fields.");
 		        }
