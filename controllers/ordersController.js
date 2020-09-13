@@ -28,6 +28,14 @@ const ordersController = {
         }, mySort);
     },
 
+    postDelete: function (req, res) {
+
+        db.deleteOne(Order, {customerName: req.body.customerName}, function(flag) {
+            res.send("success");
+        });
+
+    },
+
     addOrder: function(req, res) {
         var customerName = req.body.customerName;
         var contactNumber= req.body.contactNumber;
@@ -212,7 +220,7 @@ const ordersController = {
             }
         }, mySort);
     },
-
+    
     updateOrder: function(req, res) {
 
         console.log("update Order\n");
