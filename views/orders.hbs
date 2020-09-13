@@ -281,7 +281,7 @@
 										      </div>
 										      <div class="modal-footer">
 												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#delete{{_id}}" style="float:left;">Delete Order</button>
-												  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;" onclick="createPdf()">Print</button>
+												  <button type="button" class="btn btn-info mr-auto" id = {{_id}} data-dismiss="modal" style="float:left;" onclick="createPdf($(this).attr('id'))">Print</button>
 												  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 												  <button id="{{_id}}-saveChangeOrder" type="button" class="btn btn-primary" onclick="saveChanges('{{_id}}');">Save changes</button>
 										      </div>
@@ -638,7 +638,7 @@ $("#filterActivate").click(function() {
 });
 /* print pdf */
     const { PDFDocument, StandardFonts, rgb } = PDFLib
-    async function createPdf(data) {
+    async function createPdf(modalID) {
       // Create a new PDFDocument
       const pdfDoc = await PDFDocument.create()
       // Embed the Helvetica
@@ -659,22 +659,21 @@ $("#filterActivate").click(function() {
         color: rgb(0, 0, 0),
       });
       const fontSizeBody = 14;
-	  var modalId = ("#" + data);
-	  var name =  ($((modalId +" #titleModal")).text()).toString();
-      var number = ($((modalId + " #contactNumberModal")).val()).toString();
-      var address = ($((modalId +" #homeAddressModal")).val()).toString() + ", " + ($((modalId +" #cityModal")).val()).toString();
-      var placed =  ($((modalId +" #placedDateModal")).val());
-      var deliverydate = ($((modalId +" #deliveryDateModal")).val());
-      var courier = ($((modalId +" #courierModal")).val()).toString();
-      var status = ($((modalId +" #statusModal")).val()).toString();
+	  var name =  ($(("#name-" + modalID)).text()).toString();
+      var number = ($(("#contactNumberModal-" + modalID)).val()).toString();
+      var address = ($(("#homeAddressModal-" + modalID)).val()).toString() + "- " + ($(("#cityModal-" + modalID)).val()).toString();
+      var placed =  ($(("#placedDateModal-" + modalID)).val());
+      var deliverydate = ($(("#deliveryDateModal-" + modalID)).val());
+      var courier = ($(("#courierModal-" + modalID)).val()).toString();
+      var status = ($(("#statusModal-"+ modalID)).val()).toString();
       page.drawText("\n\nName:                       " + name + 
                     "\nContact Number:      " + number +
                     "\nAddress:                   " + address + 
                     "\nDate Placed:             " + placed +
                     "\nDelivery Date:           " + deliverydate + 
                     "\nCourier:                     " + courier + 
-                    "\n\n\n INSERT TABLE OF ITEMS HERE \n\n\n" + 
-                    "\nStatus:                     " + status +
+                    "\nStatus:                      " + status +
+					"\n\n\n INSERT TABLE OF ITEMS HERE \n\n\n" +
                     "\n"
                     ,
       {
@@ -685,9 +684,9 @@ $("#filterActivate").click(function() {
         color: rgb(0, 0, 0),
       });
       const fontSizeFees = 14
-      var overall =  ($("#overallPriceModal").val()).toString();
-      var dfee = ($("#deliveryFeeModal").val()).toString();
-      var total = ($("#totalPriceModal").val()).toString();
+      var overall =  ($(("#overallPriceModal-" + modalID)).val()).toString();
+      var dfee = ($(("#deliveryFeeModal-" + modalID)).val()).toString();
+      var total = ($(("#totalPriceModal-" + modalID)).val()).toString();
       page.drawText( "\n\nOverall Payment:                      " + overall + 
                      "\nDelivery Fee:                           " + dfee +
                      "\nTotal Price:                               " + total
