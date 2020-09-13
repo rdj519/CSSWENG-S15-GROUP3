@@ -211,6 +211,37 @@ const ordersController = {
                 res.render('error');
             }
         }, mySort);
+    },
+
+    updateOrder: function(req, res) {
+
+        console.log("update Order\n");
+        console.log("req.body.placedDate " + req.body.placedDate);
+        //console.log("req.body._id " + req.body._id);
+        console.log("req.body.courier " + req.body.courier);
+
+        var name = req.body.name;
+        var _id = req.body._id;
+
+        var updates = {
+            _id: req.body._id,
+            contactNumber: req.body.contactNumber,
+            homeAddress: req.body.homeAddress,
+            city: req.body.city,
+            placedDate: req.body.placedDate,
+            deliveryDate: req.body.deliveryDate,
+            courier: req.body.courier,
+            paymentMethod: req.body.paymentMethod,
+            status: req.body.status
+        }
+
+        db.findOne(Order, {name:name, _id:_id}, null, function(result) {
+            db.updateOne(Order, {name:name, _id:_id}, updates, function(result1) {
+                console.log(result1);
+                res.send("success");
+
+            });
+        });
     }
 
 }

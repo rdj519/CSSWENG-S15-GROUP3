@@ -30,7 +30,7 @@ router.post('/updateProd', isPrivate, stockInventoryController.updateProduct);
 router.get('/orders', isPrivate, ordersController.getOrders);
 router.post('/addOrder', isPrivate, ordersController.addOrder);
 router.get('/orders/status:status', isPrivate, ordersController.getOrdersByStatus); // to be edited
-
+ router.post('/updateOrder', isPrivate, ordersController.updateOrder);
 
 // Customer Contact List
 router.get('/contacts', isPrivate, contactsController.getContacts);
