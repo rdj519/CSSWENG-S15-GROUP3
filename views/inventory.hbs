@@ -324,7 +324,7 @@
                 var low = $("#lowStock-" + itemID).val();
 
                 if(!isFilledUpdate(itemID)) {
-                    $("#errorUpdate-" + itemID).text("Properly fill out all fields.");
+                    $("#errorUpdate-" + itemID).text("Properly fill out all fields. Characters are not allowed.");
                 }
                 else if (!isValid(itemID)) {
                     $("#errorUpdate-" + itemID).text("Input should be a positive integer and not empty.");
