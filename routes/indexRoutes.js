@@ -23,13 +23,16 @@ router.get('/home', isPrivate, homeController.getHomePage);
 router.get('/inventory', isPrivate, stockInventoryController.getProducts);
 router.post('/addProduct', isPrivate, stockInventoryController.addProduct);
 router.get('/findProduct', isPrivate, stockInventoryController.findProduct);
-router.get('/getProductsSold', isPrivate, stockInventoryController.getProducstSold);
+router.get('/getProductsSold', isPrivate, stockInventoryController.getProductsSold);
 router.post('/updateProd', isPrivate, stockInventoryController.updateProduct);
 
 // Orders
 router.get('/orders', isPrivate, ordersController.getOrders);
 router.post('/addOrder', isPrivate, ordersController.addOrder);
-router.get('/orders/status:status', isPrivate, ordersController.getOrdersByStatus); // to be edited
+router.post('/postDelete', isPrivate, ordersController.postDelete);
+router.post('/updateOrder', isPrivate, ordersController.updateOrder);
+/*
+router.get('/orders/status:status', isPrivate, ordersController.getOrdersByStatus); */
 
 
 // Customer Contact List

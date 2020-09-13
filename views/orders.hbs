@@ -14,6 +14,7 @@
 
 	<!-- JS -->
 	<script src="/js/orders.js"></script>
+	<script src="/js/validator.min.js" type="text/javascript"></script>
 
 	<!-- PDF -->
 	<meta charset="utf-8" />
@@ -28,7 +29,7 @@
 			<div class="col-2">
 					<div class="sidenav sticky">
                         <div class="nav flex-column nav-pills" aria-orientation="vertical">
-                            <a class="nav-link sideBarOptions" href="/home"><h3><b>SioPau</b></h3></a>
+                            <a class="nav-link sideBarOptions" href="/home"><h3><font face="headerFont"><b>SioPau</b></h3></font></h3></a>
                             <a class="nav-link active sideBarOptions" href="/orders">Orders</a>
                             <a class="nav-link sideBarOptions" href="/inventory">Stock Inventory</a>
                             <a class="nav-link sideBarOptions" href="/contacts">Contacts</a>
@@ -190,7 +191,7 @@
 										  <div class="modal-dialog" role="document">
 										    <div class="modal-content">
 										      <div class="modal-header">
-										        <h5 class="modal-title" id="titleCustomer">{{customerName}}</h5>
+										        <h5 class="modal-title" id="name-{{_id}}" value="{{customerName}}">{{customerName}}</h5>
 										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										          <span aria-hidden="true">&times;</span>
 										        </button>
@@ -198,54 +199,48 @@
 										      <div class="modal-body">
 
 										      	<label style="color:#A39E9C"> Contact Number </label>
-										      	<input type="text" class="form-control" id="contactNumberModal" value="{{contactNumber}}">
+										      	<input type="text" class="form-control" id="contactNumberModal-{{_id}}" value="{{contactNumber}}">
 										      	<label style="color:#A39E9C"> Home Address </label>
-										      	<input type="text" class="form-control" id="homeAddressModal" value="{{homeAddress}}">
+										      	<input type="text" class="form-control" id="homeAddressModal-{{_id}}" value="{{homeAddress}}">
 										      	<label style="color:#A39E9C"> City/Municipality </label>
-										      	<input type="text" class="form-control" id="cityModal" value="{{city}}">
+										      	<input type="text" class="form-control" id="cityModal-{{_id}}" value="{{city}}">
 										      	<label style="color:#A39E9C"> Courier </label>
 										      	<div class="info">
 													<div class="dropdown">
-													  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{courier}}">
-													    {{courier}}
-													  </button>
-													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													    <a class="dropdown-item" href="#">GrabExpress</a>
-													    <a class="dropdown-item" href="#">Castilla</a>
-													    <a class="dropdown-item" href="#">LalaMove</a>
-													    <a class="dropdown-item" href="#">MrSpeedy</a>
+													  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{courier}}">{{courier}}</button>
+													  <div id="courierOptions" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													    <a class="dropdown-item" href="#" value="grabexpress">grabexpress</a>
+													    <a class="dropdown-item" href="#" value="castilla">castilla</a>
+													    <a class="dropdown-item" href="#" value="lalaMoves">lalaMove</a>
+													    <a class="dropdown-item" href="#" value="mrspeedy">mrspeedy</a>
 													  </div>
 													</div>
 										      	</div>	
 										      	<label style="color:#A39E9C"> Date Placed</label>
-										      	<input class= "info" type="date" id="placedDateModal" name="trip-start" value="{{placedDate}}" readonly>		
+										      	<input class= "info" type="text" id="placedDateModal-{{_id}}" name="trip-start" value="{{placedDate}}" readonly>	
 										      	<label style="color:#A39E9C"> Delivery Date</label>
-										      	<input class= "info" type="date" id="deliveryDateModal" name="trip-start" value="{{deliveryDate}}">							  
+										      	<input class= "info" type="date" id="deliveryDateModal-{{_id}}" name="trip-start" value="{{deliveryDate}}">						  
 										      	<label style="color:#A39E9C"> Payment Method</label>
 										      	<div class="info">
 													<div class="dropdown">
-													  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{paymentMethod}}">
-													    {{paymentMethod}}
-													  </button>
+													  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{paymentMethod}}">{{paymentMethod}}</button>
 													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													    <a class="dropdown-item" href="#">GCash</a>
-													    <a class="dropdown-item" href="#">CoD</a>
-													    <a class="dropdown-item" href="#">PayMaya</a>
+													    <a class="dropdown-item" href="#">gcash</a>
+													    <a class="dropdown-item" href="#">cod</a>
+													    <a class="dropdown-item" href="#">paymaya</a>
 													  </div>
 													</div>
 										      	</div>	
 										      	<label style="color:#A39E9C"> Status</label>
 										      	<div class="info">
 													<div class="dropdown">
-													  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{status}}">
-													    {{status}}
-													  </button>
+													  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{status}}">{{status}}</button>
 													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													  	<a class="dropdown-item" href="#">Confirmed</a>
-													    <a class="dropdown-item" href="#">Paid</a>
-													    <a class="dropdown-item" href="#">Delivering</a>
-													    <a class="dropdown-item" href="#">Completed</a>
-													    <a class="dropdown-item" href="#">Cancelled</a>
+													  	<a class="dropdown-item" href="#">confirmed</a>
+													    <a class="dropdown-item" href="#">paid</a>
+													    <a class="dropdown-item" href="#">delivering</a>
+													    <a class="dropdown-item" href="#">completed</a>
+													    <a class="dropdown-item" href="#">cancelled</a>
 													  </div>
 													</div>
 										      	</div>									  
@@ -277,17 +272,18 @@
 												-->
 												</div>
 												<label style="color:#A39E9C"> Overall Price</label>
-										      	<input type="text" class="form-control" id="overallPriceModal" value="{{productTotal}}">		
+										      	<input type="text" class="form-control" id="overallPriceModal-{{_id}}" value="{{productTotal}}">		
 										      	<label style="color:#A39E9C"> Delivery Fee</label>
-										      	<input type="text" class="form-control" id="deliveryFeeModal" value="{{deliveryFee}}">
+										      	<input type="text" class="form-control" id="deliveryFeeModal-{{_id}}" value="{{deliveryFee}}">
 										      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
-										      	<input type="text" class="form-control" id="totalPriceModal" style="font-weight:bold;">
+										      	<input type="text" class="form-control" id="totalPriceModal-{{_id}}" style="font-weight:bold;">
+                        						<p id="errorUpdate-{{_id}}" class="error"><br></p>
 										      </div>
 										      <div class="modal-footer">
 												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#delete{{_id}}" style="float:left;">Delete Order</button>
-												  <button type="button" class="btn btn-info mr-auto" data-dismiss="modal" style="float:left;" onclick="createPdf()">Print</button>
+												  <button type="button" class="btn btn-info mr-auto" id = {{_id}} data-dismiss="modal" style="float:left;" onclick="createPdf($(this).attr('id'))">Print</button>
 												  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-												  <button id="saveChangesModal" type="button" class="btn btn-primary">Save changes</button>
+												  <button id="{{_id}}-saveChangeOrder" type="button" class="btn btn-primary" onclick="saveChanges('{{_id}}');">Save changes</button>
 										      </div>
 										    </div>
 										  </div>
@@ -315,11 +311,13 @@
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
 							          <input type="text" id="customerName" name="customerName" class="form-control validate">
+							          <p class="error" id="customerNameError"></p>
 							        </div>
 
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
 							          <input type="number" id="contactNumber" name="contactNumber" class="form-control validate">
+							          <p class="error" id="contactNumberError"></p>
 							        </div>
 
 
@@ -327,8 +325,10 @@
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass"><b>Address</b></label>
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Home Address</label>
 							          <input type="text" id="homeAddress" name="homeAddress" class="form-control validate">
+							          <p class="error" id="homeAddressError"></p>
 							          <label data-error="wrong" data-success="right" for="defaultForm-pass">City/Municipality</label>
 							          <input type="text" id="city" name="city" class="form-control validate">
+							          <p class="error" id="cityError"></p>
 							        </div>
 
 							      	<div class="md-form mb-4">
@@ -353,6 +353,7 @@
 										</table>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">DeliveryFee</label>
 										<input type="number" id="deliveryFee" name="deliveryFee" class="form-control validate">
+										<p class="error" id="deliveryFeeError"></p>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">Total Amount</label>
 										<input type="number" id="productTotal" name="productTotal" class="form-control validate">
 							      	</div>
@@ -360,23 +361,20 @@
 							      	<div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Payment Method</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button"  id="paymentMethod" name="paymentMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											  Method
-											</button>
+											<button class="btn btn-light dropdown-toggle" type="button"  id="paymentMethod" name="paymentMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Method</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
 											    <a class="dropdown-item" href="#">gcash</a>
 											    <a class="dropdown-item" href="#">cod</a>
 											    <a class="dropdown-item" href="#">paymaya </a>
 											</div>
 										</div>
+										<p class="error" id="paymentMethodError"></p>
 							        </div>
 
 							        <div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Courier</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button" id="courier" name="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											  Courier Type
-											</button>
+											<button class="btn btn-light dropdown-toggle" type="button" id="courier" name="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courier Type</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
 											    <a class="dropdown-item" href="#">lalamove</a>
 											    <a class="dropdown-item" href="#">castilla</a>
@@ -384,13 +382,12 @@
 											    <a class="dropdown-item" href="#">grabexpress</a>
 											</div>
 							        	</div>
+							        	<p class="error" id="courierError"></p>
 							        </div>
 							        <div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Status</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
-											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											  Courier Type
-											</button>
+											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
 											    <a class="dropdown-item" href="#">confirmed</a>
 											    <a class="dropdown-item" href="#">paid </a>
@@ -399,10 +396,12 @@
 											    <a class="dropdown-item" href="#">cancelled</a>
 											</div>
 							        	</div>
+							        	<p class="error" id="statusError"></p>
 							        </div>
 							        <div class="md-form mb-4">
 							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Delivery Date</label>
 							          <input type="date" id="deliveryDate" name="deliveryDate" class="form-control validate">
+							          <p class="error" id="deliveryDateError"></p>
 							        </div>
 
 							      </div>
@@ -425,7 +424,214 @@
 
 
 <script>
+/*
+	function saveChanges(_id) {
+		
+        var name = $('#name-' + _id).val();
+        var contactnum = $("#contactNumberModal-" + _id).val();
+        var home = $("#homeAddressModal-" + _id).val();
+        var city = $("#cityModal-" + _id).val();
+        //dates
+        var placed = $("#placedDateModal-" + _id).val();
+        var delivery = $("#deliveryDateModal-" + _id).val();
+        //dropdowns
+        var courier = $("#courierModal-" + _id).html();
+        var payment = $("#paymentMethodModal-" + _id).html();
+        var status = $("#statusModal-" + _id).html();
+            $.post('/updateOrder',{_id:_id,customerName: name, contactNumber: contactnum, homeAddress: home, city: city,
+            						deliveryDate: delivery, courier: courier, paymentMethod: payment, status: status}, function(data, status) {
+                setTimeout(function() {
+                    window.location.reload();
+                }, 300);
+            })
+        
+	}
+*/
+/*
+			function isFilledUpdateOrder(_id) {
+                var valid = true
+		        var contactnum = $("#contactNumberModal-" + _id).val();
+		        var home = $("#homeAddressModal-" + _id).val();
+		        var city = $("#cityModal-" + _id).val();
+		        //dates
+		        var delivery = $("#deliveryDateModal-" + _id).val();
+		        //dropdowns
+		        var courier = $("#courierModal-" + _id).html();
+		        var payment = $("#paymentMethodModal-" + _id).html();
+		        var status = $("#statusModal-" + _id).html();
+                if (validator.isEmpty(contactnum)) {
+                    $("#contactNumberModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(home)) {
+                    $("#homeAddressModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+               
+                if (validator.isEmpty(city)) {
+                    $("#cityModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+				if (validator.isEmpty(delivery)) {
+                    $("#deliveryDateModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(courier)) {
+                    $("#courierModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+               
+                if (validator.isEmpty(payment)) {
+                    $("#paymentMethodModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(status)) {
+                    $("#statusModal-" + _id).css("border-color", "red");
+                    valid = false
+                }                
+                return valid;
+            }
+           */
+ /*
+ 			function checkContactNum(_id) {
+ 				var valid = true
+ 				if(!validator.isLength($("#contactNumberModal-" + _id).val(), { min: 11, max: 11})) {
+ 					$("#contactNumberModal-" + _id).css("border-color", "red");
+                    valid = false
+ 				}
+ 				return valid;
+ 			}
+ 		*/
+ 		/*
+            function saveChanges(_id) {
+                
+		        var name = $('#name-' + _id).val();
+		        var contactnum = $("#contactNumberModal-" + _id).val();
+		        var home = $("#homeAddressModal-" + _id).val();
+		        var city = $("#cityModal-" + _id).val();
+		        //dates
+		        var placed = $("#placedDateModal-" + _id).val();
+		        var delivery = $("#deliveryDateModal-" + _id).val();
+		        //dropdowns
+		        var courier = $("#courierModal-" + _id).html();
+		        var payment = $("#paymentMethodModal-" + _id).html();
+		        var status = $("#statusModal-" + _id).html();
+		        if(!isFilledUpdateOrder(_id)) {
+                    $("#errorUpdate-" + _id).text("Properly fill out all fields.");
+		        }
+		        else if (!isValidContactNumber(_id)) {
+		        	$("#errorUpdate-" + _id).text("Contact number should be positive integer and not empty.");
+		        }
+		        else {
+		            $.post('/updateOrder',{_id:_id,customerName: name, contactNumber: contactnum, homeAddress: home, city: city, placedDate:placed,
+		            						deliveryDate: delivery, courier: courier, paymentMethod: payment, status: status}, function(data, status) {
+		                setTimeout(function() {
+		                    window.location.reload();
+		                }, 300);
+		            })
+				}
+			}
+	*/
 
+//update
+    function isFilledUpdateOrder(_id) {
+                var valid = true
+                var contactnum = $("#contactNumberModal-" + _id).val();
+                var home = $("#homeAddressModal-" + _id).val();
+                var city = $("#cityModal-" + _id).val();
+                //dates
+                var delivery = $("#deliveryDateModal-" + _id).val();
+                //dropdowns
+                var courier = $("#courierModal-" + _id).html();
+                var payment = $("#paymentMethodModal-" + _id).html();
+                var status = $("#statusModal-" + _id).html();
+				var deliveryfee = $("#deliveryFeeModal-" + _id).val();  
+                if (validator.isEmpty(contactnum)) {
+                    $("#contactNumberModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(home)) {
+                    $("#homeAddressModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+               
+                if (validator.isEmpty(city)) {
+                    $("#cityModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(delivery)) {
+                    $("#deliveryDateModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(courier)) {
+                    $("#courierModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+               
+                if (validator.isEmpty(payment)) {
+                    $("#paymentMethodModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(status)) {
+                    $("#statusModal-" + _id).css("border-color", "red");
+                    valid = false
+                }         
+                if (validator.isEmpty(deliveryfee)) {
+                    $("#deliveryFeeModal-" + _id).css("border-color", "red");
+                    valid = false
+                }      
+                return valid;
+            }
+            /*
+            function checkContactNum(_id) {
+
+        		var contactNumber = $("#contactNumberModal-" + _id).val();
+ 				var valid = true
+ 				if((parseInt(contactNumber) > 0) && (contactNumber % 1 === 0)) {
+ 					$("#contactNumberModal-" + _id).css("border-color", "red");
+                    valid = false
+ 				}
+ 				return valid;
+ 			}
+ 			*/
+ 			function checkContactNum(_id) {
+ 				var valid = true
+ 				if(!($("#contactNumberModal-" + _id).val() >0)) {
+ 					$("#contactNumberModal-" + _id).css("border-color", "red");
+                    valid = false
+ 				}
+ 				return valid;
+ 			}
+    function saveChanges(_id) {
+                
+                var name = $('#name-' + _id).val();
+                var contactnum = $("#contactNumberModal-" + _id).val();
+                var home = $("#homeAddressModal-" + _id).val();
+                var city = $("#cityModal-" + _id).val();
+                //dates
+                var placed = $("#placedDateModal-" + _id).val();
+                var delivery = $("#deliveryDateModal-" + _id).val();
+                //dropdowns
+                var courier = $("#courierModal-" + _id).html();
+                var payment = $("#paymentMethodModal-" + _id).html();
+                var status = $("#statusModal-" + _id).html();
+
+				var deliveryfee = $("#deliveryFeeModal-" + _id).val();                
+                if(!isFilledUpdateOrder(_id)) {
+                    $("#errorUpdate-" + _id).text("Properly fill out all fields.");
+                }
+               else if (!checkContactNum(_id)) {
+                    $("#errorUpdate-" + _id).text("Contact number should be positive integer and not empty.");
+                }
+                else {
+                    $.post('/updateOrder',{_id:_id,customerName: name, contactNumber: contactnum, homeAddress: home, city: city, placedDate:placed,
+                                            deliveryDate: delivery, courier: courier, paymentMethod: payment, status: status, deliveryFee: deliveryfee}, function(data, status) {
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 300);
+                    })
+                }
+            }
 $("#filterActivate").click(function() {
 	/* status */
     if($("#filterButton").html() == "confirmed"){
@@ -536,7 +742,7 @@ $("#filterActivate").click(function() {
 });
 /* print pdf */
     const { PDFDocument, StandardFonts, rgb } = PDFLib
-    async function createPdf(data) {
+    async function createPdf(modalID) {
       // Create a new PDFDocument
       const pdfDoc = await PDFDocument.create()
       // Embed the Helvetica
@@ -557,22 +763,21 @@ $("#filterActivate").click(function() {
         color: rgb(0, 0, 0),
       });
       const fontSizeBody = 14;
-	  var modalId = ("#" + data);
-	  var name =  ($((modalId +" #titleModal")).text()).toString();
-      var number = ($((modalId + " #contactNumberModal")).val()).toString();
-      var address = ($((modalId +" #homeAddressModal")).val()).toString() + ", " + ($((modalId +" #cityModal")).val()).toString();
-      var placed =  ($((modalId +" #placedDateModal")).val());
-      var deliverydate = ($((modalId +" #deliveryDateModal")).val());
-      var courier = ($((modalId +" #courierModal")).val()).toString();
-      var status = ($((modalId +" #statusModal")).val()).toString();
+	  var name =  ($(("#name-" + modalID)).text()).toString();
+      var number = ($(("#contactNumberModal-" + modalID)).val()).toString();
+      var address = ($(("#homeAddressModal-" + modalID)).val()).toString() + "- " + ($(("#cityModal-" + modalID)).val()).toString();
+      var placed =  ($(("#placedDateModal-" + modalID)).val());
+      var deliverydate = ($(("#deliveryDateModal-" + modalID)).val());
+      var courier = ($(("#courierModal-" + modalID)).val()).toString();
+      var status = ($(("#statusModal-"+ modalID)).val()).toString();
       page.drawText("\n\nName:                       " + name + 
                     "\nContact Number:      " + number +
                     "\nAddress:                   " + address + 
                     "\nDate Placed:             " + placed +
                     "\nDelivery Date:           " + deliverydate + 
                     "\nCourier:                     " + courier + 
-                    "\n\n\n INSERT TABLE OF ITEMS HERE \n\n\n" + 
-                    "\nStatus:                     " + status +
+                    "\nStatus:                      " + status +
+					"\n\n\n INSERT TABLE OF ITEMS HERE \n\n\n" +
                     "\n"
                     ,
       {
@@ -583,9 +788,9 @@ $("#filterActivate").click(function() {
         color: rgb(0, 0, 0),
       });
       const fontSizeFees = 14
-      var overall =  ($("#overallPriceModal").val()).toString();
-      var dfee = ($("#deliveryFeeModal").val()).toString();
-      var total = ($("#totalPriceModal").val()).toString();
+      var overall =  ($(("#overallPriceModal-" + modalID)).val()).toString();
+      var dfee = ($(("#deliveryFeeModal-" + modalID)).val()).toString();
+      var total = ($(("#totalPriceModal-" + modalID)).val()).toString();
       page.drawText( "\n\nOverall Payment:                      " + overall + 
                      "\nDelivery Fee:                           " + dfee +
                      "\nTotal Price:                               " + total

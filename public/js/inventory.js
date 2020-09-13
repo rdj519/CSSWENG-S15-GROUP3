@@ -171,7 +171,7 @@ $(document).ready(function() {
         else 
             $('#addProductButton').prop('disabled', true);
     }
-
+    
 
 
     $('#name').keyup(function () {
@@ -191,7 +191,10 @@ $(document).ready(function() {
     });
 
     $('#lowStockQuantity').keyup(function () {
-        validateField($('#lowStockQuantity'), 'Product Name', $('#lowStockQuantityError'));
+        validateField($('#lowStockQuantity'), 'Low Stock Quantity', $('#lowStockQuantityError'));
     });
+
+    
+
 
 });

@@ -75,3 +75,7 @@ label {
     margin-top: 10px;
 }
 
+@font-face {
+    font-family: headerFont;
+    src: url(sansation_light.woff);
+  }

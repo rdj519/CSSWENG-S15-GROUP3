@@ -50,3 +50,8 @@ body {
     margin-left: .1rem;
     margin-right: .1rem;
 }
+
+@font-face {
+    font-family: headerFont;
+    src: url(sansation_light.woff);
+  }

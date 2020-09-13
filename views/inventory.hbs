@@ -25,7 +25,7 @@
                 <div class="col-2">
                     <div class="sidenav sticky">
                         <div class="nav flex-column nav-pills" aria-orientation="vertical">
-                            <a class="nav-link sideBarOptions" href="/home"><h3><b>SioPau</b></h3></a>
+                            <a class="nav-link sideBarOptions" href="/home" ><h3><font face="headerFont"><b>SioPau</b></h3></font></h3></a>
                             <a class="nav-link sideBarOptions" href="/orders">Orders</a>
                             <a class="nav-link active sideBarOptions" href="/inventory">Stock Inventory</a>
                             <a class="nav-link sideBarOptions" href="/contacts">Contacts</a>
@@ -39,7 +39,7 @@
                     <div class="card-body">
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                <h1><b>{{this.title}}</b></h1>
+                                <h1><b>Stock Inventory</b></h1>
                                 This page contains the available products in the inventory.
                                 <br>
                                 <br>
@@ -227,6 +227,93 @@
         <script>
 
             //UPDATE PRODUCT
+            /*
+            function validateUpdateField(field, fieldName, error) {
+
+                var value = validator.trim(field.val());
+                var empty = validator.isEmpty(value);
+
+                if(empty) {
+                    field.prop('value', '');
+                    error.text(fieldName + " should not be empty.");
+                }
+                else {
+                    error.text("");
+                }
+
+                var filled = isFilled();
+                var validStockQuantity = isValidStockQuantity(field);
+                var validPricePerPack = isValidPricePerPack(field);
+                var validLowStockQuantity = isValidLowStockQuantity(field);
+                isUniqueProduct();
+
+                if(filled && validStockQuantity && validPricePerPack && validLowStockQuantity)
+                    $('#' + itemID + '-saveChanges').prop('disabled', false);
+                else 
+                    $('#' + itemID + '-saveChanges').prop('disabled', true);
+            }
+
+            $("#stockQuantity-" + itemID).keyup(function () {
+                validateUpdateField($("#stockQuantity-" + itemID), 'Stock Quantity', $('#updateQuantityError'));
+            });
+
+            $("#pricePerPack-" + itemID).keyup(function () {
+                validateUpdateField($("#pricePerPack-" + itemID), 'Price per Pack', $('#updatePricePerPackError'));
+            });
+            
+            $("#lowStock-" + itemID).keyup(function () {
+                validateUpdateField($("#lowStock-" + itemID), 'Low Stock Quantity', $('#updateLowStockQuantityError'));
+            });
+            */
+
+            function isFilledUpdate(itemID) {
+                var valid = true
+                var stock = validator.trim($("#stockQuantity-" + itemID).val());
+                var price = validator.trim($("#pricePerPack-" + itemID).val());
+                var low = validator.trim($("#lowStock-" + itemID).val());
+
+                if (validator.isEmpty(stock)) {
+                    $("#stockQuantity-" + itemID).css("border-color", "red");
+                    valid = false
+                }
+
+                if (validator.isEmpty(price)) {
+                    $("#pricePerPack-" + itemID).css("border-color", "red");
+                    valid = false
+                }
+               
+                if (validator.isEmpty(low)) {
+                    $("#lowStock-" + itemID).css("border-color", "red");
+                    valid = false
+                }
+
+                return valid;
+            }
+
+            function isValid(itemID) {
+                var valid = true
+                var stock = validator.trim($("#stockQuantity-" + itemID).val());
+                var price = validator.trim($("#pricePerPack-" + itemID).val());
+                var low = validator.trim($("#lowStock-" + itemID).val());
+
+                if (stock < 1) {
+                    $("#stockQuantity-" + itemID).css("border-color", "red");
+                    valid = false
+                }
+
+                if (price < 1) {
+                    $("#pricePerPack-" + itemID).css("border-color", "red");
+                    valid = false
+                }
+               
+                if (low < 1) {
+                    $("#lowStock-" + itemID).css("border-color", "red");
+                    valid = false
+                }
+
+                return valid;
+            }
+
             function saveChanges(itemID) {
                 var labelName = $('#productName-' + itemID);
                 var pname = labelName.attr('value');
@@ -236,11 +323,21 @@
                 var price = $("#pricePerPack-" + itemID).val();
                 var low = $("#lowStock-" + itemID).val();
 
-                $.post('/updateProd',{name: pname, amountPerPack: amt, quantity: stock, price: price, lowstockQuantity: low}, function(data, status) {
-                    setTimeout(function() {
-                        window.location.reload();
-                    }, 500);
-                })
+                if(!isFilledUpdate(itemID)) {
+                    $("#errorUpdate-" + itemID).text("Properly fill out all fields. Characters are not allowed.");
+                }
+                else if (!isValid(itemID)) {
+                    $("#errorUpdate-" + itemID).text("Input should be a positive integer and not empty.");
+                }
+                else {  
+                    $.post('/updateProd',{name: pname, amountPerPack: amt, quantity: stock, price: price, lowstockQuantity: low}, function(data, status) {
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 500);
+                    })
+                }
+
+
 
             }
 
