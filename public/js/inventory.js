@@ -133,6 +133,7 @@ $(document).ready(function() {
             if(data.name == name && data.amountPerPack == amountPerPack){
                 $('#addProductButton').prop('disabled', true);
                 $('#uniqueError').text("Product already exists.");
+
             }
             else {
                 $('#addProductButton').prop('disabled', false);
@@ -159,11 +160,14 @@ $(document).ready(function() {
         var validStockQuantity = isValidStockQuantity(field);
         var validPricePerPack = isValidPricePerPack(field);
         var validLowStockQuantity = isValidLowStockQuantity(field);
-        // console.log(validAmountPerPack + " " + validStockQuantity + " " +  validPricePerPack + " " + validLowStockQuantity);
-        isUniqueProduct();
+        console.log(filled + " " + validAmountPerPack + " " + validStockQuantity + " " +  validPricePerPack + " " + validLowStockQuantity);
+        
 
-        if(filled && validAmountPerPack && validStockQuantity && validPricePerPack && validLowStockQuantity)
+        if(filled && validAmountPerPack && validStockQuantity && validPricePerPack && validLowStockQuantity) {
             $('#addProductButton').prop('disabled', false);
+            isUniqueProduct();
+        }
+            
         else 
             $('#addProductButton').prop('disabled', true);
     }
