@@ -3,9 +3,7 @@ $(document).ready(function() {
 
 
     $.get('/getProductsSold', {}, function(data, status) {
-     
         for(var i = 0; i < data.length; i++) {
-      
             $("#productSold").append("<tr>");
             $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "</th>");
             $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID =' "+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0></td>");
@@ -26,7 +24,6 @@ $(document).ready(function() {
         var sum = 0;
 
         $('.productPrice').each(function() {
-            // var current = parseFloat($("#productTotal").val());
             sum += parseFloat($(this).text()) || 0;
         })
         $("#productTotal").val(sum);
@@ -150,7 +147,7 @@ $(document).ready(function() {
     function isValidContactNumber(field) {
         var contactNumber = validator.trim($('#contactNumber').val());
 
-        if((parseInt(contactNumber) > 0) && (contactNumber % 1 === 0)) {
+        if((parseInt(contactNumber).toString().length === 10) && (contactNumber % 1 === 0)) {
             if(field.is($("#contactNumber")))
                 $("#contactNumberError").text("");
 
@@ -158,7 +155,7 @@ $(document).ready(function() {
         }
         else {
             if(field.is($("#contactNumber")))
-                $("#contactNumberError").text("Contact number should be positive integer and not empty.");
+                $("#contactNumberError").text("Contact number should be eleven digits and not empty.");
             
             return false;
         }
@@ -307,7 +304,6 @@ $(document).ready(function() {
         var validPaymentMethod = isValidPaymentMethod(field);
         var validCourier = isValidCourier(field);
         var validStatus  = isValidStatus(field);
-        // console.log(validAmountPerPack + " " + validStockQuantity + " " +  validPricePerPack + " " + validLowStockQuantity);
 
         if(filled && validContactNumber && validHomeAddress && validCustomerName && validCity && validDeliveryDate && validDeliveryFee && validPaymentMethod && validCourier && validStatus)
             $('#submitOrder').prop('disabled', false);
@@ -351,6 +347,5 @@ $(document).ready(function() {
     });
 
 
-    
 
 });
