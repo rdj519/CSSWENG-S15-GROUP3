@@ -50,14 +50,4 @@ router.get('/orders', isPrivate, controller.getOrders);
 router.get('/contacts', isPrivate, controller.getContacts);
 
 
-/*
-router.post('/editChili', isPrivate, inventoryController.updateProduct);
-router.post('/addProd', isPrivate, inventoryController.addProduct);
-*/
-/*
-router.get("*", function(req, res) {
-    res.render("error")
-})
-*/
-
 module.exports = router;
