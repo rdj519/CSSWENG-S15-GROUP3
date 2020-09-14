@@ -6,7 +6,7 @@ const homeController = {
         console.log("userID: " + req.session.userID);
 
         db.findOne(User, {_id: req.session.userID}, null, function(result) {
-            //res.send(result);
+
             console.log("result: " + result)
             if(result) {
                 console.log("checking if user exist");
@@ -16,7 +16,6 @@ const homeController = {
                 } else {
                     result.userID = null;
                     console.log("home error");
-                    //res.render('error', result);
                 }
 
             }
