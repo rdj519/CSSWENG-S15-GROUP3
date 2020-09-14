@@ -91,31 +91,13 @@
 													<li><a class="dropdown-item" href="#">mrspeedy</a></li>
 													<li><a class="dropdown-item" href="#">lalamove</a></li>
 												</ul>
-												<!--
-												<a class="dropdown-item dropdown-toggle" href="#">City/Municipality</a>
-												<ul class="dropdown-menu">
-													<a class="dropdown-item" href="#">
-														<input type="text" class="form-control" placeholder="City/Municipality" aria-label="order number" aria-describedby="button-addon2">
-														<div class="input-group-append">
-															<button class="btn-xs btn-light btn-outline-secondary" type="button" id="button-addon2" style="margin-top:5px;">Go</button>
-														</div>
-													</a>
-
-												</ul>
-												<a class="dropdown-item dropdown-toggle" href="#">Date Placed</a>
-												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#"><input type="date" id="defaultForm-pass" class="form-control validate"></a></li>
-												</ul>
-												<a class="dropdown-item dropdown-toggle" href="#">Delivery Date</a>
-												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#"><input type="date" id="defaultForm-pass" class="form-control validate"></a></li>
-												</ul>
-												-->
 											</li>
 										</ul>
 									</div>
+
 								</div>
 								<div class="col-5">
+										<!-- activation button for filtering -->
 										<button class="btn btn-light btn-outline-secondary" type="button" id="filterActivate">Go</button>
 								</div>
 								<div class="col-4">
@@ -154,7 +136,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr id="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}">
+										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}">
 											<th scope="row">{{customerName}}</th>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
@@ -204,9 +186,6 @@
 										      	<input type="text" class="form-control" id="homeAddressModal-{{_id}}" value="{{homeAddress}}">
 										      	<label style="color:#A39E9C"> City/Municipality </label>
 										      	<input type="text" class="form-control" id="cityModal-{{_id}}" value="{{city}}">
-											
-												
-
 										      	<label style="color:#A39E9C"> Courier </label>
 										      	<div class="info">
 													<div class="dropdown">
@@ -220,7 +199,7 @@
 													</div>
 										      	</div>	
 										      	<label style="color:#A39E9C"> Date Placed</label>
-										      	<input class= "info" type="text" id="placedDateModal-{{_id}}" name="trip-start" value="{{placedDate}}" readonly>	
+										      	<input class= "info" type="date" id="placedDateModal-{{_id}}" name="trip-start" value="{{placedDate}}" readonly>	
 										      	<label style="color:#A39E9C"> Delivery Date</label>
 										      	<input class= "info" type="date" id="deliveryDateModal-{{_id}}" name="trip-start" value="{{deliveryDate}}">						  
 										      	<label style="color:#A39E9C"> Payment Method</label>
@@ -246,25 +225,11 @@
 													    <a class="dropdown-item" href="#">cancelled</a>
 													  </div>
 													</div>
-										      	</div>			
+										      	</div>									  
 
-												<div class="info container">
-													<p style="color:#A39E9C" class="d-flex justify-content-start"> Order List </p>
-													{{#each customerOrder}}
-														<div class="row" productID="{{id}}">
-															<div class="col d-flex justify-content-start">
-																<p>{{name}}</p>
-															</div>
-															<div class="col">
-																<input type="text" class="form-control" id="orderproduct-{{id}}" value="{{quantity}}">
-															</div>
-														</div>
-													{{/each}}
-												</div>						  
-		
-										      
-										
-										      	
+										      	<div class="info">
+										      		<!-- table for ordered products -->
+												</div>
 												<label style="color:#A39E9C"> Overall Price</label>
 										      	<input type="text" class="form-control" id="overallPriceModal-{{_id}}" value="{{productTotal}}">		
 										      	<label style="color:#A39E9C"> Delivery Fee</label>
@@ -273,7 +238,6 @@
 										      	<input type="text" class="form-control" id="totalPriceModal-{{_id}}" style="font-weight:bold;">
                         						<p id="errorUpdate-{{_id}}" class="error"><br></p>
 										      </div>
-											  
 										      <div class="modal-footer">
 												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#delete{{_id}}" style="float:left;">Delete Order</button>
 												  <button type="button" class="btn btn-info mr-auto" id = {{_id}} data-dismiss="modal" style="float:left;" onclick="createPdf($(this).attr('id'))">Print</button>
@@ -288,8 +252,6 @@
 									</tbody> 
 								</table>
 							</div>
-
-						
 
 							<!-- Modal For Adding Order -->
 							<div id="addOrder" class="modal fade" role="dialog">
@@ -336,8 +298,14 @@
 													<th scope="col">Price</th>
 												</tr>
 											</thead>
-											<tbody id="productSold">
-												
+											<tbody>
+												{{#each products}}
+												<tr>
+													<th scope="row">{{name}}</th>
+													<td><input type="number" id="input{{_id}}" class="form-control validate"></td>
+													<td><p id="price{{_id}}" class="form-control validate"></p></td>
+												</tr>
+												{{/each}}
 											</tbody>
 										</table>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">DeliveryFee</label>
@@ -413,116 +381,8 @@
 
 
 <script>
-/*
-	function saveChanges(_id) {
-		
-        var name = $('#name-' + _id).val();
-        var contactnum = $("#contactNumberModal-" + _id).val();
-        var home = $("#homeAddressModal-" + _id).val();
-        var city = $("#cityModal-" + _id).val();
-        //dates
-        var placed = $("#placedDateModal-" + _id).val();
-        var delivery = $("#deliveryDateModal-" + _id).val();
-        //dropdowns
-        var courier = $("#courierModal-" + _id).html();
-        var payment = $("#paymentMethodModal-" + _id).html();
-        var status = $("#statusModal-" + _id).html();
-            $.post('/updateOrder',{_id:_id,customerName: name, contactNumber: contactnum, homeAddress: home, city: city,
-            						deliveryDate: delivery, courier: courier, paymentMethod: payment, status: status}, function(data, status) {
-                setTimeout(function() {
-                    window.location.reload();
-                }, 300);
-            })
-        
-	}
-*/
-/*
-			function isFilledUpdateOrder(_id) {
-                var valid = true
-		        var contactnum = $("#contactNumberModal-" + _id).val();
-		        var home = $("#homeAddressModal-" + _id).val();
-		        var city = $("#cityModal-" + _id).val();
-		        //dates
-		        var delivery = $("#deliveryDateModal-" + _id).val();
-		        //dropdowns
-		        var courier = $("#courierModal-" + _id).html();
-		        var payment = $("#paymentMethodModal-" + _id).html();
-		        var status = $("#statusModal-" + _id).html();
-                if (validator.isEmpty(contactnum)) {
-                    $("#contactNumberModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-                if (validator.isEmpty(home)) {
-                    $("#homeAddressModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-               
-                if (validator.isEmpty(city)) {
-                    $("#cityModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-				if (validator.isEmpty(delivery)) {
-                    $("#deliveryDateModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-                if (validator.isEmpty(courier)) {
-                    $("#courierModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-               
-                if (validator.isEmpty(payment)) {
-                    $("#paymentMethodModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-                if (validator.isEmpty(status)) {
-                    $("#statusModal-" + _id).css("border-color", "red");
-                    valid = false
-                }                
-                return valid;
-            }
-           */
- /*
- 			function checkContactNum(_id) {
- 				var valid = true
- 				if(!validator.isLength($("#contactNumberModal-" + _id).val(), { min: 11, max: 11})) {
- 					$("#contactNumberModal-" + _id).css("border-color", "red");
-                    valid = false
- 				}
- 				return valid;
- 			}
- 		*/
- 		/*
-            function saveChanges(_id) {
-                
-		        var name = $('#name-' + _id).val();
-		        var contactnum = $("#contactNumberModal-" + _id).val();
-		        var home = $("#homeAddressModal-" + _id).val();
-		        var city = $("#cityModal-" + _id).val();
-		        //dates
-		        var placed = $("#placedDateModal-" + _id).val();
-		        var delivery = $("#deliveryDateModal-" + _id).val();
-		        //dropdowns
-		        var courier = $("#courierModal-" + _id).html();
-		        var payment = $("#paymentMethodModal-" + _id).html();
-		        var status = $("#statusModal-" + _id).html();
-		        if(!isFilledUpdateOrder(_id)) {
-                    $("#errorUpdate-" + _id).text("Properly fill out all fields.");
-		        }
-		        else if (!isValidContactNumber(_id)) {
-		        	$("#errorUpdate-" + _id).text("Contact number should be positive integer and not empty.");
-		        }
-		        else {
-		            $.post('/updateOrder',{_id:_id,customerName: name, contactNumber: contactnum, homeAddress: home, city: city, placedDate:placed,
-		            						deliveryDate: delivery, courier: courier, paymentMethod: payment, status: status}, function(data, status) {
-		                setTimeout(function() {
-		                    window.location.reload();
-		                }, 300);
-		            })
-				}
-			}
-	*/
 
-//update
+	//update
     function isFilledUpdateOrder(_id) {
                 var valid = true
                 var contactnum = $("#contactNumberModal-" + _id).val();
@@ -571,19 +431,7 @@
                 }      
                 return valid;
             }
-            /*
-            function checkContactNum(_id) {
-
-        		var contactNumber = $("#contactNumberModal-" + _id).val();
- 				var valid = true
- 				if((parseInt(contactNumber) > 0) && (contactNumber % 1 === 0)) {
- 					$("#contactNumberModal-" + _id).css("border-color", "red");
-                    valid = false
- 				}
- 				return valid;
- 			}
- 			*/
- 			function checkContactNum(_id) {
+ 	function checkContactNum(_id) {
  				var valid = true
  				if(!($("#contactNumberModal-" + _id).val() >0)) {
  					$("#contactNumberModal-" + _id).css("border-color", "red");
@@ -727,9 +575,8 @@ $("#filterActivate").click(function() {
         $(".paymaya").show();
         $("#filterButton").html("Filter By");
     }
-    //== all
 });
-/* print pdf */
+	/* print pdf */
     const { PDFDocument, StandardFonts, rgb } = PDFLib
     async function createPdf(modalID) {
       // Create a new PDFDocument
@@ -798,7 +645,7 @@ $("#filterActivate").click(function() {
 
  
 
-	   /* nested dropdown */
+	/* nested dropdown */
     $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
         if (!$(this).next().hasClass('show')) {
             $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
@@ -814,103 +661,6 @@ $("#filterActivate").click(function() {
         $(this).parents(".dropdown").find('.btn').html($(this).text());
         $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
     });
-	/* order number 
-	$("#addOrderButton").click(function(){
-			var element = $("#tbody");
-			var primaryTag = $("<tr></tr>");
-			primaryTag.attr("data-toggle", "modal");
-			primaryTag.attr("data-target", "#orderModal");
-			primaryTag.attr("data-id", "2");
-			var th = $("<th></th>");
-			th.attr("scope","row");
-			var td1 = $("<td></td>");
-			td1.text($("#name").val());
-			var td2 = $("<td></td>");
-			td2.text($("#contact").val());
-			var td3 = $("<td></td>");
-			td3.text($("#homeAddress").val());
-			var td4 = $("<td></td>");
-			td4.text($("#method").text()); 
-			var td5 = $("<td></td>");
-			td5.text($("#courier").text()); 
-			
-
-			var td6 = $("<td></td>");
-			var today = new Date();
-			var dd = String(today.getDate()).padStart(2, '0');
-			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-			var yyyy = today.getFullYear();
-			today = yyyy + '-' + mm + '-' + dd;
-			td6.text(today);
-
-
-			var td7 = $("<td></td>");
-			td7.text($("#deliveryDate").val());
-			primaryTag.append(th);
-			primaryTag.append(td1);
-			primaryTag.append(td2);
-			primaryTag.append(td3);
-			primaryTag.append(td4);
-			primaryTag.append(td5);
-			primaryTag.append(td6);
-			primaryTag.append(td7);
-			element.append(primaryTag);
-			
-	}); 
-	$("#change1").click(function() {
-                var name = $("#customerNameModal1").val();
-                var contactNumber = $("#contactNumberModal1").val();
-                var deliveryDate = $("#deliveryDateModal1").val();
-                var homeAddress = $("#homeAddressModal1").val();
-                var city = $("#cityModal1").val();
-                var status = $("#statusModal1").text();
-                var courier = $("#courierModal1").text();
-                var paymentMethod = $("#paymentMethodModal1").text();
-               
-                
-                if(name.trim() && contactNumber.trim() && homeAddress.trim() && city.trim() && status.trim() && courier.trim() && paymentMethod.trim()) { 
-
-                    $("#customerNameModal1").text(name);
-                    $("#contactNumberModal1").val(contactNumber);
-                    $("#deliveryDateModal1").val(deliveryDate);
-                    $("#homeAddressModal1").text(homeAddress);
-                    $("#cityModal1").text(city);
-                    $("#statusModal1").val(status);
-                    $("#courierModal1").val(courier);
-                    $("#paymentMethodModal1").val(paymentMethod);
-
-                    $("#rowName1").html(name);
-                    $("#rowContact1").html(contactNumber);
-                    $("#rowDeliveryDate1").html(deliveryDate);
-                    $("#rowHomeAddress1").html(homeAddress);
-                    $("#rowStatus1").html(status);
-                    $("#rowCourier1").html(courier);
-                    $("#orderOneModal").modal("hide");
-                }
-                else {
-                    $("#orderOneModal").modal({"backdrop": "static"});
-                }
-            });
-	
-	$(function(){
-	  $('#siomaiDumplingInput').on('input', function() {
-	  		var element = $("#siomaiDumpling");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 180
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	  $('#porkSiomaiInput').on('input', function() {
-	  		var element = $("#porkSiomai");
-	  		var totalElement = $("#totalAmount");
-	  		var due = $(this).val() * 200
-	  		element.text(due);
-	  		$("#totalAmount").val(parseFloat(totalElement.val()) + due);
-	  		totalElement.text(parseFloat(totalElement.val()));
-	  });
-	}); 
-		*/
 </script>
 
 
