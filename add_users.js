@@ -27,5 +27,3 @@ bcrypt.hash(user.pw, saltRounds, function(err, hash) {
         })
     })
 })
-/*
-*/

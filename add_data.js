@@ -15,7 +15,6 @@ const Contact = require('./models/ContactModel.js');
 
 
 var order = {
-    orderNumber: 1,
     customerName: "Rey Delima",
     contactNumber: 91234567891,
     homeAddress: "5th Wyoming St., Forbes Park",
@@ -33,7 +32,6 @@ var order = {
 db.insertOne(Order, order, function(flag){});
 
 var product = {
-    itemID: 1,
     name: "test",
     amountPerPack: 1,
     price: 1,
@@ -42,7 +40,6 @@ var product = {
 };
 
 db.insertOne(Product, product, function(flag){});
-
 
 var contact = {
     name: "Rey Delima",
@@ -53,14 +50,3 @@ var contact = {
 }
 db.insertOne(Contact, contact, function(flag){});
 
-
-/*
-name
-brand
-carClass
-bodyStyle
- capacity
-price
-description
-imgLink
-*/
