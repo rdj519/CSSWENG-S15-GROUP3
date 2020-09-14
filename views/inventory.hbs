@@ -1,8 +1,9 @@
+<!-- Inventory -->
 <!DOCTYPE html>
 <html>
     <head>
         <title>Stock Inventory</title>
-
+        <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -13,7 +14,7 @@
     	<!-- Fonts-->
 	    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">   
 
-        {{!-- JavaScript --}}
+        <!-- JavaScript -->
         <script src="/js/inventory.js" type="text/javascript"></script>
         <script src="/js/validator.min.js" type="text/javascript"></script>
     </head>
@@ -48,9 +49,7 @@
                                 <div class="row">
                                     <div class="col-1">
                                             <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Sort by
-                                            </button>
+                                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by</button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#" onclick="sortTableAlphabetical()">Name</a>
                                                 <a class="dropdown-item" href="#" onclick="sortTablePrice()">Price (Asc.)</a>
@@ -213,45 +212,8 @@
 
         <script>
 
-            //UPDATE PRODUCT
-            /*
-            function validateUpdateField(field, fieldName, error) {
 
-                var value = validator.trim(field.val());
-                var empty = validator.isEmpty(value);
-
-                if(empty) {
-                    field.prop('value', '');
-                    error.text(fieldName + " should not be empty.");
-                }
-                else {
-                    error.text("");
-                }
-
-                var filled = isFilled();
-                var validStockQuantity = isValidStockQuantity(field);
-                var validPricePerPack = isValidPricePerPack(field);
-                var validLowStockQuantity = isValidLowStockQuantity(field);
-                isUniqueProduct();
-
-                if(filled && validStockQuantity && validPricePerPack && validLowStockQuantity)
-                    $('#' + itemID + '-saveChanges').prop('disabled', false);
-                else 
-                    $('#' + itemID + '-saveChanges').prop('disabled', true);
-            }
-
-            $("#stockQuantity-" + itemID).keyup(function () {
-                validateUpdateField($("#stockQuantity-" + itemID), 'Stock Quantity', $('#updateQuantityError'));
-            });
-
-            $("#pricePerPack-" + itemID).keyup(function () {
-                validateUpdateField($("#pricePerPack-" + itemID), 'Price per Pack', $('#updatePricePerPackError'));
-            });
-            
-            $("#lowStock-" + itemID).keyup(function () {
-                validateUpdateField($("#lowStock-" + itemID), 'Low Stock Quantity', $('#updateLowStockQuantityError'));
-            });
-            */
+            /* validators */
 
             function isFilledUpdate(itemID) {
                 var valid = true
@@ -323,10 +285,6 @@
                         }, 500);
                     })
                 }
-            }
-
-            function deleteProduct(itemID) {
-                $.deleteOne
             }
 
             //NESTED DROPDOWN

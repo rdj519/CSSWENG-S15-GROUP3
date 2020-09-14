@@ -1,7 +1,9 @@
+<!-- Contacts -->
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Customer List</title>
+	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -146,7 +148,7 @@
 												<div class="md-form mb-4">
 													<label data-error="wrong" data-success="right" for="contact">Contact Number</label>
 													<input type="number" id="contact" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
-event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
+event.keyCode === 46 ? true : !isNaN(Number(event.key))"/>
 										  		</div>
 
 	  											<div class="md-form mb-4">
@@ -194,6 +196,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
 							    </div>
 							  </div>
 							</div>
+							
 							<!-- edit contact modal -->
 
 
@@ -210,7 +213,9 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
 
     <script>
 
-		$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+    /* drop dowb menu */
+
+	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
 			if (!$(this).next().hasClass('show')) {
 				$(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
 			}
@@ -223,13 +228,13 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
 			});
 
 			return false;
-		});
+	});
 
 		
-		$(".dropdown-menu a").click(function(){
+	$(".dropdown-menu a").click(function(){
   			$(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
   			$(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-		});
+	});
 
 
 	/* order number */
@@ -290,81 +295,6 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" />
 			}
 		
 	});
-/*
-		var cusNumber = 0;
-		$("#submitInfo").click(function() {
-			var valid = 0;
-			var element = $("#tbody");
-			var primaryTag = $("<tr></tr>");
-			primaryTag.attr("data-toggle", "modal");
-
-			var th = $("<th></th>");
-			th.attr("scope","row");
-
-			var td1 = $("<td></td>");
-			td1.text($("#name").val());
-			if (!($("#name").val()).trim()) {//check if tring is empty or whitespace
-				$("#name").css("border-color", "red");	
-      		}
-      		else {
-      			$("#name").css("border-color", "lightgray");
-      			valid += 1;
-      		}
-
-			var td2 = $("<td></td>");
-			td2.text($("#contact").val());
-			if (!($("#contact").val()).trim()) {				//check if tring is empty or whitespace
-				$("#contact").css("border-color", "red");
-      		}
-      		else {
-      			$("#contact").css("border-color", "lightgray");
-      			valid += 1;
-      		}
-
-			var td3 = $("<td></td>");
-			td3.text($("#home").val());
-			if (!($("#home").val()).trim()) {				//check if tring is empty or whitespace
-				$("#home").css("border-color", "red");
-      		}
-      		else {
-      			$("#home").css("border-color", "lightgray");
-      			valid += 1;
-      		}
-
-			var td4 = $("<td></td>");
-			td4.text($("#city").text()); 
-			if (!($("#city").val()).trim()) {				//check if tring is empty or whitespace
-				$("#city").css("border-color", "red");
-      		}
-      		else {
-      			$("#city").css("border-color", "lightgray");
-      			valid += 1;
-      		}
-
-			var td5 = $("<td></td>");
-			td5.text($("#remark").text()); 
-
-		//	if (valid == 4) {
-        		cusNumber += 1;
-        		primaryTag.attr("data-target", cusNumber.toString());
-        		primaryTag.attr("data-id", cusNumber.toString());
-        		th.text(orderNumber.toString());
-        
-				primaryTag.append(th);
-				primaryTag.append(td1);
-				primaryTag.append(td2);
-				primaryTag.append(td3);
-				primaryTag.append(td4);
-				primaryTag.append(td5);
-
-        		element.append(primaryTag);
-        		$('#newContact').modal('hide');
-
-    	}
-    */		
-   
-		
-
 
 	</script>
 
