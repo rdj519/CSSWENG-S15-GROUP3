@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+        <!-- CSS -->
+    <link rel="stylesheet" href="/css/orders.css">
+
+    <!-- Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    </style>
+</head>
+<body>
+
+    <div class="margin">
+        <div class="row">
+            <!-- SIDE BAR -->
+            <div class="col-2">
+                <div class="sidenav sticky">
+                    <div class="nav flex-column nav-pills" aria-orientation="vertical">
+                        <a class="nav-link sideBarOptions" href="/home"><h3><font face="headerFont"><b>SioPau</b></h3></font></h3></a>
+                        <a class="nav-link sideBarOptions" href="/orders">Orders</a>
+                        <a class="nav-link sideBarOptions" href="/inventory">Stock Inventory</a>
+                        <a class="nav-link sideBarOptions" href="/contacts">Contacts</a>
+                        <hr>
+                        <a class="nav-link active sideBarOptions" href="/settings">Settings</a>
+                        <a class="nav-link sideBarOptions" href="/user/logout">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-10 card border-0 main">
+                <div class="card-body">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <h1><b>Settings</b></h1>
+                            You can view or edit your account details.
+                            <br>
+                            <br>
+
+                            <!-- details-->
+                            <div class="card">
+                                <div class="card-body">
+                                    <p> Email: {{this.email}} </p>
+                                    <p> Name: {{this.name}} </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+    </script>
+</body>
+</html>

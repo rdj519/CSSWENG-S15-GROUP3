@@ -1,0 +1,46 @@
+
+<div class="modal fade" id="product-{{itemID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModal">{{name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="updateForm-{{itemID}}">
+                    <div class="form-group">
+                        <label for="productName-{{itemID}}"><b>Product Name</b></label>
+                        <label id="productName-{{itemID}}" name="productName-{{itemID}}" value="{{name}}">{{name}}</label>
+                        <br>
+                        <label for="amountPerPack-{{itemID}}"><b>Amount Per Pack</b></label>
+                        <label id="amountPerPack-{{itemID}}" name="amountPerPack-{{itemID}}"value="{{amountPerPack}}">{{amountPerPack}}</label>
+                        <br>
+                        <label for="stockQuantity-{{itemID}}"><b>Stock Quantity</b></label>
+                        <input type="number" class="form-control validate" id="stockQuantity-{{itemID}}" name="stockQuantity-{{itemID}}" min="0"
+                            onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+                            value="{{quantity}}">
+                        <br>
+                        <label for="pricePerPack-{{itemID}}"><b>Price per Pack</b></label>
+                        <input type="number" class="form-control validate" id="pricePerPack-{{itemID}}" name="pricePerPack-{{itemID}}" value="{{price}}">
+                        
+                        <br>
+                        <label for="lowStock-{{itemID}}"><b>Low Stack Quantity</b></label>
+                        <input type="number" class="form-control validate" id="lowStock-{{itemID}}" name="lowStock-{{itemID}}" min="0"
+                            onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+                            value="{{lowStockQuantity}}">                         
+                        <br>
+                        <p id="errorUpdate-{{itemID}}" class="error"><br></p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" data-toggle="modal" data-id="1" data-target="#deleteProduct{{_id}}">Delete Product</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="{{itemID}}-saveChanges" class="btn btn-primary" onclick="saveChanges('{{itemID}}');">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

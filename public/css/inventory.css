@@ -68,4 +68,46 @@ label {
     margin-left: .1rem;
     margin-right: .1rem;
 }
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+}
 
+
+.btn-primary.dropdown-toggle {
+    background-color: rgb(150, 117, 103) !important;
+ 
+    color: #FFF !important;
+    
+    border-color:  rgb(150, 117, 103) !important;
+}
+
+
+.btn-primary.dropdown-toggle:focus, .btn-primary.dropdown-toggle:active {
+    background-color: rgb(138, 108, 96)  !important;
+ 
+    color:#FFF !important;
+    
+    border-color: 		rgb(138, 108, 96) !important;
+    
+    box-shadow: 0 0 0 0.2rem rgba(150, 117, 103, 0.5)  !important;
+}
+
+.btn-primary.dropdown-toggle:hover {
+    background-color: 	rgb(138, 108, 96) !important;
+ 
+    color:#FFF !important;
+    
+    border-color: 	rgb(138, 108, 96)!important;
+}
+
+.active.sideBarOptions
+{
+    background-color:rgb(150, 117, 103)  !important;
+ 
+    color: #FFF !important;
+    
+    border-color: rgb(150, 117, 103)  !important;
+}

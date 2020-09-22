@@ -1,0 +1,35 @@
+{
+  "name": "cssweng-s15-group3",
+  "version": "1.0.0",
+  "description": "This repository is for the development of the web application SioPau-Castilla Frozen Foods Management System.",
+  "main": "index.js",
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
+    "bcrypt": "^5.0.0",
+    "connect-mongo": "^3.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.6.1",
+    "handlebars": "^4.5.0",
+    "hbs": "^4.1.1",
+    "helmet": "^4.1.0",
+    "mongodb": "^3.6.1",
+    "mongoose": "^5.10.3",
+    "pdf-lib": "^1.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rdj519/CSSWENG-S15-GROUP3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rdj519/CSSWENG-S15-GROUP3/issues"
+  },
+  "homepage": "https://github.com/rdj519/CSSWENG-S15-GROUP3#readme"
+}
