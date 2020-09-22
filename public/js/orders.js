@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $("#productTotal").val(0);
-
+    $('.from_date').datepicker({
+        startDate: '0'
+    });
 
     $.get('/getProductsSold', {}, function(data, status) {
         for(var i = 0; i < data.length; i++) {

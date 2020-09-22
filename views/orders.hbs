@@ -134,7 +134,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}">
+										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}')">
 											<th scope="row">{{customerName}}</th>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
@@ -179,7 +179,7 @@
 										      <div class="modal-body">
 
 										      	<label style="color:#A39E9C"> Contact Number </label>
-										      	<input type="text" class="form-control" id="contactNumberModal-{{_id}}" value="{{contactNumber}}">
+										      	<input type="text" class="form-control" id="contactNumberModal-{{_id}}"  min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{contactNumber}}">
 										      	<label style="color:#A39E9C"> Home Address </label>
 										      	<input type="text" class="form-control" id="homeAddressModal-{{_id}}" value="{{homeAddress}}">
 										      	<label style="color:#A39E9C"> City/Municipality </label>
@@ -199,7 +199,7 @@
 										      	<label style="color:#A39E9C"> Date Placed</label>
 										      	<input class= "info" type="date" id="placedDateModal-{{_id}}" name="trip-start" value="{{placedDate}}" readonly>	
 										      	<label style="color:#A39E9C"> Delivery Date</label>
-										      	<input class= "info" type="date" id="deliveryDateModal-{{_id}}" name="trip-start" value="{{deliveryDate}}">						  
+										      	<input class= "info from_date" type="date" id="deliveryDateModal-{{_id}}" name="trip-start" value="{{deliveryDate}}">						  
 										      	<label style="color:#A39E9C"> Payment Method</label>
 										      	<div class="info">
 													<div class="dropdown">
@@ -229,9 +229,9 @@
 										      		<!-- table for ordered products -->
 												</div>
 												<label style="color:#A39E9C"> Overall Price</label>
-										      	<input type="text" class="form-control" id="overallPriceModal-{{_id}}" value="{{productTotal}}">		
+										      	<input type="number" class="form-control" id="overallPriceModal-{{_id}}" value="{{productTotal}}" readonly>		
 										      	<label style="color:#A39E9C"> Delivery Fee</label>
-										      	<input type="text" class="form-control" id="deliveryFeeModal-{{_id}}" value="{{deliveryFee}}">
+										      	<input type="number" class="form-control" id="deliveryFeeModal-{{_id}}" value="{{deliveryFee}}">
 										      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
 										      	<input type="text" class="form-control" id="totalPriceModal-{{_id}}" style="font-weight:bold;">
                         						<p id="errorUpdate-{{_id}}" class="error"><br></p>
@@ -380,6 +380,14 @@
 
 <script>
 
+	//Total price
+	function showTotal(_id) {
+		var deliveryfee = parseInt($("#deliveryFeeModal-" + _id).val());   
+		var prodTotal = parseInt($("#overallPriceModal-" + _id).val());
+		$("#totalPriceModal-" + _id).val(deliveryfee + prodTotal);
+	}
+
+	
 	//update
     function isFilledUpdateOrder(_id) {
                 var valid = true
@@ -437,6 +445,7 @@
  				}
  				return valid;
  			}
+
     function saveChanges(_id) {
                 
                 var name = $('#name-' + _id).val();
@@ -451,7 +460,10 @@
                 var payment = $("#paymentMethodModal-" + _id).html();
                 var status = $("#statusModal-" + _id).html();
 
-				var deliveryfee = $("#deliveryFeeModal-" + _id).val();                
+				var deliveryfee = $("#deliveryFeeModal-" + _id).val();   
+				var prodTotal = $("#overallPriceModal-" + _id).val();
+
+	//			var total = deliveryfee + $("#overallPriceModal-" + _id).val();             
                 if(!isFilledUpdateOrder(_id)) {
                     $("#errorUpdate-" + _id).text("Properly fill out all fields.");
                 }
