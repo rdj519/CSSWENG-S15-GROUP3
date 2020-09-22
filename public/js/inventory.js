@@ -24,6 +24,19 @@ $(document).ready(function() {
         });
     });
 
+    $("#deleteProductButton").click(function(){
+        if ($.trim($('#deleteProductConfirmation').val()) == ""){
+            alert('Delete confirmation was empty');
+        } else if ($.trim($('#deleteProductConfirmation').val()) != "CONFIRM") {
+            alert('Delete confirmation did not match');
+        } else {
+            // Delete function here
+            alert('Delete Successful');
+            $('#deleteProduct').modal("hide");
+        }
+        $('#deleteProductConfirmation').val('');
+    });
+
 
 
 
