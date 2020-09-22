@@ -147,6 +147,7 @@
 										<!-- Modal For Deleting Order -->
 										<div class="modal fade" id="delete{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 										  <div class="modal-dialog" role="document">
+		
 										    <div class="modal-content">
 										      <div class="modal-header">
 										        <h5 class="modal-title">Order Deletion for {{customerName}}</h5>
@@ -167,86 +168,99 @@
 										</div>
 
 										<!-- Order Modal -->
-										<div class="modal fade" id="order{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-										  <div class="modal-dialog" role="document">
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <h5 class="modal-title" id="name-{{_id}}" value="{{customerName}}">{{customerName}}</h5>
-										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										          <span aria-hidden="true">&times;</span>
-										        </button>
-										      </div>
-										      <div class="modal-body">
-
-										      	<label style="color:#A39E9C"> Contact Number </label>
-										      	<input type="text" class="form-control" id="contactNumberModal-{{_id}}" value="{{contactNumber}}">
-										      	<label style="color:#A39E9C"> Home Address </label>
-										      	<input type="text" class="form-control" id="homeAddressModal-{{_id}}" value="{{homeAddress}}">
-										      	<label style="color:#A39E9C"> City/Municipality </label>
-										      	<input type="text" class="form-control" id="cityModal-{{_id}}" value="{{city}}">
-										      	<label style="color:#A39E9C"> Courier </label>
-										      	<div class="info">
-													<div class="dropdown">
-													  <button class="btn btn-light dropdown-toggle" type="button" id="courierModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{courier}}">{{courier}}</button>
-													  <div id="courierOptions" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													    <a class="dropdown-item" href="#" value="grabexpress">grabexpress</a>
-													    <a class="dropdown-item" href="#" value="castilla">castilla</a>
-													    <a class="dropdown-item" href="#" value="lalaMoves">lalaMove</a>
-													    <a class="dropdown-item" href="#" value="mrspeedy">mrspeedy</a>
-													  </div>
+										<div class="modal fade" id="order{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+											aria-hidden="true">
+										
+											<div class="modal-dialog" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="name-{{_id}}" value="{{customerName}}">{{customerName}}</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
 													</div>
-										      	</div>	
-										      	<label style="color:#A39E9C"> Date Placed</label>
-										      	<input class= "info" type="date" id="placedDateModal-{{_id}}" name="trip-start" value="{{placedDate}}" readonly>	
-										      	<label style="color:#A39E9C"> Delivery Date</label>
-										      	<input class= "info" type="date" id="deliveryDateModal-{{_id}}" name="trip-start" value="{{deliveryDate}}">						  
-										      	<label style="color:#A39E9C"> Payment Method</label>
-										      	<div class="info">
-													<div class="dropdown">
-													  <button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{paymentMethod}}">{{paymentMethod}}</button>
-													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													    <a class="dropdown-item" href="#">gcash</a>
-													    <a class="dropdown-item" href="#">cod</a>
-													    <a class="dropdown-item" href="#">paymaya</a>
-													  </div>
+													<div class="modal-body">
+										
+														<label style="color:#A39E9C"> Contact Number </label>
+														<input type="text" class="form-control" id="contactNumberModal-{{_id}}" value="{{contactNumber}}">
+														<label style="color:#A39E9C"> Home Address </label>
+														<input type="text" class="form-control" id="homeAddressModal-{{_id}}" value="{{homeAddress}}">
+														<label style="color:#A39E9C"> City/Municipality </label>
+														<input type="text" class="form-control" id="cityModal-{{_id}}" value="{{city}}">
+														<label style="color:#A39E9C"> Courier </label>
+														<div class="info">
+															<div class="dropdown">
+																<button class="btn btn-light dropdown-toggle" type="button" id="courierModal-{{_id}}"
+																	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+																	value="{{courier}}">{{courier}}</button>
+																<div id="courierOptions" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+																	<a class="dropdown-item" href="#" value="grabexpress">grabexpress</a>
+																	<a class="dropdown-item" href="#" value="castilla">castilla</a>
+																	<a class="dropdown-item" href="#" value="lalaMoves">lalaMove</a>
+																	<a class="dropdown-item" href="#" value="mrspeedy">mrspeedy</a>
+																</div>
+															</div>
+														</div>
+										
+										
+														<label style="color:#A39E9C"> Date Placed</label>
+														<input class="info" type="date" id="placedDateModal-{{_id}}" name="trip-start" value="{{placedDate}}"
+															readonly>
+														<label style="color:#A39E9C"> Delivery Date</label>
+														<input class="info" type="date" id="deliveryDateModal-{{_id}}" name="trip-start"
+															value="{{deliveryDate}}">
+														<label style="color:#A39E9C"> Payment Method</label>
+														<div class="info">
+															<div class="dropdown">
+																<button class="btn btn-light dropdown-toggle" type="button" id="paymentMethodModal-{{_id}}"
+																	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+																	value="{{paymentMethod}}">{{paymentMethod}}</button>
+																<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+																	<a class="dropdown-item" href="#">gcash</a>
+																	<a class="dropdown-item" href="#">cod</a>
+																	<a class="dropdown-item" href="#">paymaya</a>
+																</div>
+															</div>
+														</div>
+														<label style="color:#A39E9C"> Status</label>
+														<div class="info">
+															<div class="dropdown">
+																<button class="btn btn-light dropdown-toggle" type="button" id="statusModal-{{_id}}"
+																	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+																	value="{{status}}">{{status}}</button>
+																<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+																	<a class="dropdown-item" href="#">confirmed</a>
+																	<a class="dropdown-item" href="#">paid</a>
+																	<a class="dropdown-item" href="#">delivering</a>
+																	<a class="dropdown-item" href="#">completed</a>
+																	<a class="dropdown-item" href="#">cancelled</a>
+																</div>
+															</div>
+														</div>
+										
+														
+														<label style="color:#A39E9C"> Overall Price</label>
+														<input type="text" class="form-control" id="overallPriceModal-{{_id}}" value="{{productTotal}}">
+														<label style="color:#A39E9C"> Delivery Fee</label>
+														<input type="text" class="form-control" id="deliveryFeeModal-{{_id}}" value="{{deliveryFee}}">
+														<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
+														<input type="text" class="form-control" id="totalPriceModal-{{_id}}" style="font-weight:bold;">
+														<p id="errorUpdate-{{_id}}" class="error"><br></p>
 													</div>
-										      	</div>	
-										      	<label style="color:#A39E9C"> Status</label>
-										      	<div class="info">
-													<div class="dropdown">
-													  <button class="btn btn-light dropdown-toggle" type="button" id="statusModal-{{_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{status}}">{{status}}</button>
-													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													  	<a class="dropdown-item" href="#">confirmed</a>
-													    <a class="dropdown-item" href="#">paid</a>
-													    <a class="dropdown-item" href="#">delivering</a>
-													    <a class="dropdown-item" href="#">completed</a>
-													    <a class="dropdown-item" href="#">cancelled</a>
-													  </div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2"
+															data-target="#delete{{_id}}" style="float:left;">Delete Order</button>
+														<button type="button" class="btn btn-info mr-auto" id={{_id}} data-dismiss="modal" style="float:left;"
+															onclick="createPdf($(this).attr('id'))">Print</button>
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+														<button id="{{_id}}-saveChangeOrder" type="button" class="btn btn-primary"
+															onclick="saveChanges('{{_id}}');">Save changes</button>
 													</div>
-										      	</div>									  
-
-										      	<div class="info">
-										      		<!-- table for ordered products -->
 												</div>
-												<label style="color:#A39E9C"> Overall Price</label>
-										      	<input type="text" class="form-control" id="overallPriceModal-{{_id}}" value="{{productTotal}}">		
-										      	<label style="color:#A39E9C"> Delivery Fee</label>
-										      	<input type="text" class="form-control" id="deliveryFeeModal-{{_id}}" value="{{deliveryFee}}">
-										      	<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
-										      	<input type="text" class="form-control" id="totalPriceModal-{{_id}}" style="font-weight:bold;">
-                        						<p id="errorUpdate-{{_id}}" class="error"><br></p>
-										      </div>
-										      <div class="modal-footer">
-												  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-id="2" data-target="#delete{{_id}}" style="float:left;">Delete Order</button>
-												  <button type="button" class="btn btn-info mr-auto" id = {{_id}} data-dismiss="modal" style="float:left;" onclick="createPdf($(this).attr('id'))">Print</button>
-												  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-												  <button id="{{_id}}-saveChangeOrder" type="button" class="btn btn-primary" onclick="saveChanges('{{_id}}');">Save changes</button>
-										      </div>
-										    </div>
-										  </div>
+											</div>
 										</div>
-                                                <!-- end -->
-										{{/each}} 
+										<!-- end -->
+										{{/each}}
 									</tbody> 
 								</table>
 							</div>
@@ -296,14 +310,9 @@
 													<th scope="col">Price</th>
 												</tr>
 											</thead>
-											<tbody>
-												{{#each products}}
-												<tr>
-													<th scope="row">{{name}}</th>
-													<td><input type="number" id="input{{_id}}" class="form-control validate"></td>
-													<td><p id="price{{_id}}" class="form-control validate"></p></td>
-												</tr>
-												{{/each}}
+											<tbody id="productSold">
+												
+												
 											</tbody>
 										</table>
 										<label data-error="wrong" data-success="right" for="defaultForm-pass">DeliveryFee</label>
