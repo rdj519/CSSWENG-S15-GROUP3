@@ -48,19 +48,7 @@
 
 							<!-- for search and add order button -->
 							<div class="row">
-								<div class="col-1">
-										<div class="dropdown">
-										  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    Sort by
-										  </button>
-										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										    <a class="dropdown-item" href="#">Order No.</a>
-										    <a class="dropdown-item" href="#">Status</a>
-										    <a class="dropdown-item" href="#">Delivery Date</a>
-										  </div>
-										</div>
-								</div>
-								<div class="col-2">
+								<div class="col-3">
 									
 									<!-- Filter button -->
 									<div class="dropdown">
@@ -103,10 +91,7 @@
 										<!-- search bar-->
 										<div class="col-7">
 											<div class="input-group">
-												<input type="text" class="form-control" placeholder="Order Number" aria-label="order number" aria-describedby="button-addon2">
-												<div class="input-group-append">
-													<button class="btn btn-light btn-outline-secondary" type="button" id="button-addon2">Go</button>
-												</div>
+												<input type="text" class="form-control" id="searchName" placeholder="Search Name" aria-label="order number" aria-describedby="button-addon2" onkeyup="liveSearch()">
 											</div>
 										</div>
 
@@ -120,7 +105,7 @@
 
 							<!-- table of customers-->
 							<div class="card">
-								<table class="table table-hover">
+								<table class="table table-hover" id="orderTable">
 									<thead>
 										<tr>
 											<th scope="col">Name</th>
@@ -135,7 +120,7 @@
 									<tbody id="tbody">
 										{{#each contents}}
 										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}')">
-											<th scope="row">{{customerName}}</th>
+											<td scope="row">{{customerName}}</td>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
 											<td>{{status}}</td>
@@ -379,6 +364,31 @@
 
 
 <script>
+
+
+
+	//Live Search
+	function liveSearch() {
+	    // Declare variables
+	    var input, filter, table, tr, td, i, txtValue;
+	    input = document.getElementById("searchName");
+	    filter = input.value.toUpperCase();
+	    table = document.getElementById("orderTable");
+	    tr = table.getElementsByTagName("tr");
+
+	    // Loop through all table rows, and hide those who don't match the search query
+	    for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[0];
+	        if (td) {
+	            txtValue = td.textContent || td.innerText;
+	            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	                tr[i].style.display = "";
+	            } else {
+	                tr[i].style.display = "none";
+	            }
+	        }
+	    }
+	}
 
 	//Total price
 	function showTotal(_id) {
@@ -678,4 +688,4 @@ $("#filterActivate").click(function() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
-</html>
+</html>	
