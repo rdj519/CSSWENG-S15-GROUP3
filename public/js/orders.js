@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $("#productTotal").val(0);
-    $('.from_date').datepicker({
-        startDate: '0'
-    });
+    // $('.from_date').datepicker({
+    //     startDate: '0'
+    // });
 
     $.get('/getProductsSold', {}, function(data, status) {
         for(var i = 0; i < data.length; i++) {
@@ -70,9 +70,14 @@ $(document).ready(function() {
             var productOrder = {
                 id: $(this).attr('productID'),
                 name: $(this).attr('productName'),
-
                 quantity: parseInt($(this).val()),
             }
+            if(productOrder.quantity > 0) {
+                $.post('/postPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity}, function() {
+                    console.log(productOrder.name + " " + "removed stocks");
+                });
+            }
+           
             customerOrder.push(productOrder);
         });
 
@@ -306,7 +311,7 @@ $(document).ready(function() {
         var validPaymentMethod = isValidPaymentMethod(field);
         var validCourier = isValidCourier(field);
         var validStatus  = isValidStatus(field);
-
+        console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity + " " + validDeliveryDate + " " + validDeliveryFee + " " + validPaymentMethod + " " + validCourier + " " + validStatus);
         if(filled && validContactNumber && validHomeAddress && validCustomerName && validCity && validDeliveryDate && validDeliveryFee && validPaymentMethod && validCourier && validStatus)
             $('#submitOrder').prop('disabled', false);
         else 

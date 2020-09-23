@@ -19,7 +19,7 @@ $(document).ready(function() {
             $("#pricePerPack").val("");
             $("#lowStockQuantity").val("");       
             $("#addProduct").modal("hide");
-
+            
             $("body").load('/inventory');
         });
     });
@@ -36,7 +36,6 @@ $(document).ready(function() {
         }
         $('#deleteProductConfirmation').val('');
     });
-
 
 
 

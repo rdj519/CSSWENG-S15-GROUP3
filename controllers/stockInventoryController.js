@@ -22,6 +22,17 @@ const stockInventoryController = {
             res.send(results);
         });
     },
+    postPlaceStockOrder: function(req, res) {
+        var query = {_id: req.query.productID };
+        var projection = {};
+
+        db.findOne(Product, query, projection, function(result) {
+            var newQuantity = result.quantity - req.query.quantity;
+            var update = {quantity: newQuantity};
+            db.updateOne(Product, query, update);
+            console.log("updated");
+        });
+    },
 
     addProduct: function(req, res) {
         var name = req.body.name;
