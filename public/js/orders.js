@@ -8,7 +8,7 @@ $(document).ready(function() {
         for(var i = 0; i < data.length; i++) {
             $("#productSold").append("<tr>");
             $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "</th>");
-            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID =' "+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0></td>");
+            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0></td>");
             $("#productSold").append("<td><p id='" +  "price-" + data[i]._id + "' class='form-control validate productPrice'></p></td>");
             $("#productSold").append("</tr>");
         }
@@ -73,8 +73,8 @@ $(document).ready(function() {
                 quantity: parseInt($(this).val()),
             }
             if(productOrder.quantity > 0) {
-                $.post('/postPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity}, function() {
-                    console.log(productOrder.name + " " + "removed stocks");
+                $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity, name: productOrder.name}, function(data, status) {
+                    console.log(data + " " + status);
                 });
             }
            

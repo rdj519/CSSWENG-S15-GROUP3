@@ -22,16 +22,18 @@ const stockInventoryController = {
             res.send(results);
         });
     },
-    postPlaceStockOrder: function(req, res) {
-        var query = {_id: req.query.productID };
-        var projection = {};
+    getPlaceStockOrder: function(req, res) {
+       var query = {_id: req.query.productID}
+       var decrement = req.query.quantity
+    
+       
+       db.findOne(Product, query, null, function(result) {
+     
+            db.updateOne(Product,query, {$inc:{quantity:-decrement}}, function(results) {
+             
+            });
+       });
 
-        db.findOne(Product, query, projection, function(result) {
-            var newQuantity = result.quantity - req.query.quantity;
-            var update = {quantity: newQuantity};
-            db.updateOne(Product, query, update);
-            console.log("updated");
-        });
     },
 
     addProduct: function(req, res) {

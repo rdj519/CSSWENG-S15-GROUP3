@@ -142,7 +142,7 @@
 										      </div>
 										      <div class="modal-body">
 										        <p>Are you sure you want to delete this order?</p>
-										        <input type="text" id="defaultForm-pass" class="form-control validate">
+										        <input type="text"  class="form-control validate">
 										      </div>
 										      <div class="modal-footer">
 										        <button type="button" class="btn btn-danger" id="deleteButton">Yes</button>
@@ -172,7 +172,7 @@
 														<input type="text" class="form-control" id="homeAddressModal-{{_id}}" value="{{homeAddress}}">
 														<label style="color:#A39E9C"> City/Municipality </label>
 														<input type="text" class="form-control" id="cityModal-{{_id}}" value="{{city}}">
-														<label style="color:#A39E9C"> Courier </label>
+														<label style="color:#A39E9C"> Courier</label>
 														<div class="info">
 															<div class="dropdown">
 																<button class="btn btn-light dropdown-toggle" type="button" id="courierModal-{{_id}}"
@@ -229,7 +229,7 @@
 														<label style="color:#A39E9C"> Delivery Fee</label>
 														<input type="text" class="form-control" id="deliveryFeeModal-{{_id}}" value="{{deliveryFee}}">
 														<label style="color:#F05959; font-weight: bold;"> Total Amount</label>
-														<input type="text" class="form-control" id="totalPriceModal-{{_id}}" style="font-weight:bold;">
+														{{!-- <input type="text" class="form-control" id="totalPriceModal-{{_id}}" style="font-weight:bold;"> --}}
 														<p id="errorUpdate-{{_id}}" class="error"><br></p>
 													</div>
 													<div class="modal-footer">
@@ -278,30 +278,30 @@
 							      <div class="modal-body">
 	
 							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+							     	  <label data-error="wrong" data-success="right" >Name</label>
 							          <input type="text" id="customerName" name="customerName" class="form-control validate">
 							          <p class="error" id="customerNameError"></p>
 							        </div>
 
 							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Contact Number</label>
+							     	  <label data-error="wrong" data-success="right" >Contact Number</label>
 							          <input type="number" id="contactNumber" name="contactNumber" class="form-control validate">
 							          <p class="error" id="contactNumberError"></p>
 							        </div>
 
 
 							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass"><b>Address</b></label>
-							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Home Address</label>
+							     	  <label data-error="wrong" data-success="right" ><b>Address</b></label>
+							     	  <label data-error="wrong" data-success="right" >Home Address</label>
 							          <input type="text" id="homeAddress" name="homeAddress" class="form-control validate">
 							          <p class="error" id="homeAddressError"></p>
-							          <label data-error="wrong" data-success="right" for="defaultForm-pass">City/Municipality</label>
+							          <label data-error="wrong" data-success="right">City/Municipality</label>
 							          <input type="text" id="city" name="city" class="form-control validate">
 							          <p class="error" id="cityError"></p>
 							        </div>
 
 							      	<div class="md-form mb-4">
-							      		<label data-error="wrong" data-success="right" for="defaultForm-pass">Customer Order</label>
+							      		<label data-error="wrong" data-success="right" >Customer Order</label>
 									    <table class="table table-hover">
 											<thead>
 												<tr>
@@ -315,15 +315,15 @@
 												
 											</tbody>
 										</table>
-										<label data-error="wrong" data-success="right" for="defaultForm-pass">DeliveryFee</label>
+										<label data-error="wrong" data-success="right" >DeliveryFee</label>
 										<input type="number" id="deliveryFee" name="deliveryFee" class="form-control validate">
 										<p class="error" id="deliveryFeeError"></p>
-										<label data-error="wrong" data-success="right" for="defaultForm-pass">Total Amount</label>
+										<label data-error="wrong" data-success="right" >Total Amount</label>
 										<input type="number" id="productTotal" name="productTotal" class="form-control validate">
 							      	</div>
 
 							      	<div class="md-form mb-4">
-							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Payment Method</label>
+							     	  	<label data-error="wrong" data-success="right" >Payment Method</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
 											<button class="btn btn-light dropdown-toggle" type="button"  id="paymentMethod" name="paymentMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Method</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
@@ -336,7 +336,7 @@
 							        </div>
 
 							        <div class="md-form mb-4">
-							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Courier</label>
+							     	  	<label data-error="wrong" data-success="right" >Courier</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
 											<button class="btn btn-light dropdown-toggle" type="button" id="courier" name="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courier Type</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
@@ -349,7 +349,7 @@
 							        	<p class="error" id="courierError"></p>
 							        </div>
 							        <div class="md-form mb-4">
-							     	  	<label data-error="wrong" data-success="right" for="defaultForm-pass">Status</label>
+							     	  	<label data-error="wrong" data-success="right">Status</label>
 							          	<div class="dropdown" style="float:left; clear:both;">
 											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
@@ -363,7 +363,7 @@
 							        	<p class="error" id="statusError"></p>
 							        </div>
 							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" for="defaultForm-pass">Delivery Date</label>
+							     	  <label data-error="wrong" data-success="right" >Delivery Date</label>
 							          <input type="date" id="deliveryDate" name="deliveryDate" class="form-control validate">
 							          <p class="error" id="deliveryDateError"></p>
 							        </div>
