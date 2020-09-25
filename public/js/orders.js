@@ -8,13 +8,55 @@ $(document).ready(function() {
         for(var i = 0; i < data.length; i++) {
             $("#productSold").append("<tr>");
             $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "</th>");
-            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p id='error" + data[i].name +"'></p></td>");
+            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p id='error" + data[i]._id +"'></p></td>");
             $("#productSold").append("<td><p id='" +  "price-" + data[i]._id + "' class='form-control validate productPrice'></p></td>");
             $("#productSold").append("</tr>");
+
         }
     });
 
 
+    function isValidQuantity(field, name,  amountPerPack, id){
+        $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
+                if(data.quantity < field.val())
+                    return false;
+                else
+                    return true;
+            });
+    }
+
+    jQuery(document).on( "keyup", ".productQuantity", function(){ 
+        var name = $(this).attr('productName');
+        var amountPerPack = $(this).attr('amountPerPack');    
+        var id = $(this).attr('productID');
+        var val = parseInt($(this).val());
+        var isEmpty = false;
+        $("#error"+ id).text(val);
+        if(!$(this).val()){
+                $("#error"+ id).text("Must put a value.");
+                $('#submitOrder').prop('disabled', true);
+                isEmpty = true;
+        }
+        $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
+            if(isEmpty){
+                $("#error"+ id).text("Must put a value.");
+                $('#submitOrder').prop('disabled', true);
+            }
+            else{
+                if(data.quantity < val){
+                    $("#error"+ id).text("Not enough stock.");
+                    $('#submitOrder').prop('disabled', true);
+                }
+                else{
+                    $("#error"+ id).text("");
+                    $('#submitOrder').prop('disabled', false);
+                }
+            }
+        }); 
+    });
+
+
+    //function validateQuantity()
     $(document).on('change', ".productQuantity", function(){
         var price = parseFloat($(this).attr('price'));
         var id = $(this).attr('productID');
@@ -150,7 +192,7 @@ $(document).ready(function() {
 
         return !customerNameEmpty && !contactNumberEmpty && !homeAddressEmpty && !cityEmpty && !deliveryFeeEmpty && !deliveryDateEmpty && !courierEmpty && !statusEmpty && !paymentMethodEmpty; 
     }
-
+    
     function isValidContactNumber(field) {
         var contactNumber = validator.trim($('#contactNumber').val());
 
@@ -289,6 +331,7 @@ $(document).ready(function() {
         }
     }
 
+
     function validateField(field, fieldName, error) {
 
         var value = validator.trim(field.val());
@@ -312,6 +355,9 @@ $(document).ready(function() {
         var validPaymentMethod = isValidPaymentMethod(field);
         var validCourier = isValidCourier(field);
         var validStatus  = isValidStatus(field);
+
+        //var validQuantity = isValidQuantity(field);
+
         console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity + " " + validDeliveryDate + " " + validDeliveryFee + " " + validPaymentMethod + " " + validCourier + " " + validStatus);
         if(filled && validContactNumber && validHomeAddress && validCustomerName && validCity && validDeliveryDate && validDeliveryFee && validPaymentMethod && validCourier && validStatus)
             $('#submitOrder').prop('disabled', false);
