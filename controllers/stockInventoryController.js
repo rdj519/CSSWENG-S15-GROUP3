@@ -13,6 +13,15 @@ const stockInventoryController = {
         });
     },
 
+    getProductQuantity: function(req, res){
+        var query = {name: req.query.name};
+        var projection = {};
+
+        db.findOne(Product, query, projection, function(result){
+            res.send(result.quantity);
+        });
+    },
+
     getProductsSold: function(req, res) {
         var query = {};
         var projection = {};
