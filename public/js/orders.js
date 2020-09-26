@@ -32,14 +32,14 @@ $(document).ready(function() {
         var val = parseInt($(this).val());
         var isEmpty = false;
         $("#error"+ id).text(val);
-        if(!$(this).val()){
-                $("#error"+ id).text("Must put a value.");
+        if(!$(this).val() || $(this).val() < 0){
+                $("#error"+ id).text("Must be a valid value.");
                 $('#submitOrder').prop('disabled', true);
                 isEmpty = true;
         }
         $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
             if(isEmpty){
-                $("#error"+ id).text("Must put a value.");
+                $("#error"+ id).text("Must be a valid value.");
                 $('#submitOrder').prop('disabled', true);
             }
             else{
