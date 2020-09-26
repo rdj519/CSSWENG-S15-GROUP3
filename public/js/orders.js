@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $("#productTotal").val(0);
+
     // $('.from_date').datepicker({
     //     startDate: '0'
     // });
@@ -25,6 +26,9 @@ $(document).ready(function() {
             });
     }
 
+    /* changes */
+
+    // does not accept negative values
     jQuery(document).on( "keyup", ".productQuantity", function(){ 
         var name = $(this).attr('productName');
         var amountPerPack = $(this).attr('amountPerPack');    
@@ -55,6 +59,33 @@ $(document).ready(function() {
         }); 
     });
 
+    //sa button nung deleteOpen
+    $(document).on('click', ".customerName", function(){
+        var customerName = $(this).attr('customerName');
+        $.post('/postDelete',{customerName: customerName}, function(data, status) {
+
+
+            $("body").load('/orders');
+        });
+
+    });
+    //sa text nung confirmation text ng deleteOpen
+    $('.customerName').prop('disabled', true);
+    
+    $(document).on('keyup', ".deleteConfirmation", function(){
+        var confirm = $(this).val();
+        $('.customerName').prop('disabled', true);
+        if(confirm === "delete")
+        {
+            $('.customerName').prop('disabled', false);
+        }
+        else
+            $('.customerName').prop('disabled', true);
+
+    });
+
+    /* changes */
+
     //function validateQuantity()
     $(document).on('change', ".productQuantity", function(){
         var price = parseFloat($(this).attr('price'));
@@ -73,6 +104,7 @@ $(document).ready(function() {
         
     });
 
+    /*
     $("#deleteButton").click(function() {
         var customerName = $("#customerName").val();
          //current date 
@@ -84,7 +116,7 @@ $(document).ready(function() {
             $("body").load('/orders');
         });
 
-    });
+    }); */
 
     $("#submitOrder").click(function() {
         var customerName = $("#customerName").val();
