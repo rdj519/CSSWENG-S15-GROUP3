@@ -55,7 +55,6 @@ $(document).ready(function() {
         }); 
     });
 
-
     //function validateQuantity()
     $(document).on('change', ".productQuantity", function(){
         var price = parseFloat($(this).attr('price'));

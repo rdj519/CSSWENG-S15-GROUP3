@@ -69,7 +69,7 @@ const ordersController = {
         console.log(order);
         
         db.insertOne(Order, order, function(flag){
-            
+            console.log("added");
             res.send("success");
         });
         
@@ -241,7 +241,8 @@ const ordersController = {
             courier: req.body.courier,
             paymentMethod: req.body.paymentMethod,
             status: req.body.status,
-            deliveryFee : req.body.deliveryFee
+            deliveryFee : req.body.deliveryFee,
+            customerOrder : req.body.customerOrder
         }
 
         db.findOne(Order, {name:name, _id:_id}, null, function(result) {

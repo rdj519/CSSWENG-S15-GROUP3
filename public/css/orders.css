@@ -31,6 +31,10 @@ body {
     bottom: 0;
 }   
 
+white {
+    color: white;
+}
+
 .sideBarOptions {
       color: black;
 }

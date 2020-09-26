@@ -35,7 +35,7 @@ const stockInventoryController = {
        var query = {_id: req.query.productID}
        var decrement = req.query.quantity
     
-       
+       console.log("getPlaceStockOrder\n");
        db.findOne(Product, query, null, function(result) {
      
             db.updateOne(Product,query, {$inc:{quantity:-decrement}}, function(results) {
