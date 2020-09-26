@@ -74,6 +74,12 @@ const stockInventoryController = {
         });
     },
 
+    delProduct: function(req, res) {
+        db.deleteOne(Product, {name: req.body.name}, function(flag) {
+            res.send("success");
+        });
+    },
+
     updateProduct: function(req, res) {
         console.log("updateProduct");
         console.log("req.body.quantity " + req.body.quantity);
