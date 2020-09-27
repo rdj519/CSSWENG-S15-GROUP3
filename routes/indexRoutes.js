@@ -22,6 +22,7 @@ router.get('/home', isPrivate, homeController.getHomePage);
 // Stock Inventory
 router.get('/inventory', isPrivate, stockInventoryController.getProducts);
 router.post('/addProduct', isPrivate, stockInventoryController.addProduct);
+router.post('/delProduct', isPrivate, stockInventoryController.delProduct);
 router.get('/findProduct', isPrivate, stockInventoryController.findProduct);
 router.get('/getProductsSold', isPrivate, stockInventoryController.getProductsSold);
 router.post('/updateProd', isPrivate, stockInventoryController.updateProduct);
