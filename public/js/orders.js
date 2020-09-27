@@ -16,7 +16,7 @@ $(document).ready(function() {
         }
     });
 
-
+   
     function isValidQuantity(field, name,  amountPerPack, id){
         $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
                 if(data.quantity < field.val())
@@ -26,10 +26,16 @@ $(document).ready(function() {
             });
     }
 
+    
+
     /* changes */
 
     // does not accept negative values
-    jQuery(document).on( "keyup", ".productQuantity", function(){ 
+    jQuery(document).on( "change", ".productQuantity", function(){ 
+        if($(this).val() == "") {
+            $(this).val(0);
+        }
+        
         var name = $(this).attr('productName');
         var amountPerPack = $(this).attr('amountPerPack');    
         var id = $(this).attr('productID');
@@ -88,6 +94,7 @@ $(document).ready(function() {
 
     //function validateQuantity()
     $(document).on('change', ".productQuantity", function(){
+        
         var price = parseFloat($(this).attr('price'));
         var id = $(this).attr('productID');
         var qty = parseInt($(this).val());
