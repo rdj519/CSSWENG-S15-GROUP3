@@ -32,40 +32,8 @@ $(document).ready(function() {
 
     /* changes */
 
-    // does not accept negative values
-    jQuery(document).on( "change", ".productQuantity", function(){ 
-        if($(this).val() == "") {
-            $(this).val(0);
-        }
-        
-        var name = $(this).attr('productName');
-        var amountPerPack = $(this).attr('amountPerPack');    
-        var id = $(this).attr('productID');
-        var val = parseInt($(this).val());
-        var isEmpty = false;
-        $("#error"+ id).text(val);
-        if(!$(this).val() || $(this).val() < 0){
-                $("#error"+ id).text("Must be a valid value.");
-                $('#submitOrder').prop('disabled', true);
-                isEmpty = true;
-        }
-        $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
-            if(isEmpty){
-                $("#error"+ id).text("Must be a valid value.");
-                $('#submitOrder').prop('disabled', true);
-            }
-            else{
-                if(data.quantity < val){
-                    $("#error"+ id).text("Not enough stock.");
-                    $('#submitOrder').prop('disabled', true);
-                }
-                else{
-                    $("#error"+ id).text("");
-                    $('#submitOrder').prop('disabled', false);
-                }
-            }
-        }); 
-    });
+  
+  
 
     //sa button nung deleteOpen
     $(document).on('click', ".customerName", function(){
@@ -309,7 +277,7 @@ $(document).ready(function() {
         }
         else{
             if(field.is($("#deliveryDate")))
-                $("#deliveryDateError").text("Delivery date should not be valid and not empty.");
+                $("#deliveryDateError").text("Delivery date should be valid and not empty.");
             
         
             return false;
@@ -454,7 +422,7 @@ $(document).ready(function() {
         validateField($('#paymentMethod'), 'Payment Method', $('#paymentMethodError'));
     });
 
-    $('#courierDropdown'),on('hide.bs.dropdown',function () {
+    $('#courierDropdown').on('hide.bs.dropdown',function () {
         validateField($('#courier'), 'Courier', $('#courierError'));
     });
 
@@ -462,8 +430,40 @@ $(document).ready(function() {
         validateField($('#status'), 'Status', $('#statusError'));
     });
 
-    $('.productQuantity').on('change', function() {
-        validateField($(this), 'Product', $('#productSoldError'))
-    })
+    jQuery(document).on( "change", ".productQuantity", function(){ 
+        if($(this).val() == "") {
+            $(this).val(0);
+        }
+        
+        var name = $(this).attr('productName');
+        var amountPerPack = $(this).attr('amountPerPack');    
+        var id = $(this).attr('productID');
+        var val = parseInt($(this).val());
+        var isEmpty = false;
+        $("#error"+ id).text(val);
+        if(!$(this).val() || $(this).val() < 0){
+                $("#error"+ id).text("Must be a valid value.");
+                $('#submitOrder').prop('disabled', true);
+                isEmpty = true;
+        }
+        $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
+            if(isEmpty){
+                $("#error"+ id).text("Must be a valid value.");
+                $('#submitOrder').prop('disabled', true);
+            }
+            else{
+                if(data.quantity < val){
+                    $("#error"+ id).text("Not enough stock.");
+                    $('#submitOrder').prop('disabled', true);
+                }
+                else{
+                    $("#error"+ id).text("");
+                    $('#submitOrder').prop('disabled', false);
+                }
+            }
+        }); 
+
+        validateField($(this), 'Product', $('#productSoldError'));
+    });
 
 });
