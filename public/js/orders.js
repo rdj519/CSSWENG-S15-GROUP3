@@ -1,3 +1,5 @@
+// const e = require("express");
+
 $(document).ready(function() {
     $("#productTotal").val(0);
 
@@ -184,6 +186,9 @@ $(document).ready(function() {
         
     });
 
+
+    //  Validation for Add Order
+
     function isFilled() {
 
         /*
@@ -209,26 +214,8 @@ $(document).ready(function() {
         var courierEmpty;
         var statusEmpty;
         var paymentMethodEmpty;
-        if($("#courier").html() == "Courier Type"){
-            courierEmpty = true;
-        }
-        else{
-            courierEmpty = false;
-        }
-        if($("#status").html() == "Status"){
-            statusEmpty = true;
-        }
-        else{
-            statusEmpty = false;
-        }
-        if($("#paymentMethod").html() == "Method"){
-            paymentMethodEmpty = true;
-        }
-        else{
-            paymentMethodEmpty = false;
-        }
-
-        return !customerNameEmpty && !contactNumberEmpty && !homeAddressEmpty && !cityEmpty && !deliveryFeeEmpty && !deliveryDateEmpty && !courierEmpty && !statusEmpty && !paymentMethodEmpty; 
+   
+        return !customerNameEmpty && !contactNumberEmpty && !homeAddressEmpty && !cityEmpty && !deliveryFeeEmpty && !deliveryDateEmpty; 
     }
     
     function isValidContactNumber(field) {
@@ -309,22 +296,27 @@ $(document).ready(function() {
         }
     }
     function isValidDeliveryDate(field) {
-        var deliveryDate = validator.trim($('#deliveryDate').val());
+        var deliveryDate = new Date (validator.trim($('#deliveryDate').val()));
+        var now = Date.now();
+      
 
-        if(deliveryDate.length > 0){
+        if((deliveryDate > now)){
             if(field.is($("#deliveryDate")))
                  $("#deliveryDateError").text("");
-             return true;
+            
+      
+            return true;
         }
         else{
             if(field.is($("#deliveryDate")))
-                $("#deliveryDateError").text("delivery Date should not be empty.");
+                $("#deliveryDateError").text("Delivery date should not be valid and not empty.");
             
+        
             return false;
         }
     }
     function isValidPaymentMethod(field) {
-        var paymentMethod = validator.trim($('#paymentMethod').val());
+        var paymentMethod = validator.trim($('#paymentMethod').text());
 
         if(paymentMethod != "Method"){
             if(field.is($("#paymentMethod")))
@@ -339,22 +331,26 @@ $(document).ready(function() {
         }
     }
     function isValidCourier(field) {
-        var courier = validator.trim($('#courier').val());
+        var courier = validator.trim($('#courier').text());
 
         if(courier != "Courier Type"){
             if(field.is($("#courier")))
                  $("#courierError").text("");
-             return true;
+
+          
+            return true;
+
         }
         else{
             if(field.is($("#courier")))
                 $("#courierError").text("Courier should not be empty.");
             
+          
             return false;
         }
     }
     function isValidStatus(field) {
-        var status = validator.trim($('#status').val());
+        var status = validator.trim($('#status').text());
 
         if(status != "Status"){
             if(field.is($("#status")))
@@ -367,6 +363,33 @@ $(document).ready(function() {
             
             return false;
         }
+    }
+
+    function isValidOrderQuantity(field) {
+        var hasOrder = false;
+        $('.productQuantity').each(function() {
+            quantity = parseInt($(this).val());
+            if(quantity <= 0) {
+                hasOrder = hasOrder || false;
+            }
+            else {
+                hasOrder = hasOrder || true;
+            }
+        });
+
+        if(hasOrder) {
+            if(field.is($(".productQuantity")))
+                $("productSoldError").text("");
+
+            return true
+        }
+        else {
+            if(field.is($(".productQuantity")))
+                $("productSoldError").text("Order list should not be empty");
+
+            return false;
+        }
+
     }
 
 
@@ -393,11 +416,12 @@ $(document).ready(function() {
         var validPaymentMethod = isValidPaymentMethod(field);
         var validCourier = isValidCourier(field);
         var validStatus  = isValidStatus(field);
+        var validOrderQuantity = isValidOrderQuantity(field);
 
         //var validQuantity = isValidQuantity(field);
 
-        console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity + " " + validDeliveryDate + " " + validDeliveryFee + " " + validPaymentMethod + " " + validCourier + " " + validStatus);
-        if(filled && validContactNumber && validHomeAddress && validCustomerName && validCity && validDeliveryDate && validDeliveryFee && validPaymentMethod && validCourier && validStatus)
+        console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity + " " + validDeliveryDate + " " + validDeliveryFee + " " + validPaymentMethod + " " + validCourier + " " + validStatus + " " + validOrderQuantity);
+        if(filled && validContactNumber && validHomeAddress && validCustomerName && validCity && validDeliveryDate && validDeliveryFee && validPaymentMethod && validCourier && validStatus && validOrderQuantity)
             $('#submitOrder').prop('disabled', false);
         else 
             $('#submitOrder').prop('disabled', true);
@@ -419,23 +443,27 @@ $(document).ready(function() {
         validateField($('#city'), 'City', $('#cityError'));
     });
 
-    $('#deliveryDate').keyup(function () {
+    $('#deliveryDate').change(function () {
         validateField($('#deliveryDate'), 'Delivery Date', $('#deliveryDateError'));
     });
     $('#deliveryFee').keyup(function () {
         validateField($('#deliveryFee'), 'Delivery Fee', $('#deliveryFeeError'));
     });
 
-    $('#paymentMethod').keyup(function () {
+    $('#paymentDropdown').on('hide.bs.dropdown', function () {
         validateField($('#paymentMethod'), 'Payment Method', $('#paymentMethodError'));
     });
 
-    $('#courier').keyup(function () {
+    $('#courierDropdown'),on('hide.bs.dropdown',function () {
         validateField($('#courier'), 'Courier', $('#courierError'));
     });
 
-    $('#status').keyup(function () {
+    $('#statusDropdown').on('hide.bs.dropdown',function () {
         validateField($('#status'), 'Status', $('#statusError'));
     });
+
+    $('.productQuantity').on('change', function() {
+        validateField($(this), 'Product', $('#productSoldError'))
+    })
 
 });
