@@ -37,8 +37,8 @@ $(document).ready(function() {
 
     //sa button nung deleteOpen
     $(document).on('click', ".customerName", function(){
-        var customerName = $(this).attr('customerName');
-        $.post('/postDelete',{customerName: customerName}, function(data, status) {
+        var _id = $(this).attr('deleteId');
+        $.post('/postDelete', {_id: _id}, function(data, status) {
 
 
             $("body").load('/orders');
