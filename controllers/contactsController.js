@@ -30,7 +30,7 @@ const contactsController = {
 
         console.log(contact);
         
-        db.insertOne(Contacts, contact, function(flag){
+        db.insertOne(Contact, contact, function(flag){
             console.log("added");
             res.send("success");
         });
