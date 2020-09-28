@@ -36,6 +36,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{contactNumber}
             </div>
 
             <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" id="deleteBtn-{{_id}}" data-id="2" data-target="#delete{{_id}}" style="float:left;">Delete Contact</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" contactID="{{_id}}" id="submitInfo-{{_id}}" class="btn btn-primary updateContact" data-dismiss="modal">Update Contact</button>
             </div>
