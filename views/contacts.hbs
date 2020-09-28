@@ -49,49 +49,14 @@
 
 							<!-- for search and add contact button -->
 							<div class="row">
-								<div class="col-1">
-									<!-- Sort button -->
-									<div class="dropdown">
-										<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										  Sort by
-										</button>
-										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										  <a class="dropdown-item" href="#">Customer No.</a>
-										  <a class="dropdown-item" href="#">Name</a>
-										  <a class="dropdown-item" href="#">City/Municipality</a>
-										</div>
-									</div>
-								</div>
-								<div class="col-7">
-									<!-- Filter button -->
-									<div class="dropdown">
-										<button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											Filter by
-										</button>
-										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											<li class="dropdown-submenu">
-												<a class="dropdown-item dropdown-toggle" href="#">City/Municipality</a>
-												<ul class="dropdown-menu">
-													<a class="dropdown-item" href="#">
-														<input type="text" class="form-control" placeholder="City/Municipality" aria-label="order number" aria-describedby="button-addon2">
-														<div class="input-group-append">
-															<button class="btn-xs btn-light btn-outline-secondary" type="button" id="button-addon2" style="margin-top:5px;">Go</button>
-														</div>
-													</a>
-												</ul>
-											</li>
-										</ul>
-									</div>
+								<div class="col-8">
 								</div>
 								<div class="col-4">
 									<div class="row">
 										<!-- search bar-->
 										<div class="col-7">
 											<div class="input-group">
-												<input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
-												<div class="input-group-append">
-													<button class="btn btn-light btn-outline-secondary" type="button" id="button-addon2">Go</button>
-												</div>
+												<input type="text" class="form-control" id="searchContact" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2" onkeyup="liveSearch()">
 											</div>
 										</div>
 
@@ -105,7 +70,7 @@
 
 							<!-- table of customers-->
 							<div class="card" id="customerTable">
-								<table class="table table-hover">
+								<table class="table table-hover" id="contactTable">
 									<thead>
 										<tr>	
 											<th scope="col">Name</th>
@@ -143,7 +108,6 @@
 									</tbody>
 								</table>
 							</div>
-
 
 							<!-- New Contact Modal -->
 							<div id="newContact" class="modal fade" role="dialog">
@@ -205,5 +169,33 @@
 			</div>
 		</div>
 	</div>
+	<script>
+			function liveSearch() {
+			    // Declare variables
+			    var input, filter, table, tr, td, i, txtValue;
+			    input = document.getElementById("searchContact");
+			    filter = input.value.toUpperCase();
+			    table = document.getElementById("contactTable");
+			    tr = table.getElementsByTagName("tr");
+			    // Loop through all table rows, and hide those who don't match the search query
+			    for (i = 0; i < tr.length; i++) {
+			    td = tr[i].getElementsByTagName("td")[0];
+			    td2 = tr[i].getElementsByTagName("td")[1];
+			    td3 = tr[i].getElementsByTagName("td")[2];
+			    td4 = tr[i].getElementsByTagName("td")[3];
+			        if (td || td2 || td3 || td4) {
+			            txtValue = td.textContent || td.innerText;
+			            txtValue2 = td2.textContent || td2.innerText;
+			            txtValue3 = td3.textContent || td3.innerText;
+			            txtValue4 = td4.textContent || td4.innerText;
+			            if ((txtValue.toUpperCase().indexOf(filter) > -1) || (txtValue2.toUpperCase().indexOf(filter) > -1) || (txtValue3.toUpperCase().indexOf(filter) > -1) || (txtValue4.toUpperCase().indexOf(filter) > -1)) {
+			                tr[i].style.display = "";
+			            } else {
+			                tr[i].style.display = "none";
+			            }
+			        }
+			    }
+			}
+	</script>
 </body>
 </html>
