@@ -7,7 +7,7 @@ const contactsController = {
         var projection = {};
 
         db.findMany(Contact, query, projection, function(results) {
-        
+            console.log(results);
             res.render('contacts', {
                 customers: results
             });
@@ -36,31 +36,6 @@ const contactsController = {
         });
         
     },
-
-    updateContact: function(req, res) {
-        var _id = req.query._id;
-		var contactNumber = req.query.contactNumber;
-		var homeAddress = req.query.homeAddress;
-		var city = req.query.city;
-        var remarks = req.query.remarks;
-
-        var query = {_id:_id};
-        var update = {contactNumber:contactNumber, homeAddress:homeAddress, city:city, remarks:remarks}
-        db.updateOne(Contact, query, update, function(results) {
-            res.send(results);
-        });
-
-    },
-
-    getContact: function(req, res) {
-        var _id = req.query._id;
-        var query = {_id:_id};
-        var projection = {};
-
-        db.findOne(Contact, query, projection, function(result){
-            res.send(result);
-        });
-    }
 }
 
 module.exports = contactsController;

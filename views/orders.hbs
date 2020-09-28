@@ -70,7 +70,6 @@
 													<li><a class="dropdown-item" href="#">paid</a></li>
 													<li><a class="dropdown-item" href="#">delivering</a></li>
 													<li><a class="dropdown-item" href="#">completed</a></li>
-													<li><a class="dropdown-item" href="#">cancelled</a></li>
 												</ul>
 												<a class="dropdown-item dropdown-toggle" href="#">Payment Method</a>
 												<ul class="dropdown-menu">
@@ -365,7 +364,7 @@
 							        <div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right">Status</label>
 							          	<div class="dropdown" style="float:left; clear:both;" id="statusDropdown">
-											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status</button>
+											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">confirmed</button>
 											<div class="dropdown-menu" aria-labelledby="courierType">
 											    <a class="dropdown-item" href="#">confirmed</a>
 											    <a class="dropdown-item" href="#">paid </a>
@@ -413,9 +412,13 @@
 	    // Loop through all table rows, and hide those who don't match the search query
 	    for (i = 0; i < tr.length; i++) {
 	    td = tr[i].getElementsByTagName("td")[0];
-	        if (td) {
+	    td2 = tr[i].getElementsByTagName("td")[1];
+	    td3 = tr[i].getElementsByTagName("td")[2];
+	        if (td || td2 || td3) {
 	            txtValue = td.textContent || td.innerText;
-	            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	            txtValue2 = td2.textContent || td2.innerText;
+	            txtValue3 = td3.textContent || td3.innerText;
+	            if ((txtValue.toUpperCase().indexOf(filter) > -1) || (txtValue2.toUpperCase().indexOf(filter) > -1) || (txtValue3.toUpperCase().indexOf(filter) > -1)) {
 	                tr[i].style.display = "";
 	            } else {
 	                tr[i].style.display = "none";
