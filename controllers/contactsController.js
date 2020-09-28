@@ -60,6 +60,12 @@ const contactsController = {
         db.findOne(Contact, query, projection, function(result){
             res.send(result);
         });
+    },
+
+    deleteContact: function(req, res){
+        db.deleteOne(Contact, {name: req.body.name}, function(flag) {
+            res.send("success");
+        });
     }
 }
 
