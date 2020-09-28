@@ -43,6 +43,7 @@ router.get('/contacts', isPrivate, contactsController.getContacts);
 router.get('/updateContact', isPrivate, contactsController.updateContact);
 router.get('/getContact', isPrivate, contactsController.getContact);
 router.post('/addContact', isPrivate, contactsController.addContact);
+router.post('/deleteContact', isPrivate, contactsController.deleteContact);
 
 // Account Settings
 router.get('/settings', isPrivate, accountController.getSettings);
