@@ -24,6 +24,34 @@ $(document).ready(function(){
 		
 	});
 
+
+    /* changes Delete */
+
+        //sa button nung deleteOpen
+    $(document).on('click', ".deletion", function(){
+        var name = $(this).attr('name');
+        $.post('/deleteContact',{name: name}, function(data, status) {
+
+
+            $("body").load('/contacts');
+        });
+
+    });
+    
+    $(document).on('keyup', ".deleteConfirmation", function(){
+        var confirm = $(this).val();
+        
+        if(confirm === "delete")
+        {
+            $('.deletion').prop('disabled', false);
+        }
+        else
+            $('.deletion').prop('disabled', true);
+
+    });
+
+    /* changes Delete */
+
 	$('.updateContact').click(function() {
 		var _id = $(this).attr('contactID');
 		var contactNumber = $('#contactNumber-'+ _id).val();
