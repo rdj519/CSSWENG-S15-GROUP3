@@ -17,6 +17,8 @@
 	<!-- Fonts-->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
+	<script src="/js/contacts.js"></script>
+
     
 </head>
 <body>
@@ -117,33 +119,79 @@
 										{{#each customers}}
 											{{> contactRow name=name contactNumber=contactNumber homeAddress=homeAddress city=city _id=_id}}
 											{{> contactModal name=name contactNumber=contactNumber homeAddress=homeAddress city=city remarks=remarks _id=_id}}
+											<!-- Delete Contact Modal-->
+											<div class="modal fade" id="deleteContact{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											  <div class="modal-dialog" role="document">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h5 class="modal-title">Delete Contact</h5>
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											          <span aria-hidden="true">&times;</span>
+											        </button>
+											      </div>
+											      <div class="modal-body">
+											        <p>Are you sure you want to delete this contact?</p>
+													<input type="text" id="defaultForm-pass" class="form-control validate">
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-danger deleteContact">Yes</button>
+											        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
 										{{/each}}
 									</tbody>
 								</table>
 							</div>
 
-							<!-- Modal For New Contact -->
 
-							<!-- Delete Contact Modal-->
-							<div class="modal fade" id="deleteContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title">Delete Contact</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">
-							        <p>Are you sure you want to delete this contact?</p>
-									<input type="text" id="defaultForm-pass" class="form-control validate">
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-danger">Yes</button>
-							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-							      </div>
-							    </div>
-							  </div>
+							<!-- New Contact Modal -->
+							<div id="newContact" class="modal fade" role="dialog">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+									  		<h5 class="modal-title" id="exampleModalLabel">New Contact</h5>
+									  		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+									  		</button>
+										</div>
+										
+											<div class="modal-body">
+
+												<div class="md-form mb-4">
+													<label data-error="wrong" data-success="right" for="name">Name</label>
+													<input type="text" id="name" class="form-control validate">
+												</div>
+	  
+												<div class="md-form mb-4">
+													<label data-error="wrong" data-success="right" for="contact">Contact Number</label>
+													<input type="number" id="contact" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))"/>
+										  		</div>
+
+	  											<div class="md-form mb-4">
+													<label data-error="wrong" data-success="right" for="home">Home Address</label>
+													<input type="text" id="home" class="form-control validate">
+												</div>
+
+												<div class="md-form mb-4">
+													<label data-error="wrong" data-success="right" for="city">City/Municipality</label>
+													<input type="text" id="city" class="form-control validate">
+												</div>
+
+												<div class="md-form mb-4">
+													<label data-error="wrong" data-success="right" for="remark">Remarks</label>
+													<input type="text" id="remark" class="form-control validate">
+												</div>
+											</div>
+
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												<button type="button" id="submitInfo" class="btn btn-primary">Create Contact</button>
+											</div>
+									</div>
+								</div>
 							</div>
 
 						</div>
@@ -157,88 +205,22 @@
 
 
     <script>
-
     /* drop dowb menu */
-
 	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
 			if (!$(this).next().hasClass('show')) {
 				$(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
 			}
 			var $subMenu = $(this).next('.dropdown-menu');
 			$subMenu.toggleClass('show');
-
-
 			$(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
 				$('.dropdown-submenu .show').removeClass('show');
 			});
-
 			return false;
 	});
-
 		
 	$(".dropdown-menu a").click(function(){
   			$(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
   			$(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-	});
-
-
-	/* order number */
-	
-	var cNum = 0;
-	$("#submitInfo").click(function(){
-			if($.trim($('#name').val()) == ''){
-                alert('Name can not be left blank');
-            }
-            else if($.trim($('#contact').val()) == ''){
-                alert('Contact cannot be left blank');
-            }
-            else if($.trim($('#home').val()) == ''){
-                alert('Home cannot be left blank');
-            }
-            else if($.trim($('#city').val()) == ''){
-                alert('City cannot be left blank');
-            }
-            else if($.trim($('#remark').val()) == ''){
-                alert('Remark cannot be left blank');
-            }
-            else {
-			cNum += 1;
-			var element = $("#tbody");
-			var primaryTag = $("<tr></tr>");
-			primaryTag.attr("data-toggle", "modal");
-			primaryTag.attr("data-target", cNum.toString());
-			primaryTag.attr("data-id", cNum.toString());
-			var th = $("<th></th>");
-			th.attr("scope","row");
-			th.text(cNum.toString());
-
-			var td1 = $("<td></td>");
-			td1.text($("#name").val());
-			var td2 = $("<td></td>");
-			td2.text($("#contact").val());
-			var td3 = $("<td></td>");
-			td3.text($("#home").val());
-			var td4 = $("<td></td>");
-			td4.text($("#city").val()); 
-			var td5 = $("<td></td>");
-			td5.text($("#remark").val()); 
-		
-			primaryTag.append(th);
-			primaryTag.append(td1);
-			primaryTag.append(td2);
-			primaryTag.append(td3);
-			primaryTag.append(td4);
-			primaryTag.append(td5);
-			element.append(primaryTag);
-
-			$("#name").val("");
-			$("#contact").val("");
-			$("#home").val("");
-			$("#city").val("");
-			$("#remark").val("");
-			$("#newContact").modal("hide");
-			}
-		
 	});
 
 	</script>
