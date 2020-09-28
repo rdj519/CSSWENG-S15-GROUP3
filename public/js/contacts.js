@@ -2,27 +2,55 @@ $(document).ready(function(){
 
 
 	$("#submitInfo").click(function(){
-    	        var name = $("#name").val();
-		        var contactNumber = parseInt($("#contact").val());
-		        var homeAddress = $("#home").val();
-		        var city = $("#city").val();
-		        var remarks = $("#remark").val();
+	        var name = $("#name").val();
+	        var contactNumber = parseInt($("#contact").val());
+	        var homeAddress = $("#home").val();
+	        var city = $("#city").val();
+	        var remarks = $("#remark").val();
 
 
-		        alert("name: " +name + "\n" + "contact: " + contactNumber + jQuery.type(contactNumber) + "\nhome: " + homeAddress + "\ncity: " + city + "\nremarks: " + remarks);
-		        $.post('/addContact', { name: name, contactNumber: contactNumber, homeAddress: homeAddress, city: city, remarks: remarks }, function(data, status) {
-		            /* resets value after */
-		            $("#name").val("");
-		            $("#contact").val("");
-		            $("#home").val("");
-		            $("#city").val("");
-		            $("#remark").val("");    
-		            
-		            $("#newContact").modal("hide");
-		            $("body").load('/contacts');
-		        });
+	        //alert("name: " +name + "\n" + "contact: " + contactNumber + jQuery.type(contactNumber) + "\nhome: " + homeAddress + "\ncity: " + city + "\nremarks: " + remarks);
+	        $.post('/addContact', { name: name, contactNumber: contactNumber, homeAddress: homeAddress, city: city, remarks: remarks }, function(data, status) {
+	            /* resets value after */
+	            $("#name").val("");
+	            $("#contact").val("");
+	            $("#home").val("");
+	            $("#city").val("");
+	            $("#remark").val("");
+	           
+	            $("#newContact").modal("hide");
+	            $("body").load('/contacts');
+	        });
 		
 	});
+
+
+    /* changes Delete */
+
+        //sa button nung deleteOpen
+    $(document).on('click', ".deletion", function(){
+        var name = $(this).attr('name');
+        $.post('/deleteContact',{name: name}, function(data, status) {
+
+
+            $("body").load('/contacts');
+        });
+
+    });
+    
+    $(document).on('keyup', ".deleteConfirmation", function(){
+        var confirm = $(this).val();
+        
+        if(confirm === "delete")
+        {
+            $('.deletion').prop('disabled', false);
+        }
+        else
+            $('.deletion').prop('disabled', true);
+
+    });
+
+    /* changes Delete */
 
 	$('.updateContact').click(function() {
 		var _id = $(this).attr('contactID');

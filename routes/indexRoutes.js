@@ -44,6 +44,7 @@ router.get('/updateContact', isPrivate, contactsController.updateContact);
 router.get('/getContact', isPrivate, contactsController.getContact);
 router.get('/getDuplicate', isPrivate, contactsController.getDuplicate);
 router.post('/addContact', isPrivate, contactsController.addContact);
+router.post('/deleteContact', isPrivate, contactsController.deleteContact);
 
 // Account Settings
 router.get('/settings', isPrivate, accountController.getSettings);
