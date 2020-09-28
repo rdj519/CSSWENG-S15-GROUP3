@@ -44,6 +44,38 @@ $(document).ready(function(){
 
 	// Updating Customer contact info
 	$('.updateContact').click(function() {
-		console.log("ello");
+		var _id = $(this).attr('contactID');
+		var contactNumber = $('#contactNumber-'+ _id).val();
+		var homeAddress = $('#homeAddress-'+ _id).val();
+		var city = $('#city-'+ _id).val();
+		var remarks = $('#remarks-'+ _id).val();
+		
+		$.get('/updateContact', {_id:_id, contactNumber:contactNumber, homeAddress:homeAddress, city:city, remarks:remarks}, function(data, result) {
+
+		});
+		$('#contact-'+_id).removeClass('modal-open');
+		$('.modal-backdrop').remove();
+		$("#cont").load('/contacts');
+		
 	});
+
+	// Check if there are updates made
+	// $('.updateContactInfo').keyup(function() {
+	// 	var _id = $(this).attr('contactID');
+	// 	var contactNumber = $('#contactNumber-'+ _id).val();
+	// 	var homeAddress = $('#homeAddress-'+ _id).val();
+	// 	var city = $('#city-'+ _id).val();
+	// 	var remarks = $('#remarks-'+ _id).val();
+
+	// 	$.get('/getContact', {_id:_id}, function(data, result) {
+	// 		var change = false;
+
+	// 		if ((result.contactNumber != contactNumber) || (result.homeAddress != homeAddress) || (result.city != city)) {
+	// 			change = true;
+	// 		}
+			
+	// 	});
+		
+	// });
+
 });
