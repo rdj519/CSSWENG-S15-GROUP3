@@ -1,9 +1,16 @@
 const db = require('../models/db.js');
+const Contact = require('../models/ContactModel.js');
 
 const contactsController = {
     getContacts: function(req,res){
-        res.render('contacts', {
-            title:  'Customer List',
+        var query = {};
+        var projection = {};
+
+        db.findMany(Contact, query, projection, function(results) {
+            console.log(results);
+            res.render('contacts', {
+                customers: results
+            });
         });
     }
 }

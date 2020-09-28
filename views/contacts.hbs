@@ -102,77 +102,23 @@
 							<div class="card">
 								<table class="table table-hover">
 									<thead>
-										<tr>
-											<th scope="col">Customer #</th>
+										<tr>	
 											<th scope="col">Name</th>
 											<th scope="col">Contact Number</th>
 											<th scope="col">Home Address</th>
 											<th scope="col">City/Municipality</th>
-											<th scope="col">Remarks</th>
 										</tr>
 									</thead>
 									<tbody id="tbody">
-										<!-- {{#each customers}}
-										<tr data-toggle="modal" data-id="{{cusNumber}}" data-target="#{{cusNumber}}">
-											<th scope="row">{{cusNumber}}</th>
-											<td>{{name}}</td>
-											<td>{{contact}}</td>
-											<td>{{home}}</td>
-											<td>{{city}}</td>
-											<td>{{remark}}</td>
-										</tr>
-										{{/each}} -->
+										{{#each customers}}
+											{{> contactRow name=name contactNumber=contactNumber homeAddress=homeAddress city=city _id=_id}}
+											{{> contactModal name=name contactNumber=contactNumber homeAddress=homeAddress city=city remarks=remarks _id=_id}}
+										{{/each}}
 									</tbody>
 								</table>
 							</div>
 
 							<!-- Modal For New Contact -->
-							<div id="newContact" class="modal fade" role="dialog">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-									  		<h5 class="modal-title" id="exampleModalLabel">New Contact</h5>
-									  		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-									  		</button>
-										</div>
-										
-											<div class="modal-body">
-
-												<div class="md-form mb-4">
-													<label data-error="wrong" data-success="right" for="name">Name</label>
-													<input type="text" id="name" class="form-control validate">
-												</div>
-	  
-												<div class="md-form mb-4">
-													<label data-error="wrong" data-success="right" for="contact">Contact Number</label>
-													<input type="number" id="contact" class="form-control validate" min="0" onkeydown="javascript: return event.keyCode === 8 ||
-event.keyCode === 46 ? true : !isNaN(Number(event.key))"/>
-										  		</div>
-
-	  											<div class="md-form mb-4">
-													<label data-error="wrong" data-success="right" for="home">Home Address</label>
-													<input type="text" id="home" class="form-control validate">
-												</div>
-
-												<div class="md-form mb-4">
-													<label data-error="wrong" data-success="right" for="city">City/Municipality</label>
-													<input type="text" id="city" class="form-control validate">
-												</div>
-
-												<div class="md-form mb-4">
-													<label data-error="wrong" data-success="right" for="remark">Remarks</label>
-													<input type="text" id="remark" class="form-control validate">
-												</div>
-											</div>
-
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-												<button type="button" id="submitInfo" class="btn btn-primary">Create Contact</button>
-											</div>
-									</div>
-								</div>
-							</div>
 
 							<!-- Delete Contact Modal-->
 							<div class="modal fade" id="deleteContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -195,10 +141,6 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))"/>
 							    </div>
 							  </div>
 							</div>
-							
-							<!-- edit contact modal -->
-
-
 
 						</div>
 					</div>
