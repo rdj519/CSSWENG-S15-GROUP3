@@ -75,7 +75,7 @@ const contactsController = {
         
     },
     deleteContact: function(req, res){
-        db.deleteOne(Contact, {name: req.body.name}, function(flag) {
+        db.deleteOne(Contact, {_id: req.body._id}, function(flag) {
             res.send("success");
         });
     }
