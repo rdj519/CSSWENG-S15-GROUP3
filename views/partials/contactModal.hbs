@@ -12,23 +12,26 @@
 
                 <div class="md-form mb-4">
                     <label data-error="wrong" data-success="right" for="contact">Contact Number</label>
-                    <input type="number" contactID="{{_id}}" id="contactNumber-{{_id}}"class="form-control validate updateContactInfo" min="0" onkeydown="javascript: return event.keyCode === 8 ||
+                    <input type="number" contactID="{{_id}}" id="contactNumber-{{_id}}"class="form-control validate updateContactInfo contactNumber" min="0" onkeydown="javascript: return event.keyCode === 8 ||
 event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="{{contactNumber}}"/>
+                    <p class="error" id="contactNumberError-{{_id}}"></p>
                 </div>
 
                 <div class="md-form mb-4">
                     <label data-error="wrong" data-success="right" for="home">Home Address</label>
-                    <input type="text" contactID="{{_id}}" id="homeAddress-{{_id}}"class="form-control validate updateContactInfo" value="{{homeAddress}}">
+                    <input type="text" contactID="{{_id}}" id="homeAddress-{{_id}}"class="form-control validate updateContactInfo homeAddress" value="{{homeAddress}}">
+                    <p class="error" id="homeAddressError-{{_id}}"></p>
                 </div>
 
                 <div class="md-form mb-4">
                     <label data-error="wrong" data-success="right" for="city">City/Municipality</label>
-                    <input type="text" contactID="{{_id}}" id="city-{{_id}}" class="form-control validate updateContactInfo" value="{{city}}">
+                    <input type="text" contactID="{{_id}}" id="city-{{_id}}" class="form-control validate updateContactInfo city" value="{{city}}">
+                    <p class="error" id="cityError-{{_id}}"></p>
                 </div>
 
                 <div class="md-form mb-4">
                     <label data-error="wrong" data-success="right" for="remark">Remarks</label>
-                    <input type="text" contactID="{{_id}}" id="remarks-{{_id}}" class="form-control validate updateContactInfo" value="{{remarks}}">
+                    <input type="text" contactID="{{_id}}" id="remarks-{{_id}}" class="form-control validate updateContactInfo remarks" value="{{remarks}}">
                 </div>
             </div>
 

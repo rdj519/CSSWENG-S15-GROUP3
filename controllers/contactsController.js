@@ -47,7 +47,7 @@ const contactsController = {
         var query = {_id:_id};
         var update = {contactNumber:contactNumber, homeAddress:homeAddress, city:city, remarks:remarks}
         db.updateOne(Contact, query, update, function(results) {
-            res.send(results);
+
         });
 
     },

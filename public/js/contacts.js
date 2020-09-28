@@ -205,11 +205,35 @@ $(document).ready(function(){
 		$.get('/updateContact', {_id:_id, contactNumber:contactNumber, homeAddress:homeAddress, city:city, remarks:remarks}, function(data, result) {
 
 		});
+		$("#cont").load('/contacts');
 		$('#contact-'+_id).removeClass('modal-open');
 		$('.modal-backdrop').remove();
-		$("#cont").load('/contacts');
+		
 		
 	});
+
+	// Update Customer Validation
+	$('.updateContactInfo').keyup(function(){
+		var _id = $(this).attr('contactID');
+	});
+
+	$('.contactNumber').keyup(function(){
+		console.log("hello");
+		var _id = $(this).attr('contactID');
+		var number = validator.trim($(this).val());
+		
+		if(number.length != 10) {
+			$('#submitInfo-'+_id).prop('disabled', true);
+			$('#contactNumberError-' + _id).text("Contact number should be 10 digits.");
+		}
+		else {
+			$('#submitInfo-'+_id).prop('disabled', false);
+			$('#contactNumberError-' + _id).text("Contact number should be 10 digits.");
+		}
+		
+	});
+
+
 
 	// Check if there are updates made
 	// $('.updateContactInfo').keyup(function() {
