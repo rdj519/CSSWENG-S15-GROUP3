@@ -40,6 +40,7 @@ router.get('/orders/status:status', isPrivate, ordersController.getOrdersByStatu
 
 // Customer Contact List
 router.get('/contacts', isPrivate, contactsController.getContacts);
+router.post('/addContact', isPrivate, contactsController.addContact);
 
 // Account Settings
 router.get('/settings', isPrivate, accountController.getSettings);
