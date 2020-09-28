@@ -242,7 +242,8 @@ const ordersController = {
             paymentMethod: req.body.paymentMethod,
             status: req.body.status,
             deliveryFee : req.body.deliveryFee,
-            customerOrder : req.body.customerOrder
+            productTotal : req.body.overallPrice,
+            customerOrder : req.body.customerOrder,
         }
 
         db.findOne(Order, {name:name, _id:_id}, null, function(result) {
