@@ -192,6 +192,7 @@ $(document).ready(function(){
 		
 	});
 
+	
 	// Update Customer Validation
 	$('.updateContactInfo').keyup(function(){
 		var _id = $(this).attr('contactID');
