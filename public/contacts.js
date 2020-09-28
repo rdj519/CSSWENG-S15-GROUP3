@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 
 	$("#submitInfo").click(function(){
 		/*
@@ -50,19 +50,19 @@ $(document).ready(function(){
             then removes leading and trailing blank spaces
         */
         var name = validator.trim($('#name').val());
-        var contactNumber = validator.trim($('#contactNumber').val());
-        var homeAddress = validator.trim($('#homeAddress').val());
+        var contactNumber = validator.trim($('#contact').val());
+        var homeAddress = validator.trim($('#home').val());
         var city = validator.trim($('#city').val());
         var remarks = validator.trim($('#remark').val());
 
         /*
             checks if the trimmed values in fields are not empty
         */
-        var nameEmpty = validator.isEmpty(customerName);
+        var nameEmpty = validator.isEmpty(name);
         var contactNumberEmpty = validator.isEmpty(contactNumber);
         var homeAddressEmpty = validator.isEmpty(homeAddress);
         var cityEmpty = validator.isEmpty(city);
-        var remarksEmpty = validator.isEmpty(deliveryFee);
+        var remarksEmpty = validator.isEmpty(remarks);
    
         return !nameEmpty && !contactNumberEmpty && !homeAddressEmpty && !cityEmpty && !remarksEmpty; 
     }
@@ -163,8 +163,6 @@ $(document).ready(function(){
         var validRemarks = isValidRemarks(field);
 
 
-        //var validQuantity = isValidQuantity(field);
-
         console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity + " " + validRemarks);
         if(filled && validContactNumber && validHomeAddress && validCustomerName && validCity && validRemarks){
             $("#submitInfo").prop('disabled', false); //false
@@ -193,41 +191,5 @@ $(document).ready(function(){
         validateField($('#remark'), 'Remarks', $('#remarksError'));
     });
 
-
-	// Updating Customer contact info
-	$('.updateContact').click(function() {
-		var _id = $(this).attr('contactID');
-		var contactNumber = $('#contactNumber-'+ _id).val();
-		var homeAddress = $('#homeAddress-'+ _id).val();
-		var city = $('#city-'+ _id).val();
-		var remarks = $('#remarks-'+ _id).val();
-		
-		$.get('/updateContact', {_id:_id, contactNumber:contactNumber, homeAddress:homeAddress, city:city, remarks:remarks}, function(data, result) {
-
-		});
-		$('#contact-'+_id).removeClass('modal-open');
-		$('.modal-backdrop').remove();
-		$("#cont").load('/contacts');
-		
-	});
-
-	// Check if there are updates made
-	// $('.updateContactInfo').keyup(function() {
-	// 	var _id = $(this).attr('contactID');
-	// 	var contactNumber = $('#contactNumber-'+ _id).val();
-	// 	var homeAddress = $('#homeAddress-'+ _id).val();
-	// 	var city = $('#city-'+ _id).val();
-	// 	var remarks = $('#remarks-'+ _id).val();
-
-	// 	$.get('/getContact', {_id:_id}, function(data, result) {
-	// 		var change = false;
-
-	// 		if ((result.contactNumber != contactNumber) || (result.homeAddress != homeAddress) || (result.city != city)) {
-	// 			change = true;
-	// 		}
-			
-	// 	});
-		
-	// });
 
 });
