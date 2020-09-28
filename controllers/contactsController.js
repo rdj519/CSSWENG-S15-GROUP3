@@ -7,11 +7,12 @@ const contactsController = {
         var projection = {};
 
         db.findMany(Contact, query, projection, function(results) {
-            console.log(results);
+        
             res.render('contacts', {
                 customers: results
             });
         });
+
     }
 }
 

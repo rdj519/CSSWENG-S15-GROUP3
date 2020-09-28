@@ -38,4 +38,12 @@ $(document).ready(function(){
             }
 		
 	});
+
+
+
+
+	// Updating Customer contact info
+	$('.updateContact').click(function() {
+		console.log("ello");
+	});
 });
