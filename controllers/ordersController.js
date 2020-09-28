@@ -30,7 +30,7 @@ const ordersController = {
 
     postDelete: function (req, res) {
 
-        db.deleteOne(Order, {customerName: req.body.customerName}, function(flag) {
+        db.deleteOne(Order, {_id: req.body._id}, function(flag) {
             res.send("success");
         });
 
