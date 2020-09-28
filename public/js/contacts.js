@@ -24,14 +24,12 @@ $(document).ready(function(){
 		
 	});
 
-
     /* changes Delete */
 
         //sa button nung deleteOpen
     $(document).on('click', ".deletion", function(){
-        var name = $(this).attr('name');
-        $.post('/deleteContact',{name: name}, function(data, status) {
-
+        var _id = $(this).attr('id');
+        $.post('/deleteContact',{_id: _id}, function(data, status) {
 
             $("body").load('/contacts');
         });
