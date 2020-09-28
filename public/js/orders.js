@@ -179,9 +179,7 @@ $(document).ready(function() {
         var cityEmpty = validator.isEmpty(city);
         var deliveryFeeEmpty = validator.isEmpty(deliveryFee);
         var deliveryDateEmpty = validator.isEmpty(deliveryDate);
-        var courierEmpty;
-        var statusEmpty;
-        var paymentMethodEmpty;
+   
    
         return !customerNameEmpty && !contactNumberEmpty && !homeAddressEmpty && !cityEmpty && !deliveryFeeEmpty && !deliveryDateEmpty; 
     }
@@ -197,7 +195,7 @@ $(document).ready(function() {
         }
         else {
             if(field.is($("#contactNumber")))
-                $("#contactNumberError").text("Contact number should be eleven digits and not empty.");
+                $("#contactNumberError").text("Contact number should be 10 digits and not empty.");
             
             return false;
         }
@@ -320,6 +318,7 @@ $(document).ready(function() {
     function isValidStatus(field) {
         var status = validator.trim($('#status').text());
 
+        console.log(status);
         if(status != "Status"){
             if(field.is($("#status")))
                  $("#statusError").text("");
