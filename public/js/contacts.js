@@ -272,7 +272,7 @@ $(document).ready(function(){
 		// console.log("update: " + filled + " " + validNumber);
 		if(filled && validNumber) {
 			$("#submitInfo-"+_id).prop('disabled', false);
-			isUniqueContact(validator.trim($('#name-'+ _id).val()), validator.trim($('#contactNumber-'+ _id).val()), _id);
+			isUniqueContactUpdate(validator.trim($('#name-'+ _id).text()), validator.trim($('#contactNumber-'+ _id).val()), _id);
 		}
 		else {
 			$("#submitInfo-"+_id).prop('disabled', true);
@@ -314,12 +314,13 @@ $(document).ready(function(){
 	function isUniqueContactUpdate(name, contactNumber, _id) {
 	
 		$.get('/getDuplicate', {name:name, contactNumber:contactNumber}, function(data, result) {
-			if(data.name == name && data.contactNumber == contactNumber ) {
+			console.log("name: " + name + "contact: " + contactNumber + " " + data);
+			if((data.name == name) && (data.contactNumber == contactNumber) && (data._id != _id)) {
 				$("#contactNumberError-" + _id).text("Contact already exists");
 				$("#submitInfo-"+ _id).prop('disabled', true);
 			}
 			else {
-				$("#contactNumberError-" + _id).text("Contact already exists");
+				$("#contactNumberError-" + _id).text("");
 				$("#submitInfo-"+ _id).prop('disabled', false);;
 			}
 		});
