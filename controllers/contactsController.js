@@ -60,6 +60,18 @@ const contactsController = {
         db.findOne(Contact, query, projection, function(result){
             res.send(result);
         });
+    },
+
+    getDuplicate: function(req, res) {
+        var query = {
+            name: req.query.name,
+            contactNumber: req.query.contactNumber
+        }
+        var projection = {};
+
+        db.findOne(Contact, query, projection, function(result) {
+            res.send(result);
+        });
     }
 }
 

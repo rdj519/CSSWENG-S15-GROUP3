@@ -86,3 +86,10 @@ body {
     
     border-color: rgb(150, 117, 103)  !important;
 }
+
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+}

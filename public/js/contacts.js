@@ -52,7 +52,7 @@ $(document).ready(function(){
         var name = validator.trim($('#name').val());
         var contactNumber = validator.trim($('#contact').val());
         var homeAddress = validator.trim($('#home').val());
-        var city = validator.trim($('#city').val());
+		var city = validator.trim($('#city').val());
 
         /*
             checks if the trimmed values in fields are not empty
@@ -60,7 +60,7 @@ $(document).ready(function(){
         var nameEmpty = validator.isEmpty(name);
         var contactNumberEmpty = validator.isEmpty(contactNumber);
         var homeAddressEmpty = validator.isEmpty(homeAddress);
-        var cityEmpty = validator.isEmpty(city);
+		var cityEmpty = validator.isEmpty(city);
    
         return !nameEmpty && !contactNumberEmpty && !homeAddressEmpty && !cityEmpty; 
     }
@@ -142,12 +142,14 @@ $(document).ready(function(){
         var validContactNumber = isValidContactNumber(field);
         var validHomeAddress = isValidHomeAddress(field);
         var validCustomerName = isValidCustomerName(field);
-        var validCity = isValidCity(field);
+		var validCity = isValidCity(field);
 
 
-        console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity);
+        console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity );
         if(filled && validContactNumber && validHomeAddress && validCustomerName && validCity){
-            $("#submitInfo").prop('disabled', false); //false
+			$("#submitInfo").prop('disabled', false); //false
+			isUniqueContact(validator.trim($('#name').val()), validator.trim($('#contact').val()));
+			
         }
         else{
         	$("#submitInfo").prop('disabled', true);
@@ -192,27 +194,114 @@ $(document).ready(function(){
 		
 	});
 
-	
-	// Update Customer Validation
-	$('.updateContactInfo').keyup(function(){
-		var _id = $(this).attr('contactID');
-	});
 
-	$('.contactNumber').keyup(function(){
-		console.log("hello");
-		var _id = $(this).attr('contactID');
-		var number = validator.trim($(this).val());
-		
-		if(number.length != 10) {
-			$('#submitInfo-'+_id).prop('disabled', true);
-			$('#contactNumberError-' + _id).text("Contact number should be 10 digits.");
+	// Update Customer Validation
+
+	function filledUpdate(_id) {
+		var number = validator.trim($('#contactNumber-'+ _id).val());
+		var homeAddress = validator.trim($('#homeAddress-'+ _id).val());
+		var city = validator.trim($('#city-'+ _id).val());
+
+		var numberEmpty = validator.isEmpty(number);
+		var homeAddressEmpty = validator.isEmpty(homeAddress);
+		var cityEmpty = validator.isEmpty(city);
+
+		return !numberEmpty && !homeAddressEmpty && !cityEmpty;
+	}
+
+	function isValidContactNumberUpdate(field, _id) {
+		var contactNumber = validator.trim($('#contactNumber-'+ _id).val());
+
+		if(contactNumber.length == 10) {
+			if(field.hasClass("contactNumber")) {
+				$('#contactNumberError-' + _id).text("");
+			}
+			return true;
 		}
 		else {
-			$('#submitInfo-'+_id).prop('disabled', false);
-			$('#contactNumberError-' + _id).text("Contact number should be 10 digits.");
+			if(field.hasClass("contactNumber")) {
+				$('#contactNumberError-' + _id).text("Contact number should be 10 digits.");
+			}
+			return false;
+		}
+	}
+
+	function validateUpdate(field, fieldName, error, _id) {
+		var value = validator.trim(field.val());
+        var empty = validator.isEmpty(value);
+
+        if(empty) {
+            field.prop('value', '');
+            error.text(fieldName + " should not be empty.");
+        }
+        else {
+            error.text("");
 		}
 		
+		var filled = filledUpdate(_id);
+		var validNumber = isValidContactNumberUpdate(field, _id);
+
+		// console.log("update: " + filled + " " + validNumber);
+		if(filled && validNumber) {
+			$("#submitInfo-"+_id).prop('disabled', false);
+			isUniqueContact(validator.trim($('#name-'+ _id).val()), validator.trim($('#contactNumber-'+ _id).val()), _id);
+		}
+		else {
+			$("#submitInfo-"+_id).prop('disabled', true);
+		}
+	}
+
+
+
+	$('.contactNumber').keyup(function() {
+		var _id = $(this).attr('contactID');
+		validateUpdate($(this),'Contact Number', $("#contactNumberError-"+_id), _id);
 	});
+
+	$('.homeAddress').keyup(function() {
+		var _id = $(this).attr('contactID');
+		validateUpdate($(this),'Home Address', $("#homeAddressError-"+_id), _id);
+	});
+
+	$('.city').keyup(function() {
+		var _id = $(this).attr('contactID');
+		validateUpdate($(this),'City', $("#cityError-"+_id), _id);
+	});
+
+	function isUniqueContact(name, contactNumber) {
+	
+		$.get('/getDuplicate', {name:name, contactNumber:contactNumber}, function(data, result) {
+			if(data.name == name && data.contactNumber == contactNumber ) {
+				$("#nameError").text("Contact already exists");
+				$("#submitInfo").prop('disabled', true);
+			}
+			else {
+				$("#nameError").text("");
+				$("#submitInfo").prop('disabled', false);
+			}
+		});
+
+	}
+
+	function isUniqueContactUpdate(name, contactNumber, _id) {
+	
+		$.get('/getDuplicate', {name:name, contactNumber:contactNumber}, function(data, result) {
+			if(data.name == name && data.contactNumber == contactNumber ) {
+				$("#contactNumberError-" + _id).text("Contact already exists");
+				$("#submitInfo-"+ _id).prop('disabled', true);
+			}
+			else {
+				$("#contactNumberError-" + _id).text("Contact already exists");
+				$("#submitInfo-"+ _id).prop('disabled', false);;
+			}
+		});
+
+	}
+
+
+
+
+	
 
 
 

@@ -42,6 +42,7 @@ router.get('/orders/status:status', isPrivate, ordersController.getOrdersByStatu
 router.get('/contacts', isPrivate, contactsController.getContacts);
 router.get('/updateContact', isPrivate, contactsController.updateContact);
 router.get('/getContact', isPrivate, contactsController.getContact);
+router.get('/getDuplicate', isPrivate, contactsController.getDuplicate);
 router.post('/addContact', isPrivate, contactsController.addContact);
 
 // Account Settings
