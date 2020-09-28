@@ -98,7 +98,7 @@ $(document).ready(function() {
     function isValidStockQuantity(field) {
         var quantity = validator.trim($('#stockQuantity').val());
 
-        if(parseInt(quantity) > 0 && (quantity % 1 === 0)) {
+        if(parseInt(quantity) >= 0 && (quantity % 1 === 0)) {
             if(field.is($("#stockQuantity")))
                 $("#quantityError").text("");
             
@@ -115,7 +115,7 @@ $(document).ready(function() {
     function isValidPricePerPack(field) {
         var pricePerPack = validator.trim($('#pricePerPack').val());
 
-        if(parseFloat(pricePerPack) > 0) {
+        if(parseFloat(pricePerPack) >= 0) {
             if(field.is($("#pricePerPack")))
                 $("#pricePerPackError").text("");
 
