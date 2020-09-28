@@ -1,46 +1,46 @@
 $(document).ready(function(){
-	
+
 
 	$("#submitInfo").click(function(){
-		/*
-			if($.trim($('#name').val()) == ''){
-                alert('Name can not be left blank');
-            }
-            else if($.trim($('#contact').val()) == ''){
-                alert('Contact cannot be left blank');
-            }
-            else if($.trim($('#home').val()) == ''){
-                alert('Home cannot be left blank');
-            }
-            else if($.trim($('#city').val()) == ''){
-                alert('City cannot be left blank');
-            }
-            else if($.trim($('#remark').val()) == ''){
-                alert('Remark cannot be left blank');
-            }
-            else{
-            	}
-          */
-
     	        var name = $("#name").val();
-		        var contactNumber = $("#contact").val();
+		        var contactNumber = parseInt($("#contact").val());
 		        var homeAddress = $("#home").val();
 		        var city = $("#city").val();
 		        var remarks = $("#remark").val();
 
-		        $.post('/addContact',{ name: name, contactNumber: contactNumber, homeAddress: homeAddress, city: city, remarks: remarks }, function(data, status) {
+
+		        alert("name: " +name + "\n" + "contact: " + contactNumber + jQuery.type(contactNumber) + "\nhome: " + homeAddress + "\ncity: " + city + "\nremarks: " + remarks);
+		        $.post('/addContact', { name: name, contactNumber: contactNumber, homeAddress: homeAddress, city: city, remarks: remarks }, function(data, status) {
 		            /* resets value after */
 		            $("#name").val("");
 		            $("#contact").val("");
-		            $("#homeAddress").val("");
+		            $("#home").val("");
 		            $("#city").val("");
 		            $("#remark").val("");    
 		            
+		            $("#newContact").modal("hide");
 		            $("body").load('/contacts');
 		        });
-            
 		
 	});
+
+	$('.updateContact').click(function() {
+		var _id = $(this).attr('contactID');
+		var contactNumber = $('#contactNumber-'+ _id).val();
+		var homeAddress = $('#homeAddress-'+ _id).val();
+		var city = $('#city-'+ _id).val();
+		var remarks = $('#remarks-'+ _id).val();
+
+		$.get('/updateContact', {_id:_id, contactNumber:contactNumber, homeAddress:homeAddress, city:city, remarks:remarks}, function(data, result) {
+
+		});
+		$('#contact-'+_id).removeClass('modal-open');
+		$('.modal-backdrop').remove();
+		$("#cont").load('/contacts');
+
+	});
+
+
 	//  Validation for Add Contacts
 
     function isFilled() {
@@ -50,21 +50,19 @@ $(document).ready(function(){
             then removes leading and trailing blank spaces
         */
         var name = validator.trim($('#name').val());
-        var contactNumber = validator.trim($('#contactNumber').val());
-        var homeAddress = validator.trim($('#homeAddress').val());
+        var contactNumber = validator.trim($('#contact').val());
+        var homeAddress = validator.trim($('#home').val());
         var city = validator.trim($('#city').val());
-        var remarks = validator.trim($('#remark').val());
 
         /*
             checks if the trimmed values in fields are not empty
         */
-        var nameEmpty = validator.isEmpty(customerName);
+        var nameEmpty = validator.isEmpty(name);
         var contactNumberEmpty = validator.isEmpty(contactNumber);
         var homeAddressEmpty = validator.isEmpty(homeAddress);
         var cityEmpty = validator.isEmpty(city);
-        var remarksEmpty = validator.isEmpty(deliveryFee);
    
-        return !nameEmpty && !contactNumberEmpty && !homeAddressEmpty && !cityEmpty && !remarksEmpty; 
+        return !nameEmpty && !contactNumberEmpty && !homeAddressEmpty && !cityEmpty; 
     }
  	function isValidContactNumber(field) {
         var contactNumber = validator.trim($('#contact').val());
@@ -127,21 +125,6 @@ $(document).ready(function(){
             return false;
         }
     }
-    function isValidRemarks(field) {
-        var remarks = validator.trim($('#remark').val());
-
-        if(remarks.length > 0){
-            if(field.is($("#remark")))
-                 $("#remarksError").text("");
-             return true;
-        }
-        else{
-            if(field.is($("#remark")))
-                $("#remarksError").text("Remarks should not be empty.");
-            
-            return false;
-        }
-    }
 	function validateField(field, fieldName, error) {
 
         var value = validator.trim(field.val());
@@ -160,13 +143,10 @@ $(document).ready(function(){
         var validHomeAddress = isValidHomeAddress(field);
         var validCustomerName = isValidCustomerName(field);
         var validCity = isValidCity(field);
-        var validRemarks = isValidRemarks(field);
 
 
-        //var validQuantity = isValidQuantity(field);
-
-        console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity + " " + validRemarks);
-        if(filled && validContactNumber && validHomeAddress && validCustomerName && validCity && validRemarks){
+        console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity);
+        if(filled && validContactNumber && validHomeAddress && validCustomerName && validCity){
             $("#submitInfo").prop('disabled', false); //false
         }
         else{

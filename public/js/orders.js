@@ -121,13 +121,14 @@ $(document).ready(function() {
                 id: $(this).attr('productID'),
                 name: $(this).attr('productName'),
                 quantity: parseInt($(this).val()),
+                price: $(this).attr('price'),
             }
             if(productOrder.quantity > 0) {
                 $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity, name: productOrder.name}, function(data, status) {
                     console.log(data + " " + status);
                 });
             }
-           
+            console.log("PRICE; " + productOrder.price);
             customerOrder.push(productOrder);
         });
 

@@ -86,6 +86,7 @@ var OrderSchema = new mongoose.Schema({
             amountPerPack: Number,
             quantity: Number,
             ogquantity: Number,
+            price: Number,
         }],
         required: true
     }, 
