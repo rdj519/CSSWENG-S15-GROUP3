@@ -119,7 +119,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}')">
+										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}'); deleteCheck('{{_id}}');">
 											<td scope="row">{{customerName}}</td>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
@@ -219,7 +219,6 @@
 																	<a class="dropdown-item" href="#">paid</a>
 																	<a class="dropdown-item" href="#">delivering</a>
 																	<a class="dropdown-item" href="#">completed</a>
-																	<a class="dropdown-item" href="#">cancelled</a>
 																</div>
 															</div>
 														</div>
@@ -234,12 +233,13 @@
 														{{#each customerOrder}}
 														<label id="{{id}}-{{_id}}"> {{name}} </label>
 														<div class="row info">	
-															<div class="col"> <input id="{{../_id}}-{{_id}}" size="6" value="{{quantity}}" ogquan="{{quantity}}" itemID="{{_id}}" pname="{{name}}" class="prodQuan-{{_id}} pq-{{../_id}}" lenCustomerOrder="{{customerOrder.length}}" price="{{price}}" itemprice="{{price}}" onkeyup="overallitem('{{_id}}', '{{../_id}}')" > </div>
+															<div class="col"> <input id="{{../_id}}-{{_id}}" size="6" value="{{quantity}}" ogquan="{{quantity}}" itemID="{{_id}}" pname="{{name}}" class="prodQuan-{{_id}} pq-{{../_id}}" lenCustomerOrder="{{customerOrder.length}}" price="{{price}}" itemprice="{{price}}" onkeyup="overallitem('{{_id}}', '{{../_id}}')" readonly> </div>
 															<div class="col"> <input id="price{{../_id}}-{{_id}}" size="6" 
 																value="{{price}}" readonly> </div>
 														</div>
 														{{/each}}  
 
+														<label><button class="btn btn-light float-right btn-outline-secondary" data-dismiss="modal" data-toggle="modal" data-target="#changeItemModal" type="button" style="margin-bottom:5px; background-color: rgb(150,117,103) !important; color: #FFF !important;">Change Items</button></label>
 														<!-- onchange="updateQuan('{{_id}}', '{{../_id}}')" -->														
 
 														<label style="color:#A39E9C"> Overall Price</label>
@@ -263,6 +263,9 @@
 												</div>
 												</div>
 										    </div>
+
+
+										    {{> changeItemModal _id=_id}}
 										<!-- end -->
 										{{/each}}
 									</tbody> 
@@ -270,120 +273,8 @@
 							</div>
 							</div>
 
+							{{>addOrderModal}}
 							<!-- Modal For Adding Order -->
-							<div id="addOrder" class="modal fade" role="dialog">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">
-	
-							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" >Name</label>
-							          <input type="text" id="customerName" name="customerName" class="form-control validate">
-							          <p class="error" id="customerNameError"></p>
-							        </div>
-
-							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" >Contact Number</label>
-							          <input type="number" id="contactNumber" name="contactNumber" class="form-control validate">
-							          <p class="error" id="contactNumberError"></p>
-							        </div>
-
-
-							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" ><b>Address</b></label>
-							     	  <label data-error="wrong" data-success="right" >Home Address</label>
-							          <input type="text" id="homeAddress" name="homeAddress" class="form-control validate">
-							          <p class="error" id="homeAddressError"></p>
-							          <label data-error="wrong" data-success="right">City/Municipality</label>
-							          <input type="text" id="city" name="city" class="form-control validate">
-							          <p class="error" id="cityError"></p>
-							        </div>
-
-							      	<div class="md-form mb-4">
-							      		<label data-error="wrong" data-success="right" >Customer Order</label>
-									    <table class="table table-hover">
-											<thead>
-												<tr>
-													<th scope="col">Product</th>
-													<th scope="col">Quantity</th>
-													<th scope="col">Price</th>
-												</tr>
-											</thead>
-											<tbody id="productSold">
-												
-												
-											</tbody>
-											<p class="error" id="productSoldError"></p>
-										</table>
-										<label data-error="wrong" data-success="right" >Delivery Fee</label>
-										<input type="number" id="deliveryFee" name="deliveryFee" class="form-control validate">
-										<p class="error" id="deliveryFeeError"></p>
-										<label data-error="wrong" data-success="right" >Products Total Amount</label>
-										<input type="number" id="productTotal" name="productTotal" class="form-control validate" readonly>
-							      	</div>
-
-							      	<div class="md-form mb-4">
-							     	  	<label data-error="wrong" data-success="right" >Payment Method</label>
-							          	<div class="dropdown" style="float:left; clear:both;" id="paymentDropdown">
-											<button class="btn btn-light dropdown-toggle" type="button"  id="paymentMethod" name="paymentMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Method</button>
-											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">gcash</a>
-											    <a class="dropdown-item" href="#">cod</a>
-											    <a class="dropdown-item" href="#">paymaya </a>
-											</div>
-										</div>
-							        </div>
-									<br>
-									<p class="error" id="paymentMethodError"></p>
-
-							        <div class="md-form mb-4">
-							     	  	<label data-error="wrong" data-success="right" >Courier</label>
-							          	<div class="dropdown" style="float:left; clear:both;" id="courierDropdown">
-											<button class="btn btn-light dropdown-toggle" type="button" id="courier" name="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courier Type</button>
-											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">lalamove</a>
-											    <a class="dropdown-item" href="#">castilla</a>
-											    <a class="dropdown-item" href="#">mrspeedy</a>
-											    <a class="dropdown-item" href="#">grabexpress</a>
-											</div>
-							        	</div>
-							        </div>
-									<br>
-									<p class="error" id="courierError"></p>
-							        <div class="md-form mb-4">
-							     	  	<label data-error="wrong" data-success="right">Status</label>
-							          	<div class="dropdown" style="float:left; clear:both;" id="statusDropdown">
-											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">confirmed</button>
-											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">confirmed</a>
-											    <a class="dropdown-item" href="#">paid </a>
-											    <a class="dropdown-item" href="#">delivering</a>
-											    <a class="dropdown-item" href="#">completed </a>
-											    <a class="dropdown-item" href="#">cancelled</a>
-											</div>
-							        	</div>
-							        	<p class="error" id="statusError"></p>
-							        </div>
-							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" >Delivery Date</label>
-							          <input type="date" id="deliveryDate" name="deliveryDate" class="form-control validate">
-							          <p class="error" id="deliveryDateError"></p>
-							        </div>
-
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        <button type="button" class="btn btn-primary" id="submitOrder" data-dismiss="modal" disabled="true">Add Order</button>
-							      </div>
-							    </div>
-							  </div>
-							</div>
 							
 
 						</div>
@@ -421,7 +312,7 @@
 	        }
 	    }
 	}
-/*
+
 	//delete check
 	function deleteCheck(_id) {
 		var status = $("#statusModal-" + _id).html();
@@ -433,7 +324,7 @@
 			$("#deleteBtn-" + _id).prop('disabled', false);					
 		}
 	}
-*/
+
 	//Total price
 	function showTotal(_id) {
 		var deliveryfee = parseInt($("#deliveryFeeModal-" + _id).val());   
@@ -684,7 +575,6 @@ $("#filterActivate").click(function() {
         $(".paid").hide();
         $(".delivering").hide();
         $(".completed").hide();
-        $(".cancelled").hide();
         $("#filterButton").html("Filter By");
     }
     else if($("#filterButton").html() == "paid"){
@@ -692,7 +582,6 @@ $("#filterActivate").click(function() {
         $(".paid").show();
         $(".delivering").hide();
         $(".completed").hide();
-        $(".cancelled").hide();
         $("#filterButton").html("Filter By");
     }
     else if($("#filterButton").html() == "delivering"){
@@ -700,7 +589,6 @@ $("#filterActivate").click(function() {
         $(".paid").hide();
         $(".delivering").show();
         $(".completed").hide();
-        $(".cancelled").hide();
         $("#filterButton").html("Filter By");
     }
     else if($("#filterButton").html() == "completed"){
@@ -709,14 +597,6 @@ $("#filterActivate").click(function() {
         $(".delivering").hide();
         $(".completed").show();
         $(".cancelled").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "cancelled"){
-        $(".confirmed").hide();
-        $(".paid").hide();
-        $(".delivering").hide();
-        $(".completed").hide();
-        $(".cancelled").show();
         $("#filterButton").html("Filter By");
     }
     /* courier */
@@ -773,7 +653,6 @@ $("#filterActivate").click(function() {
         $(".paid").show();
         $(".delivering").show();
         $(".completed").show();
-        $(".cancelled").show();
     	$(".castilla").show();
         $(".lalamove").show();
         $(".mrspeedy").show();
