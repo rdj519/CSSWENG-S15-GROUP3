@@ -238,12 +238,13 @@
 														{{#each customerOrder}}
 														<label id="{{id}}-{{_id}}"> {{name}} </label>
 														<div class="row info">	
-															<div class="col"> <input id="{{../_id}}-{{_id}}" size="6" value="{{quantity}}" ogquan="{{quantity}}" itemID="{{_id}}" pname="{{name}}" class="prodQuan-{{_id}} pq-{{../_id}}" lenCustomerOrder="{{customerOrder.length}}" price="{{price}}" itemprice="{{price}}" onkeyup="overallitem('{{_id}}', '{{../_id}}')" > </div>
+															<div class="col"> <input id="{{../_id}}-{{_id}}" size="6" value="{{quantity}}" ogquan="{{quantity}}" itemID="{{_id}}" pname="{{name}}" class="prodQuan-{{_id}} pq-{{../_id}}" lenCustomerOrder="{{customerOrder.length}}" price="{{price}}" itemprice="{{price}}" onkeyup="overallitem('{{_id}}', '{{../_id}}')" readonly > </div>
 															<div class="col"> <input id="price{{../_id}}-{{_id}}" size="6" 
 																value="{{price}}" readonly> </div>
 														</div>
 														{{/each}}  
 
+														<label><button class="btn btn-light float-right btn-outline-secondary" data-dismiss="modal" data-toggle="modal" data-target="#changeItemModal" type="button" style="margin-bottom: :5px; background-color: rgb(150,117,103) !important; color:#FFF !important; border-color: rgb(150,117,103) !important; color:#FFF !important;">Change Items</button></label>
 														<!-- onchange="updateQuan('{{_id}}', '{{../_id}}')" -->														
 
 														<label style="color:#A39E9C"> Overall Price</label>
@@ -267,6 +268,45 @@
 												</div>
 												</div>
 										    </div>
+
+
+
+
+
+
+
+											<!-- Modal for Change items -->
+											<div id="changeItemModal" class="modal fade" role="dialog" style="overflow-y:auto;">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalLabel">Change Items</h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+																								
+															<div class="md-form mb-4" id="changeItem">
+																<label><bold>Available items</bold></label>
+																<label></label>
+																<!--
+																<label id="{{id}}-{{_id}}"> {{_id}} </label>
+																<div class="row info">	
+
+																	<div class="col"> <input id="{{../_id}}-{{_id}}" size="6" value="{{quantity}}" ogquan="{{quantity}}" itemID="{{_id}}" pname="{{name}}" class="prodQuan-{{_id}} pq-{{../_id}}" lenCustomerOrder="{{customerOrder.length}}" price="{{price}}" itemprice="{{price}}" onkeyup="overallitem('{{_id}}', '{{../_id}}')" > </div>
+																	<div class="col"> <input id="price{{../_id}}-{{_id}}" size="6" value="{{price}}" readonly> </div>
+																</div> 
+																-->	
+													      	</div>
+													    </div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+															<button type="button" class="btn btn-primary" id="submitOrder" data-dismiss="modal" disabled="true">Update</button>
+														</div>
+													</div>
+												</div>
+											</div>
 										<!-- end -->
 										{{/each}}
 									</tbody> 
