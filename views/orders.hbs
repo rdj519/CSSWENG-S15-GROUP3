@@ -2,9 +2,8 @@
 <html>
 <head>
 	<title>Manage Orders</title>
-
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/orders.css">
@@ -13,10 +12,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
 	<!-- JS -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	
 	<script src="/js/orders.js"></script>
 	<script src="/js/validator.min.js" type="text/javascript"></script>
 	
@@ -32,7 +29,7 @@
 </head>
 <body>
 
-	<div class="margin">
+	<div class="margin" id="orderDiv">
 		<div class="row">
 			<div class="col-2">
 					<div class="sidenav sticky">
@@ -111,8 +108,8 @@
 							</div>
 
 							<!-- table of customers-->
-							<div class="card">
-								<table class="table table-hover" id="orderTable">
+							<div class="card" id="orderTable">
+								<table class="table table-hover" >
 									<thead>
 										<tr>
 											<th scope="col">Name</th>
@@ -152,7 +149,7 @@
 										        <input type="text"  class="form-control validate deleteConfirmation" placeholder="CONFIRM">
 										      </div>
 										      <div class="modal-footer">
-										        <button type="button" class="btn btn-danger customerName" id="deleteButton" deleteId="{{_id}}">Yes</button>
+										        <button type="button" class="btn btn-danger customerName" id="deleteButton" deleteId="{{_id}}" data-dismiss="modal">Yes</button>
 										        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 										      </div>
 										    </div>	
@@ -345,8 +342,9 @@
 											    <a class="dropdown-item" href="#">paymaya </a>
 											</div>
 										</div>
-										<p class="error" id="paymentMethodError"></p>
 							        </div>
+									<br>
+									<p class="error" id="paymentMethodError"></p>
 
 							        <div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right" >Courier</label>
@@ -359,8 +357,9 @@
 											    <a class="dropdown-item" href="#">grabexpress</a>
 											</div>
 							        	</div>
-							        	<p class="error" id="courierError"></p>
 							        </div>
+									<br>
+									<p class="error" id="courierError"></p>
 							        <div class="md-form mb-4">
 							     	  	<label data-error="wrong" data-success="right">Status</label>
 							          	<div class="dropdown" style="float:left; clear:both;" id="statusDropdown">
