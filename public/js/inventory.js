@@ -1,8 +1,7 @@
 $(document).ready(function() {
-    
-    
-   
 
+    $(".dropdown-toggle").dropdown();
+   
     $("#addProductButton").click(function() {
         var name = $("#name").val();
         var amountPerPack = $("#amountPerPack").val();
