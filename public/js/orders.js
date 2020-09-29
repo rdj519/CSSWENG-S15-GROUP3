@@ -502,7 +502,7 @@ $(document).ready(function() {
         }); 
 
         validateField($(this), 'Product', $('#productSoldError'));
-        validateAll();
+        //validateAll();
     });
  
     /* nested dropdown */
