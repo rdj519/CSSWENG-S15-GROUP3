@@ -12,7 +12,7 @@ $(document).ready(function() {
         for(var i = 0; i < data.length; i++) {
             $("#productSold").append("<tr>");
             $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "</th>");
-            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p id='error" + data[i]._id +"'></p></td>");
+            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p id='error-" + data[i]._id +"'></p></td>");
             $("#productSold").append("<td><p id='" +  "price-" + data[i]._id + "' class='form-control validate productPrice'></p></td>");
             $("#productSold").append("</tr>");
 
@@ -446,17 +446,20 @@ $(document).ready(function() {
         }
         $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
             if(isEmpty){
-                $("#error"+ id).text("Must be a valid value.");
+                $("#error-"+ id).text("Must be a valid value.");
                 $('#submitOrder').prop('disabled', true);
             }
             else{
+                console.log(id);
                 if(data.quantity < val){
-                    $("#error"+ id).text("Not enough stock.");
+                    $("#error-"+ id).text("Not enough stock.");
                     $('#submitOrder').prop('disabled', true);
+                    console.log("Not enough stock.");
                 }
                 else{
-                    $("#error"+ id).text("");
+                    $("#error-"+ id).text("");
                     $('#submitOrder').prop('disabled', false);
+                    console.log("enough stock.");
                 }
             }
         }); 
