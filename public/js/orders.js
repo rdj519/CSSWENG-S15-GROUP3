@@ -12,13 +12,31 @@ $(document).ready(function() {
         for(var i = 0; i < data.length; i++) {
             $("#productSold").append("<tr>");
             $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "</th>");
-            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p id='error" + data[i]._id +"'></p></td>");
-            $("#productSold").append("<td><p id='" +  "price-" + data[i]._id + "' class='form-control validate productPrice'></p></td>");
+            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p id='error-" + data[i]._id +"'></p></td>");
+            $("#productSold").append("<td><p id='" +  "Price-" + data[i]._id + "' class='form-control validate productPrice'></p></td>");
             $("#productSold").append("</tr>");
 
         }
     });
 
+    $(document).on('change', ".productQuantity", function(){
+        
+        var price = parseFloat($(this).attr('price'));
+        var id = $(this).attr('productID');
+        var qty = parseInt($(this).val());
+        var qtyID = "#Price-"+ id.trim();
+        
+        console.log(qtyID + " " + qty * price);
+        $(qtyID).text(qty * price);
+
+        var sum = 0;
+
+        $('.productPrice').each(function() {
+            sum += parseFloat($(this).text()) || 0;
+        });
+        $("#productTotal").val(sum);
+        
+    });
 
     $.get('/getUpdateProductsSold', {}, function(data, status) {
         for(var i = 0; i < data.length; i++) {
@@ -30,7 +48,7 @@ $(document).ready(function() {
          //   $("#changeItem").append("</div>");
 
         }
-    })
+    });
    
     function isValidQuantity(field, name,  amountPerPack, id){
         $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
@@ -40,8 +58,6 @@ $(document).ready(function() {
                     return true;
             });
     }
-
-    
 
     /* changes */
 
@@ -74,24 +90,7 @@ $(document).ready(function() {
     /* changes */
 
     //function validateQuantity()
-    $(document).on('change', ".productQuantity", function(){
-        
-        var price = parseFloat($(this).attr('price'));
-        var id = $(this).attr('productID');
-        var qty = parseInt($(this).val());
-        var qtyID = "#price-"+ id.trim();
-    
-        $(qtyID).text(qty * price);
-
-        var sum = 0;
-
-        $('.productPrice').each(function() {
-            sum += parseFloat($(this).text()) || 0;
-        })
-        $("#productTotal").val(sum);
-        
-    });
-
+  
 
     $("#submitOrder").click(function() {
         var customerName = $("#customerName").val();
@@ -125,9 +124,9 @@ $(document).ready(function() {
                 $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity, name: productOrder.name}, function(data, status) {
                     console.log(data + " " + status);
                 });
+                customerOrder.push(productOrder);
             }
-            console.log("PRICE; " + productOrder.price);
-            customerOrder.push(productOrder);
+            
         });
 
 
@@ -446,16 +445,16 @@ $(document).ready(function() {
         }
         $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
             if(isEmpty){
-                $("#error"+ id).text("Must be a valid value.");
+                $("#error-"+ id).text("Must be a valid value.");
                 $('#submitOrder').prop('disabled', true);
             }
             else{
                 if(data.quantity < val){
-                    $("#error"+ id).text("Not enough stock.");
+                    $("#error-"+ id).text("Not enough stock.");
                     $('#submitOrder').prop('disabled', true);
                 }
                 else{
-                    $("#error"+ id).text("");
+                    $("#error-"+ id).text("");
                     $('#submitOrder').prop('disabled', false);
                 }
             }
