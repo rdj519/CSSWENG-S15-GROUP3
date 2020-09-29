@@ -467,6 +467,7 @@ $(document).ready(function() {
             });  
         });
     };
+
     jQuery(document).on( "change", ".productQuantity", function(){ 
         if($(this).val() == "") {
             $(this).val(0);
@@ -504,12 +505,7 @@ $(document).ready(function() {
         validateAll();
     });
 
-});
-
-
-
-
-//----------------------
+    //----------------------
 
 //from order.hbs
 
@@ -976,3 +972,14 @@ $("#filterActivate").click(function() {
         $(this).parents(".dropdown").find('.btn').html($(this).text());
         $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
     });
+
+
+
+
+    
+});
+
+
+
+
+
