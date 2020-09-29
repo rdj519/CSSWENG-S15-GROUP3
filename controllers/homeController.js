@@ -16,7 +16,7 @@ const homeController = {
                     console.log("checking if user exist");
                     if (req.session.userID) {
                         result.userID = req.session.userID;
-                        res.render('home', {products: products});
+                        res.render('home', {user:result, products: products});
                     } else {
                         result.userID = null;
                         console.log("home error");
