@@ -54,11 +54,10 @@
 
 							<!-- for search and add order button -->
 							<div class="row">
-								<div class="col-3">
-									
+								<div class="col-2">
 									<!-- Filter button -->
 									<div class="dropdown">
-										<button class="btn btn-primary dropdown-toggle" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
+										<button class="btn btn-primary dropdown-toggle" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton" style="margin-bottom: 5px; height: 38px; width: 170px;">Filter by</button>
 										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											<li class="dropdown-submenu">
 												<li><a class="dropdown-item" href="#">all</a></li>
@@ -87,23 +86,26 @@
 									</div>
 
 								</div>
-								<div class="col-5">
+								<div class="col-1">
 										<!-- activation button for filtering -->
 										<button class="btn btn-light btn-outline-secondary" type="button" id="filterActivate">Go</button>
 								</div>
-								<div class="col-4">
-									<div class="row">
-										<!-- search bar-->
-										<div class="col-7">
-											<div class="input-group">
-												<input type="text" class="form-control" id="searchName" placeholder="Search Name" aria-label="order number" aria-describedby="button-addon2" onkeyup="liveSearch()">
-											</div>
+								<div class="col-5">
+									<!-- Spacer -->
+								</div>
+								<div class="row">
+									<!-- search bar-->
+									<div class="col-7" style="padding=0px;">
+										<div class="input-group">
+											<input type="text" class="form-control" id="searchName" placeholder="Search Name" aria-label="order number"
+												aria-describedby="button-addon2" onkeyup="liveSearch()">
 										</div>
-
-										<!-- add order -->
-										<div class="col-5">
-											<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addOrder" type="submit" style="margin-bottom: 5px;" >Add Order</button>
-										</div>
+									</div>
+									
+									<!-- add order -->
+									<div class="col-5" style="padding=0px;">
+										<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addOrder"
+											type="submit" style="margin-bottom: 5px;">Add Order</button>
 									</div>
 								</div>
 							</div>

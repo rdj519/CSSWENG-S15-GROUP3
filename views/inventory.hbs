@@ -45,36 +45,34 @@
     
                                 <!-- for search and add order button -->
                                 <div class="row">
-                                    <div class="col-1">
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by</button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#" onclick="sortTableAlphabetical()">Name (A-Z)</a>
-                                                    <a class="dropdown-item" href="#" onclick="sortTableAlphabeticalDesc()">Name (Z-A)</a>
-                                                    <a class="dropdown-item" href="#" onclick="sortTablePrice()">Price (Asc.)</a>
-                                                    <a class="dropdown-item" href="#" onclick="sortTablePriceDesc()">Price (Desc.)</a>
-                                                    <a class="dropdown-item" href="#" onclick="sortTableStockQuantity()">Stock (Asc.)</a>
-                                                    <a class="dropdown-item" href="#" onclick="sortTableStockQuantityDesc()">Stock (Desc.)</a>
-                                                </div>
+                                    <div class="col-1" id="inventoryTableCommands-left">
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by</button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#" onclick="sortTableAlphabetical()">Name (A-Z)</a>
+                                                <a class="dropdown-item" href="#" onclick="sortTableAlphabeticalDesc()">Name (Z-A)</a>
+                                                <a class="dropdown-item" href="#" onclick="sortTablePrice()">Price (Asc.)</a>
+                                                <a class="dropdown-item" href="#" onclick="sortTablePriceDesc()">Price (Desc.)</a>
+                                                <a class="dropdown-item" href="#" onclick="sortTableStockQuantity()">Stock (Asc.)</a>
+                                                <a class="dropdown-item" href="#" onclick="sortTableStockQuantityDesc()">Stock (Desc.)</a>
                                             </div>
-                                    </div>
-                                    <div class="col-7">
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <!-- search bar-->
-                                            <div class="col-7">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Search Product" aria-label="Recipient's username" aria-describedby="button-addon2" id="myInput" onkeyup="liveSearch()">
-                                                </div>
-                                            </div>
-
-                                            <!-- add stock -->
-                                            <div class="col-4">
-											    <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addProduct" type="submit" style="margin-bottom: 5px;">Add Product</button>
-									    	</div>
                                         </div>
                                     </div>
+                                    <div class="col-8">
+                                    </div>
+                                    <div class="row" id="inventoryTableCommands-right">
+                                        <!-- search bar-->
+                                        <div class="col-6">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search Product" aria-label="Recipient's username" aria-describedby="button-addon2" id="myInput" onkeyup="liveSearch()">
+                                            </div>
+                                        </div>
+                                        <!-- add stock -->
+                                        <div class="col-4">
+                                            <button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addProduct" type="submit" style="margin-bottom: 5px; height: 38px; width: 120px;">Add Product</button>
+                                        </div>
+                                    </div>
+                                
                                 </div>
                                         
                                 <!-- Table of Inventory -->
