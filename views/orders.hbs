@@ -237,12 +237,13 @@
 														{{#each customerOrder}}
 														<label id="{{id}}-{{_id}}"> {{name}} </label>
 														<div class="row info">	
-															<div class="col"> <input id="{{../_id}}-{{_id}}" size="6" value="{{quantity}}" ogquan="{{quantity}}" itemID="{{_id}}" pname="{{name}}" class="prodQuan-{{_id}} pq-{{../_id}}" lenCustomerOrder="{{customerOrder.length}}" price="{{price}}" itemprice="{{price}}" onkeyup="overallitem('{{_id}}', '{{../_id}}')" > </div>
+															<div class="col"> <input id="{{../_id}}-{{_id}}" size="6" value="{{quantity}}" ogquan="{{quantity}}" itemID="{{_id}}" pname="{{name}}" class="prodQuan-{{_id}} pq-{{../_id}}" lenCustomerOrder="{{customerOrder.length}}" price="{{price}}" itemprice="{{price}}" onkeyup="overallitem('{{_id}}', '{{../_id}}')" readonly> </div>
 															<div class="col"> <input id="price{{../_id}}-{{_id}}" size="6" 
 																value="{{price}}" readonly> </div>
 														</div>
 														{{/each}}  
 
+														<label><button class="btn btn-light float-right btn-outline-secondary" data-dismiss="modal" data-toggle="modal" data-target="#changeItemModal" type="button" style="margin-bottom:5px;">Change Items</button>
 														<!-- onchange="updateQuan('{{_id}}', '{{../_id}}')" -->														
 
 														<label style="color:#A39E9C"> Overall Price</label>
@@ -266,6 +267,9 @@
 												</div>
 												</div>
 										    </div>
+
+
+										    {{> changeItemModal _id=_id}}
 										<!-- end -->
 										{{/each}}
 									</tbody> 
