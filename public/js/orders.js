@@ -428,6 +428,45 @@ $(document).ready(function() {
         validateField($('#status'), 'Status', $('#statusError'));
     });
 
+    function validateAll(){
+        $('.productQuantity').each(function() {
+            if($(this).val() == "") {
+                $(this).val(0);
+            }
+
+            
+            var name = $(this).attr('productName');
+            var amountPerPack = $(this).attr('amountPerPack');    
+            var id = $(this).attr('productID');
+            var val = parseInt($(this).val());
+            var isEmpty = false;
+            $("#error"+ id).text(val);
+            if(!$(this).val() || $(this).val() < 0){
+                    $("#error"+ id).text("Must be a valid value.");
+                    $('#submitOrder').prop('disabled', true);
+                    isEmpty = true;
+            }
+            
+            $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
+                if(isEmpty){
+                    $("#error"+ id).text("Must be a valid value.");
+                    $('#submitOrder').prop('disabled', true);
+                    return false;
+                }
+                else{
+                    if(data.quantity < val){
+                        $("#error"+ id).text("Not enough stock.");
+                        $('#submitOrder').prop('disabled', true);
+                        return false;
+                    }
+                    else{
+                        $("#error"+ id).text("");
+                        $('#submitOrder').prop('disabled', false);
+                    }
+                }
+            });  
+        });
+    };
     jQuery(document).on( "change", ".productQuantity", function(){ 
         if($(this).val() == "") {
             $(this).val(0);
@@ -462,6 +501,7 @@ $(document).ready(function() {
         }); 
 
         validateField($(this), 'Product', $('#productSoldError'));
+        validateAll();
     });
 
 });
