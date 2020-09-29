@@ -34,15 +34,13 @@ $(document).ready(function() {
     /* changes */
 
   
-  
 
     //sa button nung deleteOpen
     $(document).on('click', ".customerName", function(){
         var _id = $(this).attr('deleteId');
         $.post('/postDelete', {_id: _id}, function(data, status) {
 
-
-            $("#orderDiv").load('/orders');
+            $("body").load('/orders');
         });
 
     });
@@ -138,7 +136,7 @@ $(document).ready(function() {
             $("#addOrder").modal("hide");
 
             
-            $("#orderDiv").load('/orders');
+            $("body").load('/orders');
         });
         
     });

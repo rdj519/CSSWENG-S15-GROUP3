@@ -12,7 +12,6 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
 	<!-- JS -->
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="/js/orders.js"></script>
@@ -110,8 +109,8 @@
 							</div>
 
 							<!-- table of customers-->
-							<div class="card">
-								<table class="table table-hover" id="orderTable">
+							<div class="card" id="orderTable">
+								<table class="table table-hover" >
 									<thead>
 										<tr>
 											<th scope="col">Name</th>
@@ -151,7 +150,7 @@
 										        <input type="text"  class="form-control validate deleteConfirmation" placeholder="CONFIRM">
 										      </div>
 										      <div class="modal-footer">
-										        <button type="button" class="btn btn-danger customerName" id="deleteButton" deleteId="{{_id}}">Yes</button>
+										        <button type="button" class="btn btn-danger customerName" id="deleteButton" deleteId="{{_id}}" data-dismiss="modal">Yes</button>
 										        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 										      </div>
 										    </div>	
