@@ -223,7 +223,6 @@
 																	<a class="dropdown-item" href="#">paid</a>
 																	<a class="dropdown-item" href="#">delivering</a>
 																	<a class="dropdown-item" href="#">completed</a>
-																	<a class="dropdown-item" href="#">cancelled</a>
 																</div>
 															</div>
 														</div>
@@ -369,7 +368,6 @@
 											    <a class="dropdown-item" href="#">paid </a>
 											    <a class="dropdown-item" href="#">delivering</a>
 											    <a class="dropdown-item" href="#">completed </a>
-											    <a class="dropdown-item" href="#">cancelled</a>
 											</div>
 							        	</div>
 							        	<p class="error" id="statusError"></p>
@@ -688,7 +686,6 @@ $("#filterActivate").click(function() {
         $(".paid").hide();
         $(".delivering").hide();
         $(".completed").hide();
-        $(".cancelled").hide();
         $("#filterButton").html("Filter By");
     }
     else if($("#filterButton").html() == "paid"){
@@ -696,7 +693,6 @@ $("#filterActivate").click(function() {
         $(".paid").show();
         $(".delivering").hide();
         $(".completed").hide();
-        $(".cancelled").hide();
         $("#filterButton").html("Filter By");
     }
     else if($("#filterButton").html() == "delivering"){
@@ -704,7 +700,6 @@ $("#filterActivate").click(function() {
         $(".paid").hide();
         $(".delivering").show();
         $(".completed").hide();
-        $(".cancelled").hide();
         $("#filterButton").html("Filter By");
     }
     else if($("#filterButton").html() == "completed"){
@@ -713,14 +708,6 @@ $("#filterActivate").click(function() {
         $(".delivering").hide();
         $(".completed").show();
         $(".cancelled").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "cancelled"){
-        $(".confirmed").hide();
-        $(".paid").hide();
-        $(".delivering").hide();
-        $(".completed").hide();
-        $(".cancelled").show();
         $("#filterButton").html("Filter By");
     }
     /* courier */
@@ -777,7 +764,6 @@ $("#filterActivate").click(function() {
         $(".paid").show();
         $(".delivering").show();
         $(".completed").show();
-        $(".cancelled").show();
     	$(".castilla").show();
         $(".lalamove").show();
         $(".mrspeedy").show();
