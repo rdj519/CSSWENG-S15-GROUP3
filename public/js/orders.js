@@ -51,7 +51,7 @@ $(document).ready(function() {
     $(document).on('keyup', ".deleteConfirmation", function(){
         var confirm = $(this).val();
         $('.customerName').prop('disabled', true);
-        if(confirm === "delete")
+        if(confirm === "CONFIRM")
         {
             $('.customerName').prop('disabled', false);
         }
@@ -466,4 +466,15 @@ $(document).ready(function() {
         validateField($(this), 'Product', $('#productSoldError'));
     });
 
+    $('#addOrder').on('hidden.bs.modal', function () {
+        $('#customerNameError').text('');
+        $('#contactNumberError').text('');
+        $('#homeAddressError').text('');
+        $('#cityError').text('');
+        $('#deliveryDateError').text('');
+        $('#deliveryFeeError').text('');
+        $('#paymentMethodError').text('');
+        $('#courierError').text('');
+        $('#statusError').text('');
+     })
 });

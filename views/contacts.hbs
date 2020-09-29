@@ -77,11 +77,12 @@
 											<th scope="col">Contact Number</th>
 											<th scope="col">Home Address</th>
 											<th scope="col">City/Municipality</th>
+											<th scope="col">Remarks</th>
 										</tr>
 									</thead>
 									<tbody id="tbody">
 										{{#each customers}}
-											{{> contactRow name=name contactNumber=contactNumber homeAddress=homeAddress city=city _id=_id}}
+											{{> contactRow name=name contactNumber=contactNumber homeAddress=homeAddress city=city remarks=remarks _id=_id}}
 											{{> contactModal name=name contactNumber=contactNumber homeAddress=homeAddress city=city remarks=remarks _id=_id}}
 											<!-- Delete Contact Modal-->
 											<div class="modal fade" id="delete{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,7 +96,7 @@
 											      </div>
 											      <div class="modal-body">
 											        <p>Are you sure you want to delete this contact?</p>
-													<input type="text"  class="form-control validate deleteConfirmation">
+													<input type="text"  class="form-control validate deleteConfirmation" placeholder="CONFIRM">
 											      </div>
 											      <div class="modal-footer">
 											        <button type="button" class="btn btn-danger deletion" id="{{_id}}" disabled="true">Yes</button>

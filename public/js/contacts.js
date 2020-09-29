@@ -39,7 +39,7 @@ $(document).ready(function(){
     $(document).on('keyup', ".deleteConfirmation", function(){
         var confirm = $(this).val();
         
-        if(confirm === "delete")
+        if(confirm === "CONFIRM")
         {
             $('.deletion').prop('disabled', false);
         }
