@@ -113,9 +113,9 @@ $(document).ready(function() {
                 $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity, name: productOrder.name}, function(data, status) {
                     console.log(data + " " + status);
                 });
+                customerOrder.push(productOrder);
             }
-            console.log("PRICE; " + productOrder.price);
-            customerOrder.push(productOrder);
+            
         });
 
 
