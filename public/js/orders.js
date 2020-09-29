@@ -504,6 +504,26 @@ $(document).ready(function() {
         validateField($(this), 'Product', $('#productSoldError'));
         validateAll();
     });
+ 
+    /* nested dropdown */
+    $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+        if (!$(this).next().hasClass('show')) {
+            $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+        }
+        var $subMenu = $(this).next('.dropdown-menu');
+        $subMenu.toggleClass('show');
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+            $('.dropdown-submenu .show').removeClass('show');
+        });
+        return false;
+    });
+    $(".dropdown-menu a").click(function(){
+        $(this).parents(".dropdown").find('.btn').html($(this).text());
+        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+    });
+    
+});
+
 
     //----------------------
 
@@ -868,6 +888,7 @@ $("#filterActivate").click(function() {
         $("#filterButton").html("Filter By");
     }
 });
+
     /* print pdf */
     const { PDFDocument, StandardFonts, rgb } = PDFLib
     async function createPdf(modalID) {
@@ -955,31 +976,3 @@ $("#filterActivate").click(function() {
       // Trigger the browser to download the PDF document
       download(pdfBytes, name  + ".pdf", "application/pdf");
     };
- 
-    /* nested dropdown */
-    $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
-        if (!$(this).next().hasClass('show')) {
-            $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
-        }
-        var $subMenu = $(this).next('.dropdown-menu');
-        $subMenu.toggleClass('show');
-        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-            $('.dropdown-submenu .show').removeClass('show');
-        });
-        return false;
-    });
-    $(".dropdown-menu a").click(function(){
-        $(this).parents(".dropdown").find('.btn').html($(this).text());
-        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-    });
-
-
-
-
-    
-});
-
-
-
-
-
