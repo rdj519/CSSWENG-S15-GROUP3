@@ -75,7 +75,7 @@ const stockInventoryController = {
     },
 
     delProduct: function(req, res) {
-        db.deleteOne(Product, {name: req.body.name}, function(flag) {
+        db.deleteOne(Product, {_id: req.body._id}, function(flag) {
             res.send("success");
         });
     },
