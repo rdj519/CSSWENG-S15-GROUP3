@@ -1,7 +1,8 @@
 $(document).ready(function() {
-
+    
     $(".dropdown-toggle").dropdown();
    
+
     $("#addProductButton").click(function() {
         var name = $("#name").val();
         var amountPerPack = $("#amountPerPack").val();
@@ -24,8 +25,8 @@ $(document).ready(function() {
     });
 
     $(document).on('click', ".name", function(){
-        var name = $(this).attr('name');
-        $.post('/delProduct',{name: name}, function(data, status) {
+        var _id = $(this).attr('productID');
+        $.post('/delProduct',{_id:_id}, function(data, status) {
 
 
             $("body").load('/inventory');
