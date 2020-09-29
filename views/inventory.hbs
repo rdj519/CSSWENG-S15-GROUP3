@@ -271,17 +271,17 @@
                 var price = validator.trim($("#pricePerPack-" + itemID).val());
                 var low = validator.trim($("#lowStock-" + itemID).val());
 
-                if (stock < 1) {
+                if (stock < 0) {
                     $("#stockQuantity-" + itemID).css("border-color", "red");
                     valid = false
                 }
 
-                if (price < 1) {
+                if (price < 0) {
                     $("#pricePerPack-" + itemID).css("border-color", "red");
                     valid = false
                 }
                
-                if (low < 1) {
+                if (low < 0) {
                     $("#lowStock-" + itemID).css("border-color", "red");
                     valid = false
                 }
