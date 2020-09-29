@@ -120,39 +120,23 @@
 					<a class="dropdown-item" href="#">Status</a>
 					<a class="dropdown-item" href="#">Delivery Date</a>
 				</div>
-			</div>	
+			</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th scope="col">Order No.</th>
+						<th scope="col">Name</th>
 						<th scope="col">Contact Number</th>
 						<th scope="col">Address</th>
 						<th scope="col">Status</th>
+						<th scope="col">Courier</th>
+						<th scope="col">Date Placed</th>
 						<th scope="col">Delivery Date</th>
 					</tr>
-				</thead>
+				</thead>	
 				<tbody>
-					<tr>
-						<th scope="row">0001</th>
-						<td>09292684572</td>
-						<td>17, G.Cleveland St. Parkwood</td>
-						<td>Confirmed</td>
-						<td>Aug 20, 2020</td>
-					</tr>
-					<tr>
-						<th scope="row">0002</th>
-						<td>09987654321</td>
-						<td>3rd Avenue Baranggay Lito</td>
-						<td>Paid</td>
-						<td>Aug 17, 2020</td>
-					</tr>
-					<tr>
-						<th scope="row">0004</th>
-						<td>09987456321</td>
-						<td>18, G.Greenwood St. Paul</td>
-						<td>Confirmed</td>
-						<td>Aug 18, 2020</td>
-					</tr>
+					{{#each orders}}
+							{{> OngoingOrders _id=_id customerName=customerName contactNumber=contactNumber homeAddress=homeAddress status=status courier=courier placedDate=placedDate deliveryDate=deliveryDate}}
+					{{/each}}
 				</tbody>
 			</table>
 		</div>
