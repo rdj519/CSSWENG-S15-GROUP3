@@ -41,7 +41,7 @@ $(document).ready(function() {
         $.post('/postDelete', {_id: _id}, function(data, status) {
 
 
-            $("body").load('/orders');
+            $("#orderDiv").load('/orders');
         });
 
     });
@@ -150,7 +150,7 @@ $(document).ready(function() {
             $("#addOrder").modal("hide");
 
             
-            $("body").load('/orders');
+            $("#orderDiv").load('/orders');
         });
         
     });
