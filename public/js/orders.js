@@ -19,6 +19,18 @@ $(document).ready(function() {
         }
     });
 
+
+    $.get('/getUpdateProductsSold', {}, function(data, status) {
+        for(var i = 0; i < data.length; i++) {
+            //$("#changeItem").append("<label id='" + data[i]._id + "'>" +  + "</label>");
+            $("#changeItem").append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ data[i]._id + "'>   " + data[i].name + "</div><div class='col-6'><div class='row'><div class='col-6'><input id='quantity-" + data[i]._id + 
+                                    " price='"+ data[i].price +"' productID ='"+ data[i]._id +"' pname ='" + data[i].name + 
+                                    "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p id='error" + data[i]._id +
+                                    "'></p></div><div class='col-6'><input id='" +  "price-" + data[i]._id + "' class='form-control validate productPrice'></'div></div></div>");
+         //   $("#changeItem").append("</div>");
+
+        }
+    })
    
     function isValidQuantity(field, name,  amountPerPack, id){
         $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
