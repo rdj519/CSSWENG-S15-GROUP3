@@ -223,6 +223,11 @@ $(document).ready(function() {
         $('#quantityError').text('');
         $('#pricePerPackError').text('');
         $('#lowStockQuantityError').text('');
+        $('#name').val('');
+        $('#amountPerPack').val('');
+        $('#stockQuantity').val('');
+        $('#pricePerPack').val('');
+        $('#lowStockQuantity').val('');
      });
 
      
