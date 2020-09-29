@@ -466,4 +466,15 @@ $(document).ready(function() {
         validateField($(this), 'Product', $('#productSoldError'));
     });
 
+    $('#addOrder').on('hidden.bs.modal', function () {
+        $('#customerNameError').text('');
+        $('#contactNumberError').text('');
+        $('#homeAddressError').text('');
+        $('#cityError').text('');
+        $('#deliveryDateError').text('');
+        $('#deliveryFeeError').text('');
+        $('#paymentMethodError').text('');
+        $('#courierError').text('');
+        $('#statusError').text('');
+     })
 });
