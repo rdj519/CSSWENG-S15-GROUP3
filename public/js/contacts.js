@@ -325,7 +325,13 @@ $(document).ready(function(){
 
 	}
 
-
+	$('#newContact').on('hidden.bs.modal', function () {
+        $('#nameError').text('');
+        $('#contactNumberError').text('');
+		$('#homeError').text('');
+		$('#cityError').text('');
+		$('#remarksError').text('');
+     });
 
 
 	

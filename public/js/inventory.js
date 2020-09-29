@@ -217,6 +217,14 @@ $(document).ready(function() {
     });
 
     
+    $('#addProduct').on('hidden.bs.modal', function () {
+        $('#nameError').text('');
+        $('#amountPerPackError').text('');
+        $('#quantityError').text('');
+        $('#pricePerPackError').text('');
+        $('#lowStockQuantityError').text('');
+     });
 
+     
 
 });
