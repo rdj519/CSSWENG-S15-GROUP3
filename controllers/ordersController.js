@@ -28,6 +28,15 @@ const ordersController = {
         }, mySort);
     },
 
+    getOrder: function(req, res){
+        var query = {_id:req.query._id};
+        var projection = {};
+
+        db.findOne(Order, query, projection, function(result) {
+            res.send(result);
+        });
+    },
+
     postDelete: function (req, res) {
 
         db.deleteOne(Order, {_id: req.body._id}, function(flag) {
@@ -240,7 +249,6 @@ const ordersController = {
             status: req.body.status,
             deliveryFee : req.body.deliveryFee,
             productTotal : req.body.overallPrice,
-            customerOrder : req.body.customerOrder,
         }
 
         db.findOne(Order, {name:name, _id:_id}, null, function(result) {
@@ -249,6 +257,15 @@ const ordersController = {
                 res.send("success");
 
             });
+        });
+    },
+
+    updateCustomerOrder: function(req, res) {
+        var query = {_id:req.query._id};
+        var updates = {customerOrder: req.query.customerOrder};
+
+        db.updateOne(Order, query, updates, function(result) {
+            res.send("success");
         });
     }
 

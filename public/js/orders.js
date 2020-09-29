@@ -1,3 +1,4 @@
+
 // const e = require("express");
 
 $(document).ready(function() {
@@ -38,17 +39,124 @@ $(document).ready(function() {
         
     });
 
-    $.get('/getUpdateProductsSold', {}, function(data, status) {
-        for(var i = 0; i < data.length; i++) {
-            //$("#changeItem").append("<label id='" + data[i]._id + "'>" +  + "</label>");
-            $("#changeItem").append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ data[i]._id + "'>   " + data[i].name + "</div><div class='col-6'><div class='row'><div class='col-6'><input id='quantity-" + data[i]._id + 
-                                    " price='"+ data[i].price +"' productID ='"+ data[i]._id +"' pname ='" + data[i].name + 
-                                    "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p id='error" + data[i]._id +
-                                    "'></p></div><div class='col-6'><input id='" +  "price-" + data[i]._id + "' class='form-control validate productPrice'></'div></div></div>");
-         //   $("#changeItem").append("</div>");
 
-        }
+    $('.changeItemModal').each(function() {
+        var id = $(this).attr('orderID');
+        $.get('/getProductsSold', {}, function(data, status) {
+            for(var i = 0; i < data.length; i++) {
+                $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ data[i]._id + "-" + id +"'>   " + data[i].name + "</div><div class='col-6'><div class='row'><div class='col-6'><input type='number' id='updateQuantity-" + data[i]._id + "-" + id +
+                "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' pname ='" + data[i].name + "' orderID='" + id + 
+                "' amountPerPack ='"+data[i].amountPerPack +"' quantity='"+ 0+ "' class='form-control validate updateProductQuantity uPQ-"+id+"' value=0 ><p id='updateError-" + data[i]._id + "-" + id +
+                "'></p></div><div class='col-6'><input type='number' id='" +  "updatePrice-" + data[i]._id + "-" + id + "' class='form-control validate updateProductPrice-"+ id +"' value=0 readonly></'div></div></div>");
+                // $("#changeItemList-"+id).append("hello");
+            }
+            placeAmounts(id);
+
+            
+        }); 
+
     });
+
+    function placeAmounts(id) {
+        // var id = order.attr('orderID');
+            $.get('/getOrder', {_id:id}, function(data, status) {
+                products = data.customerOrder;
+                nonexisting = [];
+                for(var i = 0; i < products.length; i++) {
+                    element = "#updateQuantity-"+products[i].id +"-"+id;
+                    element1 = "#updatePrice-"+products[i].id +"-"+id;
+                    if($(element).length != 0) {
+                        $(element).val(products[i].quantity);
+                        $(element).attr('quantity', products[i].quantity);
+                        $(element1).val(products[i].quantity * parseFloat($(element).attr('price')));
+                    }
+                    else {
+
+                        nonexisting.push(products[i]);
+                    }
+                }
+                
+                for(var i = 0; i < nonexisting.length; i++) {
+                    var quantity = nonexisting[i].quantity;
+                    var price = quantity * nonexisting[i].price;
+                    $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ nonexisting[i].id + "-" + id +"'>   " + nonexisting[i].name + "</div><div class='col-6'><div class='row'><div class='col-6'><input id='updateQuantity-" + nonexisting[i].id + "-" + id +
+                "' price='"+ nonexisting[i].price +"' productID ='"+ nonexisting[i].id +"' pname ='" + nonexisting[i].name + "' orderID= '" + id + 
+                "' amountPerPack ='"+ 0 +"' class='form-control validate updateProductQuantity' value="+quantity+" readonly><p id='updateError" + nonexisting[i].id + "-" + id +
+                "'></p></div><div class='col-6'><input id='" +  "updatePrice-" + nonexisting[i].id + "-" + id + "' class='form-control validate updateProductPrice-"+id+"' value="+price+" readonly></'div></div></div>");
+                }
+                var sum = 0;
+                $('.updateProductPrice-'+id).each(function() {
+                    sum += parseFloat($(this).val()) || 0;
+                });
+        
+                $("#updateTotal-"+id).text(sum);
+                
+            });
+
+            
+    }
+
+    $(document).on('change', ".updateProductQuantity", function(){
+
+        // Changing price and sum
+        var order = $(this).attr('orderID');
+        var price = parseFloat($(this).attr('price'));
+        var id = $(this).attr('productID');
+        var qty = parseInt($(this).val());
+        var qtyID = "#updatePrice-"+ id +"-" + order;
+        
+        // console.log(qtyID + " " + qty * price);
+        $(qtyID).val(qty * price);
+
+        var sum = 0;
+        
+
+        $('.updateProductPrice-'+order).each(function() {
+            sum += parseFloat($(this).val()) || 0;
+        });
+
+        $("#updateTotal-"+order).text(sum);
+
+
+        // Checking
+        $('.uPQ-'+order).each(function() {
+            var errors = "#updateError-"+ $(this).attr('productID')+ "-"+order;
+            
+            isValidUpdateQuantity($(this), $(this).attr('productID'), parseInt($(this).attr('quantity')), function(valid) {
+                // console.log(errors);
+                if(valid) {
+                    $(errors).text("");
+                }
+                else {
+                    $(errors).text("Not enough stocks.");
+                }
+
+            });
+        });
+    });
+
+
+
+    function isValidUpdateQuantity(field, productID, productQuantity, valid) {
+        // console.log(productID + " " + productQuantity + " ");
+        
+        $.get('/getProductByID', {_id:productID}, function(data, status) {
+            console.log((productQuantity + data.quantity) + " " + field.val())
+            if((productQuantity + data.quantity) >= field.val()) {
+                valid(true);
+            }
+
+            else {
+                console.log("falssse");
+                valid(false);
+                
+            }
+                
+        });
+
+    }
+    
+
    
     function isValidQuantity(field, name,  amountPerPack, id){
         $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
@@ -56,7 +164,7 @@ $(document).ready(function() {
                     return false;
                 else
                     return true;
-            });
+        });
     }
 
     /* changes */
@@ -91,6 +199,42 @@ $(document).ready(function() {
 
     //function validateQuantity()
   
+    $(".submitUpdate").click(function(){ 
+        var orderID = $(this).attr('orderID');
+
+        $.get('/getOrder', {_id:orderID}, function(data, status) {
+            products = data.customerOrder;
+            
+            // Returning the values
+            for(var i = 0; i < products.length; i++) {
+                $.get('/getReturnProduct', {_id: products[i].id, quantity:products[i].quantity}, function(data, status) {
+                    console.log(status);
+                });
+            }
+            customerOrder = [];
+            $('.uPQ-' + orderID).each(function(){
+                
+                var productOrder = {
+                    id: $(this).attr('productid'),
+                    name: $(this).attr('pname'),
+                    quantity: parseInt($(this).val()),
+                    price: parseFloat($(this).attr('price'))
+                }
+
+                if(productOrder.quantity > 0) {
+                    $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity, name: productOrder.name}, function(data, status) {
+                        
+                    });
+                    customerOrder.push(productOrder);
+                }
+            });
+            $.get('/updateCustomerOrder', {_id:orderID, customerOrder:customerOrder}, function(data, status) {
+                location.reload(true);
+            });
+        });
+      
+        
+    });
 
     $("#submitOrder").click(function() {
         var customerName = $("#customerName").val();
@@ -118,7 +262,7 @@ $(document).ready(function() {
                 id: $(this).attr('productID'),
                 name: $(this).attr('productName'),
                 quantity: parseInt($(this).val()),
-                price: $(this).attr('price'),
+                price: parseFloat($(this).attr('price')),
             }
             if(productOrder.quantity > 0) {
                 $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity, name: productOrder.name}, function(data, status) {
@@ -480,6 +624,115 @@ $(document).ready(function() {
         $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
     });
 
+
+    $("#filterActivate").click(function() {
+        /* status */
+        if($("#filterButton").html() == "confirmed"){
+            $(".confirmed").show();
+            $(".paid").hide();
+            $(".delivering").hide();
+            $(".completed").hide();
+            $(".cancelled").hide();
+            $("#filterButton").html("Filter By");
+        }
+        else if($("#filterButton").html() == "paid"){
+            $(".confirmed").hide();
+            $(".paid").show();
+            $(".delivering").hide();
+            $(".completed").hide();
+            $(".cancelled").hide();
+            $("#filterButton").html("Filter By");
+        }
+        else if($("#filterButton").html() == "delivering"){
+            $(".confirmed").hide();
+            $(".paid").hide();
+            $(".delivering").show();
+            $(".completed").hide();
+            $(".cancelled").hide();
+            $("#filterButton").html("Filter By");
+        }
+        else if($("#filterButton").html() == "completed"){
+            $(".confirmed").hide();
+            $(".paid").hide();
+            $(".delivering").hide();
+            $(".completed").show();
+            $(".cancelled").hide();
+            $("#filterButton").html("Filter By");
+        }
+        else if($("#filterButton").html() == "cancelled"){
+            $(".confirmed").hide();
+            $(".paid").hide();
+            $(".delivering").hide();
+            $(".completed").hide();
+            $(".cancelled").show();
+            $("#filterButton").html("Filter By");
+        }
+        /* courier */
+        else if($("#filterButton").html() == "castilla"){
+            $(".castilla").show();
+            $(".lalamove").hide();
+            $(".mrspeedy").hide();
+            $(".grabexpress").hide();
+            $("#filterButton").html("Filter By");
+        }
+        else if($("#filterButton").html() == "lalamove"){
+            $(".castilla").hide();
+            $(".lalamove").show();
+            $(".mrspeedy").hide();
+            $(".grabexpress").hide();
+            $("#filterButton").html("Filter By");
+        }
+        else if($("#filterButton").html() == "mrspeedy"){
+            $(".castilla").hide();
+            $(".lalamove").hide();
+            $(".mrspeedy").show();
+            $(".grabexpress").hide();
+            $("#filterButton").html("Filter By");
+        }
+        else if($("#filterButton").html() == "grabexpress"){
+            $(".castilla").hide();
+            $(".lalamove").hide();
+            $(".mrspeedy").hide();
+            $(".grabexpress").show();
+            $("#filterButton").html("Filter By");
+        }
+        /* payment method*/
+        else if($("#filterButton").html() == "cod"){
+            $(".cod").show();
+            $(".gcash").hide();
+            $(".paymaya").hide();
+            $("#filterButton").html("Filter By");
+        }
+        else if($("#filterButton").html() == "gcash"){
+            $(".cod").hide();
+            $(".gcash").show();
+            $(".paymaya").hide();
+            $("#filterButton").html("Filter By");
+        }
+        else if($("#filterButton").html() == "paymaya"){
+            $(".cod").hide();
+            $(".gcash").hide();
+            $(".paymaya").show();
+            $("#filterButton").html("Filter By");
+        }
+        /* all */
+        else if($("#filterButton").html() == "all"){
+            $(".confirmed").show();
+            $(".paid").show();
+            $(".delivering").show();
+            $(".completed").show();
+            $(".cancelled").show();
+            $(".castilla").show();
+            $(".lalamove").show();
+            $(".mrspeedy").show();
+            $(".grabexpress").show();
+            $(".cod").show();
+            $(".gcash").show();
+            $(".paymaya").show();
+            $("#filterButton").html("Filter By");
+        }
+    });
+
 });
 
 function liveSearch() {
@@ -743,113 +996,7 @@ function liveSearch() {
                         
                 }
             }
-$("#filterActivate").click(function() {
-    /* status */
-    if($("#filterButton").html() == "confirmed"){
-        $(".confirmed").show();
-        $(".paid").hide();
-        $(".delivering").hide();
-        $(".completed").hide();
-        $(".cancelled").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "paid"){
-        $(".confirmed").hide();
-        $(".paid").show();
-        $(".delivering").hide();
-        $(".completed").hide();
-        $(".cancelled").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "delivering"){
-        $(".confirmed").hide();
-        $(".paid").hide();
-        $(".delivering").show();
-        $(".completed").hide();
-        $(".cancelled").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "completed"){
-        $(".confirmed").hide();
-        $(".paid").hide();
-        $(".delivering").hide();
-        $(".completed").show();
-        $(".cancelled").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "cancelled"){
-        $(".confirmed").hide();
-        $(".paid").hide();
-        $(".delivering").hide();
-        $(".completed").hide();
-        $(".cancelled").show();
-        $("#filterButton").html("Filter By");
-    }
-    /* courier */
-    else if($("#filterButton").html() == "castilla"){
-        $(".castilla").show();
-        $(".lalamove").hide();
-        $(".mrspeedy").hide();
-        $(".grabexpress").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "lalamove"){
-        $(".castilla").hide();
-        $(".lalamove").show();
-        $(".mrspeedy").hide();
-        $(".grabexpress").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "mrspeedy"){
-        $(".castilla").hide();
-        $(".lalamove").hide();
-        $(".mrspeedy").show();
-        $(".grabexpress").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "grabexpress"){
-        $(".castilla").hide();
-        $(".lalamove").hide();
-        $(".mrspeedy").hide();
-        $(".grabexpress").show();
-        $("#filterButton").html("Filter By");
-    }
-    /* payment method*/
-    else if($("#filterButton").html() == "cod"){
-        $(".cod").show();
-        $(".gcash").hide();
-        $(".paymaya").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "gcash"){
-        $(".cod").hide();
-        $(".gcash").show();
-        $(".paymaya").hide();
-        $("#filterButton").html("Filter By");
-    }
-    else if($("#filterButton").html() == "paymaya"){
-        $(".cod").hide();
-        $(".gcash").hide();
-        $(".paymaya").show();
-        $("#filterButton").html("Filter By");
-    }
-    /* all */
-    else if($("#filterButton").html() == "all"){
-        $(".confirmed").show();
-        $(".paid").show();
-        $(".delivering").show();
-        $(".completed").show();
-        $(".cancelled").show();
-        $(".castilla").show();
-        $(".lalamove").show();
-        $(".mrspeedy").show();
-        $(".grabexpress").show();
-        $(".cod").show();
-        $(".gcash").show();
-        $(".paymaya").show();
-        $("#filterButton").html("Filter By");
-    }
-});
+
     /* print pdf */
     const { PDFDocument, StandardFonts, rgb } = PDFLib
     async function createPdf(modalID) {

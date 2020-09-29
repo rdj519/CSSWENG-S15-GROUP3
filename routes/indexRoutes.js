@@ -27,13 +27,19 @@ router.get('/findProduct', isPrivate, stockInventoryController.findProduct);
 router.get('/getProductsSold', isPrivate, stockInventoryController.getProductsSold);
 router.post('/updateProd', isPrivate, stockInventoryController.updateProduct);
 router.get('/getPlaceStockOrder', isPrivate, stockInventoryController.getPlaceStockOrder);
+router.get('/getReturnProduct', isPrivate, stockInventoryController.getReturnProduct);
+router.get('/getUpdateProductsSold', isPrivate, stockInventoryController.getProductsSold);
+router.get('/getProductQuantity', isPrivate, stockInventoryController.getProductQuantity);
+router.get('/getProductByID', isPrivate, stockInventoryController.getProductByID);
 
 // Orders
 router.get('/orders', isPrivate, ordersController.getOrders);
 router.post('/addOrder', isPrivate, ordersController.addOrder);
 router.post('/postDelete', isPrivate, ordersController.postDelete);
 router.post('/updateOrder', isPrivate, ordersController.updateOrder);
-router.get('/getUpdateProductsSold', isPrivate, stockInventoryController.getProductsSold);
+router.get('/getOrder', isPrivate, ordersController.getOrder);
+router.get('/updateCustomerOrder', isPrivate, ordersController.updateCustomerOrder);
+
 
 /*
 router.get('/orders/status:status', isPrivate, ordersController.getOrdersByStatus); */

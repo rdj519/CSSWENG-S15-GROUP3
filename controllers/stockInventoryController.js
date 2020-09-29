@@ -22,6 +22,17 @@ const stockInventoryController = {
         });
     },
 
+    getProductByID: function(req, res) {
+        var query = {_id: req.query._id};
+        var projection = {};
+
+        // console.log(query._id);
+
+        db.findOne(Product, query, projection, function(result){
+            res.send(result);
+        });
+    },
+
     getProductsSold: function(req, res) {
         var query = {};
         var projection = {};
@@ -99,6 +110,16 @@ const stockInventoryController = {
 
             });
         });
+    },
+    getReturnProduct: function(req, res) {
+        var query = {_id: req.query._id};
+        var increment = req.query.quantity;
+
+        db.updateOne(Product,query, {$inc:{quantity:increment}}, function(results) {
+            res.send(results);
+        });
+
+        
     }
 }
 
