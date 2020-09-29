@@ -1,6 +1,7 @@
 // const e = require("express");
 
 $(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
     $("#productTotal").val(0);
 
     // $('.from_date').datepicker({
@@ -51,7 +52,7 @@ $(document).ready(function() {
     $(document).on('keyup', ".deleteConfirmation", function(){
         var confirm = $(this).val();
         $('.customerName').prop('disabled', true);
-        if(confirm === "CONFIRM")
+        if(confirm === "delete")
         {
             $('.customerName').prop('disabled', false);
         }
@@ -81,19 +82,6 @@ $(document).ready(function() {
         
     });
 
-    /*
-    $("#deleteButton").click(function() {
-        var customerName = $("#customerName").val();
-         //current date 
-
-
-        $.post('/postDelete',{customerName: customerName}, function(data, status) {
-
-
-            $("body").load('/orders');
-        });
-
-    }); */
 
     $("#submitOrder").click(function() {
         var customerName = $("#customerName").val();
@@ -319,7 +307,7 @@ $(document).ready(function() {
     function isValidStatus(field) {
         var status = validator.trim($('#status').text());
 
-        console.log(status);
+   
         if(status != "Status"){
             if(field.is($("#status")))
                  $("#statusError").text("");
@@ -466,15 +454,4 @@ $(document).ready(function() {
         validateField($(this), 'Product', $('#productSoldError'));
     });
 
-    $('#addOrder').on('hidden.bs.modal', function () {
-        $('#customerNameError').text('');
-        $('#contactNumberError').text('');
-        $('#homeAddressError').text('');
-        $('#cityError').text('');
-        $('#deliveryDateError').text('');
-        $('#deliveryFeeError').text('');
-        $('#paymentMethodError').text('');
-        $('#courierError').text('');
-        $('#statusError').text('');
-     })
 });

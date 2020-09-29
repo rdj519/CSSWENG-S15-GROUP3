@@ -14,11 +14,11 @@ const stockInventoryController = {
     },
 
     getProductQuantity: function(req, res){
-        var query = {_id: req.query._id};
+        var query = {name: req.query.name};
         var projection = {};
 
         db.findOne(Product, query, projection, function(result){
-            res.send(result);
+            res.send(result.quantity);
         });
     },
 
@@ -34,11 +34,12 @@ const stockInventoryController = {
     getPlaceStockOrder: function(req, res) {
        var query = {_id: req.query.productID}
        var decrement = req.query.quantity
-
+        console.log("productID: " + req.query.productID);
+       console.log("getPlaceStockOrder\n");
        db.findOne(Product, query, null, function(result) {
-            
-            db.updateOne(Product,query, {$inc:{quantity:-decrement}}, function(results) {
-             console.log("results (product): " + results);
+     
+            db.updateOne(Product,query, {quantity:decrement}, function(results) {
+             console.log("results: " + results);
             });
        });
 
