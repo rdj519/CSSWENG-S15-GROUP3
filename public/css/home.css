@@ -39,6 +39,16 @@ label {
     line-height: 1.5;
 }
 
+#subtitle_delete {
+    margin-top: 10px; 
+    text-align: center; 
+    font-weight: normal; 
+    font-size: 20px; 
+    color: rgba(97, 0, 0, 0.6); 
+    line-height: 1.5;
+}
+
+
 .center {
     text-align: center;
 }
