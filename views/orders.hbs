@@ -54,63 +54,43 @@
 
 							<!-- for search and add order button -->
 							<div class="row">
-								<div class="col-3">
-									
+								<div class="col-1">
 									<!-- Filter button -->
 									<div class="dropdown">
-										<button class="btn btn-primary dropdown-toggle" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
-										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											<li class="dropdown-submenu">
-												<li><a class="dropdown-item" href="#">all</a></li>
-												<a class="dropdown-item dropdown-toggle" href="#">Status</a>
-												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#">confirmed</a></li>
-													<li><a class="dropdown-item" href="#">paid</a></li>
-													<li><a class="dropdown-item" href="#">delivering</a></li>
-													<li><a class="dropdown-item" href="#">completed</a></li>
-												</ul>
-												<a class="dropdown-item dropdown-toggle" href="#">Payment Method</a>
-												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#">cod</a></li>
-													<li><a class="dropdown-item" href="#">gcash</a></li>
-													<li><a class="dropdown-item" href="#">paymaya</a></li>
-												</ul>
-												<a class="dropdown-item dropdown-toggle" href="#">Courier</a>
-												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="#">castilla</a></li>
-													<li><a class="dropdown-item" href="#">grabexpress</a></li>
-													<li><a class="dropdown-item" href="#">mrspeedy</a></li>
-													<li><a class="dropdown-item" href="#">lalamove</a></li>
-												</ul>
-											</li>
-										</ul>
+                                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by</button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+												<a class="dropdown-item" href="#" onclick="filterNameAsc()">Name (A-Z)</a>
+												<a class="dropdown-item" href="#" onclick="filterNameDesc()">Name (Z-A)</a>
+                                                <a class="dropdown-item" href="#" onclick="filterStatus()">Status</a>
+                                                <a class="dropdown-item" href="#" onclick="filterCourier()">Courier</a>
+												<a class="dropdown-item" href="#" onclick="filterPaymentMethod()">Payment Method</a>
+                                            </div>
+                                    </div>
+
+								</div>
+								<div class="col-8" style="margin-right: 20px;">
+									<!-- Spacer -->
+								</div>
+								<div class="row">
+									<!-- search bar-->
+									<div class="col-6" style="margin-left: 20px;">
+										<div class="input-group">
+											<input type="text" class="form-control" id="searchName" placeholder="Search" aria-label="order number"
+												aria-describedby="button-addon2">
+										</div>
 									</div>
-
-								</div>
-								<div class="col-5">
-										<!-- activation button for filtering -->
-										<button class="btn btn-light btn-outline-secondary" type="button" id="filterActivate">Go</button>
-								</div>
-								<div class="col-4">
-									<div class="row">
-										<!-- search bar-->
-										<div class="col-7">
-											<div class="input-group">
-												<input type="text" class="form-control" id="searchName" placeholder="Search Name" aria-label="order number" aria-describedby="button-addon2" onkeyup="liveSearch()">
-											</div>
-										</div>
-
-										<!-- add order -->
-										<div class="col-5">
-											<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addOrder" type="submit" style="margin-bottom: 5px;" >Add Order</button>
-										</div>
+									
+									<!-- add order -->
+									<div class="col-4" style="padding-right: 0%; margin-right: 0%;">
+										<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addOrder"
+											type="submit" style="margin-bottom: 5px; height: 38px; width: 120px;">Add Order</button>
 									</div>
 								</div>
 							</div>
 
 							<!-- table of customers-->
-							<div class="card" id="orderTable">
-								<table class="table table-hover" >
+							<div class="card">
+								<table class="table table-hover" id="orderTable">
 									<thead>
 										<tr>
 											<th scope="col">Name</th>
@@ -118,6 +98,7 @@
 											<th scope="col">Address</th>
 											<th scope="col">Status</th>
 											<th scope="col">Courier</th>
+											<th scope="col">Payment Method</th>
 											<th scope="col">Date Placed</th>
 											<th scope="col">Delivery Date</th>
 										</tr>
@@ -130,6 +111,7 @@
 											<td>{{homeAddress}}</td>
 											<td>{{status}}</td>
 											<td>{{courier}}</td>
+											<td>{{paymentMethod}}</td>
 											<td>{{placedDate}}</td>
 											<td>{{deliveryDate}}</td>
 										</tr>
@@ -410,7 +392,212 @@
 
 
 <!-- JS-->
+<script>
+	//NESTED DROPDOWN
+            $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+                if (!$(this).next().hasClass('show')) {
+                    $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+                }
+                var $subMenu = $(this).next('.dropdown-menu');
+                $subMenu.toggleClass('show');
 
+
+                $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+                    $('.dropdown-submenu .show').removeClass('show');
+                });
+
+                return false;
+            });
+
+            $(".dropdown-menu a").click(function(){
+                $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+                $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+            });
+
+			function filterNameAsc() {
+				var table, rows, switching, i, x, y, shouldSwitch;
+				table = document.getElementById("orderTable");
+				switching = true;
+				/*Make a loop that will continue until
+				no switching has been done:*/
+				while (switching) {
+					//start by saying: no switching is done:
+					switching = false;
+					rows = table.rows;
+					/*Loop through all table rows (except the
+					first, which contains table headers):*/
+					for (i = 1; i < (rows.length - 1); i++) {
+						//start by saying there should be no switching:
+						shouldSwitch = false;
+						/*Get the two elements you want to compare,
+						one from current row and one from the next:*/
+						x = rows[i].getElementsByTagName("TD")[0];
+						y = rows[i + 1].getElementsByTagName("TD")[0];
+						//check if the two rows should switch place:
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+							//if so, mark as a switch and break the loop:
+							shouldSwitch = true;
+							break;
+						}
+					}
+					if (shouldSwitch) {
+						/*If a switch has been marked, make the switch
+						and mark that a switch has been done:*/
+						rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+						switching = true;
+					}
+				}
+        	}
+
+			function filterNameDesc() {
+				var table, rows, switching, i, x, y, shouldSwitch;
+				table = document.getElementById("orderTable");
+				switching = true;
+				/*Make a loop that will continue until
+				no switching has been done:*/
+				while (switching) {
+					//start by saying: no switching is done:
+					switching = false;
+					rows = table.rows;
+					/*Loop through all table rows (except the
+					first, which contains table headers):*/
+					for (i = 1; i < (rows.length - 1); i++) {
+						//start by saying there should be no switching:
+						shouldSwitch = false;
+						/*Get the two elements you want to compare,
+						one from current row and one from the next:*/
+						x = rows[i].getElementsByTagName("TD")[0];
+						y = rows[i + 1].getElementsByTagName("TD")[0];
+						//check if the two rows should switch place:
+						if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+							//if so, mark as a switch and break the loop:
+							shouldSwitch = true;
+							break;
+						}
+					}
+					if (shouldSwitch) {
+						/*If a switch has been marked, make the switch
+						and mark that a switch has been done:*/
+						rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+						switching = true;
+					}
+				}
+        	}
+
+			function filterStatus() {
+				var table, rows, switching, i, x, y, shouldSwitch;
+				table = document.getElementById("orderTable");
+				switching = true;
+				/*Make a loop that will continue until
+				no switching has been done:*/
+				while (switching) {
+					//start by saying: no switching is done:
+					switching = false;
+					rows = table.rows;
+					/*Loop through all table rows (except the
+					first, which contains table headers):*/
+					for (i = 1; i < (rows.length - 1); i++) {
+						//start by saying there should be no switching:
+						shouldSwitch = false;
+						/*Get the two elements you want to compare,
+						one from current row and one from the next:*/
+						x = rows[i].getElementsByTagName("TD")[3];
+						y = rows[i + 1].getElementsByTagName("TD")[3];
+						//check if the two rows should switch place:
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+							//if so, mark as a switch and break the loop:
+							shouldSwitch = true;
+							break;
+						}
+					}
+					if (shouldSwitch) {
+							/*If a switch has been marked, make the switch
+							and mark that a switch has been done:*/
+							rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+							switching = true;
+					}
+				}
+			}
+
+			function filterCourier() {
+				var table, rows, switching, i, x, y, shouldSwitch;
+				table = document.getElementById("orderTable");
+				switching = true;
+				/*Make a loop that will continue until
+				no switching has been done:*/
+				while (switching) {
+					//start by saying: no switching is done:
+					switching = false;
+					rows = table.rows;
+					/*Loop through all table rows (except the
+					first, which contains table headers):*/
+					for (i = 1; i < (rows.length - 1); i++) {
+						//start by saying there should be no switching:
+						shouldSwitch = false;
+						/*Get the two elements you want to compare,
+						one from current row and one from the next:*/
+						x = rows[i].getElementsByTagName("TD")[4];
+						y = rows[i + 1].getElementsByTagName("TD")[4];
+						//check if the two rows should switch place:
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+							//if so, mark as a switch and break the loop:
+							shouldSwitch = true;
+							break;
+						}
+					}
+					if (shouldSwitch) {
+						/*If a switch has been marked, make the switch
+						and mark that a switch has been done:*/
+						rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+						switching = true;
+					}
+				}
+        	}
+
+			function filterPaymentMethod() {
+				var table, rows, switching, i, x, y, shouldSwitch;
+				table = document.getElementById("orderTable");
+				switching = true;
+				/*Make a loop that will continue until
+				no switching has been done:*/
+				while (switching) {
+					//start by saying: no switching is done:
+					switching = false;
+					rows = table.rows;
+					/*Loop through all table rows (except the
+					first, which contains table headers):*/
+					for (i = 1; i < (rows.length - 1); i++) {
+						//start by saying there should be no switching:
+						shouldSwitch = false;
+						/*Get the two elements you want to compare,
+						one from current row and one from the next:*/
+						x = rows[i].getElementsByTagName("TD")[5];
+						y = rows[i + 1].getElementsByTagName("TD")[5];
+						//check if the two rows should switch place:
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+							//if so, mark as a switch and break the loop:
+							shouldSwitch = true;
+							break;
+						}
+					}
+					if (shouldSwitch) {
+						/*If a switch has been marked, make the switch
+						and mark that a switch has been done:*/
+						rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+						switching = true;
+					}
+				}
+        	}
+
+			$(document).ready(function(){
+				$("#searchName").on("keyup", function() {
+					var value = $(this).val().toLowerCase();
+					$("#tbody tr").filter(function() {
+						$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					});
+				});
+			});
+</script>
 
 </body>
 </html>	

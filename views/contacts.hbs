@@ -49,23 +49,24 @@
 
 							<!-- for search and add contact button -->
 							<div class="row">
-								<div class="col-8">
+								<div class="col-9" style="margin-right: 20px;">
+									<!-- Spacer -->
 								</div>
-								<div class="col-4">
-									<div class="row">
-										<!-- search bar-->
-										<div class="col-7">
-											<div class="input-group">
-												<input type="text" class="form-control" id="searchContact" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2" onkeyup="liveSearch()">
-											</div>
-										</div>
-
-										<!-- add contact -->
-										<div class="col-5">
-											<button id="addBtn" class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" type="submit" data-target="#newContact" style="margin-bottom: 5px;">Add Contact</button>
+								
+								<div class="row">
+									<!-- search bar-->
+									<div class="col-6" style="margin-left: 20px;">
+										<div class="input-group">
+											<input type="text" class="form-control" id="searchContact" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2" onkeyup="liveSearch()">
 										</div>
 									</div>
+
+									<!-- add contact -->
+									<div class="col-4" style="padding-right: 0%; margin-right: 0%;">
+										<button id="addBtn" class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" type="submit" data-target="#newContact" style="margin-bottom: 5px; height: 38px; width: 120px;">Add Contact</button>
+									</div>
 								</div>
+								
 							</div>
 
 							<!-- table of customers-->

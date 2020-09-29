@@ -49,6 +49,82 @@ $(document).ready(function() {
     });
 
 
+    //update validation
+
+    function filledUpdate(_id) {
+        var stock = validator.trim($('#stockQuantity-'+ _id).val());
+        var price = validator.trim($('#pricePerPack-'+ _id).val());
+        var low = validator.trim($('#lowStock-'+ _id).val());
+
+        var stockEmpty = validator.isEmpty(stock);
+        var priceEmpty = validator.isEmpty(price);
+        var lowEmpty = validator.isEmpty(low);
+
+        return !stockEmpty && !priceEmpty && !lowEmpty;
+    }
+
+    function nonNegativeUpdate(_id){
+        var stock = validator.trim($('#stockQuantity-'+ _id).val());
+        var price = validator.trim($('#pricePerPack-'+ _id).val());
+        var low = validator.trim($('#lowStock-'+ _id).val());
+
+        var stockNegative = false;
+        var priceNegative = false;
+        var lowNegative = false;
+        if(stock < 0)
+        {
+            stockNegative = true;
+            $('errorStock-'+_id).text('Stock Quantity should be a positive number.');
+        }
+        if(price < 0){
+            priceNegative = true;
+            $('errorPrice-'+_id).text('Price Per Pack should be a positive number.');
+        }
+        if(low < 0){
+            lowNegative = true;
+            $('errorLow-'+_id).text('Price Per Pack should be a positive number.');
+        }
+        return !stockNegative && !priceNegative && !lowNegative;
+    }
+    
+    function validateUpdate(field, fieldName, error, _id) {
+        var value = validator.trim(field.val());
+        var empty = validator.isEmpty(value);
+
+        if(empty) {
+            field.prop('value', '');
+            error.text(fieldName + " should not be empty.");
+        }
+        else {
+            error.text("");
+        }
+        
+        var filled = filledUpdate(_id);
+        var nonNegative = nonNegativeUpdate(_id);
+
+        // console.log("update: " + filled + " " + validNumber);
+        if(filled && nonNegative) {
+            $(_id + '-saveChanges').prop('disabled', false);
+        }
+        else {
+            $(_id + '-saveChanges').prop('disabled', true);
+        }
+    }
+
+    $('.classStock').keyup(function() {
+        var _id = $(this).attr('itemID');   
+        validateUpdate($(this),'Stock Quantity', $("#errorStock-"+_id), _id);
+    });
+
+    $('.classPrice').keyup(function() {
+        var _id = $(this).attr('itemID');
+        validateUpdate($(this),'Price Per Pack', $("#errorPrice-"+_id), _id);
+    });
+
+    $('.classLow').keyup(function() {
+        var _id = $(this).attr('itemID');
+        validateUpdate($(this),'Low Stock Quantity', $("#errorLow-"+_id), _id);
+    });
     // Validation
     function isFilled() {
 
