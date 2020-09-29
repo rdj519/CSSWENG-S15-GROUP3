@@ -162,35 +162,22 @@
 	<div class="container" id="onGoingOrders">
 		<div class="jumbotron bg-white">
 			<label><h4>Low Stock Products</h4></label>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col">Product</th>
-						<th scope="col">Quantity</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">Pork Siomai</th>
-						<td>3</td>
-					</tr>
-					<tr>
-						<th scope="row">Siopao (Asado)</th>
-						<td>4</td>
-					</tr>
-					<tr>
-						<th scope="row">Siopao (Bola-Bola) </th>
-						<td> 2 </td>
-					</tr>
-					<tr>
-						<th scope="row">Gyoza</th>
-						<td>0</td>
-					</tr>
-				</tbody>
-			</table>
+				<table class="table table-hover">
+        	<thead>
+				<tr>
+					<th scope="col">Name </th>
+					<th scope="col">Amount per Pack</th>
+					<th scope="col">Stock Quantity</th>
+				</tr>
+            </thead>
+			<tbody>
+				{{#each products}}
+						{{> LowStockTable pitemID=_id pname=name pamountPerPack=amountPerPack pquantity=quantity}}
+				{{/each}}
+			</tbody>
+		</table>
 		</div>
 	</div>
-
 <!-- JS-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
