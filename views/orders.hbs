@@ -2,8 +2,6 @@
 <html>
 <head>
 	<title>Manage Orders</title>
-
-	{{!-- BootStrap --}}
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
@@ -14,9 +12,15 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
 	<!-- JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="/js/orders.js"></script>
 	<script src="/js/validator.min.js" type="text/javascript"></script>
 	
+	
+	
+	
+
 	<!-- PDF -->
 	<meta charset="utf-8" />
     <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
@@ -119,7 +123,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}'); deleteCheck('{{_id}}');">
+										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}')">
 											<td scope="row">{{customerName}}</td>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
@@ -219,6 +223,7 @@
 																	<a class="dropdown-item" href="#">paid</a>
 																	<a class="dropdown-item" href="#">delivering</a>
 																	<a class="dropdown-item" href="#">completed</a>
+																	<a class="dropdown-item" href="#">cancelled</a>
 																</div>
 															</div>
 														</div>
@@ -233,13 +238,12 @@
 														{{#each customerOrder}}
 														<label id="{{id}}-{{_id}}"> {{name}} </label>
 														<div class="row info">	
-															<div class="col"> <input id="{{../_id}}-{{_id}}" size="6" value="{{quantity}}" ogquan="{{quantity}}" itemID="{{_id}}" pname="{{name}}" class="prodQuan-{{_id}} pq-{{../_id}}" lenCustomerOrder="{{customerOrder.length}}" price="{{price}}" itemprice="{{price}}" onkeyup="overallitem('{{_id}}', '{{../_id}}')" readonly> </div>
+															<div class="col"> <input id="{{../_id}}-{{_id}}" size="6" value="{{quantity}}" ogquan="{{quantity}}" itemID="{{_id}}" pname="{{name}}" class="prodQuan-{{_id}} pq-{{../_id}}" lenCustomerOrder="{{customerOrder.length}}" price="{{price}}" itemprice="{{price}}" onkeyup="overallitem('{{_id}}', '{{../_id}}')" > </div>
 															<div class="col"> <input id="price{{../_id}}-{{_id}}" size="6" 
 																value="{{price}}" readonly> </div>
 														</div>
 														{{/each}}  
 
-														<label><button class="btn btn-light float-right btn-outline-secondary" data-dismiss="modal" data-toggle="modal" data-target="#changeItemModal" type="button" style="margin-bottom:5px; background-color: rgb(150,117,103) !important; color: #FFF !important;">Change Items</button></label>
 														<!-- onchange="updateQuan('{{_id}}', '{{../_id}}')" -->														
 
 														<label style="color:#A39E9C"> Overall Price</label>
@@ -263,9 +267,6 @@
 												</div>
 												</div>
 										    </div>
-
-
-										    {{> changeItemModal _id=_id}}
 										<!-- end -->
 										{{/each}}
 									</tbody> 
@@ -273,8 +274,120 @@
 							</div>
 							</div>
 
-							{{>addOrderModal}}
 							<!-- Modal For Adding Order -->
+							<div id="addOrder" class="modal fade" role="dialog">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+	
+							        <div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" >Name</label>
+							          <input type="text" id="customerName" name="customerName" class="form-control validate">
+							          <p class="error" id="customerNameError"></p>
+							        </div>
+
+							        <div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" >Contact Number</label>
+							          <input type="number" id="contactNumber" name="contactNumber" class="form-control validate">
+							          <p class="error" id="contactNumberError"></p>
+							        </div>
+
+
+							        <div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" ><b>Address</b></label>
+							     	  <label data-error="wrong" data-success="right" >Home Address</label>
+							          <input type="text" id="homeAddress" name="homeAddress" class="form-control validate">
+							          <p class="error" id="homeAddressError"></p>
+							          <label data-error="wrong" data-success="right">City/Municipality</label>
+							          <input type="text" id="city" name="city" class="form-control validate">
+							          <p class="error" id="cityError"></p>
+							        </div>
+
+							      	<div class="md-form mb-4">
+							      		<label data-error="wrong" data-success="right" >Customer Order</label>
+									    <table class="table table-hover">
+											<thead>
+												<tr>
+													<th scope="col">Product</th>
+													<th scope="col">Quantity</th>
+													<th scope="col">Price</th>
+												</tr>
+											</thead>
+											<tbody id="productSold">
+												
+												
+											</tbody>
+											<p class="error" id="productSoldError"></p>
+										</table>
+										<label data-error="wrong" data-success="right" >Delivery Fee</label>
+										<input type="number" id="deliveryFee" name="deliveryFee" class="form-control validate">
+										<p class="error" id="deliveryFeeError"></p>
+										<label data-error="wrong" data-success="right" >Products Total Amount</label>
+										<input type="number" id="productTotal" name="productTotal" class="form-control validate" readonly>
+							      	</div>
+
+							      	<div class="md-form mb-4">
+							     	  	<label data-error="wrong" data-success="right" >Payment Method</label>
+							          	<div class="dropdown" style="float:left; clear:both;" id="paymentDropdown">
+											<button class="btn btn-light dropdown-toggle" type="button"  id="paymentMethod" name="paymentMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Method</button>
+											<div class="dropdown-menu" aria-labelledby="courierType">
+											    <a class="dropdown-item" href="#">gcash</a>
+											    <a class="dropdown-item" href="#">cod</a>
+											    <a class="dropdown-item" href="#">paymaya </a>
+											</div>
+										</div>
+							        </div>
+									<br>
+									<p class="error" id="paymentMethodError"></p>
+
+							        <div class="md-form mb-4">
+							     	  	<label data-error="wrong" data-success="right" >Courier</label>
+							          	<div class="dropdown" style="float:left; clear:both;" id="courierDropdown">
+											<button class="btn btn-light dropdown-toggle" type="button" id="courier" name="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courier Type</button>
+											<div class="dropdown-menu" aria-labelledby="courierType">
+											    <a class="dropdown-item" href="#">lalamove</a>
+											    <a class="dropdown-item" href="#">castilla</a>
+											    <a class="dropdown-item" href="#">mrspeedy</a>
+											    <a class="dropdown-item" href="#">grabexpress</a>
+											</div>
+							        	</div>
+							        </div>
+									<br>
+									<p class="error" id="courierError"></p>
+							        <div class="md-form mb-4">
+							     	  	<label data-error="wrong" data-success="right">Status</label>
+							          	<div class="dropdown" style="float:left; clear:both;" id="statusDropdown">
+											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">confirmed</button>
+											<div class="dropdown-menu" aria-labelledby="courierType">
+											    <a class="dropdown-item" href="#">confirmed</a>
+											    <a class="dropdown-item" href="#">paid </a>
+											    <a class="dropdown-item" href="#">delivering</a>
+											    <a class="dropdown-item" href="#">completed </a>
+											    <a class="dropdown-item" href="#">cancelled</a>
+											</div>
+							        	</div>
+							        	<p class="error" id="statusError"></p>
+							        </div>
+							        <div class="md-form mb-4">
+							     	  <label data-error="wrong" data-success="right" >Delivery Date</label>
+							          <input type="date" id="deliveryDate" name="deliveryDate" class="form-control validate">
+							          <p class="error" id="deliveryDateError"></p>
+							        </div>
+
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							        <button type="button" class="btn btn-primary" id="submitOrder" data-dismiss="modal" disabled="true">Add Order</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
 							
 
 						</div>
@@ -286,11 +399,504 @@
 	</div>
 
 
+<script>
+	//Live Search
+	function liveSearch() {
+	    // Declare variables
+	    var input, filter, table, tr, td, i, txtValue;
+	    input = document.getElementById("searchName");
+	    filter = input.value.toUpperCase();
+	    table = document.getElementById("orderTable");
+	    tr = table.getElementsByTagName("tr");
+	    // Loop through all table rows, and hide those who don't match the search query
+	    for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[0];
+	    td2 = tr[i].getElementsByTagName("td")[1];
+	    td3 = tr[i].getElementsByTagName("td")[2];
+	        if (td || td2 || td3) {
+	            txtValue = td.textContent || td.innerText;
+	            txtValue2 = td2.textContent || td2.innerText;
+	            txtValue3 = td3.textContent || td3.innerText;
+	            if ((txtValue.toUpperCase().indexOf(filter) > -1) || (txtValue2.toUpperCase().indexOf(filter) > -1) || (txtValue3.toUpperCase().indexOf(filter) > -1)) {
+	                tr[i].style.display = "";
+	            } else {
+	                tr[i].style.display = "none";
+	            }
+	        }
+	    }
+	}
+/*
+	//delete check
+	function deleteCheck(_id) {
+		var status = $("#statusModal-" + _id).html();
+		console.log("status: " + status);
+		if (!(status === "confirmed")) {
+			$("#deleteBtn-" + _id).prop('disabled', true);		
+		}
+		else {
+			$("#deleteBtn-" + _id).prop('disabled', false);					
+		}
+	}
+*/
+	//Total price
+	function showTotal(_id) {
+		var deliveryfee = parseInt($("#deliveryFeeModal-" + _id).val());   
+		var prodTotal = parseInt($("#overallPriceModal-" + _id).val());
+		$("#totalPriceModal-" + _id).val(deliveryfee + prodTotal);
+	}
+	
+	function updateTotal(_id) {
+		var total = parseFloat($("#overallPriceModal-" + _id).val());
+		var dfee = parseFloat($("#deliveryFeeModal-" + _id).val());
+		$("#totalPriceModal-" + _id).val(total+dfee);
+	}
+
+	function itemprice(price, quantity) {
+		parseFloat($("#" + _id + "-" + prodID).attr('price').val(price*quantity));
+		parseFloat($("#price" + _id + "-" + prodID).attr('price').val(price*quantity));
+		return price * quantity;
+	}
+
+	function overallPrice(_id, prodID, add) {
+		console.log("add: "+ add);
+		var sum=add;
+		$('.pq-' + _id).each(function() {
+			console.log("sum: " + sum);
+			if ($(this).attr('itemID') === prodID) {
+				
+			} else {
+				console.log($(this).attr('pname') + " " + parseInt($(this).attr('itemprice')) );
+				console.log("parseInt($(this).val())" + parseInt($(this).val()));
+
+			sum = sum + (parseInt($(this).attr('itemprice')) * parseInt($(this).val()));	
+
+			}		    
+		});
+		$('#overallPriceModal-' + _id).val(sum);
+		updateTotal(_id);
+	}
+
+	//if nagchange quantity ng item
+	function overallitem(prodID, _id) {
+		//parseFloat($("#" + _id + "-" + prodID).attr('price').val(price*quantity));
+		var price = parseFloat($("#" + _id + "-" + prodID).attr('price'));
+        var qty = parseInt($("#" + _id + "-" + prodID).val());
+
+        console.log("price: " + price);
+        console.log("qty: " + qty);
+        $("#" + _id + "-" + prodID).attr('itemprice', price*qty);
+        overallPrice(_id, prodID, price*qty);
+	}
+
+	
+/*
+	function updatePrice(prodID, _id) {
+        
+        var price = parseFloat($("#" + _id + "-" + prodID).attr('price'));
+        console.log("price: " + price );
+        //var id = $("#" + _id + "-" + prodID).attr('productID');
+        var qty = parseInt($("#" + _id + "-" + prodID).val());
+       // var qtyID = "#price-"+ _id.trim();
+    
+        $("#price" + _id + "-" + prodID).val(qty * price);
+        */
+/*
+        var sum = 0;
+
+        $('.productPrice').each(function() {
+            sum += parseFloat($(this).text()) || 0;
+        })
+        $("#productTotal").val(sum);
+      */  
+    
+	//update the quantity of orders
+	function updateQuan(prodID, _id) {
+		console.log("_id: " + _id);
+		var name = $('#name-' + _id).val();
+        var contactnum = $("#contactNumberModal-" + _id).val();
+        var home = $("#homeAddressModal-" + _id).val();
+        var city = $("#cityModal-" + _id).val();
+                //dates
+        var placed = $("#placedDateModal-" + _id).val();
+        var delivery = $("#deliveryDateModal-" + _id).val();
+                //dropdowns
+        var courier = $("#courierModal-" + _id).html();
+        var payment = $("#paymentMethodModal-" + _id).html();
+        var status = $("#statusModal-" + _id).html();
+		var deliveryfee = $("#deliveryFeeModal-" + _id).val();   
+		var prodTotal = $("#overallPriceModal-" + _id).val();
+
+		console.log("prodTotal: " + prodTotal);
+
+		//PRODUCT		
+		var newQuan = $("#" + _id + "-" + prodID).val();
+		var ogquan = $("#" + _id + "-" + prodID).attr('ogquan'); 
+		var name = $("#" + _id + "-" + prodID).attr('pname');
+		var x;
+
+		console.log("QUANTITY UPDATED\n");
+		console.log("Name: " + name);
+		console.log("newQuan: " + newQuan);
+		console.log("ogquan: "+ ogquan);
+		x = newQuan-ogquan;
+		console.log("minus: "+ x);		
+		
+		$("#" + _id + "-" + prodID).attr('ogquan', newQuan);
+		console.log("new ogquan: " + newQuan);
+
+
+		var customerOrder = [];
+		$('.pq-' + _id).each(function() {
+
+		    var productOrder = {
+		        id: $(this).attr('itemID'),
+		        name: $(this).attr('pname'),
+		        ogquantity: parseInt($(this).attr('ogquan')),
+		        quantity: parseInt($(this).val()),
+		        price: parseInt($(this).attr('price')),
+		    }
+		    console.log("hello;;;" + productOrder);
+		    if(productOrder.quantity > 0) {
+		        $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.ogquantity-productOrder.quantity, name: productOrder.name}, function(data, status) {
+		            console.log(data + " " + status);
+		        });
+		    }
+		           
+		    customerOrder.push(productOrder);
+		    console.log(productOrder);
+		});
+
+		//customerOrder.push(productOrder);
+		//console.log(productOrder);
+		$.post('/updateOrder',{_id:_id,customerName: name, contactNumber: contactnum, homeAddress: home, city: city, placedDate:placed,
+            deliveryDate: delivery, courier: courier, paymentMethod: payment, status: status, deliveryFee: deliveryfee, overallPrice: prodTotal, customerOrder: customerOrder}, function(data, status) {
+           	console.log("UPDATED thru updatequan");
+        })
+    }
+        
+	
+	//update
+    function isFilledUpdateOrder(_id) {
+                var valid = true
+                var contactnum = $("#contactNumberModal-" + _id).val();
+                var home = $("#homeAddressModal-" + _id).val();
+                var city = $("#cityModal-" + _id).val();
+                //dates
+                var delivery = $("#deliveryDateModal-" + _id).val();
+                //dropdowns
+                var courier = $("#courierModal-" + _id).html();
+                var payment = $("#paymentMethodModal-" + _id).html();
+                var status = $("#statusModal-" + _id).html();
+				var deliveryfee = $("#deliveryFeeModal-" + _id).val();  
+                if (validator.isEmpty(contactnum)) {
+                    $("#contactNumberModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(home)) {
+                    $("#homeAddressModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+               
+                if (validator.isEmpty(city)) {
+                    $("#cityModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(delivery)) {
+                    $("#deliveryDateModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(courier)) {
+                    $("#courierModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+               
+                if (validator.isEmpty(payment)) {
+                    $("#paymentMethodModal-" + _id).css("border-color", "red");
+                    valid = false
+                }
+                if (validator.isEmpty(status)) {
+                    $("#statusModal-" + _id).css("border-color", "red");
+                    valid = false
+                }         
+                if (validator.isEmpty(deliveryfee)) {
+                    $("#deliveryFeeModal-" + _id).css("border-color", "red");
+                    valid = false
+                }      
+                return valid;
+            }
+ 	function checkContactNum(_id) {
+ 				var valid = true
+ 				 
+ 				if($.trim($("#contactNumberModal-" + _id).val()).length != 10) {
+ 					$("#contactNumberModal-" + _id).css("border-color", "red");
+                    valid = false
+ 				}
+ 				return valid;
+ 			}
+ 	
+        
+    function saveChanges(_id) {
+                
+                var name = $('#name-' + _id).val();
+                var contactnum = $("#contactNumberModal-" + _id).val();
+                var home = $("#homeAddressModal-" + _id).val();
+                var city = $("#cityModal-" + _id).val();
+                //dates
+                var placed = $("#placedDateModal-" + _id).val();
+                var delivery = $("#deliveryDateModal-" + _id).val();
+                //dropdowns
+                var courier = $("#courierModal-" + _id).html();
+                var payment = $("#paymentMethodModal-" + _id).html();
+                var status = $("#statusModal-" + _id).html();
+				var deliveryfee = $("#deliveryFeeModal-" + _id).val();   
+				var prodTotal = $("#overallPriceModal-" + _id).val();
+				
+                if(!isFilledUpdateOrder(_id))
+                    $("#errorUpdate-" + _id).text("Properly fill out all fields.");
+               else if (!checkContactNum(_id))
+                    $("#errorUpdate-" + _id).text("Contact number should be 10 digits and not empty.");
+                else {
+                	$('.pq-' + _id).each(function() {
+			        	var prodID = $(this).attr('itemID');
+			        	updateQuan(prodID, _id);
+			        });
+
+
+
+                	$("#contactNumberModal-" + _id).attr('og', contactnum);
+	                $("#homeAddressModal-" + _id).attr('og', home);
+	                $("#cityModal-" + _id).attr('og', city);
+	                //dates
+	                $("#placedDateModal-" + _id).attr('og', placed);
+	                $("#deliveryDateModal-" + _id).attr('og', delivery);
+	                //dropdowns
+	                $("#courierModal-" + _id).attr('og', courier);
+	                $("#paymentMethodModal-" + _id).attr('og', payment);
+	                $("#statusModal-" + _id).attr('og', status);
+					$("#deliveryFeeModal-" + _id).attr('og', deliveryfee);  
+					$("#overallPriceModal-" + _id).val();
+					setTimeout(function() {
+                            window.location.reload();
+                        }, 400);
+                        
+                }
+            }
+$("#filterActivate").click(function() {
+	/* status */
+    if($("#filterButton").html() == "confirmed"){
+        $(".confirmed").show();
+        $(".paid").hide();
+        $(".delivering").hide();
+        $(".completed").hide();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "paid"){
+        $(".confirmed").hide();
+        $(".paid").show();
+        $(".delivering").hide();
+        $(".completed").hide();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "delivering"){
+        $(".confirmed").hide();
+        $(".paid").hide();
+        $(".delivering").show();
+        $(".completed").hide();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "completed"){
+        $(".confirmed").hide();
+        $(".paid").hide();
+        $(".delivering").hide();
+        $(".completed").show();
+        $(".cancelled").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "cancelled"){
+        $(".confirmed").hide();
+        $(".paid").hide();
+        $(".delivering").hide();
+        $(".completed").hide();
+        $(".cancelled").show();
+        $("#filterButton").html("Filter By");
+    }
+    /* courier */
+    else if($("#filterButton").html() == "castilla"){
+        $(".castilla").show();
+        $(".lalamove").hide();
+        $(".mrspeedy").hide();
+        $(".grabexpress").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "lalamove"){
+        $(".castilla").hide();
+        $(".lalamove").show();
+        $(".mrspeedy").hide();
+        $(".grabexpress").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "mrspeedy"){
+        $(".castilla").hide();
+        $(".lalamove").hide();
+        $(".mrspeedy").show();
+        $(".grabexpress").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "grabexpress"){
+        $(".castilla").hide();
+        $(".lalamove").hide();
+        $(".mrspeedy").hide();
+        $(".grabexpress").show();
+        $("#filterButton").html("Filter By");
+    }
+    /* payment method*/
+   	else if($("#filterButton").html() == "cod"){
+        $(".cod").show();
+        $(".gcash").hide();
+        $(".paymaya").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "gcash"){
+        $(".cod").hide();
+        $(".gcash").show();
+        $(".paymaya").hide();
+        $("#filterButton").html("Filter By");
+    }
+    else if($("#filterButton").html() == "paymaya"){
+        $(".cod").hide();
+        $(".gcash").hide();
+        $(".paymaya").show();
+        $("#filterButton").html("Filter By");
+    }
+    /* all */
+    else if($("#filterButton").html() == "all"){
+		$(".confirmed").show();
+        $(".paid").show();
+        $(".delivering").show();
+        $(".completed").show();
+        $(".cancelled").show();
+    	$(".castilla").show();
+        $(".lalamove").show();
+        $(".mrspeedy").show();
+        $(".grabexpress").show();
+        $(".cod").show();
+        $(".gcash").show();
+        $(".paymaya").show();
+        $("#filterButton").html("Filter By");
+    }
+});
+	/* print pdf */
+    const { PDFDocument, StandardFonts, rgb } = PDFLib
+    async function createPdf(modalID) {
+      // Create a new PDFDocument
+      const pdfDoc = await PDFDocument.create()
+      // Embed the Helvetica
+      const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica)
+      const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold)      
+      // Add a blank page to the document
+      const page = pdfDoc.addPage()
+      // Get the width and height of the page
+      const { width, height } = page.getSize()
+      // Draw a string of text toward the top of the page
+      const fontSize = 20
+      var title = 'Receipt';
+      page.drawText( title + '\n', {
+        x: 50,
+        y: height - 4 * fontSize,
+        size: fontSize,
+        font: helveticaBold,
+        color: rgb(0, 0, 0),
+      });
+      const fontSizeBody = 14;
+	  var name =  ($(("#name-" + modalID)).text()).toString();
+      var number = ($(("#contactNumberModal-" + modalID)).val()).toString();
+      var address = ($(("#homeAddressModal-" + modalID)).val()).toString() + "- " + ($(("#cityModal-" + modalID)).val()).toString();
+      var placed =  ($(("#placedDateModal-" + modalID)).val());
+      var deliverydate = ($(("#deliveryDateModal-" + modalID)).val());
+      var courier = ($(("#courierModal-" + modalID)).val()).toString();
+      var status = ($(("#statusModal-"+ modalID)).val()).toString();
+      var lenprod = parseInt($("#prods-" + modalID).attr('lenCustomerOrder'));
+      //var newQuan = $("#" + _id + "-" + prodID).val();
+
+	  //var name = $("#" + modalID + "-" + prodID).attr('pname');
+      //len of products
+      console.log("inside createpdf()");
+      var arr = [];
+      $('.pq-' + modalID).each(function() {
+      	pname= $(this).attr('pname');
+      	quantity= ($(this).val()).toString();
+      	if (quantity > 0 ){
+	      	arr.push("\n" + pname + "	 -	 " + quantity);
+	      	console.log("item: " + pname + quantity);
+		}	      
+      });
+      var listprod = arr[0];
+     
+      for (var i = 1; i<arr.length; i++) {
+      	listprod = listprod + arr[i];
+      }
+		
+      page.drawText("\n\nName:                       " + name + 
+                    "\nContact Number:      " + number +
+                    "\nAddress:                   " + address + 
+                    "\nDate Placed:             " + placed +
+                    "\nDelivery Date:           " + deliverydate + 
+                    "\nCourier:                     " + courier + 
+                    "\nStatus:                      " + status +
+					"\n\nItems:" + listprod + 
+                    "\n"
+                    ,
+      {
+        x: 50,
+        y: height - 6 * fontSizeBody,
+        size: fontSizeBody,
+        font: helvetica,
+        color: rgb(0, 0, 0),
+      });
+      const fontSizeFees = 14
+      var overall =  ($(("#overallPriceModal-" + modalID)).val()).toString();
+      var dfee = ($(("#deliveryFeeModal-" + modalID)).val()).toString();
+      var total = ($(("#totalPriceModal-" + modalID)).val()).toString();
+      page.drawText( "\n\nOverall Payment:                      " + overall + 
+                     "\nDelivery Fee:                           " + dfee +
+                     "\nTotal Price:                               " + total
+        , {
+        x: 50,
+        y: height - 33 * fontSize,
+        size: fontSizeFees,
+        font: helveticaBold,
+        color: rgb(0, 0, 0),
+      });
+      // Serialize the PDFDocument to bytes (a Uint8Array)
+      const pdfBytes = await pdfDoc.save()
+      // Trigger the browser to download the PDF document
+      download(pdfBytes, name  + ".pdf", "application/pdf");
+    };
+ 
+	/* nested dropdown */
+    $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+        if (!$(this).next().hasClass('show')) {
+            $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+        }
+        var $subMenu = $(this).next('.dropdown-menu');
+        $subMenu.toggleClass('show');
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+            $('.dropdown-submenu .show').removeClass('show');
+        });
+        return false;
+    });
+    $(".dropdown-menu a").click(function(){
+        $(this).parents(".dropdown").find('.btn').html($(this).text());
+        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+    });
+</script>
 
 
 <!-- JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
 </body>
 </html>	

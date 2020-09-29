@@ -33,7 +33,6 @@ router.get('/orders', isPrivate, ordersController.getOrders);
 router.post('/addOrder', isPrivate, ordersController.addOrder);
 router.post('/postDelete', isPrivate, ordersController.postDelete);
 router.post('/updateOrder', isPrivate, ordersController.updateOrder);
-router.get('/getUpdateProductsSold', isPrivate, stockInventoryController.getProductsSold);
 
 /*
 router.get('/orders/status:status', isPrivate, ordersController.getOrdersByStatus); */
