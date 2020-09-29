@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	$(".dropdown-toggle").dropdown();
 
 	$("#submitInfo").click(function(){
 	        var name = $("#name").val();
