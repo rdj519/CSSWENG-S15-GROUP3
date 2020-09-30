@@ -54,9 +54,9 @@
 
 							<!-- for search and add order button -->
 							<div class="row">
-								<div class="col-2">
+								<div class="col-2" style="margin-right: 0px; padding-right: 0px;">
 									<!-- Filter button -->
-									<div class="dropdown">
+									<div class="dropdown" style="margin-right: 0px; padding-right: 1px;">
                                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by</button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 												<a class="dropdown-item" href="#" onclick="filterNameAsc()">Name (A-Z)</a>
@@ -68,12 +68,12 @@
                                     </div>
 
 								</div>
-								<div class="col-5" style="margin-right: 20px;">
+								
 									<div class="row">
-										<div class="col-3">
+										<div class="col-8">
 											<!-- Filter button -->
 											<div class="dropdown">
-												<button class="btn btn-primary dropdown-toggle" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
+												<button class="btn btn-primary dropdown-toggle" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px; width: 170px; height: 38px;">Filter by</button>
 												<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 													<li class="dropdown-submenu">
 														<li><a class="dropdown-item" href="#">all</a></li>
@@ -104,11 +104,13 @@
 												</ul>
 											</div>  
 										</div>
-										<div class="col-7">
+										<div class="col-1">
 											<button class="btn btn-light btn-outline-secondary" type="button" id="filterActivate">Go</button>
 										</div>
 									</div>
 
+								<div class="col-5">
+									<!-- Spacer -->
 								</div>
 								<div class="row">
 									<!-- search bar-->
