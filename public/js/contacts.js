@@ -214,7 +214,7 @@ $(document).ready(function(){
 		$.get('/updateContact', {_id:_id, contactNumber:contactNumber, homeAddress:homeAddress, city:city, remarks:remarks}, function(data, result) {
 
 		});
-		$("#cont").load('/contacts');
+		location.reload(true);
 		$('#contact-'+_id).removeClass('modal-open');
 		$('.modal-backdrop').remove();
 		
