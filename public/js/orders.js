@@ -46,9 +46,9 @@ $(document).ready(function() {
         $.get('/getProductsSold', {}, function(data, status) {
             for(var i = 0; i < data.length; i++) {
                 var product = data[i].name + "-" + data[i].amountPerPack + " pcs."
-                $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ data[i]._id + "-" + id +"'>   " + product + "</div><div class='col-6'><div class='row'><div class='col-6'><input type='number' id='updateQuantity-" + data[i]._id + "-" + id +
+                $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ data[i]._id + "-" + id +"'>   " + product + "</div><div class='col-6'><div class='row'><div class='col-6'><input type='number' min='0' id='updateQuantity-" + data[i]._id + "-" + id +
                 "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' pname ='" + data[i].name + "' orderID='" + id + 
-                "' amountPerPack ='"+data[i].amountPerPack +"' quantity='"+ 0+ "' class='form-control validate updateProductQuantity uPQ-"+id+"' value=0 ><p id='updateError-" + data[i]._id + "-" + id +
+                "' amountPerPack ='"+data[i].amountPerPack +"' quantity='"+ 0+ "' class='form-control validate updateProductQuantity uPQ-"+id+"' value=0 ><p class='error' id='updateError-" + data[i]._id + "-" + id +
                 "'></p></div><div class='col-6'><input type='number' id='" +  "updatePrice-" + data[i]._id + "-" + id + "' class='form-control validate updateProductPrice-"+ id +"' value=0 readonly></'div></div></div>");
                 // $("#changeItemList-"+id).append("hello");
             }
@@ -128,10 +128,15 @@ $(document).ready(function() {
 
         if(!$(this).val() || $(this).val() < 0) {
             $("#updateError-"+ id +"-" + order).text("Must be a valid value.");
-            $('#submitOrder').prop('disabled', true);
+            $('#submitUpdate-'+order).prop('disabled', true);
             isEmpty = true;
         }
+        else
+        {
+            $('#submitUpdate-'+order).prop('disabled', false);
+        }
 
+        
         $('.uPQ-'+order).each(function() {
             var errors = "#updateError-"+ $(this).attr('productID')+ "-"+order;
             
@@ -141,11 +146,24 @@ $(document).ready(function() {
                 }
                 else {
                     $(errors).text("Not enough stocks.");
-
+                    $('#submitUpdate-'+order).prop('disabled', true);
+                    return false;
                 }
 
             });
+        }); 
+        $(".updateProductQuantity").each(function() {
+            //var id = $(this).attr('id');
+            var thisVal = parseInt($(this).val());
+            if( thisVal < 0)
+            {
+                $("#updateError-"+ id +"-" + order).text("Must be a valid value.");
+                $('#submitUpdate-'+order).prop('disabled', true);
+                //  alert("no!" + thisVal);
+                return false;
+            }
         });
+
     });
 
 
@@ -826,7 +844,7 @@ function deleteCheck(_id) {
         }
     }
 
-    function updateTotalOrderAmount(id) {
+function updateTotalOrderAmount(id) {
         $.get('/getOrder', {_id:id}, function(data, status) {
             products = data.customerOrder;
             var sum = 0;
@@ -838,7 +856,6 @@ function deleteCheck(_id) {
              $("#totalPriceModal-" + id).val(total);
         });
     }
-  
     
 function liveSearch() {
         // Declare variables
