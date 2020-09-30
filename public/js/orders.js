@@ -45,7 +45,8 @@ $(document).ready(function() {
         var id = $(this).attr('orderID');
         $.get('/getProductsSold', {}, function(data, status) {
             for(var i = 0; i < data.length; i++) {
-                $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ data[i]._id + "-" + id +"'>   " + data[i].name + "</div><div class='col-6'><div class='row'><div class='col-6'><input type='number' id='updateQuantity-" + data[i]._id + "-" + id +
+                var product = data[i].name + "-" + data[i].amountPerPack + " pcs."
+                $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ data[i]._id + "-" + id +"'>   " + product + "</div><div class='col-6'><div class='row'><div class='col-6'><input type='number' id='updateQuantity-" + data[i]._id + "-" + id +
                 "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' pname ='" + data[i].name + "' orderID='" + id + 
                 "' amountPerPack ='"+data[i].amountPerPack +"' quantity='"+ 0+ "' class='form-control validate updateProductQuantity uPQ-"+id+"' value=0 ><p id='updateError-" + data[i]._id + "-" + id +
                 "'></p></div><div class='col-6'><input type='number' id='" +  "updatePrice-" + data[i]._id + "-" + id + "' class='form-control validate updateProductPrice-"+ id +"' value=0 readonly></'div></div></div>");
@@ -80,10 +81,11 @@ $(document).ready(function() {
                 for(var i = 0; i < nonexisting.length; i++) {
                     var quantity = nonexisting[i].quantity;
                     var price = quantity * nonexisting[i].price;
-                    $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ nonexisting[i].id + "-" + id +"'>   " + nonexisting[i].name + "</div><div class='col-6'><div class='row'><div class='col-6'><input id='updateQuantity-" + nonexisting[i].id + "-" + id +
-                "' price='"+ nonexisting[i].price +"' productID ='"+ nonexisting[i].id +"' pname ='" + nonexisting[i].name + "' orderID= '" + id + 
-                "' amountPerPack ='"+ 0 +"' class='form-control validate updateProductQuantity uPQ-"+ id +"' value="+quantity+" readonly><p id='updateError" + nonexisting[i].id + "-" +id+
-                "'></p></div><div class='col-6'><input id='" +  "updatePrice-" + nonexisting[i].id + "-" + id + "' class='form-control validate updateProductPrice-"+id+"' value="+price+" readonly></'div></div></div>");
+                    var product = nonexisting[i].name + "-" + nonexisting[i].amountPerPack + " pcs.";
+                    $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ nonexisting[i].id + "-" + id +"'>   " + product + "</div><div class='col-6'><div class='row'><div class='col-6'><input id='updateQuantity-" + nonexisting[i].id + "-" + id +
+                    "' price='"+ nonexisting[i].price +"' productID ='"+ nonexisting[i].id +"' pname ='" + nonexisting[i].name + "' orderID= '" + id + 
+                    "' amountPerPack='"+ nonexisting[i].amountPerPack +"' class='form-control validate updateProductQuantity uPQ-"+ id +"' value="+quantity+" readonly><p id='updateError" + nonexisting[i].id + "-" +id+
+                    "'></p></div><div class='col-6'><input id='" +  "updatePrice-" + nonexisting[i].id + "-" + id + "' class='form-control validate updateProductPrice-"+id+"' value="+price+" readonly></'div></div></div>");
                 }
                 var sum = 0;
                 $('.updateProductPrice-'+id).each(function() {
@@ -214,7 +216,8 @@ $(document).ready(function() {
                     id: $(this).attr('productid'),
                     name: $(this).attr('pname'),
                     quantity: parseInt($(this).val()),
-                    price: parseFloat($(this).attr('price'))
+                    price: parseFloat($(this).attr('price')),
+                    amountPerPack: parseInt($(this).attr('amountPerPack'))
                 }
 
                 if(productOrder.quantity > 0) {
@@ -261,7 +264,7 @@ $(document).ready(function() {
                 name: $(this).attr('productName'),
                 quantity: parseInt($(this).val()),
                 price: parseFloat($(this).attr('price')),
-                amountPerPack: parseFloat($(this).attr('amtperpack')),
+                amountPerPack: parseFloat($(this).attr('amountperpack')),
             }
             if(productOrder.quantity > 0) {
                 $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity, name: productOrder.name}, function(data, status) {
