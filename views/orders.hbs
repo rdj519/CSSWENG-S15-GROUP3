@@ -53,10 +53,10 @@
 							<p id="p1">This page contains the orders and their informations. </p>
 
 							<!-- for search and add order button -->
-							<div class="row">
-								<div class="col-2" style="margin-right: 0px; padding-right: 0px;">
+							<div class="row overhead">
+								<div class="col-2">
 									<!-- Filter button -->
-									<div class="dropdown" style="margin-right: 0px; padding-right: 1px;">
+									<div class="dropdown">
                                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by</button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 												<a class="dropdown-item" href="#" onclick="filterNameAsc()">Name (A-Z)</a>
@@ -66,14 +66,16 @@
 												<a class="dropdown-item" href="#" onclick="filterPaymentMethod()">Payment Method</a>
                                             </div>
                                     </div>
-
 								</div>
 								
+
+								<div class="col-6">
+									<!-- Spacer -->
 									<div class="row">
-										<div class="col-8">
+										<div class="col-3">
 											<!-- Filter button -->
 											<div class="dropdown">
-												<button class="btn btn-primary dropdown-toggle" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px; width: 170px; height: 38px;">Filter by</button>
+												<button class="btn btn-primary dropdown-toggle" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
 												<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 													<li class="dropdown-submenu">
 														<li><a class="dropdown-item" href="#">all</a></li>
@@ -104,17 +106,14 @@
 												</ul>
 											</div>  
 										</div>
-										<div class="col-1">
+										<div class="col-4">
 											<button class="btn btn-light btn-outline-secondary" type="button" id="filterActivate">Go</button>
 										</div>
 									</div>
-
-								<div class="col-5">
-									<!-- Spacer -->
 								</div>
 								<div class="row">
 									<!-- search bar-->
-									<div class="col-6" style="margin-left: 20px;">
+									<div class="col-7">
 										<div class="input-group">
 											<input type="text" class="form-control" id="searchName" placeholder="Search" aria-label="order number"
 												aria-describedby="button-addon2">
@@ -124,7 +123,7 @@
 									<!-- add order -->
 									<div class="col-4" style="padding-right: 0%; margin-right: 0%;">
 										<button class="btn btn-light float-right btn-outline-secondary" data-toggle="modal" data-target="#addOrder"
-											type="submit" style="margin-bottom: 5px; height: 38px; width: 120px;">Add Order</button>
+											type="submit">Add Order</button>
 									</div>
 								</div>
 							</div>
@@ -147,7 +146,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}'); deleteCheck('{{_id}}')">
+										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}'); deleteCheck('{{_id}}');">
 											<td scope="row">{{customerName}}</td>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
