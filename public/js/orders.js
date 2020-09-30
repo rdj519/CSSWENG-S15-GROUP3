@@ -82,8 +82,8 @@ $(document).ready(function() {
                     var price = quantity * nonexisting[i].price;
                     $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ nonexisting[i].id + "-" + id +"'>   " + nonexisting[i].name + "</div><div class='col-6'><div class='row'><div class='col-6'><input id='updateQuantity-" + nonexisting[i].id + "-" + id +
                 "' price='"+ nonexisting[i].price +"' productID ='"+ nonexisting[i].id +"' pname ='" + nonexisting[i].name + "' orderID= '" + id + 
-                "' amountPerPack ='"+ 0 +"' class='form-control validate updateProductQuantity upQ-"+ id +"' value="+quantity+" readonly><p id='updateError" + nonexisting[id].id + "-" + id +
-                "'></p></div><div class='col-6'><input id='" +  "updatePrice-" + nonexisting[i].id + "-" + id + "' class='form-control validate updateProductPrice-"+id+"' value="+price+" readonly></'div></div></div>");
+                "' amountPerPack ='"+ 0 +"' class='form-control validate updateProductQuantity uPQ-"+ id +"' value="+quantity+" readonly><p id='updateError" + nonexisting[i].id + "-" +id+
+                "'></p></div><div class='col-6'><input id='" +  "updatePrice-" + nonexisting[i].id + "-" + id + "' class='form-control validate updateProductPrice' value="+price+" readonly></'div></div></div>");
                 }
                 var sum = 0;
                 $('.updateProductPrice-'+id).each(function() {
@@ -106,7 +106,6 @@ $(document).ready(function() {
         var qty = parseInt($(this).val());
         var qtyID = "#updatePrice-"+ id +"-" + order;
         
-        // console.log(qtyID + " " + qty * price);
         $(qtyID).val(qty * price);
 
         var sum = 0;
@@ -124,7 +123,6 @@ $(document).ready(function() {
             var errors = "#updateError-"+ $(this).attr('productID')+ "-"+order;
             
             isValidUpdateQuantity($(this), $(this).attr('productID'), parseInt($(this).attr('quantity')), function(valid) {
-                // console.log(errors);
                 if(valid) {
                     $(errors).text("");
                 }
@@ -139,16 +137,13 @@ $(document).ready(function() {
 
 
     function isValidUpdateQuantity(field, productID, productQuantity, valid) {
-        // console.log(productID + " " + productQuantity + " ");
         
         $.get('/getProductByID', {_id:productID}, function(data, status) {
-            console.log((productQuantity + data.quantity) + " " + field.val())
             if((productQuantity + data.quantity) >= field.val()) {
                 valid(true);
             }
 
             else {
-                console.log("falssse");
                 valid(false);
                 
             }
@@ -209,7 +204,7 @@ $(document).ready(function() {
             // Returning the values
             for(var i = 0; i < products.length; i++) {
                 $.get('/getReturnProduct', {_id: products[i].id, quantity:products[i].quantity}, function(data, status) {
-                    console.log(status);
+
                 });
             }
             customerOrder = [];
@@ -601,7 +596,6 @@ $(document).ready(function() {
                 if(data.quantity < val){
                     $("#error-"+ id).text("Not enough stock.");
                     $('#submitOrder').prop('disabled', true);
-                    // console.log("disabled");
                     
                 }
                 else{
@@ -746,7 +740,6 @@ $(document).ready(function() {
 
         var orderID = $(this).attr('orderID');
         var status = $(this).attr('value');
-        console.log("selected =" + status);
         //var orderID = $("#" + _id).attr('orderID');
 
         if (!(status === "confirmed")) {
