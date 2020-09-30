@@ -105,7 +105,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}')">
+										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}'); deleteCheck('{{_id}}')">
 											<td scope="row">{{customerName}}</td>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
@@ -140,7 +140,7 @@
 										</div>
 
 										<!-- Order Modal -->
-										<div class="modal fade" id="order{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+										<div class="modal fade ordermod" id="order{{_id}}" orderID="{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 											aria-hidden="true">
 										
 											<div class="modal-dialog" role="document">
@@ -198,14 +198,16 @@
 														<label style="color:#A39E9C">Status</label>
 														<div class="info">
 															<div class="dropdown">
-																<button class="btn btn-light dropdown-toggle" type="button" id="statusModal-{{_id}}"
+																<button class="btn btn-light dropdown-toggle statUpdate" type="button" orderID="{{_id}}" id="statusModal-{{_id}}"
 																	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
 																	og="{{status}}" value="{{status}}">{{status}}</button>
 																<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-																	<a class="dropdown-item" href="#">confirmed</a>
-																	<a class="dropdown-item" href="#">paid</a>
-																	<a class="dropdown-item" href="#">delivering</a>
-																	<a class="dropdown-item" href="#">completed</a>
+																	<li><a class="dropdown-item statuschoice" href="#" orderID="{{_id}}" value="confirmed" onclick="deleteCheck('{{_id}}')">confirmed</a></li>
+																	<li><a class="dropdown-item statuschoice" href="#" orderID="{{_id}}" value="paid" onclick="deleteCheck('{{_id}}')">paid</a></li>
+																	<li><a class="dropdown-item statuschoice" href="#" orderID="{{_id}}" value="delivering" onclick="deleteCheck('{{_id}}')">delivering</a></li>
+																	<li><a class="dropdown-item statuschoice" href="#" orderID="{{_id}}" value="completed" onclick="deleteCheck('{{_id}}')">completed</a></li>
+																	<li><a class="dropdown-item statuschoice" href="#" orderID="{{_id}}" value="cancelled" onclick="deleteCheck('{{_id}}')">cancelled</a></li>
+
 																</div>
 															</div>
 														</div>
@@ -240,7 +242,7 @@
 
 													</div>
 													<div class="modal-footer">
-														<button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" id="deleteBtn-{{_id}}" data-id="2" data-target="#delete{{_id}}" style="float:left;">Delete Order</button>
+														<button type="button" class="btn btn-danger deletebtn" data-dismiss="modal" data-toggle="modal" id="deleteBtn-{{_id}}" data-id="2" data-target="#delete{{_id}}" style="float:left;">Delete Order</button>
 														<button type="button" class="btn btn-info mr-auto" id={{_id}} data-dismiss="modal" style="float:left;"
 															onclick="createPdf('{{_id}}', $('.prodQuan-{{_id}}').attr('pname'))">Print</button>
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
