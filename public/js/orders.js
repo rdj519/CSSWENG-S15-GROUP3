@@ -84,7 +84,7 @@ $(document).ready(function() {
                     var product = nonexisting[i].name + "-" + nonexisting[i].amountPerPack + " pcs.";
                     $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ nonexisting[i].id + "-" + id +"'>   " + product + "</div><div class='col-6'><div class='row'><div class='col-6'><input id='updateQuantity-" + nonexisting[i].id + "-" + id +
                     "' price='"+ nonexisting[i].price +"' productID ='"+ nonexisting[i].id +"' pname ='" + nonexisting[i].name + "' orderID= '" + id + 
-                    "' amountPerPack='"+ nonexisting[i].amountPerPack +"' class='form-control validate updateProductQuantity uPQ-"+ id +"' value="+quantity+" readonly><p id='updateError" + nonexisting[i].id + "-" +id+
+                    "' amountPerPack='"+ nonexisting[i].amountPerPack +"' class='form-control validate nonexisting updateProductQuantity uPQ-"+ id +"' value="+quantity+" readonly><p id='updateError" + nonexisting[i].id + "-" +id+
                     "'></p></div><div class='col-6'><input id='" +  "updatePrice-" + nonexisting[i].id + "-" + id + "' class='form-control validate updateProductPrice-"+id+"' value="+price+" readonly></'div></div></div>");
                 }
                 var sum = 0;
@@ -138,18 +138,19 @@ $(document).ready(function() {
         
         $('.uPQ-'+order).each(function() {
             var errors = "#updateError-"+ $(this).attr('productID')+ "-"+order;
+            if(!($(this).has('.nonexisting'))) {
+                isValidUpdateQuantity($(this), $(this).attr('productID'), parseInt($(this).attr('quantity')), function(valid) {
+                    if(valid) {
+                        $(errors).text(""); 
+                    }
+                    else {
+                        $(errors).text("Not enough stocks or invalid value.");
+                        $('#submitUpdate-'+order).prop('disabled', true);
+                        return false;
+                    }
+                });
+            }
             
-            isValidUpdateQuantity($(this), $(this).attr('productID'), parseInt($(this).attr('quantity')), function(valid) {
-                if(valid) {
-                    $(errors).text(""); 
-                }
-                else {
-                    $(errors).text("Not enough stocks or invalid value.");
-                    $('#submitUpdate-'+order).prop('disabled', true);
-                    return false;
-                }
-
-            });
         }); 
     });
 
@@ -167,7 +168,6 @@ $(document).ready(function() {
 
             else {
                 valid(false);
-                
             }
                 
         });
