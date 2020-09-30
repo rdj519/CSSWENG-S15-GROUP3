@@ -100,6 +100,7 @@ $(document).ready(function() {
     }
 
     $(document).on('change', ".updateProductQuantity", function(){
+        
 
         // Changing price and sum
         var order = $(this).attr('orderID');
@@ -121,15 +122,26 @@ $(document).ready(function() {
 
 
         // Checking
+
+        
+        var isEmpty = false;
+
+        if(!$(this).val() || $(this).val() < 0) {
+            $("#updateError-"+ id +"-" + order).text("Must be a valid value.");
+            $('#submitOrder').prop('disabled', true);
+            isEmpty = true;
+        }
+
         $('.uPQ-'+order).each(function() {
             var errors = "#updateError-"+ $(this).attr('productID')+ "-"+order;
             
             isValidUpdateQuantity($(this), $(this).attr('productID'), parseInt($(this).attr('quantity')), function(valid) {
                 if(valid) {
-                    $(errors).text("");
+                    $(errors).text(""); 
                 }
                 else {
                     $(errors).text("Not enough stocks.");
+
                 }
 
             });
@@ -291,7 +303,6 @@ $(document).ready(function() {
             
             $("#deliveryDate").val("");
             $("#addOrder").modal("hide");
-
             
             location.reload(true);
         });
@@ -585,11 +596,11 @@ $(document).ready(function() {
         var id = $(this).attr('productID');
         var val = parseInt($(this).val());
         var isEmpty = false;
-        $("#error"+ id).text(val);
+        // $("#error"+ id).text(val);
         if(!$(this).val() || $(this).val() < 0){
-                $("#error"+ id).text("Must be a valid value.");
-                $('#submitOrder').prop('disabled', true);
-                isEmpty = true;
+            $("#error"+ id).text("Must be a valid value.");
+            $('#submitOrder').prop('disabled', true);
+            isEmpty = true;
         }
         $.get('/findProduct', {name: name, amountPerPack: amountPerPack}, function(data, result) {
             if(isEmpty){
