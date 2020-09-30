@@ -93,7 +93,7 @@ var OrderSchema = new mongoose.Schema({
     // order status
     status: {
         type: String,
-        enum: ["confirmed", "paid", "delivering", "completed", "cancelled"], 
+        enum: ["confirmed", "paid", "delivering", "completed"], 
         required: true
     }
 

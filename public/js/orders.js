@@ -291,7 +291,7 @@ $(document).ready(function() {
             $("#addOrder").modal("hide");
 
             
-            $("body").load('/orders');
+            location.reload(true);
         });
         
     });

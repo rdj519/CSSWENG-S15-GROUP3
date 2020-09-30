@@ -1,115 +1,120 @@
 <!-- addOrderModal.hbs -->
 
 <div id="addOrder" class="modal fade" role="dialog">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">
-	
-							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" >Name</label>
-							          <input type="text" id="customerName" name="customerName" class="form-control validate">
-							          <p class="error" id="customerNameError"></p>
-							        </div>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
 
-							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" >Contact Number</label>
-							          <input type="number" id="contactNumber" name="contactNumber" class="form-control validate" placeholder="9xxxxxxxxx">
-							          <p class="error" id="contactNumberError"></p>
-							        </div>
+				<div class="md-form mb-4">
+					<label data-error="wrong" data-success="right">Name</label>
+					<input type="text" id="customerName" name="customerName" class="form-control validate">
+					<p class="error" id="customerNameError"></p>
+				</div>
+
+				<div class="md-form mb-4">
+					<label data-error="wrong" data-success="right">Contact Number</label>
+					<input type="number" id="contactNumber" name="contactNumber" class="form-control validate"
+						placeholder="9xxxxxxxxx">
+					<p class="error" id="contactNumberError"></p>
+				</div>
 
 
-							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" ><b>Address</b></label>
-							     	  <label data-error="wrong" data-success="right" >Home Address</label>
-							          <input type="text" id="homeAddress" name="homeAddress" class="form-control validate">
-							          <p class="error" id="homeAddressError"></p>
-							          <label data-error="wrong" data-success="right">City/Municipality</label>
-							          <input type="text" id="city" name="city" class="form-control validate">
-							          <p class="error" id="cityError"></p>
-							        </div>
+				<div class="md-form mb-4">
+					<label data-error="wrong" data-success="right"><b>Address</b></label>
+					<label data-error="wrong" data-success="right">Home Address</label>
+					<input type="text" id="homeAddress" name="homeAddress" class="form-control validate">
+					<p class="error" id="homeAddressError"></p>
+					<label data-error="wrong" data-success="right">City/Municipality</label>
+					<input type="text" id="city" name="city" class="form-control validate">
+					<p class="error" id="cityError"></p>
+				</div>
 
-							      	<div class="md-form mb-4">
-							      		<label data-error="wrong" data-success="right" >Customer Order</label>
-									    <table class="table table-hover">
-											<thead>
-												<tr>
-													<th scope="col">Product</th>
-													<th scope="col">Quantity</th>
-													<th scope="col">Price</th>
-												</tr>
-											</thead>
-											<tbody id="productSold">
-												
-												
-											</tbody>
-											<p class="error" id="productSoldError"></p>
-										</table>
-										<label data-error="wrong" data-success="right" >Delivery Fee</label>
-										<input type="number" id="deliveryFee" name="deliveryFee" class="form-control validate">
-										<p class="error" id="deliveryFeeError"></p>
-										<label data-error="wrong" data-success="right" >Products Total Amount</label>
-										<input type="number" id="productTotal" name="productTotal" class="form-control validate" readonly>
-							      	</div>
+				<div class="md-form mb-4">
+					<label data-error="wrong" data-success="right">Customer Order</label>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Product</th>
+								<th scope="col">Quantity</th>
+								<th scope="col">Price</th>
+							</tr>
+						</thead>
+						<tbody id="productSold">
 
-							      	<div class="md-form mb-4">
-							     	  	<label data-error="wrong" data-success="right" >Payment Method</label>
-							          	<div class="dropdown" style="float:left; clear:both;" id="paymentDropdown">
-											<button class="btn btn-light dropdown-toggle" type="button"  id="paymentMethod" name="paymentMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Method</button>
-											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">gcash</a>
-											    <a class="dropdown-item" href="#">cod</a>
-											    <a class="dropdown-item" href="#">paymaya </a>
-											</div>
-										</div>
-							        </div>
-									<br>
-									<p class="error" id="paymentMethodError"></p>
 
-							        <div class="md-form mb-4">
-							     	  	<label data-error="wrong" data-success="right" >Courier</label>
-							          	<div class="dropdown" style="float:left; clear:both;" id="courierDropdown">
-											<button class="btn btn-light dropdown-toggle" type="button" id="courier" name="courier" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courier Type</button>
-											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">lalamove</a>
-											    <a class="dropdown-item" href="#">castilla</a>
-											    <a class="dropdown-item" href="#">mrspeedy</a>
-											    <a class="dropdown-item" href="#">grabexpress</a>
-											</div>
-							        	</div>
-							        </div>
-									<br>
-									<p class="error" id="courierError"></p>
-							        <div class="md-form mb-4">
-							     	  	<label data-error="wrong" data-success="right">Status</label>
-							          	<div class="dropdown" style="float:left; clear:both;" id="statusDropdown">
-											<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">confirmed</button>
-											<div class="dropdown-menu" aria-labelledby="courierType">
-											    <a class="dropdown-item" href="#">confirmed</a>
-											    <a class="dropdown-item" href="#">paid </a>
-											    <a class="dropdown-item" href="#">delivering</a>
-											    <a class="dropdown-item" href="#">completed </a>
-											</div>
-							        	</div>
-							        	<p class="error" id="statusError"></p>
-							        </div>
-							        <div class="md-form mb-4">
-							     	  <label data-error="wrong" data-success="right" >Delivery Date</label>
-							          <input type="date" id="deliveryDate" name="deliveryDate" class="form-control validate">
-							          <p class="error" id="deliveryDateError"></p>
-							        </div>
+						</tbody>
+						<p class="error" id="productSoldError"></p>
+					</table>
+					<label data-error="wrong" data-success="right">Delivery Fee</label>
+					<input type="number" id="deliveryFee" name="deliveryFee" class="form-control validate">
+					<p class="error" id="deliveryFeeError"></p>
+					<label data-error="wrong" data-success="right">Products Total Amount</label>
+					<input type="number" id="productTotal" name="productTotal" class="form-control validate" readonly>
+				</div>
 
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        <button type="button" class="btn btn-primary" id="submitOrder" data-dismiss="modal" disabled="true">Add Order</button>
-							      </div>
-							    </div>
-							  </div>
-							</div>
-							
+				<div class="md-form mb-4">
+					<label data-error="wrong" data-success="right">Payment Method</label>
+					<div class="dropdown" style="float:left; clear:both;" id="paymentDropdown">
+						<button class="btn btn-light dropdown-toggle" type="button" id="paymentMethod"
+							name="paymentMethod" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">Method</button>
+						<div class="dropdown-menu" aria-labelledby="courierType">
+							<a class="dropdown-item" href="#">gcash</a>
+							<a class="dropdown-item" href="#">cod</a>
+							<a class="dropdown-item" href="#">paymaya </a>
+						</div>
+					</div>
+				</div>
+				<br>
+				<p class="error" id="paymentMethodError"></p>
+
+				<div class="md-form mb-4">
+					<label data-error="wrong" data-success="right">Courier</label>
+					<div class="dropdown" style="float:left; clear:both;" id="courierDropdown">
+						<button class="btn btn-light dropdown-toggle" type="button" id="courier" name="courier"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courier Type</button>
+						<div class="dropdown-menu" aria-labelledby="courierType">
+							<a class="dropdown-item" href="#">lalamove</a>
+							<a class="dropdown-item" href="#">castilla</a>
+							<a class="dropdown-item" href="#">mrspeedy</a>
+							<a class="dropdown-item" href="#">grabexpress</a>
+						</div>
+					</div>
+				</div>
+				<br>
+				<p class="error" id="courierError"></p>
+				<div class="md-form mb-4">
+					<label data-error="wrong" data-success="right">Status</label>
+					<div class="dropdown" style="float:left; clear:both;" id="statusDropdown">
+						<button class="btn btn-light dropdown-toggle" type="button" id="status" name="status"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">confirmed</button>
+						<div class="dropdown-menu" aria-labelledby="courierType">
+							<a class="dropdown-item" href="#">confirmed</a>
+							<a class="dropdown-item" href="#">paid </a>
+							<a class="dropdown-item" href="#">delivering</a>
+							<a class="dropdown-item" href="#">completed </a>
+						</div>
+					</div>
+					<p class="error" id="statusError"></p>
+				</div>
+				<div class="md-form mb-4">
+					<label data-error="wrong" data-success="right">Delivery Date</label>
+					<input type="date" id="deliveryDate" name="deliveryDate" class="form-control validate">
+					<p class="error" id="deliveryDateError"></p>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" id="submitOrder" data-dismiss="modal" disabled="true">Add
+					Order</button>
+			</div>
+		</div>
+	</div>
+</div>
