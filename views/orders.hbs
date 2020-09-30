@@ -54,7 +54,7 @@
 
 							<!-- for search and add order button -->
 							<div class="row">
-								<div class="col-1">
+								<div class="col-2">
 									<!-- Filter button -->
 									<div class="dropdown">
                                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by</button>
@@ -68,8 +68,47 @@
                                     </div>
 
 								</div>
-								<div class="col-8" style="margin-right: 20px;">
-									<!-- Spacer -->
+								<div class="col-5" style="margin-right: 20px;">
+									<div class="row">
+										<div class="col-3">
+											<!-- Filter button -->
+											<div class="dropdown">
+												<button class="btn btn-primary dropdown-toggle" id="filterButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
+												<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													<li class="dropdown-submenu">
+														<li><a class="dropdown-item" href="#">all</a></li>
+														<li><a class="dropdown-item" href="#">Status</a>
+															<ul class="submenu dropdown-menu">
+																<li><a class="dropdown-item" href="#">confirmed</a></li>
+																<li><a class="dropdown-item" href="#">paid</a></li>
+																<li><a class="dropdown-item" href="#">delivering</a></li>
+																<li><a class="dropdown-item" href="#">completed</a></li>
+															</ul>
+														</li>
+														<li><a class="dropdown-item" href="#">Payment Method</a>
+														<ul class="submenu dropdown-menu">
+																<li><a class="dropdown-item" href="#">cod</a></li>
+																<li><a class="dropdown-item" href="#">gcash</a></li>
+																<li><a class="dropdown-item" href="#">paymaya</a></li>
+															</ul>
+														</li>
+														<li><a class="dropdown-item" href="#">Courier</a>
+															<ul class="submenu dropdown-menu">
+																<li><a class="dropdown-item" href="#">castilla</a></li>
+																<li><a class="dropdown-item" href="#">grabexpress</a></li>
+																<li><a class="dropdown-item" href="#">mrspeedy</a></li>
+																<li><a class="dropdown-item" href="#">lalamove</a></li>
+															</ul>
+														</li>
+													</li>
+												</ul>
+											</div>  
+										</div>
+										<div class="col-7">
+											<button class="btn btn-light btn-outline-secondary" type="button" id="filterActivate">Go</button>
+										</div>
+									</div>
+
 								</div>
 								<div class="row">
 									<!-- search bar-->
