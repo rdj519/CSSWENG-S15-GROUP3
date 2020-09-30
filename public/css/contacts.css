@@ -57,3 +57,8 @@ body {
     text-align: center;
     margin-top: 10px;
 }
+
+#homeNav, #homeNav:hover {
+    text-decoration: none;
+    color: inherit;
+}
