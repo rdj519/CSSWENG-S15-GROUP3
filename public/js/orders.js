@@ -127,7 +127,6 @@ $(document).ready(function() {
         var isEmpty = false;
 
         if(!$(this).val() || $(this).val() < 0) {
-            $("#updateError-"+ id +"-" + order).text("Must be a valid value.");
             $('#submitUpdate-'+order).prop('disabled', true);
             isEmpty = true;
         }
@@ -145,25 +144,13 @@ $(document).ready(function() {
                     $(errors).text(""); 
                 }
                 else {
-                    $(errors).text("Not enough stocks.");
+                    $(errors).text("Not enough stocks or invalid value.");
                     $('#submitUpdate-'+order).prop('disabled', true);
                     return false;
                 }
 
             });
         }); 
-        $(".updateProductQuantity").each(function() {
-            //var id = $(this).attr('id');
-            var thisVal = parseInt($(this).val());
-            if( thisVal < 0)
-            {
-                $("#updateError-"+ id +"-" + order).text("Must be a valid value.");
-                $('#submitUpdate-'+order).prop('disabled', true);
-                //  alert("no!" + thisVal);
-                return false;
-            }
-        });
-
     });
 
 
@@ -172,7 +159,10 @@ $(document).ready(function() {
         
         $.get('/getProductByID', {_id:productID}, function(data, status) {
             if((productQuantity + data.quantity) >= field.val()) {
-                valid(true);
+                if(field.val()>=0)
+                    valid(true);
+                else 
+                    valid(false);
             }
 
             else {
