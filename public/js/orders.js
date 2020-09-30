@@ -83,7 +83,7 @@ $(document).ready(function() {
                     $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ nonexisting[i].id + "-" + id +"'>   " + nonexisting[i].name + "</div><div class='col-6'><div class='row'><div class='col-6'><input id='updateQuantity-" + nonexisting[i].id + "-" + id +
                 "' price='"+ nonexisting[i].price +"' productID ='"+ nonexisting[i].id +"' pname ='" + nonexisting[i].name + "' orderID= '" + id + 
                 "' amountPerPack ='"+ 0 +"' class='form-control validate updateProductQuantity uPQ-"+ id +"' value="+quantity+" readonly><p id='updateError" + nonexisting[i].id + "-" +id+
-                "'></p></div><div class='col-6'><input id='" +  "updatePrice-" + nonexisting[i].id + "-" + id + "' class='form-control validate updateProductPrice' value="+price+" readonly></'div></div></div>");
+                "'></p></div><div class='col-6'><input id='" +  "updatePrice-" + nonexisting[i].id + "-" + id + "' class='form-control validate updateProductPrice-"+id+"' value="+price+" readonly></'div></div></div>");
                 }
                 var sum = 0;
                 $('.updateProductPrice-'+id).each(function() {
