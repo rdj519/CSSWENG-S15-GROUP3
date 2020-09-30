@@ -126,7 +126,7 @@ $(document).ready(function() {
         
         var isEmpty = false;
 
-        if(!$(this).val() || $(this).val() < 0) {
+        if(!$(this).val() || $(this).val() < 0 || sum == 0) {
             $('#submitUpdate-'+order).prop('disabled', true);
             isEmpty = true;
         }
