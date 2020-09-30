@@ -82,7 +82,7 @@ $(document).ready(function() {
                     var price = quantity * nonexisting[i].price;
                     $("#changeItemList-"+id).append("<div class='row info'> <div class='col-6 d-flex p-3' style='margin-bottom: 10px;' id='"+ nonexisting[i].id + "-" + id +"'>   " + nonexisting[i].name + "</div><div class='col-6'><div class='row'><div class='col-6'><input id='updateQuantity-" + nonexisting[i].id + "-" + id +
                 "' price='"+ nonexisting[i].price +"' productID ='"+ nonexisting[i].id +"' pname ='" + nonexisting[i].name + "' orderID= '" + id + 
-                "' amountPerPack ='"+ 0 +"' class='form-control validate updateProductQuantity upQ-"+ id +"' value="+quantity+" readonly><p id='updateError" + nonexisting[id].id + "-" + id +
+                "' amountPerPack ='"+ 0 +"' class='form-control validate updateProductQuantity upQ-"+ id +"' value="+quantity+" readonly><p id='updateError" + nonexisting[i].id + "-" + id +
                 "'></p></div><div class='col-6'><input id='" +  "updatePrice-" + nonexisting[i].id + "-" + id + "' class='form-control validate updateProductPrice-"+id+"' value="+price+" readonly></'div></div></div>");
                 }
                 var sum = 0;
@@ -266,6 +266,7 @@ $(document).ready(function() {
                 name: $(this).attr('productName'),
                 quantity: parseInt($(this).val()),
                 price: parseFloat($(this).attr('price')),
+                amountPerPack: parseFloat($(this).attr('amtperpack')),
             }
             if(productOrder.quantity > 0) {
                 $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity, name: productOrder.name}, function(data, status) {
@@ -1266,9 +1267,13 @@ function liveSearch() {
       var arr = [];
       $('.pq-' + modalID).each(function() {
         pname= $(this).attr('pname');
+        amtpack= ($(this).attr('amtperpack'));
         quantity= ($(this).val()).toString();
+        price= ($(this).attr('price')).toString();
+
+
         if (quantity > 0 ){
-            arr.push("\n" + pname + "    -   " + quantity);
+            arr.push("\n" + pname + "  (" + amtpack + " per pack)    Php" + price + "   -        " + quantity);
             console.log("item: " + pname + quantity);
         }         
       });
