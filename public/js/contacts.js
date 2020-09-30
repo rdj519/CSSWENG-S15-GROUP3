@@ -7,9 +7,7 @@ $(document).ready(function(){
 	        var homeAddress = $("#home").val();
 	        var city = $("#city").val();
 	        var remarks = $("#remark").val();
-
-
-	        //alert("name: " +name + "\n" + "contact: " + contactNumber + jQuery.type(contactNumber) + "\nhome: " + homeAddress + "\ncity: " + city + "\nremarks: " + remarks);
+	        
 	        $.post('/addContact', { name: name, contactNumber: contactNumber, homeAddress: homeAddress, city: city, remarks: remarks }, function(data, status) {
 	            /* resets value after */
 	            $("#name").val("");
@@ -24,9 +22,9 @@ $(document).ready(function(){
 		
 	});
 
-    /* changes Delete */
+    /* Delete */
 
-        //sa button nung deleteOpen
+    //deleteOpen
     $(document).on('click', ".deletion", function(){
         var _id = $(this).attr('id');
         $.post('/deleteContact',{_id: _id}, function(data, status) {
@@ -48,7 +46,7 @@ $(document).ready(function(){
 
     });
 
-    /* changes Delete */
+    /* Delete */
 
 	$('.updateContact').click(function() {
 		var _id = $(this).attr('contactID');
@@ -62,8 +60,6 @@ $(document).ready(function(){
 
 		$('#contact-'+_id).removeClass('modal-open');
 		$('.modal-backdrop').remove();
-		//$("#cont").load('/contacts');
-		//$("body").load('/contacts');
 		location.reload(true);
 	});
 
@@ -214,7 +210,7 @@ $(document).ready(function(){
 		$.get('/updateContact', {_id:_id, contactNumber:contactNumber, homeAddress:homeAddress, city:city, remarks:remarks}, function(data, result) {
 
 		});
-		location.reload(true);
+		$("#cont").load('/contacts');
 		$('#contact-'+_id).removeClass('modal-open');
 		$('.modal-backdrop').remove();
 		
@@ -268,7 +264,6 @@ $(document).ready(function(){
 		var filled = filledUpdate(_id);
 		var validNumber = isValidContactNumberUpdate(field, _id);
 
-		// console.log("update: " + filled + " " + validNumber);
 		if(filled && validNumber) {
 			$("#submitInfo-"+_id).prop('disabled', false);
 			isUniqueContactUpdate(validator.trim($('#name-'+ _id).text()), validator.trim($('#contactNumber-'+ _id).val()), _id);
@@ -334,28 +329,32 @@ $(document).ready(function(){
 		$('#remarksError').text('');
      });
 
-
-	
-
-
-
-	// Check if there are updates made
-	// $('.updateContactInfo').keyup(function() {
-	// 	var _id = $(this).attr('contactID');
-	// 	var contactNumber = $('#contactNumber-'+ _id).val();
-	// 	var homeAddress = $('#homeAddress-'+ _id).val();
-	// 	var city = $('#city-'+ _id).val();
-	// 	var remarks = $('#remarks-'+ _id).val();
-
-	// 	$.get('/getContact', {_id:_id}, function(data, result) {
-	// 		var change = false;
-
-	// 		if ((result.contactNumber != contactNumber) || (result.homeAddress != homeAddress) || (result.city != city)) {
-	// 			change = true;
-	// 		}
-			
-	// 	});
-		
-	// });
-
 });
+
+
+function liveSearch() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchContact");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("contactTable");
+    tr = table.getElementsByTagName("tr");
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    td2 = tr[i].getElementsByTagName("td")[1];
+    td3 = tr[i].getElementsByTagName("td")[2];
+    td4 = tr[i].getElementsByTagName("td")[3];
+        if (td || td2 || td3 || td4) {
+            txtValue = td.textContent || td.innerText;
+            txtValue2 = td2.textContent || td2.innerText;
+            txtValue3 = td3.textContent || td3.innerText;
+            txtValue4 = td4.textContent || td4.innerText;
+            if ((txtValue.toUpperCase().indexOf(filter) > -1) || (txtValue2.toUpperCase().indexOf(filter) > -1) || (txtValue3.toUpperCase().indexOf(filter) > -1) || (txtValue4.toUpperCase().indexOf(filter) > -1)) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}

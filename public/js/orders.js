@@ -1,6 +1,3 @@
-
-// const e = require("express");
-
 $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
     $("#productTotal").val(0);
@@ -8,7 +5,7 @@ $(document).ready(function() {
     $.get('/getProductsSold', {}, function(data, status) {
         for(var i = 0; i < data.length; i++) {
             $("#productSold").append("<tr>");
-            $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "</th>");
+            $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "-" +data[i].amountPerPack + " pcs." + "</th>");
             $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p class='error' id='error-" + data[i]._id +"'></p></td>");
             $("#productSold").append("<td><p id='" +  "Price-" + data[i]._id + "' class='form-control validate productPrice'></p></td>");
             $("#productSold").append("</tr>");
@@ -50,7 +47,6 @@ $(document).ready(function() {
                 "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' pname ='" + data[i].name + "' orderID='" + id + 
                 "' amountPerPack ='"+data[i].amountPerPack +"' quantity='"+ 0+ "' class='form-control validate updateProductQuantity uPQ-"+id+"' value=0 ><p class='error' id='updateError-" + data[i]._id + "-" + id +
                 "'></p></div><div class='col-6'><input type='number' id='" +  "updatePrice-" + data[i]._id + "-" + id + "' class='form-control validate updateProductPrice-"+ id +"' value=0 readonly></'div></div></div>");
-                // $("#changeItemList-"+id).append("hello");
             }
             placeAmounts(id);
 
@@ -60,7 +56,6 @@ $(document).ready(function() {
     });
 
     function placeAmounts(id) {
-        // var id = order.attr('orderID');
             $.get('/getOrder', {_id:id}, function(data, status) {
                 products = data.customerOrder;
                 nonexisting = [];
@@ -214,7 +209,6 @@ $(document).ready(function() {
 
     /* changes */
 
-    //function validateQuantity()
   
     $(".submitUpdate").click(function(){ 
         var orderID = $(this).attr('orderID');
@@ -558,12 +552,10 @@ $(document).ready(function() {
             {
                 $("#error-"+ id).text("Must be a valid value.");
                 $('#submitOrder').prop('disabled', true);
-                //  alert("no!" + thisVal);
                 validAll = false;
                 return false;
             }
         });
-        //var validQuantity = isValidQuantity(field);
 
         console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity + " " + validDeliveryDate + " " + validDeliveryFee + " " + validPaymentMethod + " " + validCourier + " " + validStatus + " " + validOrderQuantity);
         if(validAll && filled && validContactNumber && validHomeAddress && validCustomerName && validCity && validDeliveryDate && validDeliveryFee && validPaymentMethod && validCourier && validStatus && validOrderQuantity)
@@ -872,507 +864,491 @@ function liveSearch() {
             }
         }
     }
-/*
-    //delete check
-    function deleteCheck(_id) {
-        var status = $("#statusModal-" + _id).html();
-        console.log("status: " + status);
-        if (!(status === "confirmed")) {
-            $("#deleteBtn-" + _id).prop('disabled', true);      
+
+//Total price
+function showTotal(_id) {
+    var deliveryfee = parseInt($("#deliveryFeeModal-" + _id).val());   
+    var prodTotal = parseInt($("#overallPriceModal-" + _id).val());
+    $("#totalPriceModal-" + _id).val(deliveryfee + prodTotal);
+}
+
+function updateTotal(_id) {
+    var total = parseFloat($("#overallPriceModal-" + _id).val());
+    var dfee = parseFloat($("#deliveryFeeModal-" + _id).val());
+    $("#totalPriceModal-" + _id).val(total+dfee);
+}
+
+function itemprice(price, quantity) {
+    parseFloat($("#" + _id + "-" + prodID).attr('price').val(price*quantity));
+    parseFloat($("#price" + _id + "-" + prodID).attr('price').val(price*quantity));
+    return price * quantity;
+}
+
+function overallPrice(_id, prodID, add) {
+    console.log("add: "+ add);
+    var sum=add;
+    $('.pq-' + _id).each(function() {
+        console.log("sum: " + sum);
+        if ($(this).attr('itemID') === prodID) {
+            
+        } else {
+            console.log($(this).attr('pname') + " " + parseInt($(this).attr('itemprice')) );
+            console.log("parseInt($(this).val())" + parseInt($(this).val()));
+
+        sum = sum + (parseInt($(this).attr('itemprice')) * parseInt($(this).val()));    
+
+        }           
+    });
+    $('#overallPriceModal-' + _id).val(sum);
+    updateTotal(_id);
+}
+
+
+function overallitem(prodID, _id) {
+    var price = parseFloat($("#" + _id + "-" + prodID).attr('price'));
+    var qty = parseInt($("#" + _id + "-" + prodID).val());
+
+    console.log("price: " + price);
+    console.log("qty: " + qty);
+    $("#" + _id + "-" + prodID).attr('itemprice', price*qty);
+    overallPrice(_id, prodID, price*qty);
+}
+
+
+
+//update the quantity of orders
+function updateQuan(prodID, _id) {
+    console.log("_id: " + _id);
+    var name = $('#name-' + _id).val();
+    var contactnum = $("#contactNumberModal-" + _id).val();
+    var home = $("#homeAddressModal-" + _id).val();
+    var city = $("#cityModal-" + _id).val();
+            //dates
+    var placed = $("#placedDateModal-" + _id).val();
+    var delivery = $("#deliveryDateModal-" + _id).val();
+            //dropdowns
+    var courier = $("#courierModal-" + _id).html();
+    var payment = $("#paymentMethodModal-" + _id).html();
+    var status = $("#statusModal-" + _id).html();
+    var deliveryfee = $("#deliveryFeeModal-" + _id).val();   
+    var prodTotal = $("#overallPriceModal-" + _id).val();
+
+    console.log("prodTotal: " + prodTotal);
+
+    //PRODUCT       
+    var newQuan = $("#" + _id + "-" + prodID).val();
+    var ogquan = $("#" + _id + "-" + prodID).attr('ogquan'); 
+    var name = $("#" + _id + "-" + prodID).attr('pname');
+    var x;
+
+    console.log("QUANTITY UPDATED\n");
+    console.log("Name: " + name);
+    console.log("newQuan: " + newQuan);
+    console.log("ogquan: "+ ogquan);
+    x = newQuan-ogquan;
+    console.log("minus: "+ x);      
+    
+    $("#" + _id + "-" + prodID).attr('ogquan', newQuan);
+    console.log("new ogquan: " + newQuan);
+
+
+    var customerOrder = [];
+    $('.pq-' + _id).each(function() {
+
+        var productOrder = {
+            id: $(this).attr('itemID'),
+            name: $(this).attr('pname'),
+            ogquantity: parseInt($(this).attr('ogquan')),
+            quantity: parseInt($(this).val()),
+            price: parseInt($(this).attr('price')),
         }
-        else {
-            $("#deleteBtn-" + _id).prop('disabled', false);                 
+        console.log("hello;;;" + productOrder);
+        if(productOrder.quantity > 0) {
+            $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.ogquantity-productOrder.quantity, name: productOrder.name}, function(data, status) {
+                console.log(data + " " + status);
+            });
         }
-    }
-*/
-    //Total price
-    function showTotal(_id) {
-        var deliveryfee = parseInt($("#deliveryFeeModal-" + _id).val());   
-        var prodTotal = parseInt($("#overallPriceModal-" + _id).val());
-        $("#totalPriceModal-" + _id).val(deliveryfee + prodTotal);
-    }
-    
-    function updateTotal(_id) {
-        var total = parseFloat($("#overallPriceModal-" + _id).val());
-        var dfee = parseFloat($("#deliveryFeeModal-" + _id).val());
-        $("#totalPriceModal-" + _id).val(total+dfee);
-    }
+               
+        customerOrder.push(productOrder);
+        console.log(productOrder);
+    });
 
-    function itemprice(price, quantity) {
-        parseFloat($("#" + _id + "-" + prodID).attr('price').val(price*quantity));
-        parseFloat($("#price" + _id + "-" + prodID).attr('price').val(price*quantity));
-        return price * quantity;
-    }
-
-    function overallPrice(_id, prodID, add) {
-        console.log("add: "+ add);
-        var sum=add;
-        $('.pq-' + _id).each(function() {
-            console.log("sum: " + sum);
-            if ($(this).attr('itemID') === prodID) {
-                
-            } else {
-                console.log($(this).attr('pname') + " " + parseInt($(this).attr('itemprice')) );
-                console.log("parseInt($(this).val())" + parseInt($(this).val()));
-
-            sum = sum + (parseInt($(this).attr('itemprice')) * parseInt($(this).val()));    
-
-            }           
-        });
-        $('#overallPriceModal-' + _id).val(sum);
-        updateTotal(_id);
-    }
-
-    //if nagchange quantity ng item
-    function overallitem(prodID, _id) {
-        //parseFloat($("#" + _id + "-" + prodID).attr('price').val(price*quantity));
-        var price = parseFloat($("#" + _id + "-" + prodID).attr('price'));
-        var qty = parseInt($("#" + _id + "-" + prodID).val());
-
-        console.log("price: " + price);
-        console.log("qty: " + qty);
-        $("#" + _id + "-" + prodID).attr('itemprice', price*qty);
-        overallPrice(_id, prodID, price*qty);
-    }
-
-    
-    
-    //update the quantity of orders
-    function updateQuan(prodID, _id) {
-        console.log("_id: " + _id);
-        var name = $('#name-' + _id).val();
-        var contactnum = $("#contactNumberModal-" + _id).val();
-        var home = $("#homeAddressModal-" + _id).val();
-        var city = $("#cityModal-" + _id).val();
-                //dates
-        var placed = $("#placedDateModal-" + _id).val();
-        var delivery = $("#deliveryDateModal-" + _id).val();
-                //dropdowns
-        var courier = $("#courierModal-" + _id).html();
-        var payment = $("#paymentMethodModal-" + _id).html();
-        var status = $("#statusModal-" + _id).html();
-        var deliveryfee = $("#deliveryFeeModal-" + _id).val();   
-        var prodTotal = $("#overallPriceModal-" + _id).val();
-
-        console.log("prodTotal: " + prodTotal);
-
-        //PRODUCT       
-        var newQuan = $("#" + _id + "-" + prodID).val();
-        var ogquan = $("#" + _id + "-" + prodID).attr('ogquan'); 
-        var name = $("#" + _id + "-" + prodID).attr('pname');
-        var x;
-
-        console.log("QUANTITY UPDATED\n");
-        console.log("Name: " + name);
-        console.log("newQuan: " + newQuan);
-        console.log("ogquan: "+ ogquan);
-        x = newQuan-ogquan;
-        console.log("minus: "+ x);      
+    $.post('/updateOrder',{_id:_id,customerName: name, contactNumber: contactnum, homeAddress: home, city: city, placedDate:placed,
+        deliveryDate: delivery, courier: courier, paymentMethod: payment, status: status, deliveryFee: deliveryfee, overallPrice: prodTotal, customerOrder: customerOrder}, function(data, status) {
+        console.log("UPDATED thru updatequan");
+    })
+}
         
-        $("#" + _id + "-" + prodID).attr('ogquan', newQuan);
-        console.log("new ogquan: " + newQuan);
-
-
-        var customerOrder = [];
-        $('.pq-' + _id).each(function() {
-
-            var productOrder = {
-                id: $(this).attr('itemID'),
-                name: $(this).attr('pname'),
-                ogquantity: parseInt($(this).attr('ogquan')),
-                quantity: parseInt($(this).val()),
-                price: parseInt($(this).attr('price')),
+    
+//update
+function isFilledUpdateOrder(_id) {
+            var valid = true
+            var contactnum = $("#contactNumberModal-" + _id).val();
+            var home = $("#homeAddressModal-" + _id).val();
+            var city = $("#cityModal-" + _id).val();
+            //dates
+            var delivery = $("#deliveryDateModal-" + _id).val();
+            //dropdowns
+            var courier = $("#courierModal-" + _id).html();
+            var payment = $("#paymentMethodModal-" + _id).html();
+            var status = $("#statusModal-" + _id).html();
+            var deliveryfee = $("#deliveryFeeModal-" + _id).val();  
+            if (validator.isEmpty(contactnum)) {
+                $("#contactNumberModal-" + _id).css("border-color", "red");
+                valid = false
             }
-            console.log("hello;;;" + productOrder);
-            if(productOrder.quantity > 0) {
-                $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.ogquantity-productOrder.quantity, name: productOrder.name}, function(data, status) {
-                    console.log(data + " " + status);
+            if (validator.isEmpty(home)) {
+                $("#homeAddressModal-" + _id).css("border-color", "red");
+                valid = false
+            }
+           
+            if (validator.isEmpty(city)) {
+                $("#cityModal-" + _id).css("border-color", "red");
+                valid = false
+            }
+            if (validator.isEmpty(delivery)) {
+                $("#deliveryDateModal-" + _id).css("border-color", "red");
+                valid = false
+            }
+            if (validator.isEmpty(courier)) {
+                $("#courierModal-" + _id).css("border-color", "red");
+                valid = false
+            }
+           
+            if (validator.isEmpty(payment)) {
+                $("#paymentMethodModal-" + _id).css("border-color", "red");
+                valid = false
+            }
+            if (validator.isEmpty(status)) {
+                $("#statusModal-" + _id).css("border-color", "red");
+                valid = false
+            }         
+            if (validator.isEmpty(deliveryfee)) {
+                $("#deliveryFeeModal-" + _id).css("border-color", "red");
+                valid = false
+            }      
+            return valid;
+        }
+function checkContactNum(_id) {
+            var valid = true
+             
+            if($.trim($("#contactNumberModal-" + _id).val()).length != 10) {
+                $("#contactNumberModal-" + _id).css("border-color", "red");
+                valid = false
+            }
+            return valid;
+        }
+
+    
+function saveChanges(_id) {
+            
+            var name = $('#name-' + _id).val();
+            var contactnum = $("#contactNumberModal-" + _id).val();
+            var home = $("#homeAddressModal-" + _id).val();
+            var city = $("#cityModal-" + _id).val();
+            //dates
+            var placed = $("#placedDateModal-" + _id).val();
+            var delivery = $("#deliveryDateModal-" + _id).val();
+            //dropdowns
+            var courier = $("#courierModal-" + _id).html();
+            var payment = $("#paymentMethodModal-" + _id).html();
+            var status = $("#statusModal-" + _id).html();
+            var deliveryfee = $("#deliveryFeeModal-" + _id).val();   
+            var prodTotal = $("#overallPriceModal-" + _id).val();
+            
+            if(!isFilledUpdateOrder(_id))
+                $("#errorUpdate-" + _id).text("Properly fill out all fields.");
+           else if (!checkContactNum(_id))
+                $("#errorUpdate-" + _id).text("Contact number should be 10 digits and not empty.");
+            else {
+                $('.pq-' + _id).each(function() {
+                    var prodID = $(this).attr('itemID');
+                    updateQuan(prodID, _id);
                 });
-            }
-                   
-            customerOrder.push(productOrder);
-            console.log(productOrder);
-        });
 
-        //customerOrder.push(productOrder);
-        //console.log(productOrder);
-        $.post('/updateOrder',{_id:_id,customerName: name, contactNumber: contactnum, homeAddress: home, city: city, placedDate:placed,
-            deliveryDate: delivery, courier: courier, paymentMethod: payment, status: status, deliveryFee: deliveryfee, overallPrice: prodTotal, customerOrder: customerOrder}, function(data, status) {
-            console.log("UPDATED thru updatequan");
-        })
+
+
+                $("#contactNumberModal-" + _id).attr('og', contactnum);
+                $("#homeAddressModal-" + _id).attr('og', home);
+                $("#cityModal-" + _id).attr('og', city);
+                //dates
+                $("#placedDateModal-" + _id).attr('og', placed);
+                $("#deliveryDateModal-" + _id).attr('og', delivery);
+                //dropdowns
+                $("#courierModal-" + _id).attr('og', courier);
+                $("#paymentMethodModal-" + _id).attr('og', payment);
+                $("#statusModal-" + _id).attr('og', status);
+                $("#deliveryFeeModal-" + _id).attr('og', deliveryfee);  
+                $("#overallPriceModal-" + _id).val();
+                setTimeout(function() {
+                        window.location.reload();
+                    }, 400);
+                    
+            }
+        }
+function filterNameAsc() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("orderTable");
+    switching = true;
+    /*Make a loop that will continue until
+    no switching has been done:*/
+    while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[0];
+            y = rows[i + 1].getElementsByTagName("TD")[0];
+            //check if the two rows should switch place:
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
     }
-        
-    
-    //update
-    function isFilledUpdateOrder(_id) {
-                var valid = true
-                var contactnum = $("#contactNumberModal-" + _id).val();
-                var home = $("#homeAddressModal-" + _id).val();
-                var city = $("#cityModal-" + _id).val();
-                //dates
-                var delivery = $("#deliveryDateModal-" + _id).val();
-                //dropdowns
-                var courier = $("#courierModal-" + _id).html();
-                var payment = $("#paymentMethodModal-" + _id).html();
-                var status = $("#statusModal-" + _id).html();
-                var deliveryfee = $("#deliveryFeeModal-" + _id).val();  
-                if (validator.isEmpty(contactnum)) {
-                    $("#contactNumberModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-                if (validator.isEmpty(home)) {
-                    $("#homeAddressModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-               
-                if (validator.isEmpty(city)) {
-                    $("#cityModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-                if (validator.isEmpty(delivery)) {
-                    $("#deliveryDateModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-                if (validator.isEmpty(courier)) {
-                    $("#courierModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-               
-                if (validator.isEmpty(payment)) {
-                    $("#paymentMethodModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-                if (validator.isEmpty(status)) {
-                    $("#statusModal-" + _id).css("border-color", "red");
-                    valid = false
-                }         
-                if (validator.isEmpty(deliveryfee)) {
-                    $("#deliveryFeeModal-" + _id).css("border-color", "red");
-                    valid = false
-                }      
-                return valid;
-            }
-    function checkContactNum(_id) {
-                var valid = true
-                 
-                if($.trim($("#contactNumberModal-" + _id).val()).length != 10) {
-                    $("#contactNumberModal-" + _id).css("border-color", "red");
-                    valid = false
-                }
-                return valid;
-            }
-    
-        
-    function saveChanges(_id) {
-                
-                var name = $('#name-' + _id).val();
-                var contactnum = $("#contactNumberModal-" + _id).val();
-                var home = $("#homeAddressModal-" + _id).val();
-                var city = $("#cityModal-" + _id).val();
-                //dates
-                var placed = $("#placedDateModal-" + _id).val();
-                var delivery = $("#deliveryDateModal-" + _id).val();
-                //dropdowns
-                var courier = $("#courierModal-" + _id).html();
-                var payment = $("#paymentMethodModal-" + _id).html();
-                var status = $("#statusModal-" + _id).html();
-                var deliveryfee = $("#deliveryFeeModal-" + _id).val();   
-                var prodTotal = $("#overallPriceModal-" + _id).val();
-                
-                if(!isFilledUpdateOrder(_id))
-                    $("#errorUpdate-" + _id).text("Properly fill out all fields.");
-               else if (!checkContactNum(_id))
-                    $("#errorUpdate-" + _id).text("Contact number should be 10 digits and not empty.");
-                else {
-                    $('.pq-' + _id).each(function() {
-                        var prodID = $(this).attr('itemID');
-                        updateQuan(prodID, _id);
-                    });
+}
 
-
-
-                    $("#contactNumberModal-" + _id).attr('og', contactnum);
-                    $("#homeAddressModal-" + _id).attr('og', home);
-                    $("#cityModal-" + _id).attr('og', city);
-                    //dates
-                    $("#placedDateModal-" + _id).attr('og', placed);
-                    $("#deliveryDateModal-" + _id).attr('og', delivery);
-                    //dropdowns
-                    $("#courierModal-" + _id).attr('og', courier);
-                    $("#paymentMethodModal-" + _id).attr('og', payment);
-                    $("#statusModal-" + _id).attr('og', status);
-                    $("#deliveryFeeModal-" + _id).attr('og', deliveryfee);  
-                    $("#overallPriceModal-" + _id).val();
-                    setTimeout(function() {
-                            window.location.reload();
-                        }, 400);
-                        
-                }
+function filterNameDesc() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("orderTable");
+    switching = true;
+    /*Make a loop that will continue until
+    no switching has been done:*/
+    while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[0];
+            y = rows[i + 1].getElementsByTagName("TD")[0];
+            //check if the two rows should switch place:
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
             }
-            function filterNameAsc() {
-                var table, rows, switching, i, x, y, shouldSwitch;
-                table = document.getElementById("orderTable");
+        }
+        if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+}
+
+function filterStatus() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("orderTable");
+    switching = true;
+    /*Make a loop that will continue until
+    no switching has been done:*/
+    while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[3];
+            y = rows[i + 1].getElementsByTagName("TD")[3];
+            //check if the two rows should switch place:
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                 switching = true;
-                /*Make a loop that will continue until
-                no switching has been done:*/
-                while (switching) {
-                    //start by saying: no switching is done:
-                    switching = false;
-                    rows = table.rows;
-                    /*Loop through all table rows (except the
-                    first, which contains table headers):*/
-                    for (i = 1; i < (rows.length - 1); i++) {
-                        //start by saying there should be no switching:
-                        shouldSwitch = false;
-                        /*Get the two elements you want to compare,
-                        one from current row and one from the next:*/
-                        x = rows[i].getElementsByTagName("TD")[0];
-                        y = rows[i + 1].getElementsByTagName("TD")[0];
-                        //check if the two rows should switch place:
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            //if so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                    if (shouldSwitch) {
-                        /*If a switch has been marked, make the switch
-                        and mark that a switch has been done:*/
-                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                        switching = true;
-                    }
-                }
+        }
+    }
+}
+
+function filterCourier() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("orderTable");
+    switching = true;
+    /*Make a loop that will continue until
+    no switching has been done:*/
+    while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[4];
+            y = rows[i + 1].getElementsByTagName("TD")[4];
+            //check if the two rows should switch place:
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
             }
+        }
+        if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+}
 
-            function filterNameDesc() {
-                var table, rows, switching, i, x, y, shouldSwitch;
-                table = document.getElementById("orderTable");
-                switching = true;
-                /*Make a loop that will continue until
-                no switching has been done:*/
-                while (switching) {
-                    //start by saying: no switching is done:
-                    switching = false;
-                    rows = table.rows;
-                    /*Loop through all table rows (except the
-                    first, which contains table headers):*/
-                    for (i = 1; i < (rows.length - 1); i++) {
-                        //start by saying there should be no switching:
-                        shouldSwitch = false;
-                        /*Get the two elements you want to compare,
-                        one from current row and one from the next:*/
-                        x = rows[i].getElementsByTagName("TD")[0];
-                        y = rows[i + 1].getElementsByTagName("TD")[0];
-                        //check if the two rows should switch place:
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            //if so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                    if (shouldSwitch) {
-                        /*If a switch has been marked, make the switch
-                        and mark that a switch has been done:*/
-                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                        switching = true;
-                    }
-                }
+function filterPaymentMethod() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("orderTable");
+    switching = true;
+    /*Make a loop that will continue until
+    no switching has been done:*/
+    while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[5];
+            y = rows[i + 1].getElementsByTagName("TD")[5];
+            //check if the two rows should switch place:
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
             }
+        }
+        if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+}
 
-            function filterStatus() {
-                var table, rows, switching, i, x, y, shouldSwitch;
-                table = document.getElementById("orderTable");
-                switching = true;
-                /*Make a loop that will continue until
-                no switching has been done:*/
-                while (switching) {
-                    //start by saying: no switching is done:
-                    switching = false;
-                    rows = table.rows;
-                    /*Loop through all table rows (except the
-                    first, which contains table headers):*/
-                    for (i = 1; i < (rows.length - 1); i++) {
-                        //start by saying there should be no switching:
-                        shouldSwitch = false;
-                        /*Get the two elements you want to compare,
-                        one from current row and one from the next:*/
-                        x = rows[i].getElementsByTagName("TD")[3];
-                        y = rows[i + 1].getElementsByTagName("TD")[3];
-                        //check if the two rows should switch place:
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            //if so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                    if (shouldSwitch) {
-                            /*If a switch has been marked, make the switch
-                            and mark that a switch has been done:*/
-                            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                            switching = true;
-                    }
-                }
-            }
+/* print pdf */
+const { PDFDocument, StandardFonts, rgb } = PDFLib
+async function createPdf(modalID) {
+  // Create a new PDFDocument
+  const pdfDoc = await PDFDocument.create()
+  // Embed the Helvetica
+  const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica)
+  const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold)      
+  // Add a blank page to the document
+  const page = pdfDoc.addPage()
+  // Get the width and height of the page
+  const { width, height } = page.getSize()
+  // Draw a string of text toward the top of the page
+  const fontSize = 20
+  var title = 'Receipt';
+  page.drawText( title + '\n', {
+    x: 50,
+    y: height - 4 * fontSize,
+    size: fontSize,
+    font: helveticaBold,
+    color: rgb(0, 0, 0),
+  });
+  const fontSizeBody = 14;
+  var name =  ($(("#name-" + modalID)).text()).toString();
+  var number = ($(("#contactNumberModal-" + modalID)).val()).toString();
+  var address = ($(("#homeAddressModal-" + modalID)).val()).toString() + "- " + ($(("#cityModal-" + modalID)).val()).toString();
+  var placed =  ($(("#placedDateModal-" + modalID)).val());
+  var deliverydate = ($(("#deliveryDateModal-" + modalID)).val());
+  var courier = ($(("#courierModal-" + modalID)).val()).toString();
+  var status = ($(("#statusModal-"+ modalID)).val()).toString();
+  var lenprod = parseInt($("#prods-" + modalID).attr('lenCustomerOrder'));
+  //var newQuan = $("#" + _id + "-" + prodID).val();
 
-            function filterCourier() {
-                var table, rows, switching, i, x, y, shouldSwitch;
-                table = document.getElementById("orderTable");
-                switching = true;
-                /*Make a loop that will continue until
-                no switching has been done:*/
-                while (switching) {
-                    //start by saying: no switching is done:
-                    switching = false;
-                    rows = table.rows;
-                    /*Loop through all table rows (except the
-                    first, which contains table headers):*/
-                    for (i = 1; i < (rows.length - 1); i++) {
-                        //start by saying there should be no switching:
-                        shouldSwitch = false;
-                        /*Get the two elements you want to compare,
-                        one from current row and one from the next:*/
-                        x = rows[i].getElementsByTagName("TD")[4];
-                        y = rows[i + 1].getElementsByTagName("TD")[4];
-                        //check if the two rows should switch place:
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            //if so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                    if (shouldSwitch) {
-                        /*If a switch has been marked, make the switch
-                        and mark that a switch has been done:*/
-                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                        switching = true;
-                    }
-                }
-            }
-
-            function filterPaymentMethod() {
-                var table, rows, switching, i, x, y, shouldSwitch;
-                table = document.getElementById("orderTable");
-                switching = true;
-                /*Make a loop that will continue until
-                no switching has been done:*/
-                while (switching) {
-                    //start by saying: no switching is done:
-                    switching = false;
-                    rows = table.rows;
-                    /*Loop through all table rows (except the
-                    first, which contains table headers):*/
-                    for (i = 1; i < (rows.length - 1); i++) {
-                        //start by saying there should be no switching:
-                        shouldSwitch = false;
-                        /*Get the two elements you want to compare,
-                        one from current row and one from the next:*/
-                        x = rows[i].getElementsByTagName("TD")[5];
-                        y = rows[i + 1].getElementsByTagName("TD")[5];
-                        //check if the two rows should switch place:
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            //if so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                    if (shouldSwitch) {
-                        /*If a switch has been marked, make the switch
-                        and mark that a switch has been done:*/
-                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                        switching = true;
-                    }
-                }
-            }
-
-    /* print pdf */
-    const { PDFDocument, StandardFonts, rgb } = PDFLib
-    async function createPdf(modalID) {
-      // Create a new PDFDocument
-      const pdfDoc = await PDFDocument.create()
-      // Embed the Helvetica
-      const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica)
-      const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold)      
-      // Add a blank page to the document
-      const page = pdfDoc.addPage()
-      // Get the width and height of the page
-      const { width, height } = page.getSize()
-      // Draw a string of text toward the top of the page
-      const fontSize = 20
-      var title = 'Receipt';
-      page.drawText( title + '\n', {
-        x: 50,
-        y: height - 4 * fontSize,
-        size: fontSize,
-        font: helveticaBold,
-        color: rgb(0, 0, 0),
-      });
-      const fontSizeBody = 14;
-      var name =  ($(("#name-" + modalID)).text()).toString();
-      var number = ($(("#contactNumberModal-" + modalID)).val()).toString();
-      var address = ($(("#homeAddressModal-" + modalID)).val()).toString() + "- " + ($(("#cityModal-" + modalID)).val()).toString();
-      var placed =  ($(("#placedDateModal-" + modalID)).val());
-      var deliverydate = ($(("#deliveryDateModal-" + modalID)).val());
-      var courier = ($(("#courierModal-" + modalID)).val()).toString();
-      var status = ($(("#statusModal-"+ modalID)).val()).toString();
-      var lenprod = parseInt($("#prods-" + modalID).attr('lenCustomerOrder'));
-      //var newQuan = $("#" + _id + "-" + prodID).val();
-
-      //var name = $("#" + modalID + "-" + prodID).attr('pname');
-      //len of products
-      console.log("inside createpdf()");
-      var arr = [];
-      $('.pq-' + modalID).each(function() {
-        pname= $(this).attr('pname');
-        amtpack= ($(this).attr('amtperpack'));
-        quantity= ($(this).val()).toString();
-        price= ($(this).attr('price')).toString();
+  //var name = $("#" + modalID + "-" + prodID).attr('pname');
+  //len of products
+  console.log("inside createpdf()");
+  var arr = [];
+  $('.pq-' + modalID).each(function() {
+    pname= $(this).attr('pname');
+    amtpack= ($(this).attr('amtperpack'));
+    quantity= ($(this).val()).toString();
+    price= ($(this).attr('price')).toString();
 
 
-        if (quantity > 0 ){
-            arr.push("\n" + pname + "  (" + amtpack + " per pack)    Php" + price + "   -        " + quantity);
-            console.log("item: " + pname + quantity);
-        }         
-      });
-      var listprod = arr[0];
-     
-      for (var i = 1; i<arr.length; i++) {
-        listprod = listprod + arr[i];
-      }
-        
-      page.drawText("\n\nName:                       " + name + 
-                    "\nContact Number:      " + number +
-                    "\nAddress:                   " + address + 
-                    "\nDate Placed:             " + placed +
-                    "\nDelivery Date:           " + deliverydate + 
-                    "\nCourier:                     " + courier + 
-                    "\nStatus:                       " + status +
-                    "\n\nItems:" + listprod + 
-                    "\n"
-                    ,
-      {
-        x: 50,
-        y: height - 6 * fontSizeBody,
-        size: fontSizeBody,
-        font: helvetica,
-        color: rgb(0, 0, 0),
-      });
-      const fontSizeFees = 14
-      var overall =  ($(("#overallPriceModal-" + modalID)).val()).toString();
-      var dfee = ($(("#deliveryFeeModal-" + modalID)).val()).toString();
-      var total = ($(("#totalPriceModal-" + modalID)).val()).toString();
-      page.drawText( "\n\nOverall Payment:                      " + overall + 
-                     "\nDelivery Fee:                             " + dfee +
-                     "\nTotal Price:                                " + total
-        , {
-        x: 50,
-        y: height - 33 * fontSize,
-        size: fontSizeFees,
-        font: helveticaBold,
-        color: rgb(0, 0, 0),
-      });
-      // Serialize the PDFDocument to bytes (a Uint8Array)
-      const pdfBytes = await pdfDoc.save()
-      // Trigger the browser to download the PDF document
-      download(pdfBytes, name  + ".pdf", "application/pdf");
-    };
+    if (quantity > 0 ){
+        arr.push("\n" + pname + "  (" + amtpack + " per pack)    Php" + price + "   -        " + quantity);
+        console.log("item: " + pname + quantity);
+    }         
+  });
+  var listprod = arr[0];
  
+  for (var i = 1; i<arr.length; i++) {
+    listprod = listprod + arr[i];
+  }
+    
+  page.drawText("\n\nName:                       " + name + 
+                "\nContact Number:      " + number +
+                "\nAddress:                   " + address + 
+                "\nDate Placed:             " + placed +
+                "\nDelivery Date:           " + deliverydate + 
+                "\nCourier:                     " + courier + 
+                "\nStatus:                       " + status +
+                "\n\nItems:" + listprod + 
+                "\n"
+                ,
+  {
+    x: 50,
+    y: height - 6 * fontSizeBody,
+    size: fontSizeBody,
+    font: helvetica,
+    color: rgb(0, 0, 0),
+  });
+  const fontSizeFees = 14
+  var overall =  ($(("#overallPriceModal-" + modalID)).val()).toString();
+  var dfee = ($(("#deliveryFeeModal-" + modalID)).val()).toString();
+  var total = ($(("#totalPriceModal-" + modalID)).val()).toString();
+  page.drawText( "\n\nOverall Payment:                      " + overall + 
+                 "\nDelivery Fee:                             " + dfee +
+                 "\nTotal Price:                                " + total
+    , {
+    x: 50,
+    y: height - 33 * fontSize,
+    size: fontSizeFees,
+    font: helveticaBold,
+    color: rgb(0, 0, 0),
+  });
+  // Serialize the PDFDocument to bytes (a Uint8Array)
+  const pdfBytes = await pdfDoc.save()
+  // Trigger the browser to download the PDF document
+  download(pdfBytes, name  + ".pdf", "application/pdf");
+};
