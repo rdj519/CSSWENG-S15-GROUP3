@@ -825,6 +825,20 @@ function deleteCheck(_id) {
             $("#changeBtn-" + _id).prop('disabled', false);                 
         }
     }
+
+    function updateTotalOrderAmount(id) {
+        $.get('/getOrder', {_id:id}, function(data, status) {
+            products = data.customerOrder;
+            var sum = 0;
+            for(var i = 0; i < products.length; i++) {
+                sum += products[i].quantity * products[i].price;
+             }
+             $("#overallPriceModal-" + id).val(sum);
+             var total = (parseFloat($("#deliveryFeeModal-" + id).val()) +  sum);
+             $("#totalPriceModal-" + id).val(total);
+        });
+    }
+  
     
 function liveSearch() {
         // Declare variables
