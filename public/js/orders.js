@@ -541,11 +541,25 @@ $(document).ready(function() {
         var validCourier = isValidCourier(field);
         var validStatus  = isValidStatus(field);
         var validOrderQuantity = isValidOrderQuantity(field);
-
+        var validAll = true;
+        $('.productQuantity').each(function() {
+            var id = $(this).attr('productID');
+            var thisVal = parseInt($(this).val());
+            var name = $(this).attr('productName');
+            var amountPerPack = $(this).attr('amountPerPack');  
+            if( thisVal < 0)
+            {
+                $("#error-"+ id).text("Must be a valid value.");
+                $('#submitOrder').prop('disabled', true);
+                //  alert("no!" + thisVal);
+                validAll = false;
+                return false;
+            }
+        });
         //var validQuantity = isValidQuantity(field);
 
         console.log(validContactNumber + " " + validHomeAddress + " " + validCustomerName + " " + validCity + " " + validDeliveryDate + " " + validDeliveryFee + " " + validPaymentMethod + " " + validCourier + " " + validStatus + " " + validOrderQuantity);
-        if(filled && validContactNumber && validHomeAddress && validCustomerName && validCity && validDeliveryDate && validDeliveryFee && validPaymentMethod && validCourier && validStatus && validOrderQuantity)
+        if(validAll && filled && validContactNumber && validHomeAddress && validCustomerName && validCity && validDeliveryDate && validDeliveryFee && validPaymentMethod && validCourier && validStatus && validOrderQuantity)
             $('#submitOrder').prop('disabled', false);
         else 
             $('#submitOrder').prop('disabled', true);
@@ -622,6 +636,21 @@ $(document).ready(function() {
         }); 
 
         validateField($(this), 'Product', $('#productSoldError'));
+        // others
+        $('.productQuantity').each(function() {
+            var id = $(this).attr('productID');
+            var thisVal = parseInt($(this).val());
+            var name = $(this).attr('productName');
+            var amountPerPack = $(this).attr('amountPerPack');  
+            if( thisVal < 0)
+            {
+                $("#error-"+ id).text("Must be a valid value.");
+                $('#submitOrder').prop('disabled', true);
+                //  alert("no!" + thisVal);
+                return false;
+            }
+        });
+
     });
 
         /* nested dropdown */
