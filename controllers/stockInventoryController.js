@@ -26,8 +26,6 @@ const stockInventoryController = {
         var query = {_id: req.query._id};
         var projection = {};
 
-        // console.log(query._id);
-
         db.findOne(Product, query, projection, function(result){
             res.send(result);
         });
@@ -95,7 +93,7 @@ const stockInventoryController = {
         console.log("req.body.quantity " + req.body.quantity);
         console.log("req.body.name " + req.body.name);
 
-        var name = req.body.name;
+        var _id = req.body._id;
       
         var updates = {
             quantity: req.body.quantity,
@@ -103,8 +101,8 @@ const stockInventoryController = {
             lowStockQuantity: req.body.lowstockQuantity
         }
 
-        db.findOne(Product, {name:name}, null, function(result) {
-            db.updateOne(Product, {name:name}, updates, function(result1) {
+        db.findOne(Product, {_id:_id}, null, function(result) {
+            db.updateOne(Product, {_id:_id}, updates, function(result1) {
                 console.log(result1);
                 res.send("success");
 
@@ -124,3 +122,5 @@ const stockInventoryController = {
 }
 
 module.exports = stockInventoryController;
+
+
