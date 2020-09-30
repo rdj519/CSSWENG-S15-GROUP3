@@ -83,3 +83,8 @@ label {
 .overhead{
     margin-bottom: 0.5%;
 }
+
+#homeNav, #homeNav:hover {
+    text-decoration: none;
+    color: inherit;
+}
