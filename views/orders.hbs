@@ -267,7 +267,8 @@
 														</div>
 														{{/each}}  
 
-														<label><button class="btn btn-light float-right btn-outline-secondary changeItem"  data-toggle="modal" parentModal="order{{_id}}" data-target="#changeItemModal-{{_id}}" type="button" style="margin-bottom: :5px; background-color: rgb(150,117,103) !important; color:#FFF !important; border-color: rgb(150,117,103) !important; color:#FFF !important;">Change Items</button></label>
+														<label><button type="button" class="btn btn-secondary changeitem" data-dismiss="modal" data-toggle="modal" id="changeBtn-{{_id}}" data-id="2" data-target="#changeItemModal-{{_id}}" style="float:left;">Change Items</button></label>
+
 														<!-- onchange="updateQuan('{{_id}}', '{{../_id}}')" -->														
 
 														<label style="color:#A39E9C"> Overall Price</label>

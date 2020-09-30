@@ -9,11 +9,11 @@ $(document).ready(function() {
     //     startDate: '0'
     // });
 
-
+/*
     $('.ordermod').on('hidden.bs.modal', function (e) {
         location.reload(true);
     })
-
+*/
     $.get('/getProductsSold', {}, function(data, status) {
         for(var i = 0; i < data.length; i++) {
             $("#productSold").append("<tr>");
@@ -752,10 +752,12 @@ $(document).ready(function() {
         //var orderID = $("#" + _id).attr('orderID');
 
         if (!(status === "confirmed")) {
-            $("#deleteBtn-" + orderID).prop('disabled', true);      
+            $("#deleteBtn-" + orderID).prop('disabled', true); 
+            $("#changeBtn-" + orderID).prop('disabled', true);      
         }
         else {
             $("#deleteBtn-" + orderID).prop('disabled', false);                 
+            $("#changeBtn-" + orderID).prop('disabled', false);                 
         }
 
     });
@@ -780,10 +782,12 @@ function deleteCheck(_id) {
         var status = $("#statusModal-" + _id).val();
         console.log("status: " + status);
         if (!(status === "confirmed")) {
-            $("#deleteBtn-" + _id).prop('disabled', true);      
+            $("#deleteBtn-" + _id).prop('disabled', true);  
+            $("#changeBtn-" + _id).prop('disabled', true);    
         }
         else {
-            $("#deleteBtn-" + _id).prop('disabled', false);                 
+            $("#deleteBtn-" + _id).prop('disabled', false);  
+            $("#changeBtn-" + _id).prop('disabled', false);                 
         }
     }
     
