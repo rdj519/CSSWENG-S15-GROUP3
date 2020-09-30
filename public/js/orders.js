@@ -5,15 +5,6 @@ $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
     $("#productTotal").val(0);
 
-    // $('.from_date').datepicker({
-    //     startDate: '0'
-    // });
-
-/*
-    $('.ordermod').on('hidden.bs.modal', function (e) {
-        location.reload(true);
-    })
-*/
     $.get('/getProductsSold', {}, function(data, status) {
         for(var i = 0; i < data.length; i++) {
             $("#productSold").append("<tr>");
@@ -40,6 +31,13 @@ $(document).ready(function() {
         });
         $("#productTotal").val(sum);
         
+    });
+
+    $("#searchName").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#tbody tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     });
 
 
@@ -189,7 +187,7 @@ $(document).ready(function() {
     $(document).on('keyup', ".deleteConfirmation", function(){
         var confirm = $(this).val();
         $('.customerName').prop('disabled', true);
-        if(confirm === "delete")
+        if(confirm === "CONFIRM")
         {
             $('.customerName').prop('disabled', false);
         }
@@ -803,11 +801,13 @@ function liveSearch() {
         td = tr[i].getElementsByTagName("td")[0];
         td2 = tr[i].getElementsByTagName("td")[1];
         td3 = tr[i].getElementsByTagName("td")[2];
-            if (td || td2 || td3) {
+        td4 = tr[i].getElementsByTagName("td")[3];
+            if (td || td2 || td3 || td4) {
                 txtValue = td.textContent || td.innerText;
                 txtValue2 = td2.textContent || td2.innerText;
                 txtValue3 = td3.textContent || td3.innerText;
-                if ((txtValue.toUpperCase().indexOf(filter) > -1) || (txtValue2.toUpperCase().indexOf(filter) > -1) || (txtValue3.toUpperCase().indexOf(filter) > -1)) {
+                txtValue4 = td4.textContent || td4.innerText;
+                if ((txtValue.toUpperCase().indexOf(filter) > -1) || (txtValue2.toUpperCase().indexOf(filter) > -1) || (txtValue3.toUpperCase().indexOf(filter) > -1) || (txtValue4.toUpperCase().indexOf(filter) > -1)) {
                     tr[i].style.display = "";
                 } else {
                     tr[i].style.display = "none";
@@ -1050,6 +1050,180 @@ function liveSearch() {
                             window.location.reload();
                         }, 400);
                         
+                }
+            }
+            function filterNameAsc() {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById("orderTable");
+                switching = true;
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                    first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        //start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /*Get the two elements you want to compare,
+                        one from current row and one from the next:*/
+                        x = rows[i].getElementsByTagName("TD")[0];
+                        y = rows[i + 1].getElementsByTagName("TD")[0];
+                        //check if the two rows should switch place:
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        /*If a switch has been marked, make the switch
+                        and mark that a switch has been done:*/
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
+
+            function filterNameDesc() {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById("orderTable");
+                switching = true;
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                    first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        //start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /*Get the two elements you want to compare,
+                        one from current row and one from the next:*/
+                        x = rows[i].getElementsByTagName("TD")[0];
+                        y = rows[i + 1].getElementsByTagName("TD")[0];
+                        //check if the two rows should switch place:
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        /*If a switch has been marked, make the switch
+                        and mark that a switch has been done:*/
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
+
+            function filterStatus() {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById("orderTable");
+                switching = true;
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                    first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        //start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /*Get the two elements you want to compare,
+                        one from current row and one from the next:*/
+                        x = rows[i].getElementsByTagName("TD")[3];
+                        y = rows[i + 1].getElementsByTagName("TD")[3];
+                        //check if the two rows should switch place:
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                            /*If a switch has been marked, make the switch
+                            and mark that a switch has been done:*/
+                            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                            switching = true;
+                    }
+                }
+            }
+
+            function filterCourier() {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById("orderTable");
+                switching = true;
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                    first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        //start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /*Get the two elements you want to compare,
+                        one from current row and one from the next:*/
+                        x = rows[i].getElementsByTagName("TD")[4];
+                        y = rows[i + 1].getElementsByTagName("TD")[4];
+                        //check if the two rows should switch place:
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        /*If a switch has been marked, make the switch
+                        and mark that a switch has been done:*/
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
+
+            function filterPaymentMethod() {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById("orderTable");
+                switching = true;
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                    first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        //start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /*Get the two elements you want to compare,
+                        one from current row and one from the next:*/
+                        x = rows[i].getElementsByTagName("TD")[5];
+                        y = rows[i + 1].getElementsByTagName("TD")[5];
+                        //check if the two rows should switch place:
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        /*If a switch has been marked, make the switch
+                        and mark that a switch has been done:*/
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
                 }
             }
 
