@@ -138,7 +138,7 @@ $(document).ready(function() {
         
         $('.uPQ-'+order).each(function() {
             var errors = "#updateError-"+ $(this).attr('productID')+ "-"+order;
-            if(!($(this).has('.nonexisting'))) {
+            if(!($(this).hasClass('nonexisting'))) {
                 isValidUpdateQuantity($(this), $(this).attr('productID'), parseInt($(this).attr('quantity')), function(valid) {
                     if(valid) {
                         $(errors).text(""); 
@@ -146,7 +146,6 @@ $(document).ready(function() {
                     else {
                         $(errors).text("Not enough stocks or invalid value.");
                         $('#submitUpdate-'+order).prop('disabled', true);
-                        return false;
                     }
                 });
             }
