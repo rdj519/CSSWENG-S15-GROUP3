@@ -9,7 +9,7 @@ $(document).ready(function() {
         for(var i = 0; i < data.length; i++) {
             $("#productSold").append("<tr>");
             $("#productSold").append("<th scope='row' id='" + data[i]._id + "'>" + data[i].name + "</th>");
-            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p id='error-" + data[i]._id +"'></p></td>");
+            $("#productSold").append("<td><input type='number' id='quantity-" + data[i]._id + "' price='"+ data[i].price +"' productID ='"+ data[i]._id +"' productName ='" + data[i].name + "' amountPerPack ='"+data[i].amountPerPack +"' class='form-control validate productQuantity' value=0><p class='error' id='error-" + data[i]._id +"'></p></td>");
             $("#productSold").append("<td><p id='" +  "Price-" + data[i]._id + "' class='form-control validate productPrice'></p></td>");
             $("#productSold").append("</tr>");
 
@@ -261,6 +261,7 @@ $(document).ready(function() {
                 name: $(this).attr('productName'),
                 quantity: parseInt($(this).val()),
                 price: parseFloat($(this).attr('price')),
+                amountPerPack: parseFloat($(this).attr('amtperpack')),
             }
             if(productOrder.quantity > 0) {
                 $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity, name: productOrder.name}, function(data, status) {
@@ -1259,9 +1260,13 @@ function liveSearch() {
       var arr = [];
       $('.pq-' + modalID).each(function() {
         pname= $(this).attr('pname');
+        amtpack= ($(this).attr('amtperpack'));
         quantity= ($(this).val()).toString();
+        price= ($(this).attr('price')).toString();
+
+
         if (quantity > 0 ){
-            arr.push("\n" + pname + "    -   " + quantity);
+            arr.push("\n" + pname + "  (" + amtpack + " per pack)    Php" + price + "   -        " + quantity);
             console.log("item: " + pname + quantity);
         }         
       });
