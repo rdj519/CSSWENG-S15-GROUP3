@@ -146,7 +146,7 @@
 									</thead>
 									<tbody id="tbody">
 										{{#each contents}}
-										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}'); deleteCheck('{{_id}}');">
+										<tr class="{{status}} {{courier}} {{city}} {{paymentMethod}} {{datePlaced}} {{deliveryDate}}" data-toggle="modal" data-id="2" data-target="#order{{_id}}" onclick="showTotal('{{_id}}'); deleteCheck('{{_id}}'); updateTotalOrderAmount('{{_id}}');">
 											<td scope="row">{{customerName}}</td>
 											<td>{{contactNumber}}</td>
 											<td>{{homeAddress}}</td>
