@@ -11,17 +11,25 @@
 			<div class="modal-body">
 													
 				<div class="md-form mb-4" id="changeItemList-{{_id}}" orderID="{{_id}}">
-					<label><bold>Available items</bold></label>
-					<label></label>
 					<div class="row">
-						<div class="col">
-							<p class="total">Total: <span id="updateTotal-{{_id}}"></span></p>
+						<div class="col-6">
+							<label style="font-weight:bold;">Available items</label>
 						</div>
-					</div>
-					
-
+						<div class="col-3">
+							<label style="font-weight:bold;">Quantity</label>	
+						</div>
+						<div class="col-2">
+							<label style="font-weight:bold;">Price</label>	
+						</div>
+												
+					</div>			
 		      	</div>
 		    </div>
+    		<div class="row" style="margin-left:1%; font-weight:bold;">
+				<div class="col">
+					<p class="total">Total: <span id="updateTotal-{{_id}}"></span></p>
+				</div>
+			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary closeUpdate" data-dismiss="modal" >Close</button>
 				<button type="button" class="btn btn-primary submitUpdate" id="submitUpdate-{{_id}}" data-dismiss="modal" orderID="{{_id}}">Update</button>
