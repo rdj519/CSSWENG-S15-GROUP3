@@ -58,12 +58,13 @@ $(document).ready(function(){
 		var remarks = $('#remarks-'+ _id).val();
 
 		$.get('/updateContact', {_id:_id, contactNumber:contactNumber, homeAddress:homeAddress, city:city, remarks:remarks}, function(data, result) {
-
 		});
+
 		$('#contact-'+_id).removeClass('modal-open');
 		$('.modal-backdrop').remove();
-		$("#cont").load('/contacts');
-
+		//$("#cont").load('/contacts');
+		//$("body").load('/contacts');
+		location.reload(true);
 	});
 
 
