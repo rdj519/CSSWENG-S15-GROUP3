@@ -82,3 +82,7 @@ label {
     height:38px;
     width:170px;
 }
+
+.changeItemModal .close {
+    display: none;
+}

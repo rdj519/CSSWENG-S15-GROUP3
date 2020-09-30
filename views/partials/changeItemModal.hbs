@@ -1,6 +1,6 @@
 <!-- Modal for Change items -->
-<div id="changeItemModal-{{_id}}" class="modal fade changeItemModal" role="dialog" style="overflow-y:auto;" orderID="{{_id}}">
-	<div class="modal-dialog" role="document">
+<div id="changeItemModal-{{_id}}" class="modal fade changeItemModal" data-backdrop="static" role="dialog" style="overflow-y:auto;" orderID="{{_id}}">
+	<div class="modal-dialog" role="document" data-keyboard="false">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" >Customer {{name}} Order Change</h5>
@@ -23,7 +23,7 @@
 		      	</div>
 		    </div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary closeUpdate" data-dismiss="modal" >Close</button>
 				<button type="button" class="btn btn-primary submitUpdate" id="submitUpdate-{{_id}}" data-dismiss="modal" orderID="{{_id}}">Update</button>
 			</div>
 		</div>

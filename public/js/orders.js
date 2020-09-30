@@ -232,10 +232,10 @@ $(document).ready(function() {
                 }
             });
             $.get('/updateCustomerOrder', {_id:orderID, customerOrder:customerOrder}, function(data, status) {
+
                 location.reload(true);
             });
-        });
-      
+        });      
         
     });
 
@@ -759,6 +759,19 @@ $(document).ready(function() {
         }
 
     });
+
+    $(".changeItem").click(function() {
+        $(".update-modal").prop('hidden', true);
+    });
+
+    $(".closeUpdate").click(function() {
+        setTimeout(function() {
+            $(".update-modal").prop('hidden', false);
+        }, 300);
+        
+    });
+
+    
 
 });
 

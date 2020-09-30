@@ -140,7 +140,7 @@
 										</div>
 
 										<!-- Order Modal -->
-										<div class="modal fade ordermod" id="order{{_id}}" orderID="{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+										<div class="modal fade ordermod update-modal" id="order{{_id}}" orderID="{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 											aria-hidden="true">
 										
 											<div class="modal-dialog" role="document">
@@ -228,7 +228,7 @@
 														</div>
 														{{/each}}  
 
-														<label><button class="btn btn-light float-right btn-outline-secondary" data-dismiss="modal" data-toggle="modal" data-target="#changeItemModal-{{_id}}" type="button" style="margin-bottom: :5px; background-color: rgb(150,117,103) !important; color:#FFF !important; border-color: rgb(150,117,103) !important; color:#FFF !important;">Change Items</button></label>
+														<label><button class="btn btn-light float-right btn-outline-secondary changeItem"  data-toggle="modal" parentModal="order{{_id}}" data-target="#changeItemModal-{{_id}}" type="button" style="margin-bottom: :5px; background-color: rgb(150,117,103) !important; color:#FFF !important; border-color: rgb(150,117,103) !important; color:#FFF !important;">Change Items</button></label>
 														<!-- onchange="updateQuan('{{_id}}', '{{../_id}}')" -->														
 
 														<label style="color:#A39E9C"> Overall Price</label>
@@ -252,7 +252,6 @@
 												</div>
 												</div>
 										    </div>
-
 
 										    {{> changeItemModal _id=_id name=customerName productTotal=productTotal}}
 
