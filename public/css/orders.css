@@ -111,3 +111,7 @@ label {
 .changeItemModal .close {
     display: none;
 }
+
+.overhead{
+    margin-bottom: 0.5%;
+}
