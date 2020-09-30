@@ -75,11 +75,13 @@ const ordersController = {
             customerOrder: customerOder
         };
 
+        console.log(order);
+
      
         
         db.insertOne(Order, order, function(flag){
 
-            res.send("success");
+            res.send(flag);
         });
         
     },

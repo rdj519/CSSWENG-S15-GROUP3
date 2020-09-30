@@ -26,8 +26,6 @@ $(document).ready(function() {
         var id = $(this).attr('productID');
         var qty = parseInt($(this).val());
         var qtyID = "#Price-"+ id.trim();
-        
-        console.log(qtyID + " " + qty * price);
         $(qtyID).text(qty * price);
 
         var sum = 0;
@@ -242,9 +240,9 @@ $(document).ready(function() {
         var homeAddress = $("#homeAddress").val();
         var city = $("#city").val();
         var productTotal= $("#productTotal").val();
-        var paymentMethod = $("#paymentMethod").html();
-        var courier = $("#courier").html();
-        var status = $("#status").html();
+        var paymentMethod = validator.trim($("#paymentMethod").html());
+        var courier = validator.trim($("#courier").html());
+        var status = validator.trim($("#status").html());
         var deliveryDate = $("#deliveryDate").val();
         var deliveryFee = $("#deliveryFee").val();
         //current date 
@@ -253,7 +251,9 @@ $(document).ready(function() {
         var mm = String(placedDate.getMonth() + 1).padStart(2, '0'); 
         var yyyy = placedDate.getFullYear();
 
-        placedDate = yyyy + '-' + mm + '-' + dd;     
+        placedDate = yyyy + '-' + mm + '-' + dd;    
+
+        
 
         var customerOrder = [];
 
@@ -266,7 +266,7 @@ $(document).ready(function() {
             }
             if(productOrder.quantity > 0) {
                 $.get('/getPlaceStockOrder', {productID: productOrder.id, quantity: productOrder.quantity, name: productOrder.name}, function(data, status) {
-                    console.log(data + " " + status);
+               
                 });
                 customerOrder.push(productOrder);
             }
@@ -274,7 +274,7 @@ $(document).ready(function() {
         });
 
 
-        $.post('/addOrder',{customerName: customerName, contactNumber: contactNumber, homeAddress: homeAddress, city: city, productTotal: productTotal, paymentMethod: paymentMethod, courier: courier, status: status, deliveryDate: deliveryDate, deliveryFee: deliveryFee, placedDate: placedDate, customerOrder:customerOrder }, function(data, status) {
+        $.post('/addOrder',{customerName: customerName, contactNumber: contactNumber, homeAddress: homeAddress, city: city, productTotal: productTotal, paymentMethod: paymentMethod, courier: courier, status: status, deliveryDate: deliveryDate, deliveryFee: deliveryFee, placedDate: placedDate, customerOrder:customerOrder }, function(data, response) {
             /* resets value after */
             $("#customerName").val("");
             $("#contactNumber").val("");
@@ -504,16 +504,18 @@ $(document).ready(function() {
 
     function validateField(field, fieldName, error) {
 
-        var value = validator.trim(field.val());
-        var empty = validator.isEmpty(value);
-
-        if(empty) {
-            field.prop('value', '');
-            error.text(fieldName + " should not be empty.");
+        if(!field.has(".productQuantity")) {
+            var value = validator.trim(toString(field.val()));
+            var empty = validator.isEmpty(value);
+            if(empty) {
+                field.prop('value', '');
+                error.text(fieldName + " should not be empty.");
+            }
+            else {
+                error.text("");
+            }
         }
-        else {
-            error.text("");
-        }
+        
 
         var filled = isFilled();
         var validContactNumber = isValidContactNumber(field);
@@ -596,10 +598,13 @@ $(document).ready(function() {
                 if(data.quantity < val){
                     $("#error-"+ id).text("Not enough stock.");
                     $('#submitOrder').prop('disabled', true);
+                    // console.log("disabled");
+                    
                 }
                 else{
                     $("#error-"+ id).text("");
                     $('#submitOrder').prop('disabled', false);
+                    validateField($(this), 'Product', $('#productSoldError'));
                 }
             }
         }); 
